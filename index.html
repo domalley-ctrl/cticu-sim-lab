@@ -3851,10 +3851,17 @@ window.CTP = (() => {
     if (!hits.length) { el.dataset.lf = t; return; }
     const frag = document.createDocumentFragment(); let i = 0;
     hits.forEach(h => { frag.append(t.slice(i, h.e)); const a = document.createElement('b'); a.className = 'lf ' + h.dir; a.textContent = h.dir === 'hi' ? '↑' : '↓'; a.title = h.tip; a.setAttribute('aria-label', h.tip); frag.append(a); i = h.e; });
-    frag.append(t.slice(i)); el.textContent = ''; el.append(frag); el.dataset.lf = el.textContent;
+    frag.append(t.slice(i)); el.replaceChildren(frag); el.dataset.lf = el.textContent;
   }
-  const run = () => document.querySelectorAll(WHERE).forEach(process);
-  new MutationObserver(() => { clearTimeout(run.t); run.t = setTimeout(run, 60); }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  const NAT = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent');
+  function guard(el) {
+    if (el._lfp) return; el._lfp = 1; el._raw = null;
+    Object.defineProperty(el, 'textContent', { configurable: true, get() { return NAT.get.call(this); }, set(v) { v = String(v); if (v === this._raw) return; this._raw = v; NAT.set.call(this, v); process(this); } });
+  }
+  const run = () => { document.querySelectorAll('[id$="-coagTxt"], [id$="-echoTxt"]').forEach(guard); document.querySelectorAll(WHERE).forEach(process); };
+  run();
+  const logMO = new MutationObserver(recs => recs.forEach(r => r.addedNodes.forEach(n => n.querySelectorAll && n.querySelectorAll('span').forEach(process))));
+  document.querySelectorAll('[id$="-log"]').forEach(l => logMO.observe(l, { childList: true }));
   window.addEventListener('load', run);
   window.CTLF = { flagText };
 })();
