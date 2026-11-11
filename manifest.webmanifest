@@ -1,7 +1,7 @@
 {
-  "name": "CTICU Sim Lab",
-  "short_name": "CTICU Sim",
-  "description": "Real-time CTICU bedside simulators",
+  "name": "ICU Sim Lab",
+  "short_name": "ICU Sim",
+  "description": "Real-time ICU bedside simulators",
   "start_url": "./#menu",
   "scope": "./",
   "display": "standalone",
