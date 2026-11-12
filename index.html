@@ -292,6 +292,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .dzb .ctl-refs{font-size:12px}
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
+/* teach-guide-practice flow */
+.clsn .ct-topic{border:1px solid #2a4252;border-radius:10px;padding:6px 10px}
+.clsn .ct-topic>summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+.clsn .ct-topic .clsn{border:0;background:none;padding:8px 0 0}
+.clsn .ct-card{max-width:85ch}
+.clsn .ct-think{margin:.4em 0 .7em;color:#ffd58a;font-style:italic}
+.ct-opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 11px;border-radius:8px;border:1px solid #2a4252;background:#0f1a22;color:var(--fg);font:inherit;font-size:14px;cursor:pointer}
+.ct-opt:hover:not(:disabled){border-color:#8fc1ff}
+.ct-opt.ok{border-color:#3ec98e!important;color:#3ec98e!important}.ct-opt.no{border-color:#e5484d!important;color:#ff9a96!important}.ct-opt:disabled{cursor:default;opacity:1}
+.ct-qx{background:#0f1a22;border-radius:8px;padding:9px 11px;font-size:13.5px;line-height:1.5;margin-top:6px}
+.ct-qx b.g{color:#3ec98e}.ct-qx b.w{color:#f0a23a}
+.ct-qx .cl-btn{margin-top:8px}
+.cch.asking .cch-b{filter:blur(6px);pointer-events:none;user-select:none}
+.cch-ask{background:#13202a;border:1px solid #8fc1ff;border-radius:12px;padding:10px 12px;margin:0 0 10px}
+.cp-steps i.dn{background:#3ec98e!important;color:#0b0f12!important}
 /* CTICU kit */
 .ctk-pt{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--heart,#e5484d);border-radius:12px;padding:10px 14px;display:grid;gap:4px;margin-bottom:12px}
 .ctk-pt h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
@@ -5067,9 +5082,9 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
           <path d="M120 96 C 136 108, 146 122, 150 132" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
         </svg></div><div class="ubody"><span class="ueb">CTICU</span><h3>Cardiothoracic ICU</h3><p>14 simulators: pacing, CALS, bypass, IABP, Impella/ECMO, bleeding, Swan</p><span class="meta">14 simulators · 100+ cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-micu" style="--uc:#3fa9f5;--uc2:#7cc8ff" data-unit="micu"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 30 V92" stroke="#7cc8ff" stroke-width="9" stroke-linecap="round"/><path d="M100 88 C 88 96 76 104 68 116 M100 88 C 112 96 124 104 132 116" stroke="#7cc8ff" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M86 70 C 40 60 26 120 34 156 C 40 178 74 176 84 160 C 94 140 96 100 86 70 Z" fill="#163a55" stroke="#3fa9f5" stroke-width="3"/><path d="M114 70 C 160 60 174 120 166 156 C 160 178 126 176 116 160 C 106 140 104 100 114 70 Z" fill="#163a55" stroke="#3fa9f5" stroke-width="3"/><path d="M60 120 l10 10 M52 140 l14 4 M140 120 l-10 10 M148 140 l-14 4" stroke="#7cc8ff" stroke-width="2" opacity=".7"/></svg></div><div class="ubody"><span class="ueb">MICU</span><h3>Medical ICU</h3><p>Shock and sepsis, respiratory failure, toxicology, endocrine emergencies, GI and liver</p><span class="meta">5 simulators · 23 cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-neuro" style="--uc:#9b7bff;--uc2:#c3b1ff" data-unit="neuro"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 36 C 70 30 46 46 42 72 C 26 80 24 108 38 120 C 34 142 52 160 74 156 C 84 168 102 168 110 158 C 132 166 156 152 156 132 C 174 122 176 94 160 84 C 162 56 132 34 100 36 Z" fill="#2a1f4d" stroke="#9b7bff" stroke-width="3"/><path d="M100 40 C 96 70 104 100 98 130 C 96 145 100 156 104 160" stroke="#c3b1ff" stroke-width="2.4" fill="none"/><path d="M60 80 C 74 84 80 96 72 108 M140 78 C 126 86 124 100 134 110 M66 132 C 80 126 90 134 88 146 M134 132 C 122 128 114 136 118 148" stroke="#c3b1ff" stroke-width="2" fill="none" opacity=".8"/><path d="M20 182 l18 0 l6 -10 l7 18 l6 -12 l8 4 l10 0 l6 -6 l6 10 l90 0" stroke="#f5d64a" stroke-width="2.4" fill="none" opacity=".9"/></svg></div><div class="ubody"><span class="ueb">Neuro ICU</span><h3>Neuro ICU</h3><p>ICP and the EVD, stroke and ICH, SAH, status epilepticus, neuromuscular failure</p><span class="meta">5 simulators · 19 cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-sicu" style="--uc:#f59e0b;--uc2:#ffc061" data-unit="sicu"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 24 L160 46 V100 C160 140 132 168 100 180 C68 168 40 140 40 100 V46 Z" fill="#3a2a0e" stroke="#f59e0b" stroke-width="3"/><path d="M100 64 V140 M62 102 H138" stroke="#ffc061" stroke-width="14" stroke-linecap="round"/><path d="M146 150 l30 -30" stroke="#d6d6d6" stroke-width="5" stroke-linecap="round"/><path d="M176 120 l10 -10" stroke="#9aa4ab" stroke-width="7" stroke-linecap="round"/></svg></div><div class="ubody"><span class="ueb">SICU</span><h3>Surgical ICU</h3><p>Trauma bay, post-op abdomen, burns and smoke, trauma complications</p><span class="meta">4 simulators · 13 cases</span><span class="go">Enter →</span></div></a></div></section>
 <section class="sect modes">
-      <div class="mode-card"><b><span class="step">1</span>Learn</b><p>A short lesson for each simulator: the concepts, the numbers and how to read the screen, with "try it" prompts. Every action you take explains what it does and why.</p><button class="mbtn" data-m="learn">Start in Learn</button></div>
-      <div class="mode-card"><b><span class="step">2</span>Guided case</b><p>A coach walks you through each case: the situation, what to focus on now, the steps in order and why. In the OR it lights up the next button to press.</p><button class="mbtn" data-m="teach">Start in Guided</button></div>
-      <div class="mode-card"><b><span class="step">3</span>Practice</b><p>Run the case on your own with only the targets showing. Hints on request, dangerous-action alerts, and a completed check on your Progress page.</p><button class="mbtn" data-m="practice">Start in Practice</button></div>
+      <div class="mode-card"><b><span class="step">1</span>Teach</b><p>Each case opens with a short brief: the patient, the targets, the key ideas and the plan, then a ready-check question. The first time you open a simulator, its topic lesson comes first.</p><button class="mbtn" data-m="learn">Start in Teach</button></div>
+      <div class="mode-card"><b><span class="step">2</span>Guide</b><p>Run the case with a coach. At each decision the sim pauses and asks what you would do; you get the reasoning, then it shows you the control and what changed on the monitor.</p><button class="mbtn" data-m="teach">Start in Guide</button></div>
+      <div class="mode-card"><b><span class="step">3</span>Practice</b><p>The same case on your own with no coaching. In the ICU units the patient's numbers change each run. Finish for a score and debrief; 80 or more marks the case mastered.</p><button class="mbtn" data-m="practice">Start in Practice</button></div>
     </section>
     <p class="menufoot">Educational simulations with simplified physiology. Doses and thresholds are tuned for teaching, not prescribing. Follow your institution's protocols.</p>
   </div>
@@ -7691,14 +7706,14 @@ window.CT = (() => {
   /* mode: teach (coached) or practice */
   let md = null; try { md = localStorage.getItem('ctMode'); } catch (e) {}
   st.mode = ['learn', 'teach', 'practice'].includes(md) ? md : 'learn';
-  function setMode(m) {
-    st.mode = m; document.body.classList.toggle('teach', m !== 'practice'); document.body.classList.toggle('learn', m === 'learn');
+  function setMode(m, user) {
+    const prev = st.mode; st.mode = m; document.body.classList.toggle('teach', m !== 'practice'); document.body.classList.toggle('learn', m === 'learn');
     document.querySelectorAll('.cp-steps [data-m], .mbtn[data-m]').forEach(b => { b.classList.toggle('on', b.dataset.m === m); b.setAttribute('aria-pressed', b.dataset.m === m ? 'true' : 'false'); });
     try { localStorage.setItem('ctMode', m); } catch (e) {}
     const qb = document.getElementById('hd-quizBtn'); if (qb && m !== 'practice' && /: on/.test(qb.textContent)) qb.click();
-    if (window.CTG) CTG.refresh(true);
+    if (window.CTG) { if (user && CTG.modeChanged) CTG.modeChanged(m, prev); CTG.refresh(true); }
   }
-  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.cp-steps [data-m], .mbtn[data-m]'); if (b && ['learn', 'teach', 'practice'].includes(b.dataset.m)) setMode(b.dataset.m); });
+  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.cp-steps [data-m], .mbtn[data-m]'); if (b && ['learn', 'teach', 'practice'].includes(b.dataset.m)) setMode(b.dataset.m, true); });
   setMode(st.mode);
   /* popovers */
   const pops = [['nvBtn', 'nvPop'], ['gearBtn', 'gearPop']];
@@ -7876,7 +7891,7 @@ window.CTG = (() => {
   function pathBar(sec, v) {
     const bar = mk('div', 'cpath');
     const st = mk('div', 'cp-steps'); st.setAttribute('role', 'group'); st.setAttribute('aria-label', 'Learning mode');
-    [['learn', '1', 'Learn', 'Lesson, then explore'], ['teach', '2', 'Guided case', 'The coach walks you through'], ['practice', '3', 'Practice', 'On your own']].forEach(([m, n, t, d]) => {
+    [['learn', '1', 'Teach', 'What this case needs'], ['teach', '2', 'Guide', 'The coach asks, then shows'], ['practice', '3', 'Practice', 'On your own, new numbers']].forEach(([m, n, t, d]) => {
       const b = mk('button'); b.dataset.m = m; b.append(mk('i', '', n)); const sp = mk('span'); sp.append(mk('b', '', t), mk('small', '', d)); b.append(sp); st.append(b);
     });
     const cs = mk('div', 'cp-case');
@@ -7910,11 +7925,98 @@ window.CTG = (() => {
       if (i === L.s.length - 1) body.append(mk('p', 'cl-var', 'Practice varies between surgeons and institutions. Where your unit’s protocol differs from what is taught here, follow your unit.'));
       const bk = mk('button', 'cl-btn', '‹ Back'); bk.disabled = i === 0; bk.onclick = () => show(i - 1);
       const pg = mk('span', 'cl-pg', `${i + 1} of ${L.s.length}`);
-      const nx = i < L.s.length - 1 ? mk('button', 'cl-btn pri', 'Next ›') : mk('button', 'cl-btn pri', 'Start the guided case ›');
-      nx.onclick = () => { if (i < L.s.length - 1) show(i + 1); else { CT.setMode('teach'); const t = sec.querySelector('.cpath'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+      const nx = i < L.s.length - 1 ? mk('button', 'cl-btn pri', 'Next ›') : mk('button', 'cl-btn pri', 'Done: on to the case brief ›');
+      nx.onclick = () => { if (i < L.s.length - 1) show(i + 1); else { const tp = c.closest('.ct-topic'); if (tp) { tp.open = false; try { const o = JSON.parse(localStorage.getItem('ctTopicSeen') || '{}'); o[v] = 1; localStorage.setItem('ctTopicSeen', JSON.stringify(o)); } catch (e) {} const cb = sec.querySelector('.ct-cards'); if (cb) cb.scrollIntoView({ behavior: 'smooth', block: 'start' }); } } };
       foot.append(bk, pg, nx);
     }
     show(LS[v]); return c;
+  }
+  /* ---------- Teach: topic lesson (once per sim) + case brief cards ---------- */
+  const FL = (() => { let o = {}; try { o = JSON.parse(localStorage.getItem('ctFlow') || '{}'); } catch (e) {} return o; })();
+  const flowKey = (v, id) => v + ':' + id;
+  function flowMark(v, id, k, val) { if (!id) return; const r = FL[flowKey(v, id)] || (FL[flowKey(v, id)] = {}); if (k === 'p') r.p = Math.max(r.p || 0, val); else r[k] = 1; try { localStorage.setItem('ctFlow', JSON.stringify(FL)); } catch (e) {} }
+  function curId(v) { const f = ST[v]; if (!f) return null; try { const s = f(); return s && s.id; } catch (e) { return null; } }
+  function pauseSim(sec, on) { const b = q(sec, 'pauseSim'), tag = q(sec, 'pausedTag'); if (!b || !tag) return false; const paused = !tag.hidden; if (on && !paused) { b.click(); return true; } if (!on && paused) b.click(); return false; }
+  function teachPanel(sec, v) {
+    const c = mk('section', 'clsn ctp'); c.setAttribute('aria-label', 'Teach');
+    const h = mk('div', 'cl-h'); h.append(mk('span', 'cch-pill cl-pill', 'Teach'), mk('span', 'cl-t ct-name', '')); c.append(h);
+    const L = window.LEARN && LEARN.LESSON && LEARN.LESSON[v];
+    if (L) { const tp = mk('details', 'ct-topic'); tp.append(mk('summary', '', 'Topic lesson: ' + L.t)); tp.append(lessonPanel(sec, v)); let seen = {}; try { seen = JSON.parse(localStorage.getItem('ctTopicSeen') || '{}'); } catch (e) {} tp.open = !seen[v]; c.append(tp); }
+    c.append(mk('div', 'ct-cards')); return c;
+  }
+  function caseQs(v, id) {
+    const Q = window.XQBG && XQBG[v] && XQBG[v][id]; if (Q && Q.length) return Q;
+    const K = (window.KQB && KQB[v]) || []; return K.filter(x => x.c && x.c.includes(id));
+  }
+  function buildCards(sec, v, wrap) {
+    const box = wrap.querySelector('.ct-cards'); if (!box) return; box.innerHTML = '';
+    const title = q(sec, 'scTitle'), brief = q(sec, 'scBrief'), hint = q(sec, 'hint'), teach = q(sec, 'teach');
+    const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
+    wrap.querySelector('.ct-name').textContent = name;
+    const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
+    const ideas = teach ? [...teach.children].filter(li => li.tagName === 'LI').map(li => li.textContent.trim()).slice(0, 5) : [];
+    let prov = null; if (P[v]) { try { prov = P[v](); } catch (e) {} }
+    const plan = prov && prov.steps ? prov.steps.map(s => s.t) : split(hint ? hint.textContent : '');
+    const id = curId(v); const qs = caseQs(v, id);
+    const cards = [];
+    cards.push(['The patient', b => { b.append(mk('p', 'cl-p', brief ? brief.textContent : '')); b.append(mk('p', 'ct-think', 'Before you go on: what do you think is going on, and what worries you most?')); }]);
+    if (goals.length) cards.push(['What you are aiming for', b => { b.append(mk('p', 'cl-p', 'The case is complete when every target is met and held. Keep these in view on the monitor and labs:')); const ul = mk('ul', 'cl-ul'); goals.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }]);
+    if (ideas.length) cards.push(['Key ideas for this case', b => { const ul = mk('ul', 'cl-ul'); ideas.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }]);
+    if (plan.length) cards.push(['The plan', b => { b.append(mk('p', 'ct-think', 'Name your first two moves in your head, then open the plan.')); const d = mk('details', 'cl-ck'); const ol = mk('ol', 'cl-ul'); plan.forEach(t => ol.append(mk('li', '', t))); d.append(mk('summary', '', 'Show the plan'), ol); b.append(d); }]);
+    if (qs.length) cards.push(['Ready check', b => {
+      const x = qs[Math.floor(Math.random() * qs.length)]; b.append(mk('p', 'cl-p', x.q)); const ex = mk('div', 'ct-qx'); ex.hidden = true;
+      const opts = x.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5);
+      const bs = opts.map(o => { const bt = mk('button', 'ct-opt', o.t); bt.onclick = () => { if (!ex.hidden) return; bs.forEach((y, n) => { y.disabled = true; if (opts[n].k === x.a) y.classList.add('ok'); }); if (o.k !== x.a) bt.classList.add('no'); ex.hidden = false; ex.textContent = (o.k === x.a ? 'Correct. ' : 'Not quite. ') + x.e; }; return bt; });
+      bs.forEach(y => b.append(y)); b.append(ex);
+    }]);
+    const dots = mk('div', 'cl-chips'), body = mk('div', 'ct-card'), foot = mk('div', 'cl-foot'); box.append(dots, body, foot);
+    const show = i => {
+      dots.innerHTML = ''; body.innerHTML = ''; foot.innerHTML = '';
+      cards.forEach((cd, j) => { const b = mk('button', 'cl-chip' + (j === i ? ' on' : '') + (j < i ? ' seen' : ''), (j + 1) + '. ' + cd[0]); b.onclick = () => show(j); dots.append(b); });
+      body.append(mk('h4', 'cl-h4', cards[i][0])); cards[i][1](body);
+      const bk = mk('button', 'cl-btn', '‹ Back'); bk.disabled = i === 0; bk.onclick = () => show(i - 1);
+      const nx = i < cards.length - 1 ? mk('button', 'cl-btn pri', 'Next ›') : mk('button', 'cl-btn pri', 'Start the guided run ›');
+      nx.onclick = () => { if (i < cards.length - 1) show(i + 1); else { flowMark(v, id, 't'); CT.setMode('teach', true); const t = sec.querySelector('.cpath'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+      foot.append(bk, mk('span', 'cl-pg', `${i + 1} of ${cards.length}`), nx);
+    };
+    show(0);
+  }
+  /* ---------- Guide: ask, then show ---------- */
+  function vitals(sec) { const o = {}; sec.querySelectorAll('.num').forEach(n => { if (!n.offsetParent) return; const l = n.querySelector('.lb span'), x = n.querySelector('.v'), s2 = n.querySelector('.s'); if (!l || !x) return; o[l.textContent.trim()] = x.textContent.trim() + (s2 && s2.textContent.trim() ? ' ' + s2.textContent.trim() : ''); }); return o; }
+  function askBox(sec, v, st, steps, next) {
+    const s0 = steps[next]; const later = steps.slice(next + 1).filter(x => !x.done && !/^(hold|wait|watch|let)/i.test(x.t) && x.t !== s0.t).slice(0, 2).map(x => ({ t: x.t, kind: 'later' }));
+    const DZ = (window.DZL && DZL[v]) || {}, rel = Object.keys((window.LEARN && LEARN.SIMS[v] && LEARN.SIMS[v].d) || {}).filter(k => DZ[k]); const dz = rel.map(k => DZ[k]).filter(d => d && d.t).sort(() => Math.random() - 0.5).slice(0, 4 - 1 - later.length).map(d => ({ t: d.t, kind: 'dz', w: d.w }));
+    const opts = [{ t: s0.t, kind: 'ok' }, ...later, ...dz].sort(() => Math.random() - 0.5);
+    if (opts.length < 2) { st.asked.add(s0.t); return; }
+    st.ask = { t: s0.t, why: s0.why, opts, picked: null, paused: pauseSim(sec, true) };
+  }
+  function renderAsk(c, sec, v, st) {
+    let bx = c.querySelector('.cch-ask'); if (!st.ask) { if (bx) bx.remove(); return; }
+    if (!bx) { bx = mk('div', 'cch-ask'); c.querySelector('.cch-b').before(bx); }
+    if (bx.dataset.k === st.ask.t + '|' + (st.ask.picked ? st.ask.picked.t : '')) return;
+    bx.dataset.k = st.ask.t + '|' + (st.ask.picked ? st.ask.picked.t : ''); bx.innerHTML = '';
+    bx.append(mk('div', 'cch-k', st.ask.picked ? 'Your move' : 'Your move: what would you do next? (sim paused)'));
+    st.ask.opts.forEach(o => { const b = mk('button', 'ct-opt', o.t); if (st.ask.picked) { b.disabled = true; if (o.kind === 'ok') b.classList.add('ok'); else if (o === st.ask.picked) b.classList.add('no'); } b.onclick = () => { if (st.ask.picked) return; st.ask.picked = o; renderAsk(c, sec, v, st); }; bx.append(b); });
+    if (st.ask.picked) {
+      const o = st.ask.picked, fb = mk('div', 'ct-qx');
+      if (o.kind === 'ok') fb.append(mk('b', 'g', 'Yes. '), document.createTextNode(st.ask.why || 'That is the next move.'));
+      else if (o.kind === 'later') fb.append(mk('b', 'w', 'Good idea, but not yet. '), document.createTextNode(`First: ${st.ask.t}. ${st.ask.why || ''}`));
+      else fb.append(mk('b', 'w', 'Risky here. '), document.createTextNode((o.w || '') + ` The better move: ${st.ask.t}.`));
+      const go = mk('button', 'cl-btn pri', 'Do it ›'); go.onclick = () => { st.asked.add(st.ask.t); st.snap = { t: st.ask.t, vals: vitals(sec) }; const pz = st.ask.paused; st.ask = null; if (pz) pauseSim(sec, false); refresh(true); };
+      fb.append(mk('div', 'row'), go); bx.append(fb);
+    }
+  }
+  function modeChanged(m, prev) {
+    const v = window.CT ? CT.view : 'menu'; if (NON.includes(v)) return;
+    const sec = document.getElementById('v-' + v); if (!sec) return; const st = S[v] || (S[v] = {});
+    st.ask = null; st.asked = new Set(); st.snap = null;
+    const sel = q(sec, 'scSel'); const restart = () => { if (sel) sel.dispatchEvent(new Event('change')); };
+    const V = window.CTV && CTV[v];
+    if (m === 'learn') { pauseSim(sec, true); st.key = null; return; }
+    if (V) V.set(m === 'practice');
+    if (prev !== m) restart();
+    setTimeout(() => { if (!st.ask) pauseSim(sec, false); }, 60);
+    const h = q(sec, 'hint'); if (h && m === 'practice') h.hidden = true;
   }
   function coachPanel(sec) {
     const c = mk('section', 'cch'); c.setAttribute('aria-label', 'Coach');
@@ -7929,15 +8031,15 @@ window.CTG = (() => {
   }
   function pracStrip(sec) {
     const c = mk('div', 'cprac');
-    c.append(mk('span', 'cp-tag', 'Practice'), mk('span', 'cp-msg', 'No coaching: the targets are in the case card below. Dangerous moves still raise an alert.'));
+    c.append(mk('span', 'cp-tag', 'Practice'), mk('span', 'cp-msg', 'On your own. The patient\'s numbers differ from the guided run where the sim supports it. Dangerous moves still raise an alert; finish or press End case for your score.'));
     const hb = mk('button', 'cl-btn', 'Show hint'); hb.onclick = () => { const h = q(sec, 'hint'); if (h) { h.hidden = !h.hidden; hb.textContent = h.hidden ? 'Show hint' : 'Hide hint'; if (!h.hidden) h.scrollIntoView({ behavior: 'smooth', block: 'center' }); } };
-    const gb = mk('button', 'cl-btn', 'Switch to Guided'); gb.onclick = () => CT.setMode('teach');
+    const gb = mk('button', 'cl-btn', 'Back to Guide'); gb.onclick = () => CT.setMode('teach', true);
     c.append(hb, gb); return c;
   }
   function ensure(sec, v) {
     let wrap = sec.querySelector(':scope .cwrap'); if (wrap) return wrap;
     const hdr = sec.querySelector('header.bar'); if (!hdr) return null;
-    wrap = mk('div', 'cwrap'); wrap.append(pathBar(sec, v), lessonPanel(sec, v), coachPanel(sec), pracStrip(sec)); hdr.after(wrap);
+    wrap = mk('div', 'cwrap'); wrap.append(pathBar(sec, v), teachPanel(sec, v), coachPanel(sec), pracStrip(sec)); hdr.after(wrap);
     return wrap;
   }
   function setHL(el) { if (hl === el) return; if (hl) hl.classList.remove('coach-hl'); hl = el || null; if (hl) hl.classList.add('coach-hl'); }
@@ -7976,7 +8078,11 @@ window.CTG = (() => {
       const wu = c0.querySelector('.cch-why ul'); wu.innerHTML = ''; items.forEach(x => wu.append(mk('li', '', x)));
       c0.querySelector('.cch-why').hidden = !items.length; c0.querySelector('.cch-why summary').textContent = `Key teaching points (${items.length})`;
       const pb = wrap.querySelector('.cprac .cl-btn'); if (pb) pb.textContent = 'Show hint';
+      st.ask = null; st.asked = new Set(); st.snap = null; st.flowDone = false;
+      setTimeout(() => { buildCards(sec, v, wrap); if (CT.mode === 'learn') pauseSim(sec, true); }, 80);
     }
+    if (!st.asked) st.asked = new Set();
+    flowStatus(sec, v, st, wrap);
     actNotes(sec, v, st);
     if (CT.mode === 'practice') { setHL(null); return; }
     const c = wrap.querySelector('.cch');
@@ -8013,7 +8119,20 @@ window.CTG = (() => {
     else if (open) { f.append('Work toward: ' + open.textContent); const left = goals.filter(li => !li.classList.contains('ok')).length; f.append(mk('small', '', `${goals.length - left} of ${goals.length} targets met. Tap a step to tick it off as you go.`)); }
     else if (goals.length) f.append('All targets met: hold steady until the case completes.');
     else f.append('Free play: change one thing at a time and watch the monitor respond.');
-    setHL(prov && prov.el && !minimized ? prov.el : null);
+    // ask, then show
+    if (prov && next >= 0 && steps[next] && !st.ask && !st.asked.has(steps[next].t) && steps[next].el && !/^(hold|wait|watch|let)/i.test(steps[next].t)) askBox(sec, v, st, steps, next);
+    if (st.ask && (next < 0 || !steps[next] || steps[next].t !== st.ask.t)) { if (st.ask.paused) pauseSim(sec, false); st.ask = null; }
+    if (st.ask && !st.ask.picked && pauseSim(sec, true)) st.ask.paused = true;
+    renderAsk(c, sec, v, st); c.classList.toggle('asking', !!(st.ask && !st.ask.picked));
+    if (st.snap && steps.some(x => x.t === st.snap.t && x.done)) { if (!st.snap.at) st.snap.at = Date.now(); else if (Date.now() - st.snap.at > 6000) { const a = st.snap.vals, b = vitals(sec); const ch = Object.keys(b).filter(k => a[k] !== undefined && a[k] !== b[k]).map(k => `${k} ${a[k]} → ${b[k]}`); st.did = [{ msg: 'What changed after: ' + st.snap.t, note: ch.length ? ch.join(' · ') : 'Little change on the monitor yet: some effects take minutes. Keep watching the trend.' }, ...(st.did || [])].slice(0, 2); st.snap = null; } }
+    setHL(prov && prov.el && !minimized && !st.ask ? prov.el : null);
+  }
+  function flowStatus(sec, v, st, wrap) {
+    const id = curId(v); const ov = q(sec, 'ov');
+    if (ov && !ov.hidden && !st.flowDone && id) { st.flowDone = true; const sc = ov.querySelector('.dbs, .ctk-dbs'); const n = sc ? +sc.textContent : 0; if (CT.mode === 'teach') flowMark(v, id, 'g'); else if (CT.mode === 'practice') flowMark(v, id, 'p', n || 1); }
+    if (ov && ov.hidden) st.flowDone = false;
+    const r = (id && FL[flowKey(v, id)]) || {};
+    wrap.querySelectorAll('.cp-steps [data-m]').forEach((b, k) => { const i = b.querySelector('i'); const m = b.dataset.m; const done = m === 'learn' ? r.t : m === 'teach' ? r.g : (r.p || 0) >= 80; i.textContent = done ? '✓' : String(k + 1); i.classList.toggle('dn', !!done); const sm = b.querySelector('small'); if (m === 'practice') sm.textContent = r.p ? (r.p >= 80 ? `Mastered · best ${r.p}` : `Best ${r.p}: 80 to master`) : (window.CTV && CTV[v] ? 'On your own, new numbers' : 'On your own, no hints'); });
   }
   /* ---------- data-driven guides: LEARN.GUIDE[sim][caseId] = [{ t, why, done(S), el, show(S), live }] ---------- */
   const ST = {}, latch = new WeakMap();
@@ -8043,7 +8162,7 @@ window.CTG = (() => {
   }
   function state(sim, fn) { ST[sim] = fn; if (!P[sim]) P[sim] = () => guideProv(sim); }
   setInterval(() => refresh(false), 450);
-  return { reg: (k, f) => { P[k] = f; }, state, refresh, peek: v => P[v] ? P[v]() : null };
+  return { reg: (k, f) => { P[k] = f; }, state, refresh, modeChanged, peek: v => P[v] ? P[v]() : null };
 })();
 </script>
 <script>
@@ -12120,6 +12239,7 @@ window.CTKIT = (cfg) => {
     T.decorated = true; const s = S(); const win = !!(s && s.over && s.over.win !== false);
     const snap = [...ovc.childNodes]; const db = debriefBlock(win); const h = ovc.querySelector('h3');
     (h ? h : ovc.firstChild) ? (h || ovc.firstChild).after(db) : ovc.prepend(db);
+    const lrn = ovc.querySelector('.lrn'); if (lrn && lrn.previousElementSibling && window.LEARN && s && s.sc) { const ul = lrn.previousElementSibling; const d = mk('details', 'ctk-sec'); d.append(mk('summary', '', 'Go deeper: deep dive, teaching points and references')); ul.before(d); d.append(ul, lrn); LEARN.into(ul, sim, s.sc.id); }
     addQuiz(snap);
   }
   function addQuiz() {
@@ -12137,7 +12257,7 @@ window.CTKIT = (cfg) => {
       const p = $('pauseSim'), tag = $('pausedTag'); if (p && tag && tag.hidden) { p.click(); T.paused = true; }
       T.decorated = true; ovc.innerHTML = '';
       const hh = mk('h3', '', 'Case ended'); hh.style.color = 'var(--warn)'; ovc.append(hh, debriefBlock(false));
-      const sc = s.sc; if (sc && sc.teach) { const d = mk('details', 'ctk-sec'); d.append(mk('summary', '', 'Teaching points and references')); const ul = mk('ul'); sc.teach.forEach(x => ul.append(mk('li', '', x))); d.append(ul); ovc.append(d); if (window.LEARN) LEARN.into(ul, sim, sc.id, 1); }
+      const sc = s.sc; if (sc && sc.teach) { const d = mk('details', 'ctk-sec'); d.append(mk('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = mk('ul'); sc.teach.forEach(x => ul.append(mk('li', '', x))); d.append(ul); ovc.append(d); if (window.LEARN) LEARN.into(ul, sim, sc.id); }
       const row = mk('div', 'row'); const b = (t, fn, on) => { const x = mk('button', 'btn' + (on ? ' on' : ''), t); x.onclick = fn; row.append(x); };
       const qs = questions(); const snap = () => [...ovc.childNodes];
       if (qs.length) b(`Take the ${qs.length}-question quiz`, () => { const sn = snap(); quiz(qs, () => { ovc.innerHTML = ''; sn.forEach(n => ovc.append(n)); }); }, true);
@@ -13343,6 +13463,8 @@ if (window.CTP) CTP.cases('pacing', SCEN.map((s, i) => ({ id: s.id, name: s.name
 if (window.CTG && CTG.state) CTG.state('pacing', () => (S ? { S: S, id: SCEN[scIdx].id } : null));
 
 if (window.CTKIT) CTKIT({ sim: 'pacing', ROOT, $, st: () => S, idx: () => scIdx, load, speed: null });
+
+window.DZL = window.DZL || {}; window.DZL['pacing'] = DANGER;
 
 })();
 </script>
@@ -14623,6 +14745,8 @@ if (window.CTG && CTG.state) CTG.state('hemo', () => (H ? { S: H, id: SCEN[scIdx
 
 if (window.CTKIT) CTKIT({ sim: 'hemo', ROOT, $, st: () => H, idx: () => scIdx, load, speed: KSPD });
 
+window.DZL = window.DZL || {}; window.DZL['hemo'] = DANGER;
+
 })();
 </script>
 <script>
@@ -15124,6 +15248,8 @@ if (window.CTP) CTP.cases('iabp', ISCEN.map((s, i) => ({ id: s.id, name: s.name,
 
 if (window.CTKIT) CTKIT({ sim: 'iabp', ROOT, $, st: () => I, idx: () => scIdx, load, speed: null });
 
+window.DZL = window.DZL || {}; window.DZL['iabp'] = IDANGER;
+
 })();
 </script>
 <script>
@@ -15517,6 +15643,8 @@ requestAnimationFrame(frame);
 if (window.CTP) CTP.cases('artline', ASCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
 if (window.CTKIT) CTKIT({ sim: 'artline', ROOT, $, st: () => A, idx: () => scIdx, load, speed: null });
+
+window.DZL = window.DZL || {}; window.DZL['artline'] = ADANGER;
 
 })();
 </script>
@@ -16009,6 +16137,8 @@ if (window.CTG && CTG.state) CTG.state('cals', () => (C ? { S: C, id: CSCEN[scId
 
 if (window.CTKIT) CTKIT({ sim: 'cals', ROOT, $, st: () => C, idx: () => scIdx, load, speed: null });
 
+window.DZL = window.DZL || {}; window.DZL['cals'] = CDANGER;
+
 })();
 </script>
 <script>
@@ -16456,6 +16586,8 @@ if (window.CTP) CTP.cases('bleed', BSCEN.map((s, i) => ({ id: s.id, name: s.name
 if (window.CTG && CTG.state) CTG.state('bleed', () => (B ? { S: B, id: BSCEN[scIdx].id } : null));
 
 if (window.CTKIT) CTKIT({ sim: 'bleed', ROOT, $, st: () => B, idx: () => scIdx, load, speed: KSPD });
+
+window.DZL = window.DZL || {}; window.DZL['bleed'] = BDANGER;
 
 })();
 </script>
@@ -17116,6 +17248,8 @@ if (window.CTP) CTP.cases('mcs', XSCEN.map((s, i) => ({ id: s.id, name: s.name, 
 
 if (window.CTKIT) CTKIT({ sim: 'mcs', ROOT, $, st: () => X, idx: () => scIdx, load, speed: KSPD });
 
+window.DZL = window.DZL || {}; window.DZL['mcs'] = XDANGER;
+
 })();
 </script>
 <script>
@@ -17573,6 +17707,8 @@ if (window.CTP) CTP.cases('poaf', PSCEN.map((s, i) => ({ id: s.id, name: s.name,
 if (window.CTG && CTG.state) CTG.state('poaf', () => (F ? { S: F, id: PSCEN[scIdx].id } : null));
 
 if (window.CTKIT) CTKIT({ sim: 'poaf', ROOT, $, st: () => F, idx: () => scIdx, load, speed: KSPD });
+
+window.DZL = window.DZL || {}; window.DZL['poaf'] = FDANGER;
 
 })();
 </script>
@@ -18077,6 +18213,8 @@ if (window.CTP) CTP.cases('vent', VSCEN.map((s, i) => ({ id: s.id, name: s.name,
 
 if (window.CTKIT) CTKIT({ sim: 'vent', ROOT, $, st: () => V, idx: () => scIdx, load, speed: KSPD });
 
+window.DZL = window.DZL || {}; window.DZL['vent'] = VDANGER;
+
 })();
 </script>
 <script>
@@ -18536,6 +18674,8 @@ requestAnimationFrame(frame);
 if (window.CTP) CTP.cases('rhythm', RSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
 if (window.CTKIT) CTKIT({ sim: 'rhythm', ROOT, $, st: () => D, idx: () => scIdx, load, speed: null, drill: true });
+
+window.DZL = window.DZL || {}; window.DZL['rhythm'] = RDANGER;
 
 })();
 </script>
@@ -19004,6 +19144,8 @@ if (window.CTM) CTM.reg('lytes', () => {
 if (window.CTP) CTP.cases('lytes', LSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
 if (window.CTKIT) CTKIT({ sim: 'lytes', ROOT, $, st: () => L, idx: () => scIdx, load, speed: KSPD });
+
+window.DZL = window.DZL || {}; window.DZL['lytes'] = LDANGER;
 
 })();
 </script>
@@ -19508,6 +19650,8 @@ if (window.CTM) CTM.reg('aki', () => {
 if (window.CTP) CTP.cases('aki', KSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
 if (window.CTKIT) CTKIT({ sim: 'aki', ROOT, $, st: () => A, idx: () => scIdx, load, speed: KSPD });
+
+window.DZL = window.DZL || {}; window.DZL['aki'] = ADANGER;
 
 })();
 </script>
@@ -20329,6 +20473,8 @@ if (window.CTG) CTG.reg('orsurg', () => {
 });
 
 if (window.CTKIT) CTKIT({ sim: 'orsurg', ROOT, $, st: () => O, idx: () => scIdx, load, speed: KSPD });
+
+window.DZL = window.DZL || {}; window.DZL['orsurg'] = ODANGER;
 
 })();
 </script>
@@ -22831,7 +22977,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -22924,6 +23070,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['mshock'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['mshock'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -24992,7 +25151,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -25085,6 +25244,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['mresp'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['mresp'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -27150,7 +27322,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -27243,6 +27415,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['mtox'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['mtox'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -29315,7 +29500,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -29408,6 +29593,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['mendo'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['mendo'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -31473,7 +31671,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -31566,6 +31764,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['mgi'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['mgi'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -33611,7 +33822,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -33704,6 +33915,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['nicp'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['nicp'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -35749,7 +35973,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -35842,6 +36066,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['nstroke'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['nstroke'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -37873,7 +38110,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -37966,6 +38203,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['nsah'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['nsah'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -40004,7 +40254,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -40097,6 +40347,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['nsz'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['nsz'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -42121,7 +42384,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -42214,6 +42477,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['nnm'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['nnm'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -44170,7 +44446,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -44263,6 +44539,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['rounds'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['rounds'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -46258,7 +46547,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -46351,6 +46640,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['strauma'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['strauma'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -48338,7 +48640,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -48431,6 +48733,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['sabd'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['sabd'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -50418,7 +50733,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -50511,6 +50826,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['sburn'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['sburn'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
@@ -52497,7 +52825,7 @@ function showOver() {
   const a2 = el('div'); a2.append(el('h4', 'w', 'What to change'), (() => { const u = el('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u.append(el('li', '', t))); return u; })());
   wc.append(a1, a2); c.append(wc);
   { const cb = choicesBlock(X.sc, X.choicesSeen || []); if (cb) c.append(cb); }
-  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id, 1);
+  const tp = el('details', 'dbsec'); tp.append(el('summary', '', 'Go deeper: deep dive, teaching points and references')); const ul = el('ul'); X.sc.teach.forEach(x => ul.append(el('li', '', x))); tp.append(ul); c.append(tp); if (window.LEARN) LEARN.into(ul, UNIT.id, X.sc.id);
   const row0 = el('div', 'row');
   const mk = (t, fn, pri) => { const b = el('button', 'btn' + (pri ? ' on' : ''), t); b.onclick = fn; row0.append(b); };
   const qs = (typeof XQB !== 'undefined' && XQB[UNIT.id] && XQB[UNIT.id][X.sc.id]) || [];
@@ -52590,6 +52918,19 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
 if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
+
+window.DZL = window.DZL || {}; window.DZL['scomp'] = XDANGER;
+
+{ const _load = load; let _on = false;
+  const vary = i => { const sc = XSCEN[i]; if (!sc || sc.free) return; if (!sc._b) sc._b = { pt: Object.assign({}, sc.pt || {}), lac0: sc.lac0, brief: sc.brief };
+    const b = sc._b; sc.pt = Object.assign({}, b.pt); sc.lac0 = b.lac0; sc.brief = b.brief; if (!_on) return;
+    const r = (a, f) => a * (1 + (Math.random() * 2 - 1) * f), P = sc.pt;
+    P.wt = Math.round(r(P.wt || 70, 0.15)); if (P.hr0) P.hr0 = Math.round(r(P.hr0, 0.08)); if (P.vasc) P.vasc = +r(P.vasc, 0.06).toFixed(2); if (P.svr0) P.svr0 = +r(P.svr0, 0.06).toFixed(2); if (P.hgb) P.hgb = +r(P.hgb, 0.06).toFixed(1); if (P.temp) P.temp = +(P.temp + Math.random() * 0.6 - 0.3).toFixed(1);
+    if (sc.lac0) sc.lac0 = +r(sc.lac0, 0.15).toFixed(1);
+    sc.brief = b.brief.replace(/\b(\d{2,3}) kg\b/, P.wt + ' kg').replace(/(\d{2}\.\d) ?°C/, m => P.temp && b.pt.temp ? P.temp + ' °C' : m).replace(/(lactate )(\d+(?:\.\d)?)/i, (m, a) => a + (sc.lac0 || '')) + ' Practice variant: weight, vitals and labs differ from the guided run, so read the monitor.'; };
+  load = i => { vary(i); _load(i); };
+  window.CTV = window.CTV || {}; window.CTV['scomp'] = { set(on) { _on = on; } };
+}
 
 })();
 </script>
