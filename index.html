@@ -191,6 +191,14 @@ body:not(.teach) .cch,body.learn .cch,body:not(.learn) .clsn,body.teach .cprac{d
 :is(#v-pacing,#v-hemo,#v-iabp,#v-artline,#v-cals,#v-bleed,#v-mcs,#v-poaf,#v-vent,#v-rhythm,#v-lytes,#v-aki,#v-orsurg,#v-cxr,#v-micu,#v-neuro,#v-sicu,#v-nicp,#v-nstroke,#v-nsah,#v-nsz,#v-nnm,#v-mshock,#v-mresp,#v-mtox,#v-mendo,#v-mgi,#v-strauma,#v-sabd,#v-sburn,#v-scomp,#v-rounds) .clsn .cl-chip.seen{color:var(--soft);border-color:#2f4050}
 :is(#v-pacing,#v-hemo,#v-iabp,#v-artline,#v-cals,#v-bleed,#v-mcs,#v-poaf,#v-vent,#v-rhythm,#v-lytes,#v-aki,#v-orsurg,#v-cxr,#v-micu,#v-neuro,#v-sicu,#v-nicp,#v-nstroke,#v-nsah,#v-nsz,#v-nnm,#v-mshock,#v-mresp,#v-mtox,#v-mendo,#v-mgi,#v-strauma,#v-sabd,#v-sburn,#v-scomp,#v-rounds) .clsn .cl-chip.on{color:#0b0f12;background:#8fc1ff;border-color:#8fc1ff;font-weight:600}
 .clsn .cl-body{max-width:85ch}
+.clsn .cl-p{margin:0 0 .7em;color:var(--fg);line-height:1.6}
+.clsn .cl-k{font-family:var(--f-disp);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8fc1ff;margin:.6em 0 .3em}
+.clsn .cl-ex{background:#0f1a22;border:1px solid #2a4252;border-radius:10px;padding:10px 12px;margin:.8em 0}
+.clsn .cl-ex summary,.clsn .cl-ck summary{cursor:pointer;color:#8fc1ff;font-weight:600;margin:.2em 0 .4em}
+.clsn .cl-pit{border-left:3px solid var(--warn,#f0a23a);padding-left:10px;margin:.8em 0}
+.clsn .cl-pit .cl-k{color:var(--warn,#f0a23a)}
+.clsn .cl-ck{border:1px dashed #2a4252;border-radius:10px;padding:8px 12px;margin:.8em 0}
+
 :is(#v-pacing,#v-hemo,#v-iabp,#v-artline,#v-cals,#v-bleed,#v-mcs,#v-poaf,#v-vent,#v-rhythm,#v-lytes,#v-aki,#v-orsurg,#v-cxr,#v-micu,#v-neuro,#v-sicu,#v-nicp,#v-nstroke,#v-nsah,#v-nsz,#v-nnm,#v-mshock,#v-mresp,#v-mtox,#v-mendo,#v-mgi,#v-strauma,#v-sabd,#v-sburn,#v-scomp,#v-rounds) .clsn .cl-h4{margin:2px 0 6px;font-family:var(--f-disp);font-size:20px;font-weight:600}
 :is(#v-pacing,#v-hemo,#v-iabp,#v-artline,#v-cals,#v-bleed,#v-mcs,#v-poaf,#v-vent,#v-rhythm,#v-lytes,#v-aki,#v-orsurg,#v-cxr,#v-micu,#v-neuro,#v-sicu,#v-nicp,#v-nstroke,#v-nsah,#v-nsz,#v-nnm,#v-mshock,#v-mresp,#v-mtox,#v-mendo,#v-mgi,#v-strauma,#v-sabd,#v-sburn,#v-scomp,#v-rounds) .clsn .cl-ul{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--soft)}
 :is(#v-pacing,#v-hemo,#v-iabp,#v-artline,#v-cals,#v-bleed,#v-mcs,#v-poaf,#v-vent,#v-rhythm,#v-lytes,#v-aki,#v-orsurg,#v-cxr,#v-micu,#v-neuro,#v-sicu,#v-nicp,#v-nstroke,#v-nsah,#v-nsz,#v-nnm,#v-mshock,#v-mresp,#v-mtox,#v-mendo,#v-mgi,#v-strauma,#v-sabd,#v-sburn,#v-scomp,#v-rounds) .clsn .cl-try{margin-top:10px;border-left:3px solid #8fc1ff;background:#8fc1ff12;padding:8px 12px;border-radius:0 8px 8px 0;color:var(--fg)}
@@ -7891,7 +7899,12 @@ window.CTG = (() => {
     function show(i) {
       LS[v] = i; const s = L.s[i]; chips.innerHTML = ''; body.innerHTML = ''; foot.innerHTML = '';
       L.s.forEach((x, j) => { const b = mk('button', 'cl-chip' + (j === i ? ' on' : '') + (j < i ? ' seen' : ''), (j + 1) + '. ' + x.h); b.onclick = () => show(j); chips.append(b); });
-      body.append(mk('h4', 'cl-h4', s.h)); const ul = mk('ul', 'cl-ul'); s.p.forEach(x => ul.append(mk('li', '', x))); body.append(ul);
+      body.append(mk('h4', 'cl-h4', s.h));
+      (s.x || []).forEach(t => body.append(mk('p', 'cl-p', t)));
+      if (s.p && s.p.length) { if (s.x) body.append(mk('div', 'cl-k', 'Key points')); const ul = mk('ul', 'cl-ul'); s.p.forEach(x => ul.append(mk('li', '', x))); body.append(ul); }
+      if (s.ex) { const ex = mk('div', 'cl-ex'); ex.append(mk('div', 'cl-k', 'Worked example'), mk('p', 'cl-p', s.ex.q)); const d = mk('details'); d.append(mk('summary', '', 'Think it through, then open'), ...[].concat(s.ex.a).map(t => mk('p', 'cl-p', t))); ex.append(d); body.append(ex); }
+      if (s.pit && s.pit.length) { const pt = mk('div', 'cl-pit'); pt.append(mk('div', 'cl-k', 'Common pitfalls')); const ul2 = mk('ul', 'cl-ul'); s.pit.forEach(x => ul2.append(mk('li', '', x))); pt.append(ul2); body.append(pt); }
+      if (s.ck) { const ck = mk('details', 'cl-ck'); ck.append(mk('summary', '', 'Check yourself: ' + s.ck.q), mk('p', 'cl-p', s.ck.a)); body.append(ck); }
       if (s.tr) { const tr = mk('div', 'cl-try'); tr.append(mk('b', '', 'Try it below: '), document.createTextNode(s.tr)); body.append(tr); }
       if (s.src && s.src.length && window.LEARN) { const sw = mk('details', 'cl-src'); sw.append(mk('summary', '', s.chk ? `Sources (${s.src.length}) · checked against the source text, Oct 2026` : `Sources (${s.src.length})`), LEARN.refsList(s.src)); body.append(sw); }
       if (i === L.s.length - 1) body.append(mk('p', 'cl-var', 'Practice varies between surgeons and institutions. Where your unit’s protocol differs from what is taught here, follow your unit.'));
@@ -11361,6 +11374,382 @@ LEARN.add('pacing', {
   });
 })();
 
+/* Expanded Learn-mode teaching for the CTICU lessons: adds explanatory paragraphs (x), worked examples (ex) and check-yourself questions (ck) to the existing sections, matched by index. */
+(() => {
+  const A = {
+    pacing: [
+      { x: ['Epicardial wires are sewn onto the surface of the atrium or ventricle and brought out through the skin. They let you pace the heart directly, record from it and sometimes terminate arrhythmias. Bradycardia and heart block are common after surgery because of edema, ischemia and surgical trauma near the conduction system, especially after valve operations.', 'Because the wires sit on the heart surface, the signals they sense and the output they need change over days: thresholds tend to rise as inflammation and fibrosis develop around the wire tip. That is why daily checks matter.'] },
+      { x: ['Capture is about energy. The pacer has to deliver enough current (mA) to depolarize the tissue under the wire. The capture threshold is the lowest output that still captures every beat. Set the output with a margin, usually 2–3 times the threshold, so capture survives small changes.', 'Always confirm capture mechanically, not just electrically: a paced QRS should come with a pulse on the art line. Electrical capture without a pulse is PEA.'], ex: { q: 'Ventricular threshold measured at 3 mA. Output set at 5 mA. Is that safe?', a: ['Not quite. 5 mA is less than twice the threshold. A margin of 2–3× (6–9 mA or more) protects against loss of capture as thresholds rise.'] } },
+      { x: ['Sensing is the pacer listening. The sensitivity setting is a threshold in millivolts: the pacer ignores anything smaller. A smaller number means it listens harder (more sensitive). That trips people up: to fix undersensing, lower the number.', 'Undersensing is dangerous because the pacer fires into the heart\'s own rhythm and a spike can land on the T wave. Oversensing is dangerous because the pacer mistakes noise (muscle, cautery, T waves) for beats and stops pacing a dependent patient.'], ck: { q: 'Spikes land in the middle of native QRS complexes and T waves. Raise or lower the sensitivity number?', a: 'Lower it (make the pacer more sensitive) so it sees the native beats and inhibits.' } },
+      { x: ['Pick the mode by asking two questions: which chambers can I use, and does the AV node conduct? If the AV node works, atrial pacing alone keeps the normal activation sequence and the atrial kick. If the AV node does not conduct, you must pace the ventricle, ideally with atrial tracking (DDD) to keep AV synchrony. In AF the atrium cannot be paced, so VVI is the choice.', 'The letters describe paced chamber, sensed chamber and response to sensing. "O" in the third position means asynchronous: it fires no matter what, which risks R-on-T and is reserved for short emergencies such as cautery in a dependent patient.'] },
+      { x: ['The atrial electrogram turns small P waves into large spikes, so you can count atrial activity directly. If there are more atrial than ventricular complexes, the atria are driving the rhythm (flutter, atrial tachycardia with block). If atrial and ventricular activity are unrelated, there is AV dissociation.', 'Atrial flutter is a single circuit. Pacing the atrium faster than the flutter rate for several seconds can enter the circuit and break it. AF has no single circuit, which is why overdrive pacing does not work for AF.'] },
+      { x: ['Most pacing disasters come from changing settings without knowing the underlying rhythm. Before you turn the rate down, ask whether the patient has anything underneath. If not, there is nothing to fall back on.', 'Wires connect directly to the myocardium. Small leakage currents that are harmless through skin can trigger VF this way, which is why the ends are insulated and handled with gloves.'] }
+    ],
+    cals: [
+      { x: ['Arrest after cardiac surgery is different from arrest on the street. The causes are usually mechanical and fixable: VF, tamponade, bleeding, a tension pneumothorax, a pacing failure. The patient is monitored and the team is present, so the arrest is usually witnessed instantly.', 'That changes the priorities. External compressions on a fresh sternotomy can damage grafts and valves, and the fastest fix (a shock, pacing, or reopening the chest) often restores circulation within a minute.'] },
+      { x: ['In witnessed VF, each shock is most likely to work in the first seconds. Three quick shocks before compressions give the best chance of immediate ROSC. If they fail, start CPR and prepare for resternotomy: internal massage and internal defibrillation are more effective than external CPR after sternotomy.'] },
+      { x: ['When the heart stops beating because of a conduction problem, pacing is the treatment. If wires are in place, connect them and pace at high output; capture can restore circulation immediately. If there is no capture within about a minute, start compressions.'] },
+      { x: ['PEA after cardiac surgery is usually something you can fix: tamponade, bleeding, tension pneumothorax, low volume. A pacer can make PEA look organized because it keeps producing paced complexes; pausing it briefly shows whether VF is hiding underneath.'], ck: { q: 'Art line flat, pacer capturing on the ECG, CVP rising, chest tubes quiet. Most likely cause?', a: 'Tamponade. Electrical capture without output with rising filling pressures and quiet drains: prepare for resternotomy.' } },
+      { x: ['Full-dose epinephrine works by raising coronary perfusion during CPR, but after cardiac surgery the rebound hypertension once the heart restarts can disrupt grafts and suture lines and cause major bleeding. That is why the STS guidance avoids routine 1 mg doses.'] },
+      { x: ['Clear roles prevent chaos. While one person compresses and another manages the airway, a separate team prepares for resternotomy so the chest can be opened within about five minutes if needed.'] }
+    ],
+    poaf: [
+      { x: ['AF after surgery is driven by inflammation around the atria, atrial stretch, adrenaline and electrolyte shifts. It usually appears on days 2–3 and often resolves within weeks. It matters because a fast, irregular rhythm loses the atrial kick and shortens filling time, which drops cardiac output, and because it raises stroke risk if it persists.'] },
+      { x: ['Stability decides everything. A patient with low pressure, chest pain or pulmonary edema from the rhythm needs synchronized cardioversion now. A stable patient can be managed with drugs, and the evidence shows rate control and rhythm control give similar results.'] },
+      { x: ['Rate control works by slowing the AV node so the ventricles have time to fill. Beta-blockers do this well and also blunt the post-op adrenaline surge. In a weak heart, drugs that depress contraction (diltiazem, verapamil) can tip the patient into shock; amiodarone slows the rate with less effect on contractility.'] },
+      { x: ['Amiodarone both slows the rate and promotes conversion, which makes it useful when the heart is weak or the rate is hard to control. Flutter is different: it is a single circuit that can often be broken by rapid atrial pacing through the wires, which avoids sedation and a shock.'] },
+      { x: ['Low potassium and magnesium make the atria more irritable, so correcting real deficits is sensible. TIGHT-K showed that chasing high-normal potassium does not prevent AF. The longer AF persists, the greater the stroke risk, so anticoagulation is weighed against surgical bleeding once AF lasts beyond about 48 hours.'] }
+    ],
+    rhythm: [
+      { x: ['A fixed routine stops you from jumping to conclusions. Rate, regularity, P waves, PR interval, QRS width: in that order, every time. Most mistakes come from naming a rhythm before counting the P waves.'] },
+      { x: ['AV blocks are about where the block sits. Blocks in the AV node (first degree, Mobitz I) are usually stable and often caused by drugs, vagal tone or ischemia. Blocks below the node (Mobitz II, many third-degree blocks) are unpredictable, have slow, wide escape rhythms and need pacing.'] },
+      { x: ['Sort tachycardias by QRS width and regularity. A narrow QRS means the impulse travels through the normal conduction system, so the rhythm starts above the ventricles. A wide QRS is VT until proven otherwise, especially in someone with heart disease. A rate of exactly 150 should always make you look for flutter.'] },
+      { x: ['Surface P waves are small and often buried. The atrial wire records directly from the atrium, so atrial activity is large and easy to count. That makes hidden flutter, junctional rhythms and AV dissociation obvious.'] },
+      { x: ['The rhythm name is only half the answer. What you do depends on whether the patient is perfusing. The same rhythm may need nothing in one patient and immediate electricity in another.'] }
+    ],
+    hemo: [
+      { x: ['Almost every hemodynamic problem can be traced to one of four things: how full the heart is (preload), how hard it squeezes (contractility), what it pumps against (afterload) and how fast it beats. Blood pressure is the product of flow and resistance, so the same low MAP can come from opposite problems: an empty tank, a weak pump or wide-open vessels.'] },
+      { x: ['The PA catheter measures pressures on both sides of the heart and lets you calculate output and resistance. CVP reflects right-sided filling; PAWP approximates left atrial pressure. SvO2 shows how much oxygen the body extracted: a low SvO2 means delivery is not keeping up, from low output, low hemoglobin or low saturation.'], ex: { q: 'CI 1.7, PAWP 22, CVP 14, SVR 1700, SvO2 48%.', a: ['Low output with high left-sided filling and high SVR: LV failure (cardiogenic).', 'Support contractility, reduce afterload if the MAP allows, and avoid more fluid.'] } },
+      { x: ['Each shock has a fingerprint. The key is to read CVP, PAWP, CI and SVR together rather than chasing one number. A high CVP with a low PAWP points to the right heart; equal and rising pressures with falling output point to tamponade.'] },
+      { x: ['Fluid helps only if the heart is on the steep part of its Starling curve. Dynamic measures such as pulse pressure variation or a passive leg raise predict that better than a single CVP value, but they need the right conditions to be reliable.'] },
+      { x: ['Choose drips by the problem. Low SVR with good output needs a vasoconstrictor. Low output with high filling needs an inotrope. Many patients need both. Epinephrine adds inotropy but can raise lactate and heart rate; milrinone vasodilates and lasts longer.'] },
+      { x: ['Pressure is not flow. A vasopressor can raise the MAP of a bleeding or underfilled patient while tissue perfusion gets worse. Always ask what is happening to the output, SvO2, lactate and urine.'] }
+    ],
+    bleed: [
+      { x: ['Some bleeding after bypass is expected: heparin, platelet dysfunction and dilution all contribute. The concern is the trend. Output should fall hour by hour. Output that stays high or rises needs a cause.'] },
+      { x: ['Bleeding has two main sources: surgical (a vessel or anastomosis) and medical (coagulopathy). Coagulation tests and a viscoelastic test separate them and tell you exactly which product will help, rather than guessing with everything.'] },
+      { x: ['A viscoelastic test follows clot formation over time. R time is how long clotting takes to start (factors and heparin), the angle is how fast it builds (fibrinogen), MA is how strong it gets (platelets and fibrinogen), and LY30 is how fast it breaks down (fibrinolysis).'], ck: { q: 'R time prolonged but corrects with heparinase. What do you give?', a: 'Protamine: the problem is residual heparin.' } },
+      { x: ['A sudden stop in drainage is not always good news. If clot blocks the tubes, blood collects around the heart and causes tamponade. Rising filling pressures with falling output and quiet drains is a surgical emergency.'] }
+    ],
+    artline: [
+      { x: ['The arterial line is a column of fluid connecting the artery to a transducer. That fluid column can ring like a spring (underdamped) or be sluggish (overdamped). MAP is the most reliable number because errors in systolic and diastolic partly cancel out.'] },
+      { x: ['The transducer measures pressure relative to its own height. If it sits below the heart, the weight of the fluid column adds pressure and the reading is too high; above the heart, too low. Zeroing removes atmospheric pressure from the reading.'], ex: { q: 'The bed was raised but the transducer stayed on the pole, now 20 cm below the heart. MAP reads 85.', a: ['20 cm × 0.74 ≈ 15 mmHg falsely high. The true MAP is about 70. Relevel before treating.'] } },
+      { x: ['The square-wave test checks the whole system in one second. One or two oscillations means it is tuned correctly. No oscillations means something is absorbing the signal (bubble, clot, kink). Many oscillations means it is ringing and exaggerating the systolic pressure.'] },
+      { x: ['The flush device needs the bag pressure to exceed arterial pressure so it can keep a slow flow going into the artery. When the bag deflates, blood backs up into the tubing and clots, damping the trace.'] },
+      { x: ['The most common cause of a sudden change on the art line is the line itself. Look, flush, level and zero before giving a drug, but do not let line troubleshooting delay a pulse check in a real arrest.'] }
+    ],
+    vent: [
+      { x: ['Most cardiac surgery patients arrive intubated and are ready to come off quickly once they are warm, awake, stable and not bleeding. Early extubation shortens ICU stays without increasing harm in suitable patients.'] },
+      { x: ['Even in normal lungs, large tidal volumes can injure. Basing tidal volume on predicted body weight (from height and sex) keeps the breath matched to lung size, not body size.'] },
+      { x: ['After bypass, the lungs often have collapsed areas (atelectasis). These areas get blood flow but no air, so oxygen falls. PEEP and recruitment reopen them; raising FiO2 alone only treats the number.'] },
+      { x: ['Read an ABG in order. First the pH, then the primary process, then whether compensation is appropriate, then the anion gap. Expected compensation tells you if a second problem is hiding.'], ex: { q: 'pH 7.25, PaCO2 40, HCO3 17.', a: ['Metabolic acidosis. Expected PaCO2 = 1.5 × 17 + 8 ± 2 = 31–35. A PaCO2 of 40 is too high: there is also a respiratory acidosis (not ventilating enough).'] } },
+      { x: ['A low PaCO2 in a patient with metabolic acidosis is often the body compensating. "Correcting" it by lowering the rate drops the pH further.'] }
+    ],
+    iabp: [
+      { x: ['The balloon helps the heart twice per beat. Inflating in diastole pushes blood back toward the coronary arteries (better coronary perfusion). Deflating just before systole leaves a space in the aorta, so the LV ejects against lower pressure (less afterload and less oxygen demand).'] },
+      { x: ['At 1:2, every other beat is assisted, so you can compare. Good timing shows inflation right at the dicrotic notch, a tall diastolic peak, and assisted end-diastolic and systolic pressures lower than unassisted ones.'] },
+      { x: ['Timing errors either waste the benefit or make things worse. The two dangerous ones raise afterload: early inflation (the balloon inflates while the valve is still open) and late deflation (the ventricle ejects against a still-inflated balloon).'], ck: { q: 'Assisted end-diastolic pressure is higher than unassisted. Which error?', a: 'Late deflation: the LV is ejecting against the balloon. Move deflation earlier.' } },
+      { x: ['The balloon sits in the descending aorta between the left subclavian and the renal arteries. Migration either way causes problems you can detect at the bedside: arm pulse changes if too high, falling urine output if too low.'] },
+      { x: ['The console needs a reliable trigger to time each beat. In CPR there is no reliable QRS, but compressions produce pressure, so pressure trigger keeps the balloon working.'] }
+    ],
+    mcs: [
+      { x: ['The Impella pulls blood from the LV into the aorta. That unloads the ventricle and adds flow in one step. It depends on the LV having blood in it; if the LV is underfilled or the RV is failing, the pump sucks against the wall and alarms.'] },
+      { x: ['Most alarms come from filling or position. Echo is the fastest way to tell: is the inlet in the right place and is the LV full?'] },
+      { x: ['VA-ECMO takes over both heart and lung function, but blood returned to the femoral artery flows backward up the aorta against the native heart. A weak LV may not be able to open the aortic valve against that pressure, so it distends and floods the lungs.'] },
+      { x: ['With femoral VA-ECMO, oxygenated blood comes up from below while the heart pumps blood from the lungs from above. If the lungs are failing, the heart sends dark blood to the brain and coronaries. The right hand shows what the brain is getting.'] },
+      { x: ['Chatter means the pump is pulling harder than blood can return. The question is why: empty (bleeding, low volume) or blocked (tamponade, kinked cannula). The CVP helps tell them apart.'] },
+      { x: ['VV-ECMO only replaces the lungs: blood goes out of a vein and back into the right atrium. The patient\'s own heart still pumps. If the drainage and return cannulas are too close, returned blood is sucked straight back (recirculation) and effective support falls.'] },
+      { x: ['Trials show mechanical support is not a blanket solution. Impella helped in selected STEMI shock patients, at the cost of more complications, while routine VA-ECMO did not lower mortality in infarct-related shock.'] }
+    ],
+    cxr: [
+      { x: ['Every film after a procedure starts with the devices. A tube or line in the wrong place is one of the most fixable problems in the ICU, and the film is often the only way to see it.'] },
+      { x: ['Know what is expected after surgery so you notice what is not. A small left effusion and basal atelectasis are common; a new widening of the mediastinum, a large effusion or a pneumothorax are not.'] }
+    ],
+    lytes: [
+      { x: ['Potassium sits mostly inside cells, so serum potassium is a poor guide to the total body amount. Small changes in serum K change the heart\'s electrical stability a lot, which is why both high and low values cause arrhythmias.'] },
+      { x: ['Calcium works in minutes but only protects the heart; it does not lower potassium. Insulin and beta-agonists move potassium into cells temporarily. Only removal (kidneys, binders, dialysis) actually lowers total body potassium.'] },
+      { x: ['Magnesium stabilizes cardiac membranes and is needed to correct low potassium. Ionized calcium is what matters physiologically; citrate in transfused blood binds it, so massive transfusion causes low calcium, weak contraction and poor vascular tone.'] },
+      { x: ['Stress and bypass raise glucose after surgery. Very high glucose impairs wound healing and immunity; very tight control causes hypoglycemia. The target is the middle ground: under 180.'] },
+      { x: ['Drip math errors are among the most common ICU medication errors. Always work out the concentration first, then use the same formula every time.'], ex: { q: 'Epinephrine 4 mg in 250 mL. Order 0.05 mcg/kg/min, weight 70 kg.', a: ['Concentration 16 mcg/mL. Dose 0.05 × 70 = 3.5 mcg/min = 210 mcg/h. 210 ÷ 16 ≈ 13 mL/h.'] } }
+    ],
+    aki: [
+      { x: ['The kidneys take about 20% of cardiac output and are sensitive to low flow, inflammation and toxins. After bypass all three can happen at once, which is why AKI is common.'] },
+      { x: ['KDIGO uses both creatinine and urine output because creatinine lags behind injury by a day or more. Urine output often falls first.'] },
+      { x: ['Before calling it AKI, rule out the simple things: a blocked catheter, a low perfusion pressure, low output or a nephrotoxin. The furosemide stress test shows whether the tubules still work.'] },
+      { x: ['Dialysis is a supportive treatment, not a cure. Starting it early "just in case" did not help in STARRT-AKI and caused more complications, so start it when there is a clear indication.'] },
+      { x: ['CRRT runs continuously, which suits unstable patients. Citrate anticoagulates only the circuit by binding calcium; the patient gets calcium back through a separate infusion. If the liver cannot clear citrate, it accumulates.'] }
+    ],
+    orsurg: [
+      { x: ['Cardiac surgery has a predictable sequence: open, harvest, anticoagulate, cannulate, go on bypass, arrest the heart, repair, rewarm and reperfuse, come off bypass, reverse heparin and close. Problems tend to cluster at the transitions.'] },
+      { x: ['The bypass machine replaces the heart and lungs. Venous blood drains by gravity or suction to a reservoir, is oxygenated, and pumped back into the aorta. The perfusionist controls flow and, with the anesthesia team, pressure and temperature.'] },
+      { x: ['Blood clots on contact with the circuit, so full heparinization is essential and must be confirmed with an ACT before going on bypass. Heparin resistance (often from low antithrombin) means more heparin or antithrombin is needed.'] },
+      { x: ['With the aorta clamped, the heart has no blood supply. Cardioplegia stops it in diastole, cutting oxygen demand so it survives the ischemic period. Delivery route depends on the aortic valve and coronary anatomy.'] },
+      { x: ['Coming off bypass means handing the circulation back to a heart that has been stunned. Rhythm, volume, contractility and afterload are optimized step by step while TEE confirms function.'] },
+      { x: ['Simple habits prevent the worst complications: low pressure during cannulation to avoid dissection, and keeping the ability to go back on bypass until protamine is tolerated.'] }
+    ]
+  };
+  Object.entries(A).forEach(([sim, arr]) => { const L = LEARN.LESSON && LEARN.LESSON[sim]; if (!L) return; arr.forEach((o, i) => { const s = L.s[i]; if (!s) return; if (o.x) s.x = o.x; if (o.ex) s.ex = o.ex; if (o.ck) s.ck = o.ck; if (o.pit) s.pit = o.pit; }); });
+})();
+
+/* Expanded Learn-mode lessons for the Medical ICU. Each section: x = teaching paragraphs, p = key points, ex = worked example, pit = pitfalls, ck = check yourself. chk:false = written from the listed sources, not yet re-verified line by line. */
+(() => {
+  const L = LEARN.LESSON;
+  L.mshock = { t: 'Medical ICU: shock and circulation', s: [
+    { h: 'What shock is', chk: false, src: ['ssc21', 'ssc26'], x: [
+      'Shock is not a blood pressure. It is a mismatch between oxygen delivery and what the tissues need. The pressure is just the most visible sign, and it can stay normal for a while because the body clamps down its vessels to defend it. By the time the MAP falls, compensation is already failing.',
+      'Oxygen delivery is cardiac output times arterial oxygen content. Cardiac output is heart rate times stroke volume, and stroke volume depends on preload (how full the ventricle is), contractility and afterload. Pressure is flow times resistance: MAP ≈ CVP + cardiac output × SVR. So low pressure always means low flow, low resistance, or both.',
+      'Tissues tell you they are short of oxygen through the lactate, mottled skin, slow capillary refill, confusion and falling urine output. Those markers matter more than any single number on the monitor.'],
+      p: ['MAP ≈ CVP + CO × SVR: ask which term failed.', 'Signs of hypoperfusion: lactate, cap refill > 3 s, mottling, oliguria, altered mentation.', 'A normal MAP does not rule out shock (compensated shock).'],
+      ck: { q: 'A patient has MAP 72, HR 118, lactate 4.1 and mottled knees. In shock or not?', a: 'Yes. Compensated shock: the vessels are holding the pressure up but tissues are underperfused. Treat the cause now rather than waiting for the MAP to fall.' } },
+    { h: 'Four kinds of shock, one bedside look', chk: false, src: ['ssc21', 'soap10', 'esc15peri', 'escpe19'], x: [
+      'Every shock fits one of four patterns. Hypovolemic: the tank is empty (bleeding, vomiting, burns). Distributive: the vessels are wide open, as in sepsis or anaphylaxis, so SVR is low and output is often high. Cardiogenic: the pump fails, so output is low and filling pressures are high. Obstructive: something blocks flow, such as a pulmonary embolism, tamponade or tension pneumothorax.',
+      'POCUS sorts most of this in minutes. A small, collapsing IVC with a hyperdynamic heart points to hypovolemia or vasodilation. A big, still IVC with a poorly squeezing LV and B-lines points to the pump. A big IVC with a dilated RV and a small, D-shaped LV points to a massive PE. A big IVC with an effusion and a collapsing right heart points to tamponade.',
+      'Warm hands with a bounding pulse suggest distributive shock; cold, clammy hands suggest low output (hypovolemic, cardiogenic or obstructive).'],
+      p: ['Hypovolemic: low CVP, low CO, high SVR.', 'Distributive: low SVR, often high CO.', 'Cardiogenic: high filling pressures, low CO, high SVR.', 'Obstructive: high CVP, low CO; find and relieve the block.'],
+      ex: { q: 'MAP 58, warm and flushed, fever 39.4, IVC 1.2 cm collapsing, LV hyperdynamic, lactate 3.8.', a: ['Warm extremities, a hyperdynamic heart and a collapsing IVC fit distributive shock, here septic.', 'Plan: cultures, antibiotics within the hour, balanced crystalloid while the IVC and pulse pressure say the patient is fluid responsive, norepinephrine for MAP < 65, and find the source.'] },
+      tr: 'Open the Model drawer during a case and watch which term moves.' },
+    { h: 'Septic shock, step by step', chk: false, src: ['ssc26', 'ssc21', 'vasst08'], x: [
+      'Time matters most for antibiotics. In septic shock they go in immediately, ideally within an hour, after blood cultures if that causes no delay. For suspected sepsis without shock, the 2026 guideline still favors early treatment but leaves room for a short, focused workup.',
+      'Fluids come next. Balanced crystalloids (lactated Ringer, Plasma-Lyte) are preferred to saline. The classic starting point is about 30 mL/kg for hypotension or lactate ≥ 4, but the better habit is to reassess after each bolus: does the pulse pressure, stroke volume or cap refill improve? Once the patient stops responding, more fluid only adds edema. The 2026 update adds an explicit push to start removing fluid once the patient is resuscitated.',
+      'Norepinephrine is the first vasopressor. Start it early, through a good peripheral IV if central access will take time. Target a MAP of about 65, managed as a range; for patients 65 and older a range of 60–65 is suggested. If norepinephrine climbs past about 0.25 mcg/kg/min, add vasopressin rather than pushing norepinephrine higher, and start hydrocortisone for an ongoing vasopressor need. Add an inotrope only when perfusion stays poor despite an adequate MAP and the echo shows a weak heart.'],
+      p: ['Antibiotics immediately in septic shock; cultures first if no delay.', 'Balanced crystalloid; reassess after every bolus.', 'Norepinephrine first; MAP about 65 (60–65 if ≥ 65 years).', 'Vasopressin and hydrocortisone for rising pressor needs.', 'De-escalate antibiotics once susceptibilities return.'],
+      pit: ['Waiting for a central line before starting a pressor.', 'Giving fluid by formula without checking whether it helps.', 'Reaching for epinephrine or dobutamine because the patient is tachycardic: tachycardia alone is not a reason for an inotrope.'],
+      ck: { q: 'Norepinephrine is at 0.3 mcg/kg/min, MAP 61, IVC plethoric. Next move?', a: 'Add vasopressin 0.03 units/min and start hydrocortisone 200 mg/day. The full IVC says more fluid will not help.' } },
+    { h: 'Cardiogenic shock', chk: false, src: ['soap10', 'shock99', 'culprit17', 'doremi21', 'danger24'], x: [
+      'In cardiogenic shock the heart cannot move enough blood, so the body clamps down (high SVR) and pressures back up into the lungs. The patient is classically cold and wet: cool, mottled limbs with crackles and a raised JVP.',
+      'Give norepinephrine first to keep the coronary arteries perfused. Dopamine caused more arrhythmias and, in the cardiogenic subgroup of SOAP II, worse survival. Once the MAP is acceptable, an inotrope (dobutamine or milrinone) improves output; DOREMI found the two similar. Milrinone vasodilates more and builds up in kidney failure.',
+      'If the cause is an acute MI, revascularization is the treatment: SHOCK showed better survival with early revascularization, and CULPRIT-SHOCK showed that only the culprit vessel should be opened acutely. Mechanical support is chosen case by case: DanGer Shock found lower mortality with Impella in selected STEMI shock, at the cost of more complications. Avoid fluid boluses: the problem is the pump, not the tank.'],
+      p: ['Cold and wet: low output, high filling pressures.', 'Norepinephrine, then inotrope; no fluid in congestion.', 'MI: emergent revascularization, culprit vessel only.', 'Call the shock team early.'],
+      pit: ['Treating crackles with fluids because the BP is low.', 'Using phenylephrine alone: it raises afterload without helping the pump.'] },
+    { h: 'Obstructive shock and anaphylaxis', chk: false, src: ['esc15peri', 'spodick03', 'escpe19', 'ana23'], x: [
+      'Tamponade squeezes the heart from outside so it cannot fill. Expect hypotension, a raised JVP, quiet heart sounds and pulsus paradoxus. The definitive treatment is draining the fluid. Until then, a small fluid bolus and a vasopressor help; intubation and positive pressure can crash the patient because they reduce venous return further.',
+      'A massive PE suddenly loads the right ventricle. The RV dilates, pushes the septum into the LV and starves it of filling. That is why large fluid boluses hurt. Give norepinephrine to keep coronary perfusion to the RV, and thrombolysis for high-risk PE (or embolectomy if lysis is contraindicated).',
+      'Anaphylaxis is distributive shock with airway swelling. IM epinephrine in the thigh (0.5 mg in adults) is the first and most important drug; repeat every 5–15 minutes, and start an infusion if the patient stays hypotensive. Antihistamines and steroids are add-ons; they do not treat the shock.'],
+      p: ['Tamponade: drain it; avoid positive pressure.', 'Massive PE: norepinephrine, little fluid, thrombolysis.', 'Anaphylaxis: IM epinephrine first, infusion if refractory; glucagon if on beta-blockers.'],
+      ck: { q: 'Why does intubation risk arrest in tamponade or massive PE?', a: 'Positive pressure and induction drugs reduce venous return and raise RV afterload in a heart that is already struggling to fill or eject. Prepare vasopressors and decompress or treat first when possible.' } }
+  ] };
+  L.mresp = { t: 'Medical ICU: respiratory failure', s: [
+    { h: 'Two kinds of failure', chk: false, src: ['rochwerg17', 'ers22hfnc'], x: [
+      'Respiratory failure is either an oxygenation problem, a ventilation problem, or both. Hypoxemic failure (type 1) comes from shunt and V/Q mismatch: alveoli full of fluid, pus or collapsed. Oxygen helps somewhat, but true shunt barely responds to more FiO2; it needs alveoli reopened with pressure (PEEP) or position.',
+      'Hypercapnic failure (type 2) means the patient cannot move enough air: weak muscles, a tired diaphragm, obstructed airways or a sedated drive. PaCO2 rises and pH falls. Oxygen does not fix it, and in COPD too much oxygen can make the CO2 worse.',
+      'The choice of support follows from this. Hypercapnia responds to ventilatory help, so NIV (BiPAP) is first-line in COPD. De novo hypoxemia does better with high-flow nasal cannula, which gives high FiO2, a little PEEP and washes out dead space.'],
+      p: ['Type 1: shunt and V/Q mismatch; needs FiO2 and PEEP.', 'Type 2: inadequate ventilation; needs ventilatory support.', 'COPD hypercapnia: NIV and SpO2 88–92%.', 'De novo hypoxemia: HFNC first.'] },
+    { h: 'Reading the ventilator', chk: false, src: ['arma00', 'amato15', 'leatherman15'], x: [
+      'Peak pressure is the total pressure needed to push the breath in: airway resistance plus lung and chest wall stiffness plus PEEP. Plateau pressure, measured with an inspiratory hold, removes the resistance part and shows the pressure inside the alveoli.',
+      'Compare them. A high peak with a normal plateau means the problem is in the airways: bronchospasm, secretions, a kinked or bitten tube. When both rise together, the lung or chest wall got stiffer: ARDS, pneumothorax, mainstem intubation, a tight abdomen.',
+      'An expiratory hold shows auto-PEEP: air that did not finish leaving before the next breath. It builds in obstructive disease and when the rate is too high.'],
+      p: ['Peak − plateau = resistance problem.', 'Plateau high = compliance problem.', 'Expiratory hold = auto-PEEP.'],
+      ex: { q: 'Peak 48, plateau 22, PEEP 5, wheeze on exam.', a: ['The 26 cmH2O gap between peak and plateau is resistive, and the plateau is fine. This is bronchospasm or a tube problem, not stiff lungs.', 'Suction, check the tube, give bronchodilators, and look for auto-PEEP.'] },
+      tr: 'In the asthma case, do an expiratory hold before and after slowing the rate.' },
+    { h: 'ARDS: protect the lung', chk: false, src: ['arma00', 'amato15', 'proseva13', 'berlin12', 'ats24ards'], x: [
+      'ARDS lungs are small, not stiff everywhere. Only part of the lung is open, so a normal tidal volume overstretches the healthy part. ARMA proved it: 6 mL/kg of predicted body weight instead of 12 cut mortality from about 40% to 31%.',
+      'Predicted body weight comes from height and sex, not the scale. Keep the plateau at or below 30 and the driving pressure (plateau minus PEEP) under about 15. Raise the rate to keep minute ventilation, and accept a higher CO2 if the pH stays above about 7.20.',
+      'If P/F stays under 150 despite this, turn the patient prone for at least 16 hours a day. PROSEVA cut mortality roughly in half. Proning works by making ventilation and perfusion more even, not just by improving the number.'],
+      p: ['Vt 6 mL/kg PBW; Pplat ≤ 30; driving pressure < 15.', 'Permissive hypercapnia (pH ≥ 7.20).', 'P/F < 150: prone ≥ 16 h/day.', 'Berlin severity: mild ≤ 300, moderate ≤ 200, severe ≤ 100 (PEEP ≥ 5).'],
+      ex: { q: 'Woman, 162 cm, 95 kg, ARDS on Vt 550 mL.', a: ['PBW (female) = 45.5 + 0.91 × (162 − 152.4) ≈ 54 kg.', '6 mL/kg × 54 ≈ 325 mL. Her current Vt is about 10 mL/kg PBW: too high. Lower it and raise the rate.'] },
+      pit: ['Using actual body weight.', 'Chasing a normal PaCO2 at the cost of lung stretch.'] },
+    { h: 'Obstructive disease on the ventilator', chk: false, src: ['tuxen87', 'leatherman15', 'austin10', 'rochwerg17'], x: [
+      'In severe asthma and COPD the problem is getting air out. If the next breath comes before exhalation finishes, air stacks up (dynamic hyperinflation). Intrathoracic pressure climbs, venous return falls and the blood pressure drops; it can even look like PEA.',
+      'The fix is time to exhale: a low rate, a small tidal volume and a short inspiratory time. CO2 will rise and that is acceptable. If the patient suddenly becomes hypotensive on the vent, disconnect the circuit and let the chest empty, then look for a pneumothorax.',
+      'For COPD before intubation, NIV reduces the work of breathing and lowers intubation rates. Titrate oxygen to 88–92%; Austin showed higher mortality with high-flow oxygen.'],
+      p: ['Slow rate, small Vt, short Ti.', 'Hypotensive asthmatic on the vent: disconnect.', 'COPD: NIV and SpO2 88–92%.'],
+      ck: { q: 'Why does raising the rate to fix a high CO2 in asthma backfire?', a: 'It shortens expiratory time, traps more air, raises auto-PEEP and can drop the blood pressure without improving the CO2.' } },
+    { h: 'High flow, and knowing when to intubate', chk: false, src: ['florali15', 'roca19', 'kang15'], x: [
+      'HFNC gives up to 60 L/min of warmed, humidified gas with an FiO2 up to 1.0. FLORALI showed lower 90-day mortality than NIV or standard oxygen in de novo hypoxemic failure.',
+      'The risk is waiting too long. The ROX index (SpO2/FiO2 ÷ respiratory rate) helps: ≥ 4.88 suggests success, while < 3.47 at 6 hours predicts failure. Kang found worse outcomes when intubation came after more than 48 hours of failing HFNC.',
+      'Plan the airway before it is an emergency: a falling ROX, rising work of breathing or new confusion means intubate in a controlled way.'],
+      p: ['ROX = (SpO2/FiO2) ÷ RR.', '≥ 4.88 reassuring; < 3.47 at 6 h predicts failure.', 'Intubate early and in a controlled way when failing.'] }
+  ] };
+  L.mtox = { t: 'Medical ICU: toxicology', s: [
+    { h: 'The toxicology approach', chk: false, src: ['boehnert85', 'bruccoleri16'], x: [
+      'Start with airway, breathing and circulation, then check glucose. Next look for a toxidrome: a cluster of signs that points to a drug class. Then get an ECG; the QRS and QTc often decide the treatment faster than any level.',
+      'Many poisonings are treated by their effect on the ECG or vital signs rather than by the drug name. A wide QRS means sodium channel blockade; a long QTc means potassium channel blockade; bradycardia with hypotension suggests beta-blockers or calcium channel blockers.'],
+      p: ['ABCs, glucose, ECG.', 'Identify the toxidrome.', 'Treat the ECG and the physiology.'] },
+    { h: 'Sodium channel blockers (TCAs)', chk: false, src: ['bruccoleri16', 'boehnert85'], x: [
+      'Tricyclic antidepressants block fast sodium channels in the heart, which slows conduction and widens the QRS. They also block alpha receptors (hypotension), muscarinic receptors (anticholinergic signs) and cause seizures.',
+      'A QRS ≥ 100 ms predicted seizures and ≥ 160 ms predicted ventricular arrhythmias. A terminal R wave in aVR is another clue.',
+      'Hypertonic sodium bicarbonate is the antidote: the sodium load overcomes the blockade and the alkalosis reduces drug binding. Give 1–2 mEq/kg boluses until the QRS narrows, aiming for a pH of 7.45–7.55. If you intubate, keep the minute ventilation high: a rise in CO2 drops the pH and widens the QRS again.'],
+      p: ['QRS ≥ 100 ms: treat with bicarbonate.', 'Seizures: benzodiazepines, not phenytoin.', 'Avoid class IA/IC antiarrhythmics; lidocaine if bicarbonate fails.'],
+      pit: ['Under-ventilating after intubation.', 'Giving physostigmine for the anticholinergic signs: it can cause asystole in TCA toxicity.'] },
+    { h: 'Calcium channel and beta-blocker overdose', chk: false, src: ['ccb17'], x: [
+      'Verapamil and diltiazem slow the heart, block the AV node and weaken contraction; dihydropyridines mainly cause vasodilation. Calcium channel blockade also stops insulin release, so the glucose rises and the heart cannot use glucose well.',
+      'Treat with IV calcium, vasopressors (norepinephrine or epinephrine) and high-dose insulin early: a 1 unit/kg bolus then 1 unit/kg/h, titrated up as needed, with dextrose and potassium. HIET improves contraction by helping the heart use glucose. Check glucose every 15–30 minutes at first and potassium every 1–2 hours.'],
+      p: ['Calcium, vasopressors, high-dose insulin early.', 'Hyperglycemia reflects severity.', 'Watch glucose and potassium closely on HIET.'] },
+    { h: 'Withdrawal and serotonin toxicity', chk: false, src: ['asam20', 'boyer05', 'dunkley03'], x: [
+      'Alcohol withdrawal follows a timeline: tremor and anxiety within hours, seizures in 12–48 hours, and delirium tremens at 48–96 hours. Benzodiazepines are first-line because they act on the same GABA receptors that alcohol stimulated. Phenobarbital helps when benzodiazepines are not enough. Give thiamine to prevent Wernicke encephalopathy.',
+      'Serotonin toxicity develops within hours of adding a serotonergic drug (linezolid, tramadol, fentanyl, MAOIs). Clonus is the key sign (Hunter criteria), with agitation, sweating and fever. Stop the drugs, sedate with benzodiazepines and consider cyproheptadine. Severe hyperthermia comes from muscle activity, so antipyretics do not work: it needs sedation, paralysis and cooling. Restraints make it worse.'],
+      p: ['Withdrawal: benzodiazepines, then phenobarbital; thiamine.', 'Serotonin toxicity: clonus; stop drugs, benzodiazepines, cyproheptadine, cool.', 'NMS is slower, with rigidity and bradyreflexia.'] }
+  ] };
+  L.mendo = { t: 'Medical ICU: endocrine and metabolic', s: [
+    { h: 'DKA', chk: false, src: ['dka24'], x: [
+      'DKA is insulin deficiency: the body cannot use glucose, burns fat and makes ketoacids. Glucose spills into the urine and drags water and electrolytes with it, so these patients are dehydrated and depleted of total-body potassium even when the serum potassium looks normal or high.',
+      'Treatment has three parts. Fluids first restore volume. Potassium must be at least 3.5 before insulin starts, because insulin drives potassium into cells and can drop it dangerously. Then a fixed-rate insulin infusion. When glucose falls below about 250, add dextrose and keep the insulin running: the goal is to clear ketones, not just lower glucose.',
+      'DKA is resolved when ketones are below 0.6 mmol/L and the venous pH is at least 7.3 (or bicarbonate at least 18). Give basal insulin 1–2 hours before stopping the drip to prevent rebound.'],
+      p: ['Fluids → K ≥ 3.5 → insulin.', 'Add dextrose; keep insulin until ketones clear.', 'Bicarbonate only for pH < 7.0.', 'Overlap basal insulin before stopping the drip.'],
+      ck: { q: 'Glucose 220 but anion gap still 18. Stop the insulin?', a: 'No. Add dextrose and continue the infusion until the ketoacidosis resolves.' } },
+    { h: 'HHS', chk: false, src: ['hhs23', 'dka24'], x: [
+      'HHS is mostly a water problem. Glucose rises over days, the patient becomes profoundly dehydrated and the osmolality climbs, often with confusion. There is enough insulin to prevent major ketosis.',
+      'Fluids are the treatment, and insulin comes later, once fluids stop lowering the glucose. Starting insulin first can collapse the circulation because water follows glucose into cells. Lower the osmolality gradually, by about 3–8 mOsm/kg per hour. A rising sodium as glucose falls is expected, because water moves back into cells.'],
+      p: ['Fluids first, insulin later and at a lower dose.', 'Osmolality falls 3–8 mOsm/kg/h.', 'High clotting risk: VTE prophylaxis.'] },
+    { h: 'Adrenal crisis and thyroid storm', chk: false, src: ['bornstein16', 'beuschlein24', 'ata16', 'burch93'], x: [
+      'Adrenal crisis looks like refractory shock with vomiting, low sodium and low glucose. Anyone on long-term steroids who stops them or gets sick is at risk. Give hydrocortisone 100 mg IV immediately and do not wait for testing, then 200 mg per day with saline.',
+      'Thyroid storm is life-threatening thyrotoxicosis: fever, tachycardia or AF, agitation and GI symptoms. The order of treatment matters. Start a beta-blocker and a thionamide (PTU or methimazole) first; give iodine at least an hour after the thionamide, because iodine alone can fuel more hormone production. Add steroids. Avoid aspirin, which increases free hormone.'],
+      p: ['Adrenal crisis: hydrocortisone 100 mg IV now.', 'Storm: beta-blocker, thionamide, iodine an hour later, steroids.', 'Burch–Wartofsky ≥ 45 suggests storm.'] },
+    { h: 'Sodium', chk: false, src: ['verbalis13', 'spasovski14', 'salsa21'], x: [
+      'Severe symptoms (seizures, coma) need hypertonic saline right away: a 3% bolus raises sodium enough to reduce brain swelling. The goal is a rise of about 4–6 mmol/L, not normal sodium.',
+      'The danger is overcorrection. A rise of more than 8 mmol/L in 24 hours in high-risk patients (sodium ≤ 105, alcohol use, malnutrition, low potassium, liver disease) risks osmotic demyelination. Watch for a sudden large urine output of dilute urine: that means ADH has switched off and the sodium will climb fast. If that happens, give desmopressin and free water to slow or reverse the rise.'],
+      p: ['Seizing: 3% saline bolus, aim +4–6.', 'Limit to 8 mmol/L in 24 h in high-risk patients.', 'Dilute polyuria = impending overcorrection.', 'Potassium replacement also raises sodium.'] }
+  ] };
+  L.mgi = { t: 'Medical ICU: GI and liver', s: [
+    { h: 'Variceal bleeding', chk: false, src: ['aasld24', 'villanueva13'], x: [
+      'In cirrhosis, portal hypertension creates varices that can bleed massively. More volume raises portal pressure and makes rebleeding more likely, so the transfusion threshold is restrictive: transfuse for Hgb below 7, aiming for about 7–9. Villanueva showed lower mortality with this strategy.',
+      'Start octreotide (or terlipressin) as soon as variceal bleeding is suspected, give ceftriaxone to prevent infection, protect the airway when needed and arrange endoscopy within 12 hours. INR does not reflect bleeding risk in cirrhosis, so plasma to "fix" it adds volume without benefit.'],
+      p: ['Hgb threshold 7.', 'Octreotide, ceftriaxone, endoscopy within 12 h.', 'Do not chase the INR with plasma.'] },
+    { h: 'Acute liver failure', chk: false, src: ['easl17', 'acg23alf', 'lee09'], x: [
+      'Acute liver failure is coagulopathy plus encephalopathy in someone without prior liver disease. Acetaminophen is the most common cause. NAC helps acetaminophen ALF whenever it is started, and improved transplant-free survival in early non-acetaminophen ALF too.',
+      'The main killer is brain swelling from ammonia. Keep sodium 145–155, treat fever, consider CRRT for very high ammonia, and refer early for transplant. King\'s College criteria help decide.'],
+      p: ['NAC for acetaminophen at any time.', 'Na 145–155 for neuroprotection; CRRT for high ammonia.', 'Early transplant referral.'] },
+    { h: 'Pancreatitis and hepatorenal syndrome', chk: false, src: ['waterfall22', 'acg24', 'aasld21', 'confirm21', 'sort99'], x: [
+      'Pancreatitis used to get huge fluid volumes. WATERFALL showed aggressive fluids caused more overload without benefit. Use moderate, goal-directed lactated Ringer, feed early, and do not give prophylactic antibiotics. ERCP is for cholangitis or obstruction.',
+      'Hepatorenal syndrome is kidney failure from severe vasodilation in cirrhosis. Stop diuretics and nephrotoxins, look for infection (including SBP) and give albumin. If creatinine does not improve, add a vasoconstrictor (terlipressin or norepinephrine) with albumin. Terlipressin can cause respiratory failure, so avoid it in hypoxemia or overload.'],
+      p: ['Pancreatitis: moderate LR, early feeding, no prophylactic antibiotics.', 'HRS: stop diuretics, albumin, then vasoconstrictor.', 'SBP: ceftriaxone plus albumin.'] }
+  ] };
+})();
+
+/* Expanded Learn-mode lessons for the Neuro ICU. chk:false = written from the listed sources, not yet re-verified line by line. */
+(() => {
+  const L = LEARN.LESSON;
+  L.nicp = { t: 'Neuro ICU: ICP, CPP and drains', s: [
+    { h: 'The skull is a closed box', chk: false, src: ['btf16', 'sibicc19'], x: [
+      'The skull holds three things: brain, blood and CSF. When one grows (a bleed, swelling), the others must shrink to make room. At first CSF shifts into the spinal canal and venous blood is squeezed out, so pressure barely rises. Once that reserve is used up, a small extra volume causes a big jump in ICP. That is why patients can look stable and then deteriorate quickly.',
+      'Cerebral perfusion pressure is MAP minus ICP. It is the pressure pushing blood through the brain. A high ICP or a low MAP both lower CPP and starve the brain. The Brain Trauma Foundation suggests treating ICP above 22 mmHg and keeping CPP around 60–70 mmHg.'],
+      p: ['CPP = MAP − ICP.', 'Treat ICP > 22; CPP 60–70.', 'Compliance runs out suddenly: small changes, big ICP jumps.'],
+      ex: { q: 'MAP 75, ICP 30.', a: ['CPP = 45, too low.', 'Treat the ICP (tier 0 basics, osmotherapy) and support the MAP so that CPP gets back to 60–70.'] } },
+    { h: 'Tiered ICP treatment', chk: false, src: ['sibicc19', 'btf16', 'chesnut93'], x: [
+      'Treatment is a ladder. Tier 0 is the basics that every patient gets: head of bed at 30°, neck straight and collar loose so the jugular veins drain, normal temperature, adequate sedation and pain control, and avoiding low sodium, low oxygen and low blood pressure.',
+      'Tier 1 adds CSF drainage through an EVD, osmotherapy (mannitol or hypertonic saline) and keeping PaCO2 at the low end of normal. Tier 2 includes mild hyperventilation for short periods, neuromuscular blockade, and a trial of raising MAP to test autoregulation. Tier 3 is decompressive craniectomy, barbiturate coma or hypothermia.',
+      'Hyperventilation lowers ICP by narrowing cerebral vessels, but it also cuts blood flow. Use it briefly as a bridge, for example to herniation surgery, not as routine therapy. Chesnut showed that a single episode of hypotension after TBI is linked to much worse outcomes, so never let these patients get hypotensive.'],
+      p: ['Tier 0: HOB 30°, neck midline, normothermia, sedation, normal Na/O2/BP.', 'Tier 1: EVD, osmotherapy.', 'Hyperventilation: brief bridge only.', 'Avoid hypotension and hypoxia.'],
+      pit: ['Jumping to hyperventilation before checking position, collar and sedation.', 'Lowering ICP while letting the MAP fall.'] },
+    { h: 'Running an EVD', chk: false, src: ['sah23', 'idsa17'], x: [
+      'An EVD both measures ICP and drains CSF. The drip chamber height above the reference point (the tragus, approximating the foramen of Monro) sets the pressure at which CSF drains. Every time the patient moves, the system must be releveled, or it will over- or under-drain.',
+      'No output plus a flat waveform often means a closed stopcock after transport, or a blocked catheter. Overdrainage, from a chamber set too low or a patient sat upright, causes headache and can cause subdural bleeding or herniation. Drains carry infection risk: minimize sampling and treat ventriculitis with vancomycin plus an antipseudomonal beta-lactam.'],
+      p: ['Level at the tragus; relevel with every position change.', 'No output: check the stopcock first.', 'Overdrainage: headache, low ICP, risk of subdural.', 'Ventriculitis: vancomycin plus cefepime/meropenem.'] },
+    { h: 'Herniation', chk: false, src: ['btf16', 'sibicc19', 'ich22'], x: [
+      'A new blown pupil, Cushing\'s triad (hypertension, bradycardia, irregular breathing) or extensor posturing means brain tissue is shifting. The third nerve is compressed by the temporal lobe, so the pupil dilates, usually on the side of the mass.',
+      'Act immediately: osmotherapy (mannitol 1 g/kg or hypertonic saline), brief hyperventilation, and emergent imaging and neurosurgery. Reverse anticoagulation if present.'],
+      p: ['Blown pupil, Cushing triad: herniation.', 'Osmotherapy, brief hyperventilation, emergent CT and neurosurgery.'] }
+  ] };
+  L.nstroke = { t: 'Neuro ICU: ischemic stroke and ICH', s: [
+    { h: 'Ischemic stroke: time is brain', chk: false, src: ['stroke19'], x: [
+      'An occluded artery leaves a core of dead brain surrounded by a penumbra that is still salvageable if flow returns. Every minute about two million neurons are lost, so the system is built for speed.',
+      'Eligible patients get IV thrombolysis within 4.5 hours of last known well. Blood pressure must be under 185/110 before lysis and under 180/105 for 24 hours after. Check glucose first; hypoglycemia mimics stroke. Large vessel occlusions also need thrombectomy, and lysis should not delay the angiogram.'],
+      p: ['Last known well defines the clock.', 'BP < 185/110 before lysis, < 180/105 after.', 'Lyse and send for thrombectomy in parallel.'] },
+    { h: 'The late window', chk: false, src: ['dawn18', 'defuse18'], x: [
+      'Some patients have slow-growing cores and a lot of salvageable tissue even many hours later. DAWN (6–24 hours) and DEFUSE 3 (6–16 hours) showed large benefits from thrombectomy when imaging showed a mismatch between a small core and a large deficit or perfusion defect.',
+      'Wake-up strokes are timed from when the patient was last seen well, not when they were found.'],
+      p: ['Thrombectomy up to 24 h with mismatch imaging.', 'Wake-up stroke: clock starts at last seen well.'] },
+    { h: 'Intracerebral hemorrhage', chk: false, src: ['ich22', 'annexa24', 'patch16'], x: [
+      'In ICH the hematoma often grows in the first hours, and growth predicts death and disability. The aims are to stop growth: lower systolic BP to about 140 (avoiding drops below 130 and very large, fast drops), reverse anticoagulants and treat hydrocephalus with a drain.',
+      'For factor Xa inhibitors (apixaban, rivaroxaban), andexanet or 4-factor PCC are options; ANNEXA-I showed better hemostasis with andexanet but more thrombotic events. For warfarin, 4-factor PCC and IV vitamin K. Platelet transfusion for antiplatelet use made outcomes worse in PATCH.'],
+      p: ['SBP about 140 (130–150).', 'Reverse anticoagulation fast.', 'No platelets for antiplatelet ICH without surgery.', 'EVD for hydrocephalus.'] }
+  ] };
+  L.nsah = { t: 'Neuro ICU: subarachnoid hemorrhage', s: [
+    { h: 'The first day', chk: false, src: ['sah23'], x: [
+      'A ruptured aneurysm bleeds into the subarachnoid space: a thunderclap headache, often with vomiting and neck stiffness. The biggest early danger is rebleeding, highest in the first 24 hours, so the aneurysm is secured (coil or clip) as soon as possible and systolic BP kept below about 160 until then.',
+      'Blood blocks CSF flow and causes hydrocephalus; a drowsy patient with large ventricles needs an EVD. Avoid draining too fast before the aneurysm is secured, because a sudden fall in ICP can trigger rebleeding.'],
+      p: ['Secure the aneurysm early; SBP < 160 until then.', 'Hydrocephalus: EVD.', 'Nimodipine 60 mg q4h for 21 days.'] },
+    { h: 'Days 4–14: delayed ischemia', chk: false, src: ['sah23'], x: [
+      'Between days 4 and 14 the blood around the vessels can cause vasospasm and delayed cerebral ischemia: new weakness, aphasia or drowsiness. Nimodipine improves outcome, though it does not visibly prevent spasm on angiography.',
+      'Keep patients euvolemic. If a deficit appears, raise the blood pressure (induced hypertension) and image; if it does not improve, endovascular rescue (intra-arterial vasodilators or angioplasty) is next. The old triple-H therapy with hypervolemia is no longer recommended.'],
+      p: ['New deficit day 4–14: think DCI.', 'Euvolemia; induced hypertension for symptomatic spasm.', 'Endovascular rescue if no response.'] },
+    { h: 'Low sodium after SAH', chk: false, src: ['sah23'], x: [
+      'Hyponatremia is common after SAH. Often it is cerebral salt wasting: the kidneys lose sodium and water, so the patient is low on volume. Fluid restriction, the usual treatment for SIADH, is dangerous here because hypovolemia worsens delayed ischemia. Replace volume and sodium, and consider fludrocortisone.'],
+      p: ['Do not fluid restrict after SAH.', 'Replace salt and volume; fludrocortisone can help.'] }
+  ] };
+  L.nsz = { t: 'Neuro ICU: seizures and status', s: [
+    { h: 'Status epilepticus', chk: false, src: ['ncsse12', 'esett19'], x: [
+      'Most seizures stop within two minutes. After five minutes they rarely stop on their own, and the longer they run, the harder they are to stop because receptors change. That is why status is treated at five minutes.',
+      'First line is a benzodiazepine in a full dose: lorazepam 0.1 mg/kg IV (up to 4 mg per dose) or IM midazolam if there is no IV. Underdosing is the most common error. If seizures continue, give a second-line drug: levetiracetam, fosphenytoin or valproate; ESETT found them equally effective, each stopping seizures in about half of patients. Check glucose early.'],
+      p: ['Treat at 5 minutes.', 'Full-dose benzodiazepine first.', 'Second line: levetiracetam, fosphenytoin or valproate.'] },
+    { h: 'Refractory and nonconvulsive status', chk: false, src: ['ncsse12'], x: [
+      'Seizures that continue after two drugs need intubation and continuous infusions (midazolam, propofol or ketamine) guided by continuous EEG.',
+      'If a patient does not wake up after the convulsions stop, suspect nonconvulsive status: the brain is still seizing without visible movement. Only EEG can tell. Paralysis for intubation also hides seizures, so EEG is essential.'],
+      p: ['Refractory: infusions with continuous EEG.', 'Not waking after convulsions: get an EEG.'] },
+    { h: 'Eclampsia', chk: false, src: ['acog20'], x: [
+      'A seizure in pregnancy or up to about six weeks postpartum with hypertension is eclampsia until proven otherwise. Magnesium sulfate is first-line (4–6 g IV load, then an infusion); it prevents recurrent seizures better than antiseizure drugs. Treat severe-range BP (≥ 160 systolic or ≥ 110 diastolic) within 30–60 minutes with IV labetalol, IV hydralazine or oral nifedipine. Watch for magnesium toxicity: loss of reflexes first, then respiratory depression; calcium gluconate reverses it.'],
+      p: ['Magnesium first.', 'Treat BP ≥ 160/110.', 'Loss of reflexes = magnesium toxicity.'] }
+  ] };
+  L.nnm = { t: 'Neuro ICU: neuromuscular respiratory failure', s: [
+    { h: 'Why the pulse ox lies', chk: false, src: ['gbs23', 'mg21'], x: [
+      'In Guillain–Barré and myasthenia, the lungs are normal but the muscles that move air weaken. Oxygen saturation stays normal until very late, when the patient is close to arrest. Measure strength instead: forced vital capacity and negative inspiratory force.',
+      'A common rule is 20/30/40: intubate when FVC is under 20 mL/kg, NIF is weaker than −30 cmH2O, or expiratory pressure is under 40. Trends matter as much as the number; a fast fall means intubate early and in a controlled way. Signs of bulbar weakness (choking on secretions, nasal voice) and neck flexion weakness predict respiratory trouble.'],
+      p: ['Monitor FVC and NIF, not SpO2.', '20/30/40 rule.', 'Bulbar weakness = airway risk.'] },
+    { h: 'GBS and myasthenic crisis', chk: false, src: ['gbs23', 'mg21'], x: [
+      'GBS is an immune attack on peripheral nerves, often after a diarrheal or respiratory infection. Weakness ascends with lost reflexes. IVIG or plasma exchange speed recovery; steroids do not help. Autonomic instability (labile BP, arrhythmias) is common.',
+      'Myasthenic crisis is often triggered by infection or drugs (fluoroquinolones, aminoglycosides, magnesium). Treat with IVIG or plasma exchange plus airway support. For intubation, patients resist succinylcholine and are very sensitive to nondepolarizing agents.'],
+      p: ['GBS: IVIG or PLEX; no steroids.', 'MG crisis: IVIG or PLEX; stop triggering drugs.'] }
+  ] };
+})();
+
+/* Expanded Learn-mode lessons for the Surgical ICU and Daily Rounds. chk:false = written from the listed sources, not yet re-verified line by line. */
+(() => {
+  const L = LEARN.LESSON;
+  L.strauma = { t: 'Surgical ICU: the trauma bay', s: [
+    { h: 'Hemorrhagic shock', chk: false, src: ['atls18', 'eutrauma23', 'proppr15', 'crash2'], x: [
+      'Bleeding patients die of blood loss and of the coagulopathy that follows it. Crystalloid dilutes clotting factors and red cells, cools the patient and worsens acidosis, so resuscitation uses blood products early, in balanced ratios close to 1:1:1. PROPPR found better hemostasis and fewer deaths from bleeding at 24 hours with 1:1:1.',
+      'Tranexamic acid within 3 hours of injury lowers bleeding deaths (CRASH-2); after 3 hours it may harm. Until the bleeding is controlled, a lower blood pressure (systolic 80–90) limits ongoing loss, but only when there is no brain injury. The real treatment is hemorrhage control: surgery, angioembolization or a pelvic binder.'],
+      p: ['Blood products early, close to 1:1:1; limit crystalloid.', 'TXA within 3 h.', 'Permissive hypotension only without TBI.', 'Hemorrhage control is the definitive treatment.'],
+      pit: ['Running 2 L of saline before blood.', 'Forgetting ionized calcium during massive transfusion.'] },
+    { h: 'Tension pneumothorax', chk: false, src: ['atls18'], x: [
+      'Air entering the pleural space with each breath and unable to leave builds pressure, collapses the lung and pushes the mediastinum over, kinking the great veins. Venous return falls and the patient goes into obstructive shock.',
+      'The diagnosis is clinical: hypotension, absent breath sounds, hypoxemia, distended neck veins. Tracheal deviation is late. Decompress immediately (needle in the 4th–5th intercostal space anterior to the midaxillary line in adults, or finger thoracostomy), then place a chest tube. Positive pressure ventilation makes it worse, so decompress before or immediately after intubation.'],
+      p: ['Clinical diagnosis: decompress first.', 'ATLS adult site: 4th–5th ICS anterior to the midaxillary line.', 'Chest tube after decompression.'] },
+    { h: 'TBI with bleeding, and the lethal triad', chk: false, src: ['btf16', 'chesnut93', 'crash3_19', 'eutrauma23'], x: [
+      'When a brain injury and bleeding coexist, the brain wins the BP argument: keep systolic at least 100–110 mmHg and avoid hypoxia. One episode of hypotension worsens TBI outcomes.',
+      'Hypothermia, acidosis and coagulopathy each make the others worse. Cold blood clots poorly even when labs (run at 37 °C) look acceptable. Warm everything, correct calcium and fibrinogen, and use damage control surgery: stop the bleeding and contamination, then finish repairs once physiology is restored in the ICU.'],
+      p: ['TBI: SBP ≥ 100–110, no permissive hypotension.', 'Lethal triad: warm, correct Ca and fibrinogen, damage control.'] }
+  ] };
+  L.sabd = { t: 'Surgical ICU: the post-op abdomen', s: [
+    { h: 'Source control', chk: false, src: ['ssc21', 'ssc26'], x: [
+      'Septic shock days after abdominal surgery often comes from an anastomotic leak or abscess. Antibiotics cannot sterilize pus or a hole in the bowel; source control (drainage or reoperation) is the treatment, and it should happen quickly, ideally within hours once the patient is resuscitated.',
+      'After adequate source control, short antibiotic courses (about 4 days) work as well as long ones.'],
+      p: ['Leak or abscess: source control within hours.', 'Short antibiotic course after control.'] },
+    { h: 'Abdominal compartment syndrome', chk: false, src: ['wsacs13'], x: [
+      'Large fluid volumes, bowel edema, ileus and bleeding raise the pressure inside the abdomen. Above about 20 mmHg with new organ failure, it is abdominal compartment syndrome: the kidneys get poor flow (oliguria), the diaphragm is pushed up (high airway pressures), and venous return falls.',
+      'Measure bladder pressure: supine, at end-expiration, zeroed at the midaxillary line, with no more than 25 mL of saline. Abdominal perfusion pressure is MAP minus IAP. Treat with decompression (NG tube, sedation, sometimes paralysis), removing fluid and, if refractory, decompressive laparotomy. Note that a raised IAP falsely raises the CVP: a high CVP here does not mean the patient is full.'],
+      p: ['IAP > 20 with new organ failure = ACS.', 'APP = MAP − IAP.', 'High CVP is misleading in ACS.'] },
+    { h: 'Mesenteric ischemia', chk: false, src: ['wses22'], x: [
+      'Severe pain with a soft, barely tender abdomen in a patient with AF is an embolus to the superior mesenteric artery until proven otherwise. Lactate can be normal early. Get a CT angiogram, start heparin and arrange revascularization; peritonitis means dead bowel and needs laparotomy.'],
+      p: ['Pain out of proportion: CTA now.', 'Heparin and revascularization.'] }
+  ] };
+  L.sburn = { t: 'Surgical ICU: burns', s: [
+    { h: 'Burn shock', chk: false, src: ['aba24', 'saffle07'], x: [
+      'Large burns cause a massive capillary leak over the first 24 hours; plasma pours into the tissues and the patient becomes hypovolemic even while swelling. Formulas such as Parkland (4 mL/kg/%TBSA in 24 hours, half in the first 8 hours from the time of the burn) give a starting rate.',
+      'The formula is only a start. Titrate lactated Ringer every hour to urine output of about 0.5 mL/kg/h in adults. Over-resuscitation ("fluid creep") causes abdominal and limb compartment syndrome and pulmonary edema, so turn the rate down when urine output runs high. Albumin can rescue a patient whose fluid needs keep climbing.'],
+      p: ['Formula = starting rate; titrate hourly to urine output.', 'Adult target about 0.5 mL/kg/h.', 'Watch for fluid creep; consider albumin rescue.'],
+      ex: { q: '80 kg, 40% TBSA, burned at 10:00. What is the Parkland estimate?', a: ['4 × 80 × 40 = 12,800 mL over 24 h; half (6,400 mL) in the first 8 h from 10:00.', 'Subtract fluid already given, then adjust hourly to urine output.'] } },
+    { h: 'Smoke inhalation', chk: false, src: ['weaver09', 'borron07'], x: [
+      'Fire victims breathe in carbon monoxide and cyanide. CO binds hemoglobin and the pulse oximeter reads it as oxygen, so SpO2 can look normal. Measure COHb with co-oximetry and give 100% oxygen.',
+      'Cyanide stops cells from using oxygen; a very high lactate in a smoke victim suggests it. Hydroxocobalamin is the antidote. Soot in the mouth, singed nasal hair and a hoarse voice mean the airway may swell over hours, so intubate early.'],
+      p: ['SpO2 is falsely normal with CO.', 'High lactate: suspect cyanide, give hydroxocobalamin.', 'Hoarse voice and soot: early airway.'] },
+    { h: 'Escharotomy', chk: false, src: ['aba24'], x: [
+      'Full-thickness burns form a stiff eschar. Around the chest it acts like a corset: ventilation pressures rise and the patient cannot expand the chest. Around a limb it cuts off circulation. Escharotomy releases it.'],
+      p: ['Circumferential chest burn with rising pressures: escharotomy.'] }
+  ] };
+  L.scomp = { t: 'Surgical ICU: trauma complications', s: [
+    { h: 'Fat embolism', chk: false, src: ['kosova15', 'gurd74'], x: [
+      'One to three days after a long-bone or pelvic fracture, fat droplets reach the lungs, brain and skin. The classic picture is hypoxemia, confusion and petechiae (axilla, conjunctiva, upper chest). Treatment is supportive, with lung-protective ventilation if needed; early fracture fixation lowers the risk.'],
+      p: ['Hypoxemia, confusion, petechiae 24–72 h after a fracture.', 'Supportive care; early fixation prevents it.'] },
+    { h: 'Rhabdomyolysis and crush', chk: false, src: ['bosch09', 'brown04'], x: [
+      'Crushed muscle releases potassium, myoglobin and acid. The first threat is hyperkalemia: give IV calcium for ECG changes, then shift potassium with insulin and dextrose. Myoglobin damages the kidneys; large volumes of fluid to keep urine output high are the main protection. Bicarbonate and mannitol have not been proven to help. A tense, painful limb needs compartment pressures and possibly fasciotomy.'],
+      p: ['Hyperkalemia first: calcium, then shift.', 'High-volume fluids for myoglobin.', 'Check for compartment syndrome.'] },
+    { h: 'ICU delirium', chk: false, src: ['padis18', 'abc08', 'mindusa18', 'pandh06'], x: [
+      'Delirium is acute brain failure: fluctuating attention and disorganized thinking. It predicts longer ventilation, longer stays and long-term cognitive problems. Screen with CAM-ICU.',
+      'Prevention is the ABCDEF bundle: treat pain first, pair daily awakening and breathing trials, use light sedation with propofol or dexmedetomidine rather than benzodiazepines, screen for delirium, mobilize early and involve the family. Remove deliriogenic drugs such as benzodiazepines and anticholinergics. Antipsychotics did not shorten delirium in MIND-USA.'],
+      p: ['Screen with CAM-ICU.', 'ABCDEF bundle.', 'Stop benzodiazepines and anticholinergics.'] }
+  ] };
+  L.rounds = { t: 'Daily rounds: FAST HUGS BID', s: [
+    { h: 'Why a checklist', chk: false, src: ['fasthug05'], x: [
+      'Critically ill patients are harmed as often by what is forgotten as by what is done: a central line left in a day too long, a PPI that never stopped, a patient who could have been extubated. FAST HUGS BID is a daily checklist: Feeding, Analgesia, Sedation, Thromboprophylaxis, Head of bed, Ulcer prophylaxis, Glucose, Spontaneous breathing trial, Bowels, Indwelling lines and catheters, De-escalation of antibiotics.'],
+      p: ['Run it on every patient, every day.'] },
+    { h: 'The items that matter most', chk: false, src: ['aspen16', 'abc08', 'nicesugar09', 'revise24', 'tricc99'], x: [
+      'Start enteral feeding within 24–48 hours once the patient is stable; trophic feeds are fine at first. Pair a spontaneous awakening trial with a breathing trial every day. Keep glucose 140–180. Transfuse below Hgb 7 unless there is active bleeding or ischemia.',
+      'Stress ulcer prophylaxis is for ventilated or coagulopathic patients; REVISE showed fewer GI bleeds with no mortality change. Stop it when the risk ends. Remove central lines and Foley catheters as soon as they are not needed. De-escalate antibiotics when cultures return, and stop surgical prophylaxis within 24 hours.'],
+      p: ['EN within 24–48 h.', 'Daily SAT + SBT.', 'Glucose 140–180; Hgb threshold 7.', 'Stop what is no longer needed.'] }
+  ] };
+})();
+
 /* ===== Library teaching content: core ICU standards, per-topic best practices, landmark trial takeaways. Each line cites LEARN.SRC keys. ===== */
 (() => {
   const LIB = {};
@@ -11553,7 +11942,7 @@ LEARN.add('pacing', {
     // lesson
     if (L) {
       const d = mk('details'); d.append(mk('summary', '', 'Core lesson'));
-      L.s.forEach(x => { d.append(mk('h4', '', x.h)); const ul = mk('ul'); (x.p || []).forEach(p => ul.append(mk('li', '', p))); d.append(ul); if (x.tr) d.append(mk('p', 'try', 'Try it: ' + x.tr)); if (x.src) d.append(mk('div', 'vf', (x.chk ? 'Checked against: ' : 'Based on: ') + x.src.map(shortSrc).join(' · '))); });
+      L.s.forEach(x => { d.append(mk('h4', '', x.h)); (x.x || []).forEach(t => d.append(mk('p', '', t))); const ul = mk('ul'); (x.p || []).forEach(p => ul.append(mk('li', '', p))); d.append(ul); if (x.tr) d.append(mk('p', 'try', 'Try it: ' + x.tr)); if (x.src) d.append(mk('div', 'vf', (x.chk ? 'Checked against: ' : 'Based on: ') + x.src.map(shortSrc).join(' · '))); });
       card.append(d);
     }
     // case deep dives
@@ -11889,7 +12278,7 @@ window.KQB = {
   cxr: [
     { c: ['lines', 'mixed'], q: 'Ideal ETT tip position on a portable film with the head neutral:', o: ['3–7 cm above the carina', 'At the carina', '1 cm above the carina', 'In the right mainstem'], a: 0, e: 'Neck flexion moves the tip down; extension moves it up.', r: ['goodman76'] },
     { c: ['lines', 'mixed'], q: 'Ideal central venous catheter tip:', o: ['Lower SVC or cavoatrial junction', 'Right ventricle', 'Subclavian vein', 'IVC'], a: 0, e: 'Deeper tips risk arrhythmia and perforation.', r: ['baskin08'] },
-    { c: ['lines'], q: 'IABP tip position on chest x-ray:', o: ['2–3 cm below the aortic knob (about 2nd–3rd intercostal space)', 'At the carina', 'Above the aortic knob', 'At the diaphragm'], a: 0, e: 'Too high risks cerebral vessel occlusion; too low renal arteries.', r: ['trost06'] },
+    { c: ['lines'], q: 'IABP tip position on chest x-ray:', o: ['About 2 cm below the top of the aortic knob', 'At the diaphragm', 'Above the aortic knob, in the arch', 'At the level of T12'], a: 0, e: 'The tip sits just below the left subclavian. Too high can block the subclavian; too low covers the renal arteries.', r: ['trost06'] },
     { c: ['find', 'mixed'], q: 'Deep sulcus sign on a supine film suggests:', o: ['Pneumothorax', 'Pleural effusion', 'Atelectasis', 'Pneumomediastinum'], a: 0, e: 'Air collects anteriorly and inferiorly in supine patients.', r: ['godoy12b'] },
     { c: ['find'], q: 'A widening mediastinum after cardiac surgery with falling output raises concern for:', o: ['Mediastinal bleeding or tamponade', 'Pneumonia', 'Normal postoperative change only', 'Pulmonary edema'], a: 0, e: 'Compare with prior films and correlate with chest tube output.', r: ['godoy12b', 'bojar'] },
     { c: ['lines'], q: 'An enteric tube must be confirmed with its tip:', o: ['Below the diaphragm in the stomach, following the midline past the carina', 'In the right bronchus', 'At the GE junction', 'Coiled in the esophagus'], a: 0, e: 'Check that it bisects the carina and goes below the diaphragm.', r: ['godoy12a'] }
