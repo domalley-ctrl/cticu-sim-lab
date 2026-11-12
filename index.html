@@ -293,6 +293,14 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
 /* teach-guide-practice flow */
+.clsn .ct-deep h4{font-size:14px;margin:.9em 0 .3em;color:#cfe3ff}
+.clsn .ct-deep p,.clsn .ct-deep li{line-height:1.6}
+.clsn .ct-alt{border-left:3px solid #f0a23a;padding:2px 0 2px 10px;margin:8px 0}
+.clsn .ct-alt b{color:#ffd58a}
+.clsn .ct-ok{color:var(--soft);font-size:13.5px;margin:.2em 0 0}
+.clsn .ct-plan{margin:.4em 0 .2em;padding-left:22px;display:grid;gap:8px}
+.clsn .ct-plan b{display:block;font-weight:600}
+.clsn .ct-plan span{display:block;color:var(--soft);font-size:13.5px;line-height:1.5}
 .ct-gate{background:linear-gradient(180deg,#14212b,#111a1e);border:1px solid #8fc1ff;border-radius:14px;padding:14px 16px;display:grid;gap:6px;margin:10px 0}
 .ct-gate h3{margin:0;font-family:var(--f-disp);font-size:19px}
 .ct-gate .cl-p{margin:0;line-height:1.55}
@@ -2493,6 +2501,9 @@ body.learn .ct-gate{display:none}
 #v-mshock .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-mshock .qex b.g{color:var(--good)}
 #v-mshock .qex b.w{color:var(--crit)}
+#v-mshock .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-mshock .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-mshock .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-mshock .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-mshock .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-mshock .ptbar .brief{max-width:none;font-size:14px}
@@ -2673,6 +2684,9 @@ body.learn .ct-gate{display:none}
 #v-mresp .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-mresp .qex b.g{color:var(--good)}
 #v-mresp .qex b.w{color:var(--crit)}
+#v-mresp .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-mresp .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-mresp .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-mresp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-mresp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-mresp .ptbar .brief{max-width:none;font-size:14px}
@@ -2853,6 +2867,9 @@ body.learn .ct-gate{display:none}
 #v-mtox .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-mtox .qex b.g{color:var(--good)}
 #v-mtox .qex b.w{color:var(--crit)}
+#v-mtox .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-mtox .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-mtox .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-mtox .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-mtox .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-mtox .ptbar .brief{max-width:none;font-size:14px}
@@ -3033,6 +3050,9 @@ body.learn .ct-gate{display:none}
 #v-mendo .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-mendo .qex b.g{color:var(--good)}
 #v-mendo .qex b.w{color:var(--crit)}
+#v-mendo .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-mendo .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-mendo .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-mendo .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-mendo .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-mendo .ptbar .brief{max-width:none;font-size:14px}
@@ -3213,6 +3233,9 @@ body.learn .ct-gate{display:none}
 #v-mgi .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-mgi .qex b.g{color:var(--good)}
 #v-mgi .qex b.w{color:var(--crit)}
+#v-mgi .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-mgi .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-mgi .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-mgi .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-mgi .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-mgi .ptbar .brief{max-width:none;font-size:14px}
@@ -3393,6 +3416,9 @@ body.learn .ct-gate{display:none}
 #v-nicp .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-nicp .qex b.g{color:var(--good)}
 #v-nicp .qex b.w{color:var(--crit)}
+#v-nicp .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-nicp .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-nicp .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-nicp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-nicp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-nicp .ptbar .brief{max-width:none;font-size:14px}
@@ -3573,6 +3599,9 @@ body.learn .ct-gate{display:none}
 #v-nstroke .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-nstroke .qex b.g{color:var(--good)}
 #v-nstroke .qex b.w{color:var(--crit)}
+#v-nstroke .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-nstroke .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-nstroke .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-nstroke .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-nstroke .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-nstroke .ptbar .brief{max-width:none;font-size:14px}
@@ -3753,6 +3782,9 @@ body.learn .ct-gate{display:none}
 #v-nsah .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-nsah .qex b.g{color:var(--good)}
 #v-nsah .qex b.w{color:var(--crit)}
+#v-nsah .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-nsah .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-nsah .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-nsah .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-nsah .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-nsah .ptbar .brief{max-width:none;font-size:14px}
@@ -3933,6 +3965,9 @@ body.learn .ct-gate{display:none}
 #v-nsz .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-nsz .qex b.g{color:var(--good)}
 #v-nsz .qex b.w{color:var(--crit)}
+#v-nsz .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-nsz .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-nsz .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-nsz .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-nsz .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-nsz .ptbar .brief{max-width:none;font-size:14px}
@@ -4113,6 +4148,9 @@ body.learn .ct-gate{display:none}
 #v-nnm .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-nnm .qex b.g{color:var(--good)}
 #v-nnm .qex b.w{color:var(--crit)}
+#v-nnm .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-nnm .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-nnm .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-nnm .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-nnm .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-nnm .ptbar .brief{max-width:none;font-size:14px}
@@ -4293,6 +4331,9 @@ body.learn .ct-gate{display:none}
 #v-rounds .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-rounds .qex b.g{color:var(--good)}
 #v-rounds .qex b.w{color:var(--crit)}
+#v-rounds .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-rounds .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-rounds .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-rounds .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-rounds .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-rounds .ptbar .brief{max-width:none;font-size:14px}
@@ -4473,6 +4514,9 @@ body.learn .ct-gate{display:none}
 #v-strauma .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-strauma .qex b.g{color:var(--good)}
 #v-strauma .qex b.w{color:var(--crit)}
+#v-strauma .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-strauma .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-strauma .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-strauma .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-strauma .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-strauma .ptbar .brief{max-width:none;font-size:14px}
@@ -4653,6 +4697,9 @@ body.learn .ct-gate{display:none}
 #v-sabd .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-sabd .qex b.g{color:var(--good)}
 #v-sabd .qex b.w{color:var(--crit)}
+#v-sabd .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-sabd .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-sabd .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-sabd .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-sabd .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-sabd .ptbar .brief{max-width:none;font-size:14px}
@@ -4833,6 +4880,9 @@ body.learn .ct-gate{display:none}
 #v-sburn .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-sburn .qex b.g{color:var(--good)}
 #v-sburn .qex b.w{color:var(--crit)}
+#v-sburn .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-sburn .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-sburn .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-sburn .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-sburn .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-sburn .ptbar .brief{max-width:none;font-size:14px}
@@ -5013,6 +5063,9 @@ body.learn .ct-gate{display:none}
 #v-scomp .qex{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--soft);display:grid;gap:8px}
 #v-scomp .qex b.g{color:var(--good)}
 #v-scomp .qex b.w{color:var(--crit)}
+#v-scomp .vhelp{grid-column:1/-1;margin-top:6px;font-size:13px;color:var(--soft)}
+#v-scomp .vhelp summary{cursor:pointer;color:#8fc1ff;font-weight:600}
+#v-scomp .vhelp ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;line-height:1.45}
 #v-scomp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
 #v-scomp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
 #v-scomp .ptbar .brief{max-width:none;font-size:14px}
@@ -7964,13 +8017,26 @@ window.CTG = (() => {
     const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
     const ideas = teach ? [...teach.children].filter(li => li.tagName === 'LI').map(li => li.textContent.trim()).slice(0, 5) : [];
     let prov = null; if (P[v]) { try { prov = P[v](); } catch (e) {} }
-    const plan = prov && prov.steps ? prov.steps.map(s => s.t) : split(hint ? hint.textContent : '');
+    const plan = prov && prov.steps ? prov.steps.map(s => ({ t: s.t, why: s.why })) : split(hint ? hint.textContent : '').map(t => ({ t }));
+    const SIM = window.LEARN && LEARN.SIMS[v]; const cid = curId(v); let deep = [];
+    if (SIM && SIM.cases && SIM.cases[cid] && SIM.cases[cid].s) {
+      const norm = x => Array.isArray(x) ? x : [x.h || '', x.p || x.c || ''];
+      const others = new Set(); Object.entries(SIM.cases).forEach(([k, c]) => { if (k !== cid && c.s) c.s.forEach(x => others.add(JSON.stringify(norm(x)))); });
+      deep = SIM.cases[cid].s.map(norm).filter(x => !others.has(JSON.stringify(x)));
+    }
     const id = curId(v); const qs = caseQs(v, id);
     const cards = [];
     cards.push(['The patient', b => { b.append(mk('p', 'cl-p', brief ? brief.textContent : '')); b.append(mk('p', 'ct-think', 'Before you go on: what do you think is going on, and what worries you most?')); }]);
     if (goals.length) cards.push(['What you are aiming for', b => { b.append(mk('p', 'cl-p', 'The case is complete when every target is met and held. Keep these in view on the monitor and labs:')); const ul = mk('ul', 'cl-ul'); goals.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }]);
-    if (ideas.length) cards.push(['Key ideas for this case', b => { const ul = mk('ul', 'cl-ul'); ideas.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }]);
-    if (plan.length) cards.push(['The plan', b => { b.append(mk('p', 'ct-think', 'Name your first two moves in your head, then open the plan.')); const d = mk('details', 'cl-ck'); const ol = mk('ol', 'cl-ul'); plan.forEach(t => ol.append(mk('li', '', t))); d.append(mk('summary', '', 'Show the plan'), ol); b.append(d); }]);
+    if (ideas.length || deep.length) cards.push(['Key ideas for this case', b => {
+      if (ideas.length) { b.append(mk('div', 'cl-k', 'The short version')); const ul = mk('ul', 'cl-ul'); ideas.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }
+      if (deep.length) { b.append(mk('div', 'cl-k', 'Understand it')); const d = mk('div', 'ct-deep'); d.append(LEARN.body(deep)); b.append(d); }
+    }]);
+    if (plan.length) cards.push(['The plan', b => { b.append(mk('p', 'ct-think', 'Name your first two moves in your head, then open the plan.')); const d = mk('details', 'cl-ck'); const ol = mk('ol', 'ct-plan'); plan.forEach(x => { const li = mk('li'); li.append(mk('b', '', x.t)); if (x.why) li.append(mk('span', '', x.why)); ol.append(li); }); d.append(mk('summary', '', 'Show the plan'));
+      const hint = q(sec, 'hint'); if (hint && hint.textContent.trim() && plan.length > 1 && prov) { d.append(mk('div', 'cl-k', 'The approach'), mk('p', 'cl-p', hint.textContent.trim())); }
+      d.append(mk('div', 'cl-k', 'Step by step, and why'), ol);
+      const ch = (window.XCHG && XCHG[v] && XCHG[v][cid]) || [];
+      if (ch.length) { d.append(mk('div', 'cl-k', 'Why this and not the alternatives')); ch.forEach(x => { const w = mk('div', 'ct-alt'); w.append(mk('b', '', x.t)); if (x.w) w.append(mk('p', 'cl-p', x.w)); if (x.i) w.append(mk('p', 'ct-ok', 'When it is reasonable: ' + x.i)); d.append(w); }); } b.append(d); }]);
     if (qs.length) cards.push(['Ready check', b => {
       const x = qs[Math.floor(Math.random() * qs.length)]; b.append(mk('p', 'cl-p', x.q)); const ex = mk('div', 'ct-qx'); ex.hidden = true;
       const opts = x.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5);
@@ -11674,13 +11740,36 @@ LEARN.add('pacing', {
       'Hypercapnic failure (type 2) means the patient cannot move enough air: weak muscles, a tired diaphragm, obstructed airways or a sedated drive. PaCO2 rises and pH falls. Oxygen does not fix it, and in COPD too much oxygen can make the CO2 worse.',
       'The choice of support follows from this. Hypercapnia responds to ventilatory help, so NIV (BiPAP) is first-line in COPD. De novo hypoxemia does better with high-flow nasal cannula, which gives high FiO2, a little PEEP and washes out dead space.'],
       p: ['Type 1: shunt and V/Q mismatch; needs FiO2 and PEEP.', 'Type 2: inadequate ventilation; needs ventilatory support.', 'COPD hypercapnia: NIV and SpO2 88–92%.', 'De novo hypoxemia: HFNC first.'] },
-    { h: 'Reading the ventilator', chk: false, src: ['arma00', 'amato15', 'leatherman15'], x: [
-      'Peak pressure is the total pressure needed to push the breath in: airway resistance plus lung and chest wall stiffness plus PEEP. Plateau pressure, measured with an inspiratory hold, removes the resistance part and shows the pressure inside the alveoli.',
-      'Compare them. A high peak with a normal plateau means the problem is in the airways: bronchospasm, secretions, a kinked or bitten tube. When both rise together, the lung or chest wall got stiffer: ARDS, pneumothorax, mainstem intubation, a tight abdomen.',
-      'An expiratory hold shows auto-PEEP: air that did not finish leaving before the next breath. It builds in obstructive disease and when the rate is too high.'],
-      p: ['Peak − plateau = resistance problem.', 'Plateau high = compliance problem.', 'Expiratory hold = auto-PEEP.'],
-      ex: { q: 'Peak 48, plateau 22, PEEP 5, wheeze on exam.', a: ['The 26 cmH2O gap between peak and plateau is resistive, and the plateau is fine. This is bronchospasm or a tube problem, not stiff lungs.', 'Suction, check the tube, give bronchodilators, and look for auto-PEEP.'] },
-      tr: 'In the asthma case, do an expiratory hold before and after slowing the rate.' },
+    { h: 'Reading the ventilator: the numbers', chk: false, src: ['arma00', 'amato15', 'leatherman15'], x: [
+      'Start by splitting the screen into two groups: what you set, and what the patient does back. In volume control you set the tidal volume (Vt, the size of each breath), the rate (breaths per minute), the FiO2 (how much oxygen) and the PEEP (the pressure left in the lungs at the end of each breath, which keeps the air sacs from collapsing). The ventilator then reports the pressures it needed to deliver that breath. Those pressures are how the lungs talk to you.',
+      'Minute ventilation is Vt × rate. It controls the CO2: more minute ventilation blows off more CO2. Oxygen is controlled by a different pair of knobs, FiO2 and PEEP. Keeping those two jobs separate makes most ABG problems simple: a high CO2 is a rate or volume problem, a low oxygen is an FiO2 or PEEP problem.',
+      'Now the pressures. Think of pushing air through a straw into a balloon. The peak pressure is the total effort: the push needed to get through the straw (the airways and tube) plus the push needed to stretch the balloon (the lungs and chest wall). The plateau pressure is measured during a short pause at the end of the breath (an inspiratory hold), when no air is moving. With no flow, the straw part disappears, so the plateau is just the balloon: how stiff the lungs are.',
+      'That gives you one simple comparison. The gap between peak and plateau is the straw (resistance). The plateau itself is the balloon (stiffness). Driving pressure is plateau minus PEEP: how much the lungs are stretched with each breath. Keep the plateau at or below 30 and the driving pressure under about 15.'],
+      p: ['Set: Vt, rate, FiO2, PEEP. Measured: peak and plateau pressure.', 'CO2 follows minute ventilation (Vt × rate). Oxygen follows FiO2 and PEEP.', 'Peak = straw + balloon. Plateau = balloon only.', 'Peak − plateau large (> about 10): airway problem.', 'Plateau high: stiff lungs or chest wall.', 'Driving pressure = plateau − PEEP; aim < 15.'],
+      ex: { q: 'Vt 450, PEEP 8, peak 32, plateau 26. An hour later: peak 50, plateau 27.', a: ['The plateau barely moved, so the lungs did not get stiffer. The whole rise is in the gap between peak and plateau: the straw got narrower.', 'Think airway: secretions (suction), a kinked or bitten tube, bronchospasm (wheeze, give bronchodilators).'] },
+      ck: { q: 'Peak 40, plateau 37, PEEP 10. Airway problem or lung problem?', a: 'Lung problem. The peak–plateau gap is small (3), but the plateau is high (37) and the driving pressure is 27. Think worsening ARDS, pneumothorax, mainstem intubation or a tight abdomen, and lower the tidal volume.' } },
+    { h: 'Reading the ventilator: holds and waveforms', chk: false, src: ['leatherman15', 'tuxen87'], x: [
+      'The two holds are simple tools. An inspiratory hold pauses at the end of the breath so you can read the plateau. An expiratory hold pauses at the end of exhalation so you can see whether air is trapped: if the pressure during that pause is higher than the PEEP you set, the difference is auto-PEEP, air that never got out.',
+      'The flow waveform is the quickest way to spot trapped air without a hold. Flow goes up (above the line) as air goes in and down (below the line) as air comes out. On a normal breath the expiratory flow curves back up to zero before the next breath starts. If the next breath starts while the flow is still below zero, the patient had not finished breathing out. That is air trapping.',
+      'The pressure waveform shows the shape of each breath. A sudden spike with each breath points to the airways; a slow, steady rise in both peak and plateau over hours points to the lungs or chest wall. A pressure that will not build at all, with a low exhaled volume, means a leak or a disconnect.',
+      'Trapped air matters because it adds pressure inside the chest, which squeezes the veins returning to the heart. The blood pressure falls. The fix is more time to breathe out: slow the rate, shorten the inspiratory time, use a smaller breath. If the pressure suddenly crashes, disconnect the circuit for a few seconds so the chest can empty.'],
+      p: ['Inspiratory hold = plateau.', 'Expiratory hold: measured − set PEEP = auto-PEEP.', 'Expiratory flow not back to zero before the next breath = air trapping.', 'Low pressures and low exhaled volume = leak or disconnect.', 'Air trapping drops BP: slow the rate, give time to exhale.'],
+      ex: { q: 'Asthmatic on the vent: rate 24, BP falling, the flow trace never returns to zero, expiratory hold shows total PEEP 16 with set PEEP 5.', a: ['Auto-PEEP is 11 cmH2O: a lot of trapped air, and it is dropping the blood pressure.', 'Disconnect briefly if the pressure is critical, then lower the rate to about 10–12 with a short inspiratory time, and accept the higher CO2.'] },
+      tr: 'In the asthma case, do an expiratory hold before and after slowing the rate, and watch the flow trace return to zero.' },
+    { h: 'The mechanics panel in these cases, line by line', chk: false, src: ['arma00', 'amato15', 'berlin12', 'leatherman15'], x: [
+      'When a patient is intubated in the ICU sims, the case card shows a Ventilator mechanics panel. Here is what each line is and how to use it. Numbers turn amber when they cross the threshold the sim is teaching.',
+      'Mode: volume control at a fixed flow. You choose the breath size and the ventilator uses whatever pressure it needs to deliver it. That is why the pressures are so useful: they are the lungs answering back.',
+      'Vt: the breath size in mL and in mL/kg of predicted body weight (PBW, from height and sex, shown in brackets). 6 mL/kg PBW is the lung-protective starting point; above 8 turns amber. Change it with the Vt buttons and watch the plateau and driving pressure respond.',
+      'Ppeak (live): the total pressure at the top of each breath, updated continuously. It includes the push through the tube and airways, the stretch of the lungs and chest wall, and the PEEP. A rising peak on its own tells you something changed, not what.',
+      'Pplat (insp hold): press "Inspiratory + expiratory hold". During the pause no air moves, so the airway part disappears and you are left with the stiffness of the lungs and chest wall. The panel shows how many minutes ago you measured it, because it goes stale as you change settings. Keep it at or below 30.',
+      'Auto-PEEP (exp hold): the same hold button measures pressure at the end of exhalation. Anything above the PEEP you set is trapped air. Above 5 turns amber. It is the number to watch in asthma and COPD, and the one that explains a falling blood pressure after intubation.',
+      'Driving pressure: plateau minus PEEP, the stretch delivered with every breath. Lower is safer; aim under about 15. If it is high, the tidal volume is too big for the amount of open lung.',
+      'P/F (last ABG): PaO2 divided by FiO2 from the most recent blood gas. It grades ARDS (under 300 mild, under 200 moderate, under 100 severe) and tells you when to prone (under 150). Send a new ABG after changes; it does not update by itself.',
+      'Position: supine or prone. Proning changes how ventilation and blood flow match up; expect P/F to improve over hours, not seconds.',
+      'Under the monitor, the Paw trace shows airway pressure for each breath and the flow trace shows air going in (up) and out (down). If the flow trace has not come back to zero before the next breath, air is being trapped.'],
+      p: ['Vt in mL/kg PBW: 6 to start, > 8 amber.', 'Ppeak live; Pplat and auto-PEEP need the hold button.', 'Pplat ≤ 30; driving pressure < 15; auto-PEEP > 5 is trapping.', 'P/F updates only with a new ABG; < 150 = prone.', 'Big peak–plateau gap = airways; high plateau = lungs or chest wall.'],
+      ex: { q: 'Panel: Vt 520 mL (8.7 mL/kg PBW), Ppeak 38, Pplat 33 (2 min ago), auto-PEEP 1, driving pressure 23, P/F 110.', a: ['Small peak–plateau gap, so the airways are fine. The plateau and driving pressure are both too high for this lung, and the P/F is in the severe range.', 'Lower Vt toward 6 mL/kg PBW (about 360 mL here), raise the rate to keep the CO2 acceptable, repeat the hold, recheck an ABG, and prone if P/F stays under 150.'] },
+      tr: 'In the ARDS case, do a hold, lower the Vt two steps, do another hold and compare Pplat and driving pressure.' },
     { h: 'ARDS: protect the lung', chk: false, src: ['arma00', 'amato15', 'proseva13', 'berlin12', 'ats24ards'], x: [
       'ARDS lungs are small, not stiff everywhere. Only part of the lung is open, so a normal tidal volume overstretches the healthy part. ARMA proved it: 6 mL/kg of predicted body weight instead of 12 cut mortality from about 40% to 31%.',
       'Predicted body weight comes from height and sex, not the scale. Keep the plateau at or below 30 and the driving pressure (plateau minus PEEP) under about 15. Raise the rate to keep minute ventilation, and accept a higher CO2 if the pH stays above about 7.20.',
@@ -21934,7 +22023,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -22889,7 +22978,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -23142,6 +23232,8 @@ window.DZL = window.DZL || {}; window.DZL['mshock'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mshock'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['mshock'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mshock'); })(load);
 
@@ -24123,7 +24215,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -25065,7 +25157,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -25318,6 +25411,8 @@ window.DZL = window.DZL || {}; window.DZL['mresp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mresp'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['mresp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mresp'); })(load);
 
@@ -26299,7 +26394,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -27238,7 +27333,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -27491,6 +27587,8 @@ window.DZL = window.DZL || {}; window.DZL['mtox'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mtox'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['mtox'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mtox'); })(load);
 
@@ -28472,7 +28570,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -29418,7 +29516,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -29671,6 +29770,8 @@ window.DZL = window.DZL || {}; window.DZL['mendo'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mendo'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['mendo'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mendo'); })(load);
 
@@ -30652,7 +30753,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -31591,7 +31692,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -31844,6 +31946,8 @@ window.DZL = window.DZL || {}; window.DZL['mgi'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mgi'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['mgi'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mgi'); })(load);
 
@@ -32825,7 +32929,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -33744,7 +33848,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -33997,6 +34102,8 @@ window.DZL = window.DZL || {}; window.DZL['nicp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nicp'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['nicp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nicp'); })(load);
 
@@ -34978,7 +35085,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -35897,7 +36004,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -36150,6 +36258,8 @@ window.DZL = window.DZL || {}; window.DZL['nstroke'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nstroke'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['nstroke'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nstroke'); })(load);
 
@@ -37131,7 +37241,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -38036,7 +38146,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -38289,6 +38400,8 @@ window.DZL = window.DZL || {}; window.DZL['nsah'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nsah'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['nsah'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsah'); })(load);
 
@@ -39270,7 +39383,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -40182,7 +40295,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -40435,6 +40549,8 @@ window.DZL = window.DZL || {}; window.DZL['nsz'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nsz'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['nsz'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsz'); })(load);
 
@@ -41416,7 +41532,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -42314,7 +42430,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -42567,6 +42684,8 @@ window.DZL = window.DZL || {}; window.DZL['nnm'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nnm'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['nnm'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nnm'); })(load);
 
@@ -43548,7 +43667,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -44378,7 +44497,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -44631,6 +44751,8 @@ window.DZL = window.DZL || {}; window.DZL['rounds'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['rounds'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['rounds'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('rounds'); })(load);
 
@@ -45612,7 +45734,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -46481,7 +46603,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -46734,6 +46857,8 @@ window.DZL = window.DZL || {}; window.DZL['strauma'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['strauma'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['strauma'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('strauma'); })(load);
 
@@ -47715,7 +47840,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -48576,7 +48701,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -48829,6 +48955,8 @@ window.DZL = window.DZL || {}; window.DZL['sabd'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['sabd'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['sabd'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('sabd'); })(load);
 
@@ -49810,7 +49938,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -50671,7 +50799,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -50924,6 +51053,8 @@ window.DZL = window.DZL || {}; window.DZL['sburn'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['sburn'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['sburn'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('sburn'); })(load);
 
@@ -51905,7 +52036,7 @@ function medSpec(P) {
     const V = X.vent;
     if (R.intubated && V) {
       const H = V.hold, age = H ? Math.round(m - H.m) : null;
-      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}`;
+      return `<h2>Ventilator mechanics</h2>${el('Mode', 'Volume control, flow 60 L/min')}${el('Vt', `${Math.round(R.vt * 1000)} mL · ${(R.vt * 1000 / V.ibw).toFixed(1)} mL/kg PBW (PBW ${V.ibw} kg)`, R.vt * 1000 / V.ibw > 8)}${el('Ppeak (live)', Math.round(V.ppk) + ' cmH2O', V.ppk > 45)}${el('Pplat (insp hold)', H ? `${Math.round(H.pplat)} (${age} min ago)` : 'do a hold', H && H.pplat > 30)}${el('Auto-PEEP (exp hold)', H ? Math.round(H.ap) : 'do a hold', H && H.ap > 5)}${el('Driving pressure', H ? Math.round(H.dp) : '--', H && H.dp > 15)}${el('P/F (last ABG)', X.labv ? Math.round(X.labv.pf || 0) : '--', X.labv && X.labv.pf < 150)}${el('Position', X.flags.proneAt !== undefined ? 'prone' : 'supine')}<details class="vhelp"><summary>What these numbers mean</summary><ul><li><b>Mode</b>: volume control. You set the breath size; the pressure is whatever it takes to deliver it, so the pressures tell you about the lungs.</li><li><b>Vt</b>: breath size. mL/kg PBW uses height and sex, not weight. 6 is lung-protective; above 8 turns amber.</li><li><b>Ppeak</b>: total pressure to push the breath in: airways + lungs + PEEP. Updates live.</li><li><b>Pplat</b>: pressure during a pause with no flow, so airway resistance drops out: lung and chest wall stiffness. Needs a hold. Keep ≤ 30.</li><li><b>Auto-PEEP</b>: air still trapped at end-exhalation (expiratory hold). Above 5 means not enough time to breathe out.</li><li><b>Driving pressure</b>: Pplat − PEEP, how much each breath stretches the lung. Aim < 15.</li><li><b>P/F</b>: PaO2 ÷ FiO2 from the last ABG. < 300 mild, < 200 moderate, < 100 severe ARDS; < 150 is the prone threshold.</li><li><b>Big Ppeak − Pplat gap</b>: airway problem (secretions, kink, bronchospasm). <b>High Pplat</b>: stiff lung or chest wall (ARDS, pneumothorax, abdomen, burn eschar).</li></ul></details>`;
     }
     if (X.rox) { const c = X.rox.checks.map(([t, r]) => `${fm(t)} · ${r.toFixed(2)}`).join('<br>') || 'none yet'; return `<h2>High-flow and the ROX index</h2>${el('Support', { hfnc: 'HFNC 50 L/min, FiO2 0.8', bipap: 'BiPAP', nrb: 'Non-rebreather', nc: 'Nasal cannula' }[R.o2] || R.o2)}${el('ROX = (SpO2/FiO2) ÷ RR', 'press "Calculate"')}<p class="brief" style="font-family:var(--f-mono);font-size:12px;margin:6px 0">${c}</p>${el('Failure thresholds', '< 2.85 at 2 h · < 3.47 at 6 h · < 3.85 at 12 h')}`; }
     if (X.copd) return `<h2>Hypercapnic failure</h2>${el('Support', { bipap: 'BiPAP 14/6, FiO2 0.28', nc: 'NC 4 L', nclo: 'NC 2 L', nrb: 'Non-rebreather', hfnc: 'High-flow' }[R.o2] || 'room air')}${el('SpO2 target', '88–92%', h.sat > 0.93)}${el('Last ABG', X.labv ? `pH ${X.labv.ph.toFixed(2)} · PaCO2 ${Math.round(X.labv.paco2)}` : 'not sent', X.labv && X.labv.ph < 7.30)}${el('NIV started', X.given.bipap !== undefined ? fm(X.given.bipap - t0) : 'no')}`;
@@ -52765,7 +52896,8 @@ function specHTML() {
   return '';
 }
 let lastSpec = '';
-function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { c.innerHTML = h; lastSpec = h; } }
+let vhOpen = false;
+function paintSpec() { const h = specHTML(); const c = $('specCard'); c.hidden = !h; if (h !== lastSpec) { const y = c.querySelector('.vhelp ul'); c.innerHTML = h; lastSpec = h; const d = c.querySelector('.vhelp'); if (d) { d.open = vhOpen; d.ontoggle = () => { vhOpen = d.open; }; } } }
 
 /* ---- drips, actions, vent ---- */
 const pumpEls = {};
@@ -53018,6 +53150,8 @@ window.DZL = window.DZL || {}; window.DZL['scomp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['scomp'] = { set(on) { _on = on; } };
 }
+
+window.XCHG = window.XCHG || {}; window.XCHG['scomp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('scomp'); })(load);
 
