@@ -293,6 +293,13 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
 /* teach-guide-practice flow */
+.ct-gate{background:linear-gradient(180deg,#14212b,#111a1e);border:1px solid #8fc1ff;border-radius:14px;padding:14px 16px;display:grid;gap:6px;margin:10px 0}
+.ct-gate h3{margin:0;font-family:var(--f-disp);font-size:19px}
+.ct-gate .cl-p{margin:0;line-height:1.55}
+.ct-gate .cch-k{font-family:var(--f-disp);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8fc1ff}
+.ct-gate .ct-start{justify-self:start;font-size:15px;padding:8px 16px;margin-top:4px}
+body.learn .ct-gate{display:none}
+.cwrap.gated .cch,.cwrap.gated .cprac{display:none!important}
 .clsn .ct-topic{border:1px solid #2a4252;border-radius:10px;padding:6px 10px}
 .clsn .ct-topic>summary{cursor:pointer;color:#8fc1ff;font-weight:600}
 .clsn .ct-topic .clsn{border:0;background:none;padding:8px 0 0}
@@ -7867,6 +7874,7 @@ window.CTM = (() => {
 
 <script>
 /* Learn → Guided → Practice path: a mode bar under each sim's header, a lesson panel (Learn), a coach panel (Guided) and a slim strip (Practice) */
+window.CTGATE = v => { if (window.CTG && CTG.gate) CTG.gate(v); };
 window.CTG = (() => {
   const P = {}, S = {}; let minimized = false, hl = null; const lastSig = {}, LS = {};
   const NON = ['menu', 'progress', 'library'];
@@ -8006,6 +8014,28 @@ window.CTG = (() => {
       fb.append(mk('div', 'row'), go); bx.append(fb);
     }
   }
+  function gate(v) {
+    const sec = document.getElementById('v-' + v); if (!sec) return; const st = S[v] || (S[v] = {});
+    if (!q(sec, 'pauseSim')) return;
+    if (st.noGate) { st.noGate = false; return; }
+    pauseSim(sec, true); st.gate = true; st.ask = null;
+  }
+  function gateBox(sec, v, st, wrap) {
+    let g = wrap.querySelector('.ct-gate');
+    const show = st.gate && CT.mode !== 'learn';
+    wrap.classList.toggle('gated', !!show);
+    if (!show) { if (g) g.remove(); return; }
+    const tag = q(sec, 'pausedTag'); if (tag && tag.hidden) { st.gate = false; wrap.classList.remove('gated'); if (g) g.remove(); return; }
+    if (g) return;
+    g = mk('section', 'ct-gate'); g.setAttribute('aria-label', 'Case presentation');
+    const title = q(sec, 'scTitle'), brief = q(sec, 'scBrief');
+    const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
+    g.append(mk('div', 'cch-k', CT.mode === 'practice' ? 'Practice case · clock stopped until you start' : 'Case presentation · clock stopped until you start'), mk('h3', '', name), mk('p', 'cl-p', brief ? brief.textContent : ''));
+    const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
+    if (goals.length) { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
+    const b = mk('button', 'cl-btn pri ct-start', 'Start case ▶'); b.onclick = () => { st.gate = false; g.remove(); wrap.classList.remove('gated'); pauseSim(sec, false); refresh(true); };
+    g.append(b); wrap.querySelector('.cpath').after(g);
+  }
   function modeChanged(m, prev) {
     const v = window.CT ? CT.view : 'menu'; if (NON.includes(v)) return;
     const sec = document.getElementById('v-' + v); if (!sec) return; const st = S[v] || (S[v] = {});
@@ -8014,8 +8044,8 @@ window.CTG = (() => {
     const V = window.CTV && CTV[v];
     if (m === 'learn') { pauseSim(sec, true); st.key = null; return; }
     if (V) V.set(m === 'practice');
-    if (prev !== m) restart();
-    setTimeout(() => { if (!st.ask) pauseSim(sec, false); }, 60);
+    if (prev === 'learn' && m === 'teach') { st.noGate = true; restart(); setTimeout(() => { st.gate = false; pauseSim(sec, false); }, 60); }
+    else if (prev !== m) restart();
     const h = q(sec, 'hint'); if (h && m === 'practice') h.hidden = true;
   }
   function coachPanel(sec) {
@@ -8068,6 +8098,7 @@ window.CTG = (() => {
     wrap.querySelectorAll('.cp-steps [data-m]').forEach(b => b.classList.toggle('on', b.dataset.m === CT.mode));
     const sel = q(sec, 'scSel'); const n = wrap.querySelector('.cp-n'); if (sel && n) n.textContent = `Case ${sel.selectedIndex + 1} of ${sel.options.length}`;
     const st = S[v] || (S[v] = {});
+    if (!st.init) { st.init = true; if (CT.mode !== 'learn') gate(v); }
     const title = q(sec, 'scTitle'), brief = q(sec, 'scBrief'), hint = q(sec, 'hint');
     const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
     const key = name + '|' + (hint ? hint.textContent : '');
@@ -8082,7 +8113,7 @@ window.CTG = (() => {
       setTimeout(() => { buildCards(sec, v, wrap); if (CT.mode === 'learn') pauseSim(sec, true); }, 80);
     }
     if (!st.asked) st.asked = new Set();
-    flowStatus(sec, v, st, wrap);
+    flowStatus(sec, v, st, wrap); gateBox(sec, v, st, wrap);
     actNotes(sec, v, st);
     if (CT.mode === 'practice') { setHL(null); return; }
     const c = wrap.querySelector('.cch');
@@ -8120,7 +8151,7 @@ window.CTG = (() => {
     else if (goals.length) f.append('All targets met: hold steady until the case completes.');
     else f.append('Free play: change one thing at a time and watch the monitor respond.');
     // ask, then show
-    if (prov && next >= 0 && steps[next] && !st.ask && !st.asked.has(steps[next].t) && steps[next].el && !/^(hold|wait|watch|let)/i.test(steps[next].t)) askBox(sec, v, st, steps, next);
+    if (!st.gate && prov && next >= 0 && steps[next] && !st.ask && !st.asked.has(steps[next].t) && steps[next].el && !/^(hold|wait|watch|let)/i.test(steps[next].t)) askBox(sec, v, st, steps, next);
     if (st.ask && (next < 0 || !steps[next] || steps[next].t !== st.ask.t)) { if (st.ask.paused) pauseSim(sec, false); st.ask = null; }
     if (st.ask && !st.ask.picked && pauseSim(sec, true)) st.ask.paused = true;
     renderAsk(c, sec, v, st); c.classList.toggle('asking', !!(st.ask && !st.ask.picked));
@@ -8162,7 +8193,7 @@ window.CTG = (() => {
   }
   function state(sim, fn) { ST[sim] = fn; if (!P[sim]) P[sim] = () => guideProv(sim); }
   setInterval(() => refresh(false), 450);
-  return { reg: (k, f) => { P[k] = f; }, state, refresh, modeChanged, peek: v => P[v] ? P[v]() : null };
+  return { reg: (k, f) => { P[k] = f; }, state, refresh, modeChanged, gate, peek: v => P[v] ? P[v]() : null };
 })();
 </script>
 <script>
@@ -13462,9 +13493,11 @@ if (window.CTP) CTP.cases('pacing', SCEN.map((s, i) => ({ id: s.id, name: s.name
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('pacing', () => (S ? { S: S, id: SCEN[scIdx].id } : null));
 
-if (window.CTKIT) CTKIT({ sim: 'pacing', ROOT, $, st: () => S, idx: () => scIdx, load, speed: null });
+if (window.CTKIT) CTKIT({ sim: 'pacing', ROOT, $, st: () => S, idx: () => scIdx, load: i => load(i), speed: null });
 
 window.DZL = window.DZL || {}; window.DZL['pacing'] = DANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('pacing'); })(load);
 
 })();
 </script>
@@ -14743,9 +14776,11 @@ if (window.CTP) CTP.cases('hemo', SCEN.map((s, i) => ({ id: s.id, name: s.name, 
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('hemo', () => (H ? { S: H, id: SCEN[scIdx].id } : null));
 
-if (window.CTKIT) CTKIT({ sim: 'hemo', ROOT, $, st: () => H, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'hemo', ROOT, $, st: () => H, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['hemo'] = DANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('hemo'); })(load);
 
 })();
 </script>
@@ -15246,9 +15281,11 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('iabp', ISCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'iabp', ROOT, $, st: () => I, idx: () => scIdx, load, speed: null });
+if (window.CTKIT) CTKIT({ sim: 'iabp', ROOT, $, st: () => I, idx: () => scIdx, load: i => load(i), speed: null });
 
 window.DZL = window.DZL || {}; window.DZL['iabp'] = IDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('iabp'); })(load);
 
 })();
 </script>
@@ -15642,9 +15679,11 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('artline', ASCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'artline', ROOT, $, st: () => A, idx: () => scIdx, load, speed: null });
+if (window.CTKIT) CTKIT({ sim: 'artline', ROOT, $, st: () => A, idx: () => scIdx, load: i => load(i), speed: null });
 
 window.DZL = window.DZL || {}; window.DZL['artline'] = ADANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('artline'); })(load);
 
 })();
 </script>
@@ -16135,9 +16174,11 @@ if (window.CTP) CTP.cases('cals', CSCEN.map((s, i) => ({ id: s.id, name: s.name,
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('cals', () => (C ? { S: C, id: CSCEN[scIdx].id } : null));
 
-if (window.CTKIT) CTKIT({ sim: 'cals', ROOT, $, st: () => C, idx: () => scIdx, load, speed: null });
+if (window.CTKIT) CTKIT({ sim: 'cals', ROOT, $, st: () => C, idx: () => scIdx, load: i => load(i), speed: null });
 
 window.DZL = window.DZL || {}; window.DZL['cals'] = CDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('cals'); })(load);
 
 })();
 </script>
@@ -16585,9 +16626,11 @@ if (window.CTP) CTP.cases('bleed', BSCEN.map((s, i) => ({ id: s.id, name: s.name
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('bleed', () => (B ? { S: B, id: BSCEN[scIdx].id } : null));
 
-if (window.CTKIT) CTKIT({ sim: 'bleed', ROOT, $, st: () => B, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'bleed', ROOT, $, st: () => B, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['bleed'] = BDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('bleed'); })(load);
 
 })();
 </script>
@@ -17246,9 +17289,11 @@ if (window.CTM) CTM.reg('mcs', () => {
 
 if (window.CTP) CTP.cases('mcs', XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'mcs', ROOT, $, st: () => X, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'mcs', ROOT, $, st: () => X, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['mcs'] = XDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mcs'); })(load);
 
 })();
 </script>
@@ -17706,9 +17751,11 @@ if (window.CTP) CTP.cases('poaf', PSCEN.map((s, i) => ({ id: s.id, name: s.name,
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('poaf', () => (F ? { S: F, id: PSCEN[scIdx].id } : null));
 
-if (window.CTKIT) CTKIT({ sim: 'poaf', ROOT, $, st: () => F, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'poaf', ROOT, $, st: () => F, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['poaf'] = FDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('poaf'); })(load);
 
 })();
 </script>
@@ -18211,9 +18258,11 @@ if (window.CTM) CTM.reg('vent', () => {
 
 if (window.CTP) CTP.cases('vent', VSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'vent', ROOT, $, st: () => V, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'vent', ROOT, $, st: () => V, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['vent'] = VDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('vent'); })(load);
 
 })();
 </script>
@@ -18673,9 +18722,11 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('rhythm', RSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'rhythm', ROOT, $, st: () => D, idx: () => scIdx, load, speed: null, drill: true });
+if (window.CTKIT) CTKIT({ sim: 'rhythm', ROOT, $, st: () => D, idx: () => scIdx, load: i => load(i), speed: null, drill: true });
 
 window.DZL = window.DZL || {}; window.DZL['rhythm'] = RDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('rhythm'); })(load);
 
 })();
 </script>
@@ -19143,9 +19194,11 @@ if (window.CTM) CTM.reg('lytes', () => {
 
 if (window.CTP) CTP.cases('lytes', LSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'lytes', ROOT, $, st: () => L, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'lytes', ROOT, $, st: () => L, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['lytes'] = LDANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('lytes'); })(load);
 
 })();
 </script>
@@ -19649,9 +19702,11 @@ if (window.CTM) CTM.reg('aki', () => {
 
 if (window.CTP) CTP.cases('aki', KSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'aki', ROOT, $, st: () => A, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'aki', ROOT, $, st: () => A, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['aki'] = ADANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('aki'); })(load);
 
 })();
 </script>
@@ -20472,9 +20527,11 @@ if (window.CTG) CTG.reg('orsurg', () => {
   return { steps, next, el };
 });
 
-if (window.CTKIT) CTKIT({ sim: 'orsurg', ROOT, $, st: () => O, idx: () => scIdx, load, speed: KSPD });
+if (window.CTKIT) CTKIT({ sim: 'orsurg', ROOT, $, st: () => O, idx: () => scIdx, load: i => load(i), speed: KSPD });
 
 window.DZL = window.DZL || {}; window.DZL['orsurg'] = ODANGER;
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('orsurg'); })(load);
 
 })();
 </script>
@@ -20895,7 +20952,9 @@ requestAnimationFrame(frame);
 if (window.CTG && CTG.state) CTG.state('cxr', () => (D ? { S: D, id: CSCEN[scIdx].id } : null));
 if (window.CTP) CTP.cases('cxr', CSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.study })).filter(c => !c.skip));
 
-if (window.CTKIT) CTKIT({ sim: 'cxr', ROOT, $, st: () => D, idx: () => scIdx, load, speed: null, drill: true });
+if (window.CTKIT) CTKIT({ sim: 'cxr', ROOT, $, st: () => D, idx: () => scIdx, load: i => load(i), speed: null, drill: true });
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('cxr'); })(load);
 
 })();
 </script>
@@ -23084,6 +23143,8 @@ window.DZL = window.DZL || {}; window.DZL['mshock'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mshock'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mshock'); })(load);
+
 })();
 </script>
 <script>
@@ -25258,6 +25319,8 @@ window.DZL = window.DZL || {}; window.DZL['mresp'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mresp'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mresp'); })(load);
+
 })();
 </script>
 <script>
@@ -27428,6 +27491,8 @@ window.DZL = window.DZL || {}; window.DZL['mtox'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['mtox'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mtox'); })(load);
 
 })();
 </script>
@@ -29607,6 +29672,8 @@ window.DZL = window.DZL || {}; window.DZL['mendo'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mendo'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mendo'); })(load);
+
 })();
 </script>
 <script>
@@ -31778,6 +31845,8 @@ window.DZL = window.DZL || {}; window.DZL['mgi'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mgi'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('mgi'); })(load);
+
 })();
 </script>
 <script>
@@ -33928,6 +33997,8 @@ window.DZL = window.DZL || {}; window.DZL['nicp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nicp'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('nicp'); })(load);
 
 })();
 </script>
@@ -36080,6 +36151,8 @@ window.DZL = window.DZL || {}; window.DZL['nstroke'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nstroke'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('nstroke'); })(load);
+
 })();
 </script>
 <script>
@@ -38216,6 +38289,8 @@ window.DZL = window.DZL || {}; window.DZL['nsah'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['nsah'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsah'); })(load);
 
 })();
 </script>
@@ -40361,6 +40436,8 @@ window.DZL = window.DZL || {}; window.DZL['nsz'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nsz'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsz'); })(load);
+
 })();
 </script>
 <script>
@@ -42491,6 +42568,8 @@ window.DZL = window.DZL || {}; window.DZL['nnm'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nnm'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('nnm'); })(load);
+
 })();
 </script>
 <script>
@@ -44552,6 +44631,8 @@ window.DZL = window.DZL || {}; window.DZL['rounds'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['rounds'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('rounds'); })(load);
 
 })();
 </script>
@@ -46654,6 +46735,8 @@ window.DZL = window.DZL || {}; window.DZL['strauma'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['strauma'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('strauma'); })(load);
+
 })();
 </script>
 <script>
@@ -48746,6 +48829,8 @@ window.DZL = window.DZL || {}; window.DZL['sabd'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['sabd'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('sabd'); })(load);
 
 })();
 </script>
@@ -50840,6 +50925,8 @@ window.DZL = window.DZL || {}; window.DZL['sburn'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['sburn'] = { set(on) { _on = on; } };
 }
 
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('sburn'); })(load);
+
 })();
 </script>
 <script>
@@ -52931,6 +53018,8 @@ window.DZL = window.DZL || {}; window.DZL['scomp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['scomp'] = { set(on) { _on = on; } };
 }
+
+load = (o => i => { o(i); if (window.CTGATE) CTGATE('scomp'); })(load);
 
 })();
 </script>
