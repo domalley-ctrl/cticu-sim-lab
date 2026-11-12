@@ -2369,6 +2369,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-mshock .ref details{border:0;padding:0}
 #v-mshock .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-mshock .log{max-height:230px}
+#v-mshock .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-mshock .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-mshock .ptbar .brief{max-width:none;font-size:14px}
+#v-mshock .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-mshock .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-mshock .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-mshock .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-mshock .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-mshock .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-mshock .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-mshock .ticker li.fade{opacity:0}
 #v-mshock .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-mshock .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-mshock .gmini i.ok{background:var(--good)}
@@ -2511,6 +2522,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-mresp .ref details{border:0;padding:0}
 #v-mresp .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-mresp .log{max-height:230px}
+#v-mresp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-mresp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-mresp .ptbar .brief{max-width:none;font-size:14px}
+#v-mresp .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-mresp .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-mresp .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-mresp .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-mresp .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-mresp .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-mresp .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-mresp .ticker li.fade{opacity:0}
 #v-mresp .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-mresp .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-mresp .gmini i.ok{background:var(--good)}
@@ -2653,6 +2675,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-mtox .ref details{border:0;padding:0}
 #v-mtox .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-mtox .log{max-height:230px}
+#v-mtox .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-mtox .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-mtox .ptbar .brief{max-width:none;font-size:14px}
+#v-mtox .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-mtox .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-mtox .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-mtox .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-mtox .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-mtox .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-mtox .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-mtox .ticker li.fade{opacity:0}
 #v-mtox .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-mtox .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-mtox .gmini i.ok{background:var(--good)}
@@ -2795,6 +2828,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-mendo .ref details{border:0;padding:0}
 #v-mendo .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-mendo .log{max-height:230px}
+#v-mendo .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-mendo .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-mendo .ptbar .brief{max-width:none;font-size:14px}
+#v-mendo .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-mendo .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-mendo .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-mendo .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-mendo .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-mendo .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-mendo .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-mendo .ticker li.fade{opacity:0}
 #v-mendo .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-mendo .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-mendo .gmini i.ok{background:var(--good)}
@@ -2937,6 +2981,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-mgi .ref details{border:0;padding:0}
 #v-mgi .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-mgi .log{max-height:230px}
+#v-mgi .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-mgi .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-mgi .ptbar .brief{max-width:none;font-size:14px}
+#v-mgi .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-mgi .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-mgi .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-mgi .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-mgi .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-mgi .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-mgi .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-mgi .ticker li.fade{opacity:0}
 #v-mgi .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-mgi .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-mgi .gmini i.ok{background:var(--good)}
@@ -3079,6 +3134,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-nicp .ref details{border:0;padding:0}
 #v-nicp .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-nicp .log{max-height:230px}
+#v-nicp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-nicp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-nicp .ptbar .brief{max-width:none;font-size:14px}
+#v-nicp .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-nicp .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-nicp .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-nicp .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-nicp .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-nicp .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-nicp .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-nicp .ticker li.fade{opacity:0}
 #v-nicp .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-nicp .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-nicp .gmini i.ok{background:var(--good)}
@@ -3221,6 +3287,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-nstroke .ref details{border:0;padding:0}
 #v-nstroke .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-nstroke .log{max-height:230px}
+#v-nstroke .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-nstroke .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-nstroke .ptbar .brief{max-width:none;font-size:14px}
+#v-nstroke .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-nstroke .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-nstroke .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-nstroke .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-nstroke .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-nstroke .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-nstroke .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-nstroke .ticker li.fade{opacity:0}
 #v-nstroke .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-nstroke .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-nstroke .gmini i.ok{background:var(--good)}
@@ -3363,6 +3440,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-nsah .ref details{border:0;padding:0}
 #v-nsah .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-nsah .log{max-height:230px}
+#v-nsah .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-nsah .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-nsah .ptbar .brief{max-width:none;font-size:14px}
+#v-nsah .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-nsah .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-nsah .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-nsah .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-nsah .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-nsah .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-nsah .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-nsah .ticker li.fade{opacity:0}
 #v-nsah .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-nsah .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-nsah .gmini i.ok{background:var(--good)}
@@ -3505,6 +3593,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-nsz .ref details{border:0;padding:0}
 #v-nsz .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-nsz .log{max-height:230px}
+#v-nsz .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-nsz .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-nsz .ptbar .brief{max-width:none;font-size:14px}
+#v-nsz .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-nsz .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-nsz .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-nsz .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-nsz .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-nsz .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-nsz .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-nsz .ticker li.fade{opacity:0}
 #v-nsz .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-nsz .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-nsz .gmini i.ok{background:var(--good)}
@@ -3647,6 +3746,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-nnm .ref details{border:0;padding:0}
 #v-nnm .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-nnm .log{max-height:230px}
+#v-nnm .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-nnm .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-nnm .ptbar .brief{max-width:none;font-size:14px}
+#v-nnm .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-nnm .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-nnm .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-nnm .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-nnm .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-nnm .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-nnm .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-nnm .ticker li.fade{opacity:0}
 #v-nnm .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-nnm .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-nnm .gmini i.ok{background:var(--good)}
@@ -3789,6 +3899,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-strauma .ref details{border:0;padding:0}
 #v-strauma .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-strauma .log{max-height:230px}
+#v-strauma .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-strauma .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-strauma .ptbar .brief{max-width:none;font-size:14px}
+#v-strauma .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-strauma .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-strauma .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-strauma .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-strauma .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-strauma .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-strauma .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-strauma .ticker li.fade{opacity:0}
 #v-strauma .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-strauma .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-strauma .gmini i.ok{background:var(--good)}
@@ -3931,6 +4052,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-sabd .ref details{border:0;padding:0}
 #v-sabd .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-sabd .log{max-height:230px}
+#v-sabd .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-sabd .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-sabd .ptbar .brief{max-width:none;font-size:14px}
+#v-sabd .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-sabd .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-sabd .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-sabd .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-sabd .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-sabd .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-sabd .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-sabd .ticker li.fade{opacity:0}
 #v-sabd .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-sabd .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-sabd .gmini i.ok{background:var(--good)}
@@ -4073,6 +4205,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-sburn .ref details{border:0;padding:0}
 #v-sburn .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-sburn .log{max-height:230px}
+#v-sburn .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-sburn .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-sburn .ptbar .brief{max-width:none;font-size:14px}
+#v-sburn .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-sburn .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-sburn .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-sburn .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-sburn .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-sburn .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-sburn .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-sburn .ticker li.fade{opacity:0}
 #v-sburn .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-sburn .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-sburn .gmini i.ok{background:var(--good)}
@@ -4215,6 +4358,17 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 #v-scomp .ref details{border:0;padding:0}
 #v-scomp .ref summary{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 #v-scomp .log{max-height:230px}
+#v-scomp .ptbar{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:10px 14px;display:grid;gap:4px}
+#v-scomp .ptbar h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+#v-scomp .ptbar .brief{max-width:none;font-size:14px}
+#v-scomp .ticker{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+#v-scomp .ticker:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+#v-scomp .ticker li{font-size:13px;line-height:18px;color:var(--soft);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#v-scomp .ticker li.warn{border-color:var(--warn);color:#f3dd9a}
+#v-scomp .ticker li.crit{border-color:var(--crit);color:#ffb3ad}
+#v-scomp .ticker li.good{border-color:var(--good);color:#a6e8be}
+#v-scomp .ticker li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+#v-scomp .ticker li.fade{opacity:0}
 #v-scomp .gmini{margin-left:auto;background:none;border:0;padding:0;font:inherit;color:#9fb3aa;letter-spacing:.04em}
 #v-scomp .gmini i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2a3a33;margin-left:3px;vertical-align:middle}
 #v-scomp .gmini i.ok{background:var(--good)}
@@ -5639,14 +5793,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="ms-scSel" class="sel"></select>
       <button id="ms-restart" class="btn">Restart</button>
       <button id="ms-pauseSim" class="btn">Pause</button>
+      <label for="ms-spdSel" class="holdtxt">Speed</label><select id="ms-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="ms-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="ms-scTitle"></h3>
+    <p class="brief" id="ms-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="ms-screen"><canvas id="ms-bg"></canvas><canvas id="ms-fg"></canvas></div>
-      <div class="monfoot"><span id="ms-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="ms-pausedTag" hidden>SIM PAUSED</span><button id="ms-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="ms-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="ms-monTxt">II · ART · SpO2</span><span id="ms-spdTxt">1 s = 1 min</span><span id="ms-pausedTag" hidden>SIM PAUSED</span><button id="ms-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -5685,9 +5846,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="ms-caseCard">
-      <h2>Case</h2>
-      <h3 id="ms-scTitle"></h3>
-      <p class="brief" id="ms-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="ms-goals"></ul>
       <div id="ms-holdWrap"><div class="hold"><div id="ms-holdBar"></div></div><div class="holdtxt" id="ms-holdTxt"></div></div>
       <div class="row"><button class="btn" id="ms-hintBtn">Show hint</button></div>
@@ -5716,14 +5875,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="mr-scSel" class="sel"></select>
       <button id="mr-restart" class="btn">Restart</button>
       <button id="mr-pauseSim" class="btn">Pause</button>
+      <label for="mr-spdSel" class="holdtxt">Speed</label><select id="mr-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="mr-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="mr-scTitle"></h3>
+    <p class="brief" id="mr-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="mr-screen"><canvas id="mr-bg"></canvas><canvas id="mr-fg"></canvas></div>
-      <div class="monfoot"><span id="mr-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="mr-pausedTag" hidden>SIM PAUSED</span><button id="mr-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="mr-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="mr-monTxt">II · ART · SpO2</span><span id="mr-spdTxt">1 s = 1 min</span><span id="mr-pausedTag" hidden>SIM PAUSED</span><button id="mr-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -5762,9 +5928,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="mr-caseCard">
-      <h2>Case</h2>
-      <h3 id="mr-scTitle"></h3>
-      <p class="brief" id="mr-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="mr-goals"></ul>
       <div id="mr-holdWrap"><div class="hold"><div id="mr-holdBar"></div></div><div class="holdtxt" id="mr-holdTxt"></div></div>
       <div class="row"><button class="btn" id="mr-hintBtn">Show hint</button></div>
@@ -5793,14 +5957,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="mt-scSel" class="sel"></select>
       <button id="mt-restart" class="btn">Restart</button>
       <button id="mt-pauseSim" class="btn">Pause</button>
+      <label for="mt-spdSel" class="holdtxt">Speed</label><select id="mt-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="mt-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="mt-scTitle"></h3>
+    <p class="brief" id="mt-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="mt-screen"><canvas id="mt-bg"></canvas><canvas id="mt-fg"></canvas></div>
-      <div class="monfoot"><span id="mt-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="mt-pausedTag" hidden>SIM PAUSED</span><button id="mt-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="mt-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="mt-monTxt">II · ART · SpO2</span><span id="mt-spdTxt">1 s = 1 min</span><span id="mt-pausedTag" hidden>SIM PAUSED</span><button id="mt-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -5839,9 +6010,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="mt-caseCard">
-      <h2>Case</h2>
-      <h3 id="mt-scTitle"></h3>
-      <p class="brief" id="mt-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="mt-goals"></ul>
       <div id="mt-holdWrap"><div class="hold"><div id="mt-holdBar"></div></div><div class="holdtxt" id="mt-holdTxt"></div></div>
       <div class="row"><button class="btn" id="mt-hintBtn">Show hint</button></div>
@@ -5870,14 +6039,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="me-scSel" class="sel"></select>
       <button id="me-restart" class="btn">Restart</button>
       <button id="me-pauseSim" class="btn">Pause</button>
+      <label for="me-spdSel" class="holdtxt">Speed</label><select id="me-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="me-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="me-scTitle"></h3>
+    <p class="brief" id="me-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="me-screen"><canvas id="me-bg"></canvas><canvas id="me-fg"></canvas></div>
-      <div class="monfoot"><span id="me-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="me-pausedTag" hidden>SIM PAUSED</span><button id="me-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="me-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="me-monTxt">II · ART · SpO2</span><span id="me-spdTxt">1 s = 1 min</span><span id="me-pausedTag" hidden>SIM PAUSED</span><button id="me-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -5916,9 +6092,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="me-caseCard">
-      <h2>Case</h2>
-      <h3 id="me-scTitle"></h3>
-      <p class="brief" id="me-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="me-goals"></ul>
       <div id="me-holdWrap"><div class="hold"><div id="me-holdBar"></div></div><div class="holdtxt" id="me-holdTxt"></div></div>
       <div class="row"><button class="btn" id="me-hintBtn">Show hint</button></div>
@@ -5947,14 +6121,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="mg-scSel" class="sel"></select>
       <button id="mg-restart" class="btn">Restart</button>
       <button id="mg-pauseSim" class="btn">Pause</button>
+      <label for="mg-spdSel" class="holdtxt">Speed</label><select id="mg-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="mg-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="mg-scTitle"></h3>
+    <p class="brief" id="mg-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="mg-screen"><canvas id="mg-bg"></canvas><canvas id="mg-fg"></canvas></div>
-      <div class="monfoot"><span id="mg-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="mg-pausedTag" hidden>SIM PAUSED</span><button id="mg-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="mg-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="mg-monTxt">II · ART · SpO2</span><span id="mg-spdTxt">1 s = 1 min</span><span id="mg-pausedTag" hidden>SIM PAUSED</span><button id="mg-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -5993,9 +6174,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="mg-caseCard">
-      <h2>Case</h2>
-      <h3 id="mg-scTitle"></h3>
-      <p class="brief" id="mg-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="mg-goals"></ul>
       <div id="mg-holdWrap"><div class="hold"><div id="mg-holdBar"></div></div><div class="holdtxt" id="mg-holdTxt"></div></div>
       <div class="row"><button class="btn" id="mg-hintBtn">Show hint</button></div>
@@ -6024,14 +6203,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="nc-scSel" class="sel"></select>
       <button id="nc-restart" class="btn">Restart</button>
       <button id="nc-pauseSim" class="btn">Pause</button>
+      <label for="nc-spdSel" class="holdtxt">Speed</label><select id="nc-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="nc-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="nc-scTitle"></h3>
+    <p class="brief" id="nc-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="nc-screen"><canvas id="nc-bg"></canvas><canvas id="nc-fg"></canvas></div>
-      <div class="monfoot"><span id="nc-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="nc-pausedTag" hidden>SIM PAUSED</span><button id="nc-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="nc-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="nc-monTxt">II · ART · SpO2</span><span id="nc-spdTxt">1 s = 1 min</span><span id="nc-pausedTag" hidden>SIM PAUSED</span><button id="nc-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6070,9 +6256,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="nc-caseCard">
-      <h2>Case</h2>
-      <h3 id="nc-scTitle"></h3>
-      <p class="brief" id="nc-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="nc-goals"></ul>
       <div id="nc-holdWrap"><div class="hold"><div id="nc-holdBar"></div></div><div class="holdtxt" id="nc-holdTxt"></div></div>
       <div class="row"><button class="btn" id="nc-hintBtn">Show hint</button></div>
@@ -6101,14 +6285,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="ns-scSel" class="sel"></select>
       <button id="ns-restart" class="btn">Restart</button>
       <button id="ns-pauseSim" class="btn">Pause</button>
+      <label for="ns-spdSel" class="holdtxt">Speed</label><select id="ns-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="ns-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="ns-scTitle"></h3>
+    <p class="brief" id="ns-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="ns-screen"><canvas id="ns-bg"></canvas><canvas id="ns-fg"></canvas></div>
-      <div class="monfoot"><span id="ns-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="ns-pausedTag" hidden>SIM PAUSED</span><button id="ns-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="ns-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="ns-monTxt">II · ART · SpO2</span><span id="ns-spdTxt">1 s = 1 min</span><span id="ns-pausedTag" hidden>SIM PAUSED</span><button id="ns-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6147,9 +6338,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="ns-caseCard">
-      <h2>Case</h2>
-      <h3 id="ns-scTitle"></h3>
-      <p class="brief" id="ns-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="ns-goals"></ul>
       <div id="ns-holdWrap"><div class="hold"><div id="ns-holdBar"></div></div><div class="holdtxt" id="ns-holdTxt"></div></div>
       <div class="row"><button class="btn" id="ns-hintBtn">Show hint</button></div>
@@ -6178,14 +6367,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="nh-scSel" class="sel"></select>
       <button id="nh-restart" class="btn">Restart</button>
       <button id="nh-pauseSim" class="btn">Pause</button>
+      <label for="nh-spdSel" class="holdtxt">Speed</label><select id="nh-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="nh-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="nh-scTitle"></h3>
+    <p class="brief" id="nh-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="nh-screen"><canvas id="nh-bg"></canvas><canvas id="nh-fg"></canvas></div>
-      <div class="monfoot"><span id="nh-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="nh-pausedTag" hidden>SIM PAUSED</span><button id="nh-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="nh-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="nh-monTxt">II · ART · SpO2</span><span id="nh-spdTxt">1 s = 1 min</span><span id="nh-pausedTag" hidden>SIM PAUSED</span><button id="nh-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6224,9 +6420,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="nh-caseCard">
-      <h2>Case</h2>
-      <h3 id="nh-scTitle"></h3>
-      <p class="brief" id="nh-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="nh-goals"></ul>
       <div id="nh-holdWrap"><div class="hold"><div id="nh-holdBar"></div></div><div class="holdtxt" id="nh-holdTxt"></div></div>
       <div class="row"><button class="btn" id="nh-hintBtn">Show hint</button></div>
@@ -6255,14 +6449,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="nz-scSel" class="sel"></select>
       <button id="nz-restart" class="btn">Restart</button>
       <button id="nz-pauseSim" class="btn">Pause</button>
+      <label for="nz-spdSel" class="holdtxt">Speed</label><select id="nz-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="nz-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="nz-scTitle"></h3>
+    <p class="brief" id="nz-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="nz-screen"><canvas id="nz-bg"></canvas><canvas id="nz-fg"></canvas></div>
-      <div class="monfoot"><span id="nz-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="nz-pausedTag" hidden>SIM PAUSED</span><button id="nz-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="nz-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="nz-monTxt">II · ART · SpO2</span><span id="nz-spdTxt">1 s = 1 min</span><span id="nz-pausedTag" hidden>SIM PAUSED</span><button id="nz-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6301,9 +6502,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="nz-caseCard">
-      <h2>Case</h2>
-      <h3 id="nz-scTitle"></h3>
-      <p class="brief" id="nz-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="nz-goals"></ul>
       <div id="nz-holdWrap"><div class="hold"><div id="nz-holdBar"></div></div><div class="holdtxt" id="nz-holdTxt"></div></div>
       <div class="row"><button class="btn" id="nz-hintBtn">Show hint</button></div>
@@ -6332,14 +6531,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="nn-scSel" class="sel"></select>
       <button id="nn-restart" class="btn">Restart</button>
       <button id="nn-pauseSim" class="btn">Pause</button>
+      <label for="nn-spdSel" class="holdtxt">Speed</label><select id="nn-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="nn-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="nn-scTitle"></h3>
+    <p class="brief" id="nn-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="nn-screen"><canvas id="nn-bg"></canvas><canvas id="nn-fg"></canvas></div>
-      <div class="monfoot"><span id="nn-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="nn-pausedTag" hidden>SIM PAUSED</span><button id="nn-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="nn-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="nn-monTxt">II · ART · SpO2</span><span id="nn-spdTxt">1 s = 1 min</span><span id="nn-pausedTag" hidden>SIM PAUSED</span><button id="nn-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6378,9 +6584,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="nn-caseCard">
-      <h2>Case</h2>
-      <h3 id="nn-scTitle"></h3>
-      <p class="brief" id="nn-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="nn-goals"></ul>
       <div id="nn-holdWrap"><div class="hold"><div id="nn-holdBar"></div></div><div class="holdtxt" id="nn-holdTxt"></div></div>
       <div class="row"><button class="btn" id="nn-hintBtn">Show hint</button></div>
@@ -6409,14 +6613,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="st-scSel" class="sel"></select>
       <button id="st-restart" class="btn">Restart</button>
       <button id="st-pauseSim" class="btn">Pause</button>
+      <label for="st-spdSel" class="holdtxt">Speed</label><select id="st-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="st-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="st-scTitle"></h3>
+    <p class="brief" id="st-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="st-screen"><canvas id="st-bg"></canvas><canvas id="st-fg"></canvas></div>
-      <div class="monfoot"><span id="st-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="st-pausedTag" hidden>SIM PAUSED</span><button id="st-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="st-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="st-monTxt">II · ART · SpO2</span><span id="st-spdTxt">1 s = 1 min</span><span id="st-pausedTag" hidden>SIM PAUSED</span><button id="st-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6455,9 +6666,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="st-caseCard">
-      <h2>Case</h2>
-      <h3 id="st-scTitle"></h3>
-      <p class="brief" id="st-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="st-goals"></ul>
       <div id="st-holdWrap"><div class="hold"><div id="st-holdBar"></div></div><div class="holdtxt" id="st-holdTxt"></div></div>
       <div class="row"><button class="btn" id="st-hintBtn">Show hint</button></div>
@@ -6486,14 +6695,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="sa-scSel" class="sel"></select>
       <button id="sa-restart" class="btn">Restart</button>
       <button id="sa-pauseSim" class="btn">Pause</button>
+      <label for="sa-spdSel" class="holdtxt">Speed</label><select id="sa-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="sa-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="sa-scTitle"></h3>
+    <p class="brief" id="sa-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="sa-screen"><canvas id="sa-bg"></canvas><canvas id="sa-fg"></canvas></div>
-      <div class="monfoot"><span id="sa-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="sa-pausedTag" hidden>SIM PAUSED</span><button id="sa-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="sa-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="sa-monTxt">II · ART · SpO2</span><span id="sa-spdTxt">1 s = 1 min</span><span id="sa-pausedTag" hidden>SIM PAUSED</span><button id="sa-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6532,9 +6748,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="sa-caseCard">
-      <h2>Case</h2>
-      <h3 id="sa-scTitle"></h3>
-      <p class="brief" id="sa-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="sa-goals"></ul>
       <div id="sa-holdWrap"><div class="hold"><div id="sa-holdBar"></div></div><div class="holdtxt" id="sa-holdTxt"></div></div>
       <div class="row"><button class="btn" id="sa-hintBtn">Show hint</button></div>
@@ -6563,14 +6777,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="sb-scSel" class="sel"></select>
       <button id="sb-restart" class="btn">Restart</button>
       <button id="sb-pauseSim" class="btn">Pause</button>
+      <label for="sb-spdSel" class="holdtxt">Speed</label><select id="sb-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="sb-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="sb-scTitle"></h3>
+    <p class="brief" id="sb-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="sb-screen"><canvas id="sb-bg"></canvas><canvas id="sb-fg"></canvas></div>
-      <div class="monfoot"><span id="sb-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="sb-pausedTag" hidden>SIM PAUSED</span><button id="sb-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="sb-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="sb-monTxt">II · ART · SpO2</span><span id="sb-spdTxt">1 s = 1 min</span><span id="sb-pausedTag" hidden>SIM PAUSED</span><button id="sb-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6609,9 +6830,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="sb-caseCard">
-      <h2>Case</h2>
-      <h3 id="sb-scTitle"></h3>
-      <p class="brief" id="sb-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="sb-goals"></ul>
       <div id="sb-holdWrap"><div class="hold"><div id="sb-holdBar"></div></div><div class="holdtxt" id="sb-holdTxt"></div></div>
       <div class="row"><button class="btn" id="sb-hintBtn">Show hint</button></div>
@@ -6640,14 +6859,21 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
       <select id="sx-scSel" class="sel"></select>
       <button id="sx-restart" class="btn">Restart</button>
       <button id="sx-pauseSim" class="btn">Pause</button>
+      <label for="sx-spdSel" class="holdtxt">Speed</label><select id="sx-spdSel" class="sel" title="Slows the clinical clock; the monitor keeps its real rhythm"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
       <div class="holdtxt" id="sx-clock" style="font-family:var(--f-mono)">00:00</div>
     </div>
   </header>
 
+  <section class="ptbar" aria-label="Patient">
+    <h3 id="sx-scTitle"></h3>
+    <p class="brief" id="sx-scBrief"></p>
+  </section>
+
   <div class="bay">
     <section class="monitor" aria-label="Monitor">
       <div class="screen" id="sx-screen"><canvas id="sx-bg"></canvas><canvas id="sx-fg"></canvas></div>
-      <div class="monfoot"><span id="sx-monTxt">II · ART · SpO2</span><span>1 s = 1 min</span><span id="sx-pausedTag" hidden>SIM PAUSED</span><button id="sx-goalMini" class="gmini" type="button" hidden></button></div>
+      <ul class="ticker" id="sx-ticker" aria-live="polite"></ul>
+      <div class="monfoot"><span id="sx-monTxt">II · ART · SpO2</span><span id="sx-spdTxt">1 s = 1 min</span><span id="sx-pausedTag" hidden>SIM PAUSED</span><button id="sx-goalMini" class="gmini" type="button" hidden></button></div>
     </section>
     <div class="side">
       <section class="card" aria-label="Numbers">
@@ -6686,9 +6912,7 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 
   <div class="lower">
     <section class="card" aria-label="Case" id="sx-caseCard">
-      <h2>Case</h2>
-      <h3 id="sx-scTitle"></h3>
-      <p class="brief" id="sx-scBrief"></p>
+      <h2>Targets</h2>
       <ul class="goals" id="sx-goals"></ul>
       <div id="sx-holdWrap"><div class="hold"><div id="sx-holdBar"></div></div><div class="holdtxt" id="sx-holdTxt"></div></div>
       <div class="row"><button class="btn" id="sx-hintBtn">Show hint</button></div>
@@ -18826,6 +19050,7 @@ const ROOT = document.getElementById('v-mshock');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -18932,7 +19157,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -20396,6 +20621,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -20669,6 +20900,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -20678,6 +20911,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="ms-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -20713,6 +20947,7 @@ const ROOT = document.getElementById('v-mresp');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -20819,7 +21054,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -22270,6 +22505,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -22543,6 +22784,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -22552,6 +22795,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="mr-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -22587,6 +22831,7 @@ const ROOT = document.getElementById('v-mtox');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -22693,7 +22938,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -24141,6 +24386,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -24414,6 +24665,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -24423,6 +24676,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="mt-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -24458,6 +24712,7 @@ const ROOT = document.getElementById('v-mendo');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -24564,7 +24819,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -26019,6 +26274,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -26292,6 +26553,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -26301,6 +26564,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="me-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -26336,6 +26600,7 @@ const ROOT = document.getElementById('v-mgi');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -26442,7 +26707,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -27890,6 +28155,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -28163,6 +28434,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -28172,6 +28445,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="mg-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -28207,6 +28481,7 @@ const ROOT = document.getElementById('v-nicp');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -28313,7 +28588,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -29769,6 +30044,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -30042,6 +30323,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -30051,6 +30334,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="nc-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -30086,6 +30370,7 @@ const ROOT = document.getElementById('v-nstroke');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -30192,7 +30477,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -31648,6 +31933,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -31921,6 +32212,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -31930,6 +32223,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="ns-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -31965,6 +32259,7 @@ const ROOT = document.getElementById('v-nsah');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -32071,7 +32366,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -33513,6 +33808,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -33786,6 +34087,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -33795,6 +34098,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="nh-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -33830,6 +34134,7 @@ const ROOT = document.getElementById('v-nsz');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -33936,7 +34241,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -35385,6 +35690,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -35658,6 +35969,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -35667,6 +35980,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="nz-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -35702,6 +36016,7 @@ const ROOT = document.getElementById('v-nnm');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -35808,7 +36123,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -37243,6 +37558,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -37516,6 +37837,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -37525,6 +37848,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="nn-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -37560,6 +37884,7 @@ const ROOT = document.getElementById('v-strauma');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -37666,7 +37991,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -39116,6 +39441,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -39389,6 +39720,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -39398,6 +39731,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="st-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -39433,6 +39767,7 @@ const ROOT = document.getElementById('v-sabd');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -39539,7 +39874,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -40981,6 +41316,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -41254,6 +41595,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -41263,6 +41606,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="sa-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -41298,6 +41642,7 @@ const ROOT = document.getElementById('v-sburn');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -41404,7 +41749,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -42846,6 +43191,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -43119,6 +43470,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -43128,6 +43481,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="sb-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
@@ -43163,6 +43517,7 @@ const ROOT = document.getElementById('v-scomp');
 /* ===== Shared ICU patient engine (no DOM): circulation, lungs, sepsis, anaphylaxis, PE, hemorrhage/coagulation,
    ICP, DKA, intra-abdominal pressure. 1 real second = 1 clinical minute. ===== */
 const DT = 0.004, TICK = 0.1, TS = 60;
+const XSPD = { v: 1 };
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rnd = Math.random;
@@ -43269,7 +43624,7 @@ function newICU(sc) {
 function fio2Of() { const r = X.resp; if (r.intubated) return r.fio2; return { ra: 0.21, nc: 0.32, nrb: 0.7, hfnc: 0.8 }[r.o2] || 0.21; }
 
 function physTick(init) {
-  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1);          // clinical minutes this tick
+  const dm = init ? 0 : TICK * TS / 60 * (X.sc.speed || 1) * XSPD.v;          // clinical minutes this tick
   if (!init) X.m += dm;
   const L = X.lvl, P = X.pt, N = X.neuro, K = X.dka, A = X.iap;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dm / 4));
@@ -44710,6 +45065,12 @@ XHOOK.log = (msg, lvl) => {
   const tm = document.createElement('time'); tm.textContent = fmtT(X.m - (X.m0 || 0));
   const sp = document.createElement('span'); sp.textContent = msg;
   li.append(tm, sp); logEl.prepend(li);
+  if (!X || X.silent) return;
+  const tk = $('ticker'), t2 = document.createElement('li'); t2.className = lvl || 'info';
+  const t3 = document.createElement('time'); t3.textContent = fmtT(X.m - (X.m0 || 0)); t2.append(t3, document.createTextNode(msg)); tk.prepend(t2);
+  t2.title = msg; while (tk.children.length > 2) tk.lastChild.remove();
+  const life = lvl === 'crit' || lvl === 'warn' || /^Labs|^Metabolic|^Also/.test(msg) ? 14000 : 7000;
+  setTimeout(() => { t2.classList.add('fade'); setTimeout(() => t2.remove(), 700); }, life);
   while (logEl.children.length > 80) logEl.lastChild.remove();
 };
 XHOOK.choice = (k, c) => { XHOOK.log('Coach note: ' + c.t, 'info'); if (typeof CT !== 'undefined' && CT.note) CT.note(k, c); };
@@ -44983,6 +45344,8 @@ $('goalMini').onclick = () => $('caseCard').scrollIntoView({ behavior: 'smooth',
 $('hintBtn').onclick = () => { $('hint').hidden = !$('hint').hidden; };
 $('restart').onclick = () => load(scIdx);
 $('pauseSim').onclick = () => { simPaused = !simPaused; $('pauseSim').textContent = simPaused ? 'Resume' : 'Pause'; $('pausedTag').hidden = !simPaused; };
+function spdApply(v) { XSPD.v = v; const per = Math.round(60 * v * ((X && X.sc.speed) || 1)); $('spdTxt').textContent = per >= 60 ? `1 s = ${per / 60 >= 2 ? Math.round(per / 60) + ' min' : per === 60 ? '1 min' : (per / 60).toFixed(1) + ' min'}` : `1 s = ${per} s`; $('spdSel').value = String(v); }
+$('spdSel').onchange = () => { const v = +$('spdSel').value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} spdApply(v); };
 const sel = $('scSel');
 XSCEN.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${i < XSCEN.length - 1 ? i + 1 + '. ' : ''}${s.name}`; sel.append(o); });
 sel.onchange = () => load(+sel.value);
@@ -44992,6 +45355,7 @@ function load(i) {
   newICU(Object.assign({ unit: UNIT.id }, XSCEN[i])); lastSpec = '';
   logEl.innerHTML = '<li class="empty" id="sx-logEmpty">Events appear here as they happen.</li>';
   buildPumps(); buildActs(); buildTiles(); M.W = 0; layout(true); renderCase(); paint(); trendReset();
+  { let v = 1; try { v = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} spdApply(v); } $('ticker').innerHTML = '';
 }
 let lastTs = null, acc = 0;
 function frame(ts) {
