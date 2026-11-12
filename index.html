@@ -285,11 +285,47 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
 /* library */
+.libbar{display:grid;gap:10px;margin-top:10px}
+.libbar input{width:100%;max-width:640px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:inherit}
+.libtabs,.libchips{display:flex;flex-wrap:wrap;gap:6px}
+.libtabs button,.libchips button{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--soft);cursor:pointer}
+.libtabs button.on,.libchips button.on{background:var(--panel);color:var(--fg);border-color:var(--amber)}
 .libgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}
-.libcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:8px;align-content:start}
-.libcard h3{margin:0;font-family:var(--f-disp);font-size:19px}
+.libcard{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--uc,var(--line));border-radius:14px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.libcard h3{margin:0;font-family:var(--f-disp);font-size:19px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
 .libcard h3 a{text-decoration:none}
+.libcard h3 small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--uc,var(--soft));font-family:var(--f-disp)}
 .libcard .ctl-k{font-family:var(--f-disp);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.libcard ul.bp{margin:0;padding-left:18px;display:grid;gap:4px}
+.libcard ul.bp li{line-height:1.45}
+.libcard ul.bp sup,.lbcore sup{color:var(--soft);font-size:10px;margin-left:3px}
+.libcard details{border-top:1px solid var(--line);padding-top:8px}
+.libcard details>summary{cursor:pointer;font-weight:600;color:var(--fg)}
+.libcard details[open]>summary{margin-bottom:6px}
+.libcard h4{margin:.8em 0 .3em;font-size:14px;color:var(--fg)}
+.libcard h5{margin:.9em 0 .2em;font-size:13px;color:var(--amber);font-family:var(--f-disp);letter-spacing:.06em;text-transform:uppercase}
+.libcard p,.libcard li{color:var(--soft);font-size:14px}
+.libcard .try{font-size:13px;color:var(--soft);border-left:2px solid var(--amber);padding-left:8px;margin:.3em 0}
+.libcard .cases{display:flex;flex-wrap:wrap;gap:6px}
+.libcard .cases a{font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg)}
+.libcard .vf{font-size:11px;color:var(--muted)}
+.lbtr{display:grid;gap:10px}
+.lbtr .tr{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:4px}
+.lbtr .tr b{font-family:var(--f-disp);font-size:16px}
+.lbtr .tr .yr{color:var(--amber);font-size:12px;margin-left:6px}
+.lbtr .tr .q{color:var(--muted);font-size:13px}
+.lbtr .tr .f{font-size:14px}
+.lbtr .tr .p{font-size:14px;color:var(--fg)}
+.lbtr .tr .p::before{content:"Practice: ";color:#3ec98e;font-weight:600}
+.lbtr .tr .tp{font-size:12px;color:var(--muted)}
+.lbcore{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:14px}
+.lbcore .libcard{border-left-color:var(--amber)}
+.lbq .qn{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.lbq .qopt{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font:inherit;font-size:14px;cursor:pointer}
+.lbq .qopt.ok{border-color:#3ec98e;color:#3ec98e}.lbq .qopt.no{border-color:#e5484d;color:#e5484d}
+.lbq .qex{font-size:13px;color:var(--soft);margin:6px 0}
+.lbq button.nx{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--amber);background:transparent;color:var(--fg);cursor:pointer}
+.libempty{color:var(--soft)}
 .libintro{color:var(--soft);max-width:80ch;margin:0}
 
 /* show-the-model drawer */
@@ -5068,11 +5104,12 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 <main id="v-library" class="view" hidden>
   <div class="menu">
     <section class="sect">
-      <div class="eyebrow">Reading list</div>
+      <div class="eyebrow">Teaching library</div>
       <h1 style="font-family:var(--f-disp);font-size:clamp(30px,5vw,44px);margin:.2em 0 .3em">Library</h1>
-      <p class="libintro">The evidence behind every simulator: current society guidelines and the key trials, newest first, checked for currency in October 2026. Where a guideline is being updated (for example the KDIGO AKI draft), both versions are listed. UpToDate topics sit underneath as optional review reading. Doses and thresholds in the sims are teaching values: check your local protocols before acting.</p>
+      <p class="libintro">Best practice for each topic, the deep dives from every case in one place, the landmark trials and what they changed, and practice questions. Sources are current guidelines and key trials, newest first. Doses and thresholds are teaching values: check local protocols before acting.</p>
+      <div class="libbar"><input id="libQ" type="search" placeholder="Search topics, drugs, trials (e.g. vasopressin, prone, TXA)" aria-label="Search the library"><div class="libtabs" role="tablist"><button data-t="topics" class="on">Topics</button><button data-t="core">Core ICU standards</button><button data-t="trials">Landmark trials</button><button data-t="refs">Reading list</button></div><div class="libchips" id="libChips"></div></div>
     </section>
-    <div class="libgrid" id="libGrid"></div>
+    <div id="libPane"></div>
   </div>
 </main>
 
@@ -8077,7 +8114,7 @@ window.CTP = (() => {
   window.addEventListener('DOMContentLoaded', () => {
     const b = $('prgReset'); if (b) b.onclick = () => { if (!confirm('Clear all progress on every device?')) return; P = { v: 1, c: {} }; save(); };
   });
-  return { start, done, danger, cases, render };
+  return { start, done, danger, cases, render, list: sim => LIST[sim] || [] };
 })();
 </script>
 <script>
@@ -11293,26 +11330,255 @@ LEARN.add('pacing', {
   });
 })();
 
+/* ===== Library teaching content: core ICU standards, per-topic best practices, landmark trial takeaways. Each line cites LEARN.SRC keys. ===== */
 (() => {
-  const T = { pacing: 'Temporary Pacing', cals: 'CALS Arrest', poaf: 'Post-op AF', rhythm: 'Rhythm Drills', hemo: 'Hemodynamics & Swan', bleed: 'Bleeding or Tamponade?', artline: 'Art Line Troubleshooter', lytes: 'Electrolytes & Drips', aki: 'Post-op AKI & CRRT', vent: 'Vent & ABGs', iabp: 'IABP Timing', mcs: 'Impella & VA-ECMO', orsurg: 'CV OR' };
-  const g = document.getElementById('libGrid'); if (!g) return;
-  const all = new Set();
-  Object.keys(T).forEach(sim => {
-    const S = LEARN.SIMS[sim]; if (!S) return;
-    const keys = new Set(S.r || []);
+  const LIB = {};
+  /* Core standards that apply to nearly every ICU patient */
+  LIB.CORE = [
+    { t: 'Sepsis and septic shock', r: ['ssc26', 'ssc21'], b: [
+      'Septic shock: antimicrobials immediately, ideally within 1 hour; sepsis without shock: early, balanced with a short diagnostic workup (SSC 2026).',
+      'Balanced crystalloid over 0.9% saline for resuscitation; reassess often, then start removing fluid once resuscitated (SSC 2026).',
+      'MAP about 65 managed as a range (roughly ±5); 60–65 is suggested for patients 65 and older (SSC 2026).',
+      'Norepinephrine first; add vasopressin rather than climbing norepinephrine; hydrocortisone for an ongoing vasopressor need (SSC 2021).',
+      'De-escalate once cultures and susceptibilities are back; prolonged beta-lactam infusion after a loading dose (both strong in 2026).'] },
+    { t: 'Lung-protective ventilation', r: ['arma00', 'amato15', 'proseva13', 'ats24ards'], b: [
+      'Tidal volume 6 mL/kg predicted body weight (height and sex), not actual weight.',
+      'Plateau pressure ≤ 30 cmH2O; driving pressure (plateau − PEEP) under about 15.',
+      'Moderate to severe ARDS with P/F < 150: prone at least 16 hours a day.',
+      'Accept permissive hypercapnia (pH ≥ 7.20) rather than raising tidal volume.'] },
+    { t: 'Liberation: the ABCDEF bundle', r: ['padis18', 'abc08', 'ats17', 'pandh06'], b: [
+      'A: assess and treat pain first (analgesia-first sedation).',
+      'B: both a spontaneous awakening trial and a spontaneous breathing trial every day, paired.',
+      'C: choice of sedation: light, with propofol or dexmedetomidine over benzodiazepines.',
+      'D: delirium: screen with CAM-ICU each shift; remove deliriogenic drugs (benzodiazepines, anticholinergics).',
+      'E: early mobility. F: family engagement.'] },
+    { t: 'Blood, glucose and nutrition', r: ['tricc99', 'triss14', 'trics17', 'nicesugar09', 'aspen16'], b: [
+      'Transfuse red cells at Hgb < 7 g/dL in most ICU patients, including septic shock; < 7.5 after cardiac surgery.',
+      'Glucose 140–180 mg/dL; tight control (81–108) raised mortality and caused severe hypoglycemia.',
+      'Start enteral nutrition within 24–48 hours when the patient cannot eat and is hemodynamically stable; trophic feeds are fine at first.'] },
+    { t: 'Daily prophylaxis checklist (FAST HUGS BID)', r: ['fasthug05', 'revise24', 'bratzler13'], b: [
+      'VTE: pharmacologic prophylaxis unless bleeding or high bleeding risk; compression devices meanwhile.',
+      'Stress ulcer prophylaxis for ventilated or coagulopathic patients; stop it when the risk ends (REVISE: fewer bleeds, no mortality change).',
+      'Head of bed 30–45° on the ventilator; daily review of every line, tube and catheter.',
+      'Surgical antibiotic prophylaxis stops within 24 hours; treatment courses are as short as the infection allows.'] },
+    { t: 'Kidneys and fluids', r: ['kdigo26', 'kdigo12', 'starrt20', 'michard00'], b: [
+      'Stage AKI by KDIGO creatinine and urine output criteria; stop nephrotoxins and optimize perfusion.',
+      'Start RRT for indications (refractory K, acidosis, overload, uremia), not on a timer: early starts did not improve survival.',
+      'Before giving fluid, ask whether the patient is fluid responsive (pulse pressure variation, passive leg raise, POCUS).'] }
+  ];
+  /* Per-topic best practices. Each line: [text, [refs]] */
+  LIB.BP = {
+    pacing: [['Check thresholds daily; set output at 2–3× the capture threshold.', ['reade']], ['Default backup is VVI or DDD at a rate below the intrinsic rhythm; asynchronous modes risk R-on-T.', ['reade', 'brady18']], ['Undersensing causes competitive pacing; oversensing causes pauses. Fix sensitivity before rate.', ['reade']], ['Rapid atrial pacing can terminate atrial flutter, not atrial fibrillation.', ['reade']]],
+    cals: [['After cardiac surgery, VF/pVT: up to three stacked shocks before external compressions.', ['sts17', 'litflcals']], ['Asystole or extreme bradycardia: pace at maximum output before CPR when wires are present.', ['sts17']], ['Prepare for emergency resternotomy within 5 minutes if ROSC is not achieved.', ['sts17', 'erc25']], ['Avoid full-dose epinephrine boluses early; they risk rebound hypertension and bleeding.', ['sts17']]],
+    poaf: [['POAF peaks on days 2–3; correct K and Mg and look for triggers (pain, hypoxia, volume, drugs).', ['af23', 'esc24af']], ['Unstable: synchronized cardioversion. Stable: rate control and rhythm control are equivalent options.', ['gillinov16', 'af23']], ['Anticoagulate if AF persists beyond about 48 hours, weighing surgical bleeding risk.', ['af23']], ['Posterior left pericardiotomy at surgery reduced POAF in PALACS.', ['palacs21']]],
+    rhythm: [['Unstable tachycardia with a pulse: synchronized cardioversion.', ['aha25']], ['Wide and regular: treat as VT until proven otherwise.', ['aha25']], ['Symptomatic bradycardia: atropine, then pacing or a chronotrope.', ['aha25', 'brady18']]],
+    hemo: [['Separate the four determinants: preload, afterload, contractility and rate.', ['bojar']], ['Low output with high filling pressures: inotrope and afterload reduction, not fluid.', ['bojar']], ['Equalized diastolic pressures and falling output after surgery: think tamponade.', ['bojar', 'esc15peri']], ['Use dynamic tests of fluid responsiveness when the rhythm and ventilation allow.', ['michard00']]],
+    bleed: [['Classify bleeding with a universal definition and act on trends in chest tube output.', ['dyke14']], ['Correct the cause: heparin (protamine), platelets, fibrinogen, temperature and calcium; use viscoelastic tests where available.', ['eacts24', 'pbm21']], ['Restrictive transfusion (Hgb 7.5) after cardiac surgery.', ['trics17']], ['Sudden stop in chest tube output with hypotension: clotted tubes and tamponade.', ['bojar']]],
+    artline: [['Level the transducer to the phlebostatic axis; zero to air.', ['gardner81']], ['Square wave test: 1–2 oscillations is optimal; fewer means overdamped, more means underdamped.', ['gardner81']], ['Each 10 cm of transducer height error changes the reading by about 7.4 mmHg.', ['gardner81']]],
+    vent: [['Fast-track extubation after cardiac surgery when warm, awake, stable and not bleeding.', ['grant23']], ['SBT readiness: oxygenation on low PEEP and FiO2, hemodynamic stability, able to trigger.', ['ats17']], ['RSBI < 105 predicts a successful wean.', ['yang91']], ['Read ABGs in order: pH, primary process, compensation, anion gap.', ['berend14']]],
+    iabp: [['Inflate at the dicrotic notch, deflate just before systole.', ['trost06']], ['Early inflation or late deflation increase afterload: fix timing first.', ['trost06']], ['IABP did not lower mortality in MI cardiogenic shock (IABP-SHOCK II).', ['iabp12']], ['Blood in the gas line means balloon rupture: stop pumping and remove.', ['trost06']]],
+    mcs: [['Classify shock by SCAI stage to match support to severity.', ['scai19']], ['Impella CP improved survival in STEMI cardiogenic shock (DanGer) at the cost of more complications.', ['danger24']], ['VA-ECMO did not lower mortality in infarct-related shock (ECLS-SHOCK).', ['eclsshock23']], ['VA-ECMO raises LV afterload: watch for LV distension and vent the LV if needed.', ['elso21']], ['VV-ECMO: recirculation lowers effective support; check cannula distance and flow.', ['elsorecirc15', 'elsovv21']]],
+    orsurg: [['Systolic pressure is kept low during aortic cannulation.', ['cpb24']], ['Heparin to target ACT before bypass; protamine after decannulation planning.', ['acthep18']], ['Separate from bypass with a checklist: warm, rhythm, ventilation, K, de-airing.', ['cpb24']]],
+    cxr: [['ETT tip 3–7 cm above the carina (head neutral).', ['goodman76']], ['CVC tip at the cavoatrial junction or lower SVC.', ['baskin08']], ['Look for pneumothorax on every film after a line or chest tube.', ['godoy12a', 'godoy12b']]],
+    lytes: [['Hyperkalemia with ECG changes: calcium first, then shift (insulin with dextrose), then remove.', ['bosch09']], ['After cardiac surgery, supplementing K only below 3.6 was as good as keeping K ≥ 4.5 for preventing AF (TIGHT-K): avoid hypokalemia without chasing high-normal levels.', ['tightk']], ['Insulin infusion after cardiac surgery to keep glucose under 180.', ['sts09glu']]],
+    aki: [['Stage with KDIGO criteria; look for prerenal, renal and obstructive causes.', ['kdigo26', 'kdigo12']], ['Furosemide stress test helps predict progression.', ['chawla13']], ['CRRT effluent 20–25 mL/kg/h delivered; more intensive dosing did not help.', ['renal09', 'atn08']], ['Start RRT for indications, not earlier (STARRT-AKI).', ['starrt20']]],
+    mshock: [['Find the failing term: volume, SVR, pump or obstruction; POCUS answers most of it.', ['ssc21']], ['Sepsis: cultures, antibiotics within 1 hour in shock, balanced crystalloid, norepinephrine.', ['ssc26', 'ssc21']], ['Cardiogenic: norepinephrine, then inotrope, early revascularization, culprit-only PCI.', ['shock99', 'culprit17']], ['Tamponade: drain it, avoid positive pressure. Massive PE: lytics, little fluid.', ['esc15peri', 'escpe19']], ['Anaphylaxis: IM epinephrine first; infusion if refractory.', ['ana23']]],
+    mresp: [['ARDS: 6 mL/kg PBW, plateau ≤ 30, prone for P/F < 150.', ['arma00', 'proseva13']], ['Hypercapnic COPD: NIV and SpO2 88–92%.', ['rochwerg17', 'austin10']], ['Hypoxemic failure: HFNC first; track ROX and intubate on time.', ['florali15', 'roca19', 'kang15']], ['Severe asthma on the vent: slow rate, short Ti, accept CO2, check auto-PEEP.', ['leatherman15', 'tuxen87']]],
+    mtox: [['Wide QRS after an overdose: sodium bicarbonate.', ['bruccoleri16']], ['CCB overdose: calcium, vasopressors and high-dose insulin early.', ['ccb17']], ['Alcohol withdrawal: symptom-triggered benzodiazepines, thiamine; phenobarbital if resistant.', ['asam20']], ['Serotonin toxicity: stop serotonergic drugs, benzodiazepines, cyproheptadine, cool; no restraints.', ['boyer05', 'dunkley03']]],
+    mendo: [['DKA: fluids, K ≥ 3.5 before insulin, add dextrose when glucose falls, overlap basal insulin.', ['dka24']], ['HHS: fluids first; osmolality falls 3–8 mOsm/kg/h.', ['hhs23']], ['Adrenal crisis: hydrocortisone 100 mg IV without waiting for tests.', ['bornstein16']], ['Thyroid storm: beta-blocker, thionamide, then iodine an hour later, steroids.', ['ata16']], ['Hyponatremia: limit correction to 8 mmol/L in 24 h in high-risk patients.', ['verbalis13', 'spasovski14']]],
+    mgi: [['Variceal bleed: restrictive transfusion, octreotide, ceftriaxone, endoscopy within 12 h.', ['aasld24', 'villanueva13']], ['ALF: NAC, neuroprotection (Na 145–155), early transplant referral.', ['easl17', 'acg23alf']], ['Pancreatitis: moderate goal-directed LR, early feeding, no prophylactic antibiotics.', ['waterfall22', 'acg24']], ['HRS-AKI: stop diuretics, albumin, then vasoconstrictor with albumin.', ['aasld21', 'confirm21']]],
+    nicp: [['Tier 0 first: HOB 30°, neck midline, normothermia, sedation and analgesia.', ['sibicc19']], ['Treat ICP > 22; CPP 60–70.', ['btf16']], ['Avoid hypotension and hypoxemia: one episode worsens outcome.', ['chesnut93']], ['EVD: level at the tragus and relevel with every position change.', ['sah23']]],
+    nstroke: [['BP < 185/110 before lysis, < 180/105 for 24 h after.', ['stroke19']], ['Lyse eligible patients and do not delay thrombectomy imaging.', ['stroke19']], ['Late window: select thrombectomy by mismatch imaging up to 24 h.', ['dawn18', 'defuse18']], ['ICH: SBP about 140, reverse anticoagulation, no platelets for antiplatelet use.', ['ich22', 'annexa24', 'patch16']]],
+    nsah: [['Secure the aneurysm early; SBP < 160 until then.', ['sah23']], ['Nimodipine for 21 days; euvolemia, not hypervolemia.', ['sah23']], ['DCI: induced hypertension, then endovascular rescue.', ['sah23']], ['Hyponatremia in SAH: do not fluid restrict.', ['sah23']]],
+    nsz: [['Treat at 5 minutes: benzodiazepine in adequate dose.', ['ncsse12']], ['Second line: levetiracetam, fosphenytoin or valproate (equivalent in ESETT).', ['esett19']], ['Not waking after convulsions: continuous EEG.', ['ncsse12']], ['Eclampsia: magnesium sulfate; treat severe-range BP.', ['acog20']]],
+    nnm: [['Monitor FVC and NIF; SpO2 falls late.', ['gbs23']], ['GBS: IVIG or plasma exchange; steroids do not help.', ['gbs23']], ['Myasthenic crisis: IVIG or PLEX; avoid triggering drugs.', ['mg21']]],
+    strauma: [['Bleeding: blood products early (1:1:1), limit crystalloid, TXA within 3 h.', ['proppr15', 'crash2', 'eutrauma23']], ['Permissive hypotension only without TBI.', ['eutrauma23', 'btf16']], ['Tension pneumothorax is a clinical diagnosis: decompress first.', ['atls18']], ['Watch the lethal triad: warm, correct calcium and fibrinogen.', ['eutrauma23']]],
+    sabd: [['Septic post-op patient: source control quickly.', ['ssc21']], ['Measure bladder pressure in at-risk patients; IAP > 20 with organ failure is ACS.', ['wsacs13']], ['Pain out of proportion with AF: CTA for mesenteric ischemia.', ['wses22']]],
+    sburn: [['Formula is only a start rate; titrate LR hourly to urine 0.5 mL/kg/h.', ['aba24']], ['Prevent fluid creep; consider albumin rescue.', ['saffle07', 'aba24']], ['Smoke inhalation: CO-oximetry, 100% O2, hydroxocobalamin for suspected cyanide.', ['weaver09', 'borron07']], ['Circumferential burns with rising pressures: escharotomy.', ['aba24']]],
+    scomp: [['Fat embolism: supportive care and early fixation.', ['kosova15', 'gurd74']], ['Rhabdomyolysis: aggressive fluids; bicarbonate and mannitol unproven.', ['brown04', 'bosch09']], ['Delirium: ABCDEF bundle; antipsychotics do not shorten it.', ['padis18', 'mindusa18']]],
+    rounds: [['Run FAST HUGS BID on every patient every day.', ['fasthug05']], ['Pair SAT and SBT daily.', ['abc08']], ['Glucose 140–180; transfuse below 7.', ['nicesugar09', 'tricc99']], ['Stop what is no longer needed: lines, catheters, PPIs, antibiotics.', ['revise24', 'bratzler13']]]
+  };
+  /* Landmark trials: name, year, question, finding, practice point */
+  LIB.TR = {
+    arma00: ['ARMA (ARDSNet)', 2000, 'Lower tidal volume in ARDS?', '6 vs 12 mL/kg PBW: mortality 31% vs 40%.', 'Vt 6 mL/kg PBW, plateau ≤ 30.'],
+    amato15: ['Driving pressure', 2015, 'Which ventilator variable tracks survival?', 'Driving pressure was the variable most strongly linked to survival across 9 ARDS trials.', 'Keep driving pressure under about 15.'],
+    proseva13: ['PROSEVA', 2013, 'Prone positioning in severe ARDS?', 'P/F < 150, prone ≥ 16 h/day: 28-day mortality 16% vs 33%.', 'Prone early in moderate to severe ARDS.'],
+    rose19: ['ROSE', 2019, 'Early neuromuscular blockade in ARDS?', 'No mortality benefit vs lighter sedation.', 'Paralysis is not routine; use for dyssynchrony.'],
+    florali15: ['FLORALI', 2015, 'HFNC vs standard O2 vs NIV in hypoxemic failure?', 'Intubation similar overall; lower 90-day mortality with HFNC.', 'HFNC first for de novo hypoxemia.'],
+    kang15: ['Kang', 2015, 'Does delayed intubation after HFNC failure matter?', 'Intubation after > 48 h on HFNC linked to higher mortality (observational).', 'Set a time limit; reassess with ROX.'],
+    roca19: ['ROX index', 2019, 'Can a bedside score predict HFNC failure?', 'ROX ≥ 4.88 predicted success; < 3.47 at 6 h predicted failure.', 'Track ROX at 2, 6 and 12 h.'],
+    austin10: ['Austin', 2010, 'High-flow vs titrated O2 in COPD exacerbation?', 'Titrated O2 (88–92%) cut prehospital mortality by over half.', 'Target SpO2 88–92% in COPD.'],
+    reduce13: ['REDUCE', 2013, '5 vs 14 days of prednisone for COPD?', '5 days was non-inferior for re-exacerbation.', 'Prednisone 40 mg for 5 days.'],
+    soap10: ['SOAP II', 2010, 'Dopamine vs norepinephrine in shock?', 'No overall mortality difference; more arrhythmias with dopamine and worse survival in cardiogenic shock.', 'Norepinephrine first-line.'],
+    vasst08: ['VASST', 2008, 'Add vasopressin in septic shock?', 'No overall 28-day mortality difference; possible benefit in less severe shock.', 'Vasopressin as a norepinephrine-sparing add-on.'],
+    cats07: ['CATS', 2007, 'Norepinephrine + dobutamine vs epinephrine in septic shock?', 'No mortality difference.', 'Either approach is acceptable; epinephrine raises lactate.'],
+    cat08: ['CAT', 2008, 'Epinephrine vs norepinephrine in ICU patients?', 'Same time to MAP goal; more lactic acidosis and tachycardia with epinephrine.', 'Norepinephrine first; epinephrine is a reasonable second agent.'],
+    shock99: ['SHOCK', 1999, 'Early revascularization in MI cardiogenic shock?', 'No 30-day difference, but lower 6-month mortality (50% vs 63%).', 'Revascularize emergently.'],
+    iabp12: ['IABP-SHOCK II', 2012, 'Does IABP lower mortality in MI cardiogenic shock?', 'No: 30-day mortality 40% vs 41%.', 'IABP is not routine in MI shock.'],
+    culprit17: ['CULPRIT-SHOCK', 2017, 'Culprit-only vs multivessel PCI in shock?', 'Culprit-only lowered 30-day death or RRT (46% vs 55%).', 'Treat only the culprit lesion acutely.'],
+    danger24: ['DanGer Shock', 2024, 'Impella CP in STEMI cardiogenic shock?', 'Lower 180-day mortality (46% vs 59%) with more bleeding, limb ischemia and RRT.', 'Selected STEMI shock patients benefit; watch complications.'],
+    eclsshock23: ['ECLS-SHOCK', 2023, 'Routine VA-ECMO in infarct-related shock?', 'No 30-day mortality benefit; more bleeding and vascular complications.', 'VA-ECMO is not routine in MI shock.'],
+    doremi21: ['DOREMI', 2021, 'Milrinone vs dobutamine in cardiogenic shock?', 'No difference in the composite outcome.', 'Choose by vasodilation, renal function and beta-blockade.'],
+    optima18: ['OptimaCC', 2018, 'Epinephrine vs norepinephrine in MI cardiogenic shock?', 'More refractory shock with epinephrine; stopped early.', 'Prefer norepinephrine in cardiogenic shock.'],
+    tricc99: ['TRICC', 1999, 'Restrictive (7) vs liberal (10) transfusion in ICU?', 'Restrictive at least as good; better in less ill and younger patients.', 'Transfuse at Hgb < 7.'],
+    triss14: ['TRISS', 2014, 'Hgb 7 vs 9 in septic shock?', 'Same 90-day mortality with half the transfusions.', 'Threshold 7 in septic shock.'],
+    trics17: ['TRICS III', 2017, 'Restrictive transfusion in cardiac surgery?', 'Hgb 7.5 was non-inferior for death and major morbidity.', 'Threshold 7.5 after cardiac surgery.'],
+    villanueva13: ['Villanueva', 2013, 'Transfusion threshold in upper GI bleeding?', 'Hgb 7 vs 9: lower 6-week mortality and rebleeding.', 'Restrictive transfusion in GI bleeding, especially varices.'],
+    nicesugar09: ['NICE-SUGAR', 2009, 'Tight vs conventional glucose control?', 'Tight (81–108) raised 90-day mortality; severe hypoglycemia 6.8% vs 0.5%.', 'Target 140–180.'],
+    abc08: ['ABC', 2008, 'Pair awakening and breathing trials?', 'More ventilator-free days and lower 1-year mortality.', 'Daily paired SAT + SBT.'],
+    pandh06: ['Pandharipande', 2006, 'Is lorazepam linked to delirium?', 'Lorazepam was an independent risk factor for transition to delirium (observational).', 'Avoid benzodiazepine sedation.'],
+    mindusa18: ['MIND-USA', 2018, 'Do antipsychotics treat ICU delirium?', 'Haloperidol and ziprasidone did not change days alive without delirium or coma.', 'No routine antipsychotics; treat causes.'],
+    mends2_21: ['MENDS2', 2021, 'Dexmedetomidine vs propofol in septic ventilated patients?', 'No difference in delirium-free days, ventilator days or survival.', 'Either is fine for light sedation.'],
+    revise24: ['REVISE', 2024, 'Pantoprazole in ventilated patients?', 'Less clinically important GI bleeding (1% vs 3.5%); no mortality, VAP or C. difficile difference.', 'SUP in ventilated patients at risk.'],
+    starrt20: ['STARRT-AKI', 2020, 'Accelerated vs standard RRT start?', 'No mortality benefit; more RRT dependence at 90 days.', 'Start RRT for indications.'],
+    renal09: ['RENAL', 2009, 'Higher vs lower CRRT intensity?', '40 vs 25 mL/kg/h: no difference in mortality.', 'Deliver 20–25 mL/kg/h.'],
+    atn08: ['ATN', 2008, 'Intensive vs less intensive RRT?', 'No mortality or recovery benefit.', 'Standard dosing.'],
+    proppr15: ['PROPPR', 2015, '1:1:1 vs 1:1:2 in massive transfusion?', 'No 24-h or 30-day mortality difference; better hemostasis and fewer exsanguination deaths with 1:1:1.', 'Balanced ratios in massive transfusion.'],
+    crash2: ['CRASH-2', 2010, 'TXA in bleeding trauma?', 'Lower all-cause and bleeding mortality; benefit only within 3 h.', 'TXA within 3 hours of injury.'],
+    crash3_19: ['CRASH-3', 2019, 'TXA in TBI?', 'Lower head-injury death in mild to moderate TBI treated within 3 h.', 'Consider TXA in TBI within 3 h.'],
+    chesnut93: ['Chesnut', 1993, 'Which secondary insults matter after TBI?', 'A single hypotensive episode was strongly linked to worse outcome.', 'Never let a TBI patient be hypotensive.'],
+    patch16: ['PATCH', 2016, 'Platelets for ICH on antiplatelets?', 'More death or dependence with platelet transfusion.', 'Do not transfuse platelets for antiplatelet ICH without surgery.'],
+    annexa24: ['ANNEXA-I', 2024, 'Andexanet vs usual care for factor Xa ICH?', 'Better hemostasis; more thrombotic events; no mortality difference.', 'Andexanet or 4F-PCC; weigh thrombosis.'],
+    dawn18: ['DAWN', 2018, 'Thrombectomy 6–24 h with clinical-core mismatch?', 'Functional independence 49% vs 13%.', 'Late-window thrombectomy by imaging.'],
+    defuse18: ['DEFUSE 3', 2018, 'Thrombectomy 6–16 h by perfusion imaging?', 'Functional independence 45% vs 17%.', 'Perfusion mismatch selects late patients.'],
+    esett19: ['ESETT', 2019, 'Second-line drug for benzodiazepine-refractory status?', 'Levetiracetam, fosphenytoin and valproate each stopped seizures in about half.', 'Any of the three; pick by patient factors.'],
+    waterfall22: ['WATERFALL', 2022, 'Aggressive vs moderate fluids in pancreatitis?', 'More fluid overload with aggressive fluids, no benefit; stopped early.', 'Moderate goal-directed LR.'],
+    apec20: ['APEC', 2020, 'Urgent ERCP in severe biliary pancreatitis without cholangitis?', 'No reduction in complications or death.', 'ERCP for cholangitis or obstruction.'],
+    confirm21: ['CONFIRM', 2021, 'Terlipressin for HRS?', 'More HRS reversal; more respiratory failure; no survival difference.', 'Use with care; avoid in hypoxemia or overload.'],
+    sort99: ['Sort', 1999, 'Albumin in SBP?', 'Less renal failure (10% vs 33%) and lower mortality.', 'Albumin 1.5 g/kg day 1, 1 g/kg day 3.'],
+    lee09: ['Lee (ALFSG)', 2009, 'NAC in non-acetaminophen ALF?', 'Better transplant-free survival in early coma grades.', 'Consider NAC in early non-APAP ALF.'],
+    salsa21: ['SALSA', 2021, 'Bolus vs continuous hypertonic saline?', 'Similar overcorrection; boluses needed less relowering.', 'Rapid intermittent boluses are safe and effective.'],
+    gillinov16: ['Gillinov (CTSN)', 2016, 'Rate vs rhythm control for POAF?', 'Same days in hospital and complications.', 'Either strategy is reasonable.'],
+    palacs21: ['PALACS', 2021, 'Posterior left pericardiotomy to prevent POAF?', 'POAF 17% vs 32%.', 'Surgical technique can prevent POAF.'],
+    art19: ['ART', 2019, 'Bilateral vs single ITA grafts?', 'No 10-year mortality difference (intention to treat).', 'Graft choice remains surgeon-dependent.'],
+    coronary16: ['CORONARY', 2016, 'Off-pump vs on-pump CABG at 5 years?', 'No difference.', 'Both are acceptable in experienced hands.'],
+    rooby17: ['ROOBY-FS', 2017, 'Off-pump vs on-pump at 5 years in VA patients?', 'Higher 5-year mortality off-pump.', 'Off-pump is not better by default.'],
+    regroup19: ['REGROUP', 2019, 'Endoscopic vs open vein harvest?', 'No difference in major cardiac events.', 'Endoscopic harvest is acceptable.'],
+    michard00: ['Michard', 2000, 'Does pulse pressure variation predict fluid response?', 'PPV > 13% predicted response in ventilated septic patients.', 'Use PPV in passive, ventilated, sinus-rhythm patients.'],
+    boehnert85: ['Boehnert', 1985, 'QRS vs drug level in TCA overdose?', 'QRS ≥ 100 ms predicted seizures; ≥ 160 ms ventricular arrhythmias.', 'Treat the ECG.'],
+    brown04: ['Brown', 2004, 'Bicarbonate and mannitol in rhabdomyolysis?', 'No reduction in renal failure, dialysis or death.', 'Fluids, not bicarbonate-mannitol.'],
+    tightk: ['TIGHT-K', 2024, 'Does a high-normal K target prevent POAF after cardiac surgery?', 'Relaxed (K ≥ 3.6) was non-inferior to tight (K ≥ 4.5) for AF, with less supplementation.', 'Treat hypokalemia; skip routine high-normal targets.'],
+    yang91: ['Yang and Tobin', 1991, 'Which index predicts weaning?', 'RSBI (f/Vt) < 105 predicted success.', 'Use RSBI with the SBT.']
+  };
+  LEARN.LIB = LIB;
+})();
+
+/* ===== Library view: a teaching hub built from LEARN.LIB, LEARN.LESSON, case deep dives, XQBG question banks and LEARN.SRC ===== */
+(() => {
+  const U = { cticu: ['Cardiothoracic ICU', '#e5484d'], micu: ['Medical ICU', '#3fa9f5'], neuro: ['Neuro ICU', '#9b7bff'], sicu: ['Surgical ICU', '#f59e0b'], shared: ['Shared ICU tools', '#38c7b8'] };
+  const TOP = [
+    ['mshock', 'micu', 'Shock & Sepsis'], ['mresp', 'micu', 'Respiratory Failure'], ['mtox', 'micu', 'Toxicology & Withdrawal'], ['mendo', 'micu', 'Endocrine & Metabolic'], ['mgi', 'micu', 'GI & Liver'],
+    ['nicp', 'neuro', 'ICP & EVD'], ['nstroke', 'neuro', 'Stroke & ICH'], ['nsah', 'neuro', 'Aneurysmal SAH'], ['nsz', 'neuro', 'Status Epilepticus'], ['nnm', 'neuro', 'Neuromuscular Failure'],
+    ['strauma', 'sicu', 'Trauma Bay'], ['sabd', 'sicu', 'Post-op Abdomen'], ['sburn', 'sicu', 'Burn ICU'], ['scomp', 'sicu', 'Trauma Complications'],
+    ['pacing', 'cticu', 'Temporary Pacing'], ['cals', 'cticu', 'CALS Arrest'], ['poaf', 'cticu', 'Post-op AF'], ['rhythm', 'cticu', 'Rhythm Drills'], ['hemo', 'cticu', 'Hemodynamics & Swan'], ['bleed', 'cticu', 'Bleeding or Tamponade?'], ['iabp', 'cticu', 'IABP'], ['mcs', 'cticu', 'Impella & ECMO'], ['orsurg', 'cticu', 'CV OR'],
+    ['rounds', 'shared', 'Daily Rounds'], ['vent', 'shared', 'Vent & ABGs'], ['artline', 'shared', 'Art Line'], ['lytes', 'shared', 'Electrolytes & Drips'], ['aki', 'shared', 'Post-op AKI & CRRT'], ['cxr', 'shared', 'CXR & Lines']
+  ];
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
+  const up = k => LEARN.UPG[k] || [k];
+  const st = { tab: 'topics', unit: 'all', q: '' };
+  let built = false;
+  function topicKeys(sim) {
+    const S = LEARN.SIMS[sim] || {}, keys = new Set(S.r || []);
     Object.values(S.cases || {}).forEach(c => (c.r || []).forEach(k => keys.add(k)));
     Object.values(S.d || {}).forEach(a => a.forEach(k => keys.add(k)));
-    const k2 = new Set([...keys].map(k => LEARN.UPG[k] || k).flat()); keys.clear(); k2.forEach(k => keys.add(k));
-    keys.forEach(k => all.add(k));
-    const card = document.createElement('div'); card.className = 'libcard';
-    const h = document.createElement('h3'); const a = document.createElement('a'); a.href = '#' + sim; a.textContent = T[sim] + ' →'; h.append(a);
-    const u = [...keys].filter(k => k.startsWith('utd:')), o = [...keys].filter(k => !k.startsWith('utd:'));
-    card.append(h);
-    o.sort((a, b) => LEARN.yr(b) - LEARN.yr(a));
-    if (o.length) { const k = document.createElement('div'); k.className = 'ctl-k'; k.textContent = 'Current guidelines & key trials (newest first)'; card.append(k, LEARN.refsList(o)); }
-    if (u.length) { const d = document.createElement('details'); d.className = 'ctl-more'; const sm = document.createElement('summary'); sm.textContent = 'Optional review reading (UpToDate topics)'; d.append(sm, LEARN.refsList(u)); card.append(d); }
-    g.append(card);
-  });
+    ((LEARN.LIB.BP[sim]) || []).forEach(([, r]) => r.forEach(k => keys.add(k)));
+    const L = LEARN.LESSON && LEARN.LESSON[sim]; if (L) L.s.forEach(x => (x.src || []).forEach(k => keys.add(k)));
+    return [...new Set([...keys].map(up).flat())];
+  }
+  function cite(li, r) { if (!r || !r.length) return; const s = mk('sup', '', r.map(k => (LEARN.LIB.TR[k] && LEARN.LIB.TR[k][0]) || shortSrc(k)).join(' · ')); li.append(s); }
+  function shortSrc(k) { const t = LEARN.SRC[k] || k; if (k.startsWith('utd:')) return 'UpToDate'; const a = t.split(/[,.]/)[0]; const y = LEARN.yr(k); return (a.length > 28 ? a.slice(0, 28) + '…' : a) + (y ? ' ' + y : ''); }
+  function trialCard(k) {
+    const T = LEARN.LIB.TR[k]; const d = mk('div', 'tr');
+    const h = mk('div'); h.append(mk('b', '', T[0]), mk('span', 'yr', String(T[1]))); d.append(h, mk('div', 'q', T[2]), mk('div', 'f', T[3]), mk('div', 'p', T[4]), mk('div', 'tp', LEARN.SRC[k] || ''));
+    return d;
+  }
+  function quizInto(box, qs) {
+    box.innerHTML = ''; box.classList.add('lbq');
+    const pool = qs.slice().sort(() => Math.random() - 0.5).slice(0, 10); let i = 0, right = 0;
+    const show = () => {
+      box.innerHTML = '';
+      if (i >= pool.length) { box.append(mk('p', '', `Score ${right}/${pool.length}.`)); const b = mk('button', 'nx', 'New set'); b.onclick = () => quizInto(box, qs); box.append(b); return; }
+      const q = pool[i]; box.append(mk('div', 'qn', `Question ${i + 1} of ${pool.length}`), mk('p', '', q.q));
+      const opts = q.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5); const ex = mk('div', 'qex');
+      const bs = opts.map(o => { const b = mk('button', 'qopt', o.t); b.onclick = () => {
+        if (ex.textContent) return; const ok = o.k === q.a; if (ok) right++;
+        bs.forEach((x, n) => { x.disabled = true; if (opts[n].k === q.a) x.classList.add('ok'); }); if (!ok) b.classList.add('no');
+        ex.textContent = (ok ? 'Correct. ' : 'Not quite. ') + q.e; if (q.r) ex.append(LEARN.refsList(q.r));
+        const nx = mk('button', 'nx', i + 1 < pool.length ? 'Next' : 'Score'); nx.onclick = () => { i++; show(); }; ex.append(nx);
+      }; return b; });
+      bs.forEach(b => box.append(b)); box.append(ex);
+    };
+    show();
+  }
+  function topicCard(sim, unit, title) {
+    const [uname, uc] = U[unit]; const card = mk('article', 'libcard'); card.style.setProperty('--uc', uc); card.dataset.u = unit;
+    const h = mk('h3'); const a = mk('a', '', title + ' →'); a.href = '#' + sim; h.append(a, mk('small', '', uname)); card.append(h);
+    const L = LEARN.LESSON && LEARN.LESSON[sim]; if (L) card.append(mk('p', '', L.t));
+    const bp = LEARN.LIB.BP[sim];
+    if (bp) { card.append(mk('div', 'ctl-k', 'Best practice')); const ul = mk('ul', 'bp'); bp.forEach(([t, r]) => { const li = mk('li', '', t); cite(li, r); ul.append(li); }); card.append(ul); }
+    // play cases
+    const list = (window.CTP && CTP.list && CTP.list(sim)) || [];
+    if (list.length) { const cs = mk('div', 'cases'); list.forEach(c => { const l = mk('a', '', '▶ ' + c.name); l.href = '#' + sim; l.onclick = () => CT.open(sim, c.i); cs.append(l); }); card.append(cs); }
+    // lesson
+    if (L) {
+      const d = mk('details'); d.append(mk('summary', '', 'Core lesson'));
+      L.s.forEach(x => { d.append(mk('h4', '', x.h)); const ul = mk('ul'); (x.p || []).forEach(p => ul.append(mk('li', '', p))); d.append(ul); if (x.tr) d.append(mk('p', 'try', 'Try it: ' + x.tr)); if (x.src) d.append(mk('div', 'vf', (x.chk ? 'Checked against: ' : 'Based on: ') + x.src.map(shortSrc).join(' · '))); });
+      card.append(d);
+    }
+    // case deep dives
+    const S = LEARN.SIMS[sim] || {}; const cases = Object.entries(S.cases || {}).filter(([, c]) => c.s && c.s.length);
+    if (cases.length) {
+      const d = mk('details'); d.append(mk('summary', '', `Deep dives (${cases.length} cases)`));
+      const seen = new Set();
+      cases.forEach(([id, c]) => {
+        const it = list.find(x => x.id === id); const h5 = mk('h5', '', it ? it.name : id.replace(/_/g, ' ')); d.append(h5);
+        d.append(LEARN.body(c.s.map(x => Array.isArray(x) ? x : [x.h || '', x.p || x.c || '']).filter(x => { const k = JSON.stringify(x); if (seen.has(k)) return false; seen.add(k); return true; }))); if (it) { const pl = mk('a', '', 'Play this case →'); pl.href = '#' + sim; pl.onclick = () => CT.open(sim, it.i); d.append(pl); }
+      });
+      card.append(d);
+    }
+    // trials
+    const keys = topicKeys(sim); const trs = keys.filter(k => LEARN.LIB.TR[k]).sort((x, y) => LEARN.LIB.TR[y][1] - LEARN.LIB.TR[x][1]);
+    if (trs.length) { const d = mk('details'); d.append(mk('summary', '', `Landmark trials (${trs.length})`)); const g = mk('div', 'lbtr'); trs.forEach(k => g.append(trialCard(k))); d.append(g); card.append(d); }
+    // quiz
+    const QB = window.XQBG && XQBG[sim]; const qs = QB ? Object.values(QB).flat() : [];
+    if (qs.length) { const d = mk('details'); d.append(mk('summary', '', `Practice questions (${qs.length})`)); const box = mk('div'); d.append(box); d.addEventListener('toggle', () => { if (d.open && !box.childNodes.length) quizInto(box, qs); }); card.append(d); }
+    // refs
+    const ev = keys.filter(k => !k.startsWith('utd:')).sort((x, y) => LEARN.yr(y) - LEARN.yr(x)), u = keys.filter(k => k.startsWith('utd:'));
+    if (ev.length || u.length) { const d = mk('details'); d.append(mk('summary', '', `References (${ev.length + u.length})`)); if (ev.length) d.append(LEARN.refsList(ev)); if (u.length) { d.append(mk('div', 'ctl-k', 'Optional review reading (UpToDate)')); d.append(LEARN.refsList(u)); } card.append(d); }
+    return card;
+  }
+  const match = el => !st.q || el.textContent.toLowerCase().includes(st.q);
+  function render() {
+    const pane = document.getElementById('libPane'); if (!pane) return; pane.innerHTML = '';
+    const chips = document.getElementById('libChips'); chips.hidden = st.tab !== 'topics' && st.tab !== 'refs';
+    if (st.tab === 'topics' || st.tab === 'refs') {
+      const g = mk('div', 'libgrid'); let n = 0;
+      TOP.filter(([, u]) => st.unit === 'all' || st.unit === u).forEach(([sim, u, t]) => {
+        let c;
+        if (st.tab === 'topics') { c = topicCard(sim, u, t); if (st.q && match(c)) c.querySelectorAll('details').forEach(d => { if (d.textContent.toLowerCase().includes(st.q)) d.open = true; }); }
+        else { c = mk('article', 'libcard'); c.style.setProperty('--uc', U[u][1]); const h = mk('h3'); const a = mk('a', '', t + ' →'); a.href = '#' + sim; h.append(a, mk('small', '', U[u][0])); c.append(h); const keys = topicKeys(sim); const ev = keys.filter(k => !k.startsWith('utd:')).sort((x, y) => LEARN.yr(y) - LEARN.yr(x)); const uu = keys.filter(k => k.startsWith('utd:')); if (ev.length) c.append(mk('div', 'ctl-k', 'Guidelines & key trials (newest first)'), LEARN.refsList(ev)); if (uu.length) { const d = mk('details', 'ctl-more'); d.append(mk('summary', '', 'Optional review reading (UpToDate topics)'), LEARN.refsList(uu)); c.append(d); } }
+        if (match(c)) { g.append(c); n++; }
+      });
+      pane.append(n ? g : mk('p', 'libempty', 'Nothing matches that search.'));
+    } else if (st.tab === 'core') {
+      const g = mk('div', 'lbcore');
+      LEARN.LIB.CORE.forEach(x => { const c = mk('article', 'libcard'); c.append(mk('h3', '', x.t)); const ul = mk('ul', 'bp'); x.b.forEach(b => ul.append(mk('li', '', b))); c.append(ul); const d = mk('details'); d.append(mk('summary', '', 'Sources'), LEARN.refsList(x.r.map(up).flat().filter((k, i, a) => a.indexOf(k) === i))); c.append(d); if (match(c)) g.append(c); });
+      pane.append(g.childNodes.length ? g : mk('p', 'libempty', 'Nothing matches that search.'));
+    } else {
+      const g = mk('div', 'lbtr'); Object.keys(LEARN.LIB.TR).sort((x, y) => LEARN.LIB.TR[y][1] - LEARN.LIB.TR[x][1]).forEach(k => { const c = trialCard(k); if (match(c)) g.append(c); });
+      pane.append(mk('p', 'libintro', 'The trials behind the numbers in the sims: what was asked, what was found and what changed. Newest first.'), g.childNodes.length ? g : mk('p', 'libempty', 'Nothing matches that search.'));
+    }
+  }
+  function build() {
+    if (built) { render(); return; } built = true;
+    const chips = document.getElementById('libChips'); if (!chips) return;
+    [['all', 'All units'], ...Object.entries(U).map(([k, v]) => [k, v[0]])].forEach(([k, t]) => { const b = mk('button', k === 'all' ? 'on' : '', t); b.onclick = () => { st.unit = k; chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); render(); }; chips.append(b); });
+    document.querySelectorAll('.libtabs button').forEach(b => b.onclick = () => { st.tab = b.dataset.t; document.querySelectorAll('.libtabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
+    let tm; document.getElementById('libQ').addEventListener('input', e => { clearTimeout(tm); tm = setTimeout(() => { st.q = e.target.value.trim().toLowerCase(); render(); }, 200); });
+    render();
+  }
+  const chk = () => { if (location.hash === '#library') setTimeout(build, 50); };
+  window.addEventListener('hashchange', chk); window.addEventListener('load', chk); chk();
 })();
 
 </script>
@@ -21911,6 +22177,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -24071,6 +24338,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -26228,6 +26496,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -28392,6 +28661,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -30549,6 +30819,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -32686,6 +32957,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -34823,6 +35095,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -36946,6 +37219,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -39076,6 +39350,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -41192,6 +41467,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -43240,6 +43516,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -45327,6 +45604,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -47406,6 +47684,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -49485,6 +49764,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
@@ -51563,6 +51843,7 @@ if (window.CTM) CTM.reg(UNIT.id, () => {
   return { groups, eq: ['MAP ≈ CVP + cardiac output × SVR.', 'Lactate rises when oxygen delivery falls below demand.', 'ICP = baseline × e^(added volume ÷ compliance); CPP = MAP − ICP.'] };
 });
 if (window.CTP) CTP.cases(UNIT.id, XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.free })).filter(c => !c.skip));
+if (typeof XQB !== 'undefined' && XQB[UNIT.id]) { window.XQBG = window.XQBG || {}; window.XQBG[UNIT.id] = XQB[UNIT.id]; }
 
 })();
 </script>
