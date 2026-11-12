@@ -96,7 +96,7 @@ body[data-unit] .logo svg path{stroke:var(--heart)}
 .uheroart{aspect-ratio:auto;min-height:220px}
 @media (max-width:640px){.uheroart{display:none!important}.ucard .uimg{height:110px}.ucard .uimg svg{height:90px}}
 .uart{width:62%;max-width:260px;filter:drop-shadow(0 0 24px color-mix(in srgb,var(--heart) 30%,transparent))}
-.ugrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px}
+.ugrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:16px}
 .ucard{display:grid;grid-template-rows:auto 1fr;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--uc);border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s}
 .ucard:hover{transform:translateY(-3px);border-color:var(--uc);box-shadow:0 10px 30px color-mix(in srgb,var(--uc) 18%,transparent)}
 .ucard .uimg{height:150px;display:grid;place-items:center;background:radial-gradient(circle at 50% 60%,color-mix(in srgb,var(--uc) 22%,transparent),transparent 70%),#0a0e11}
@@ -328,6 +328,13 @@ body.learn .ct-gate{display:none}
 /* ICU Essentials, admissions, objectives */
 .view details:has(> [id$="-teach"]){display:none}
 .cch .cch-why,.cch .cch-more{display:none!important}
+.howit h2{margin-bottom:8px}
+.howrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.howrow{grid-template-columns:minmax(0,1fr)}}
+.howrow>div{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.howrow i{grid-row:span 2;font-style:normal;font-family:var(--f-mono);font-size:13px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#5fd8c9;color:#0b0f12;align-self:center}
+.howrow b{font-family:var(--f-disp);font-size:15px}.howrow span{font-size:13px;color:var(--soft);line-height:1.4}
+.hownote{margin:8px 0 0;font-size:13px;color:var(--muted)}
 .essgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px;margin-top:10px}
 .essm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:6px;align-content:start}
 .essm .eh{display:flex;gap:10px;align-items:baseline}
@@ -5136,7 +5143,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
     ICU <span>Sim</span> Lab
   </a>
   <button class="nvbtn" id="nvBtn" aria-expanded="false" aria-controls="nvPop"><span id="nvLbl">Simulators</span> <i aria-hidden="true">▾</i></button>
-  <nav class="nvlinks" aria-label="Site"><a href="#progress" data-v="progress">Progress</a><a href="#library" data-v="library">Library</a></nav>
+  <nav class="nvlinks" aria-label="Site"><a href="#essentials" data-v="essentials">Essentials</a><a href="#progress" data-v="progress">Progress</a><a href="#library" data-v="library">Library</a></nav>
   <div class="barR">
     <button class="mdlbtn" id="mdlBtn" hidden aria-expanded="false" aria-controls="mdl" title="See what the physiology model is doing right now">Model</button>
     <button class="gear" id="gearBtn" aria-expanded="false" aria-controls="gearPop" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.7 1.7 1l.4 2.5h4l.4-2.5c.6-.3 1.2-.6 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button>
@@ -5168,10 +5175,12 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
           <path d="M120 96 C 136 108, 146 122, 150 132" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
         </svg><canvas id="heroEcg"></canvas></div>
     </section>
-    <section class="sect ess" id="essSec"><h2>Start here: ICU Essentials</h2><p class="libintro">Ten modules in order, built from the cases in this lab. Each case runs Teach → Guide → Practice and has three learning objectives you check off in the debrief. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p><div class="essgrid" id="essGrid"></div>
-      <div class="admit"><div><b>Admissions</b><span>A random case, no simulator label, practice rules: work it out like a real admission.</span></div><div class="admbtns"><button data-adm="all">Any ICU</button><button data-adm="micu">Medical</button><button data-adm="neuro">Neuro</button><button data-adm="sicu">Surgical</button><button data-adm="cticu">Cardiothoracic</button></div></div>
-    </section>
-    <section class="sect"><h2>Choose your ICU</h2><div class="ugrid"><a class="ucard" href="#u-cticu" style="--uc:#e5484d;--uc2:#ff7a6b" data-unit="cticu"><div class="uimg"><svg class="uart"  viewBox="0 0 200 200">
+    <section class="sect howit"><h2>How it works</h2><div class="howrow">
+      <div><i>1</i><b>Teach</b><span>A short brief on the patient, targets, key ideas and plan.</span></div>
+      <div><i>2</i><b>Guide</b><span>The coach pauses at each decision, asks what you would do, then shows you.</span></div>
+      <div><i>3</i><b>Practice</b><span>On your own with new numbers. 80+ marks the case mastered.</span></div>
+    </div><p class="hownote">The clock stays stopped until you press Start case. New here? Begin with ICU Essentials.</p></section>
+    <section class="sect"><h2>Choose your ICU</h2><div class="ugrid"><a class="ucard" href="#essentials" style="--uc:#38c7b8;--uc2:#7ff0e2"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><rect x="46" y="38" width="108" height="130" rx="12" fill="#0f2a28" stroke="#38c7b8" stroke-width="3"/><path d="M70 74 l10 10 l18 -20 M70 112 l10 10 l18 -20" stroke="#7ff0e2" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M110 78 H136 M110 116 H136 M70 148 H136" stroke="#38c7b8" stroke-width="7" stroke-linecap="round"/></svg></div><div class="ubody"><span class="ueb">Start here</span><h3>ICU Essentials</h3><p>Ten modules in order with learning objectives, plus admissions practice</p><span class="meta" id="essMeta">10 modules · 44 cases</span><span class="go">Begin →</span></div></a><a class="ucard" href="#u-cticu" style="--uc:#e5484d;--uc2:#ff7a6b" data-unit="cticu"><div class="uimg"><svg class="uart"  viewBox="0 0 200 200">
           <path d="M76 62 V22" stroke="#6fb6ff" stroke-width="9" stroke-linecap="round" fill="none" opacity=".8"/>
           <path d="M106 70 C 104 30, 140 18, 152 40 L152 62" stroke="#ff7a6b" stroke-width="11" stroke-linecap="round" fill="none"/>
           <path d="M92 74 C 86 48, 66 42, 56 54" stroke="#6fb6ff" stroke-width="10" stroke-linecap="round" fill="none"/>
@@ -5180,11 +5189,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
           <path d="M98 96 C 80 104, 64 118, 58 136" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
           <path d="M120 96 C 136 108, 146 122, 150 132" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
         </svg></div><div class="ubody"><span class="ueb">CTICU</span><h3>Cardiothoracic ICU</h3><p>14 simulators: pacing, CALS, bypass, IABP, Impella/ECMO, bleeding, Swan</p><span class="meta">14 simulators · 100+ cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-micu" style="--uc:#3fa9f5;--uc2:#7cc8ff" data-unit="micu"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 30 V92" stroke="#7cc8ff" stroke-width="9" stroke-linecap="round"/><path d="M100 88 C 88 96 76 104 68 116 M100 88 C 112 96 124 104 132 116" stroke="#7cc8ff" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M86 70 C 40 60 26 120 34 156 C 40 178 74 176 84 160 C 94 140 96 100 86 70 Z" fill="#163a55" stroke="#3fa9f5" stroke-width="3"/><path d="M114 70 C 160 60 174 120 166 156 C 160 178 126 176 116 160 C 106 140 104 100 114 70 Z" fill="#163a55" stroke="#3fa9f5" stroke-width="3"/><path d="M60 120 l10 10 M52 140 l14 4 M140 120 l-10 10 M148 140 l-14 4" stroke="#7cc8ff" stroke-width="2" opacity=".7"/></svg></div><div class="ubody"><span class="ueb">MICU</span><h3>Medical ICU</h3><p>Shock and sepsis, respiratory failure, toxicology, endocrine emergencies, GI and liver</p><span class="meta">5 simulators · 23 cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-neuro" style="--uc:#9b7bff;--uc2:#c3b1ff" data-unit="neuro"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 36 C 70 30 46 46 42 72 C 26 80 24 108 38 120 C 34 142 52 160 74 156 C 84 168 102 168 110 158 C 132 166 156 152 156 132 C 174 122 176 94 160 84 C 162 56 132 34 100 36 Z" fill="#2a1f4d" stroke="#9b7bff" stroke-width="3"/><path d="M100 40 C 96 70 104 100 98 130 C 96 145 100 156 104 160" stroke="#c3b1ff" stroke-width="2.4" fill="none"/><path d="M60 80 C 74 84 80 96 72 108 M140 78 C 126 86 124 100 134 110 M66 132 C 80 126 90 134 88 146 M134 132 C 122 128 114 136 118 148" stroke="#c3b1ff" stroke-width="2" fill="none" opacity=".8"/><path d="M20 182 l18 0 l6 -10 l7 18 l6 -12 l8 4 l10 0 l6 -6 l6 10 l90 0" stroke="#f5d64a" stroke-width="2.4" fill="none" opacity=".9"/></svg></div><div class="ubody"><span class="ueb">Neuro ICU</span><h3>Neuro ICU</h3><p>ICP and the EVD, stroke and ICH, SAH, status epilepticus, neuromuscular failure</p><span class="meta">5 simulators · 19 cases</span><span class="go">Enter →</span></div></a><a class="ucard" href="#u-sicu" style="--uc:#f59e0b;--uc2:#ffc061" data-unit="sicu"><div class="uimg"><svg viewBox="0 0 200 200" class="uart"><path d="M100 24 L160 46 V100 C160 140 132 168 100 180 C68 168 40 140 40 100 V46 Z" fill="#3a2a0e" stroke="#f59e0b" stroke-width="3"/><path d="M100 64 V140 M62 102 H138" stroke="#ffc061" stroke-width="14" stroke-linecap="round"/><path d="M146 150 l30 -30" stroke="#d6d6d6" stroke-width="5" stroke-linecap="round"/><path d="M176 120 l10 -10" stroke="#9aa4ab" stroke-width="7" stroke-linecap="round"/></svg></div><div class="ubody"><span class="ueb">SICU</span><h3>Surgical ICU</h3><p>Trauma bay, post-op abdomen, burns and smoke, trauma complications</p><span class="meta">4 simulators · 13 cases</span><span class="go">Enter →</span></div></a></div></section>
-<section class="sect modes">
-      <div class="mode-card"><b><span class="step">1</span>Teach</b><p>Each case opens with a short brief: the patient, the targets, the key ideas and the plan, then a ready-check question. The first time you open a simulator, its topic lesson comes first.</p><button class="mbtn" data-m="learn">Start in Teach</button></div>
-      <div class="mode-card"><b><span class="step">2</span>Guide</b><p>Run the case with a coach. At each decision the sim pauses and asks what you would do; you get the reasoning, then it shows you the control and what changed on the monitor.</p><button class="mbtn" data-m="teach">Start in Guide</button></div>
-      <div class="mode-card"><b><span class="step">3</span>Practice</b><p>The same case on your own with no coaching. In the ICU units the patient's numbers change each run. Finish for a score and debrief; 80 or more marks the case mastered.</p><button class="mbtn" data-m="practice">Start in Practice</button></div>
-    </section>
+
     <p class="menufoot">Educational simulations with simplified physiology. Doses and thresholds are tuned for teaching, not prescribing. Follow your institution's protocols.</p>
   </div>
   <div class="menu upage" id="uPage-cticu" data-u="cticu" hidden>
@@ -5253,6 +5258,18 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
   </div>
 </main>
 
+
+<main id="v-essentials" class="view" hidden>
+  <div class="menu">
+    <section class="sect">
+      <div class="eyebrow">Start here</div>
+      <h1 style="font-family:var(--f-disp);font-size:clamp(30px,5vw,44px);margin:.2em 0 .3em">ICU Essentials</h1>
+      <p class="libintro">Ten modules in order, built from the cases in this lab. Each case runs Teach → Guide → Practice and has three learning objectives you check off in the debrief. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p>
+      <div class="essgrid" id="essGrid"></div>
+      <div class="admit"><div><b>Admissions</b><span>A random case, no simulator label, practice rules: work it out like a real admission.</span></div><div class="admbtns"><button data-adm="all">Any ICU</button><button data-adm="micu">Medical</button><button data-adm="neuro">Neuro</button><button data-adm="sicu">Surgical</button><button data-adm="cticu">Cardiothoracic</button></div></div>
+    </section>
+  </div>
+</main>
 
 <main id="v-library" class="view" hidden>
   <div class="menu">
@@ -7777,7 +7794,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
 
 <script>
 window.CT = (() => {
-  const VIEWS = { menu: 'Home', progress: 'Progress', library: 'Library', pacing: 'Pacing', cals: 'CALS', poaf: 'Post-op AF', rhythm: 'Rhythm drills', lytes: 'Electrolytes & drips', aki: 'AKI & CRRT', vent: 'Vent & ABGs', hemo: 'Hemodynamics', bleed: 'Bleeding', artline: 'Art line', iabp: 'IABP', mcs: 'Impella/ECMO', orsurg: 'CV OR', cxr: 'CXR & lines', mshock: 'Shock & Sepsis', mresp: 'Respiratory Failure', mtox: 'Toxicology', mendo: 'Endocrine & Metabolic', mgi: 'GI & Liver', nicp: 'ICP & EVD', nstroke: 'Stroke & ICH', nsah: 'Aneurysmal SAH', nsz: 'Status epilepticus', nnm: 'Neuromuscular failure', strauma: 'Trauma Bay', sabd: 'Post-op Abdomen', sburn: 'Burn ICU', scomp: 'Trauma Complications', rounds: 'Daily Rounds' };
+  const VIEWS = { menu: 'Home', progress: 'Progress', library: 'Library', essentials: 'ICU Essentials', pacing: 'Pacing', cals: 'CALS', poaf: 'Post-op AF', rhythm: 'Rhythm drills', lytes: 'Electrolytes & drips', aki: 'AKI & CRRT', vent: 'Vent & ABGs', hemo: 'Hemodynamics', bleed: 'Bleeding', artline: 'Art line', iabp: 'IABP', mcs: 'Impella/ECMO', orsurg: 'CV OR', cxr: 'CXR & lines', mshock: 'Shock & Sepsis', mresp: 'Respiratory Failure', mtox: 'Toxicology', mendo: 'Endocrine & Metabolic', mgi: 'GI & Liver', nicp: 'ICP & EVD', nstroke: 'Stroke & ICH', nsah: 'Aneurysmal SAH', nsz: 'Status epilepticus', nnm: 'Neuromuscular failure', strauma: 'Trauma Bay', sabd: 'Post-op Abdomen', sburn: 'Burn ICU', scomp: 'Trauma Complications', rounds: 'Daily Rounds' };
   const st = { alertOpen: false, pauseOnAlert: true, queue: [], view: 'menu', unit: null, lastUnit: null };
   try { st.lastUnit = localStorage.getItem('ctUnit'); } catch (e) {}
   let pref = null; try { pref = localStorage.getItem('ctPause'); } catch (e) {}
@@ -7837,7 +7854,7 @@ window.CT = (() => {
     st.view = v; closePops();
     document.querySelectorAll('.view').forEach(el => { el.hidden = el.id !== 'v-' + v; });
     document.querySelectorAll('#nvPop a, .nvlinks a').forEach(a => a.classList.toggle('act', a.dataset.v === v));
-    const isSim = !['menu', 'progress', 'library'].includes(v);
+    const isSim = !['menu', 'progress', 'library', 'essentials'].includes(v);
     const UN = { cticu: 'CTICU', micu: 'MICU', neuro: 'Neuro ICU', sicu: 'SICU' };
     $('nvLbl').textContent = isSim ? VIEWS[v] : up ? UN[up] + ' menu' : tu ? UN[tu] + ' menu' : 'Choose ICU'; $('nvBtn').classList.toggle('act', isSim);
     document.body.dataset.view = v;
@@ -7969,7 +7986,7 @@ window.CTM = (() => {
 window.CTGATE = v => { if (window.CTG && CTG.gate) CTG.gate(v); };
 window.CTG = (() => {
   const P = {}, S = {}; let minimized = false, hl = null; const lastSig = {}, LS = {};
-  const NON = ['menu', 'progress', 'library'];
+  const NON = ['menu', 'progress', 'library', 'essentials'];
   const q = (sec, k) => sec.querySelector('[id$="-' + k + '"]');
   const cap = x => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
   const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
@@ -8522,6 +8539,7 @@ window.CTP = (() => {
   function score(sim, id) { const o = (window.OBJP && OBJP.get(sim, id)) || {}; return (o.r ? 1 : 0) + (o.m ? 1 : 0) + (o.e ? 1 : 0); }
   function render() {
     const g = document.getElementById('essGrid'); if (!g || !window.CURRIC) return; g.innerHTML = '';
+    const allT = CURRIC.modules.reduce((n, m) => n + m.c.length * 3, 0), allG = CURRIC.modules.reduce((n, m) => n + m.c.reduce((x, [s2, c2]) => x + score(s2, c2), 0), 0); const em = document.getElementById('essMeta'); if (em) em.textContent = allG ? `10 modules · ${Math.round(100 * allG / allT)}% of objectives` : '10 modules · 44 cases';
     CURRIC.modules.forEach((m, k) => {
       const tot = m.c.length * 3, got = m.c.reduce((n, [s, c]) => n + score(s, c), 0);
       const card = mk('article', 'essm' + (got === tot ? ' done' : ''));
@@ -8566,9 +8584,9 @@ window.CTP = (() => {
   }
   function end() { document.body.classList.remove('adm'); ADM = null; }
   document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-adm]'); if (b) admit(b.dataset.adm); });
-  window.addEventListener('hashchange', () => { if (ADM && location.hash.slice(1) !== ADM.sim) end(); if (location.hash === '#menu' || !location.hash) render(); });
+  window.addEventListener('hashchange', () => { if (ADM && location.hash.slice(1) !== ADM.sim) end(); if (['#menu', '#essentials', ''].includes(location.hash)) render(); });
   setInterval(() => { if (!ADM) return; const sec = document.getElementById('v-' + ADM.sim); const ov = sec && sec.querySelector('[id$="-ov"]'); if (ov && !ov.hidden) end(); }, 700);
-  window.addEventListener('load', () => setTimeout(() => { render(); welcome(); }, 300));
+  window.addEventListener('load', () => setTimeout(() => { render(); }, 300));
   window.ESS = { render, admit, openCase };
 })();
 </script>
