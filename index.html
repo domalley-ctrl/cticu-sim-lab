@@ -284,6 +284,37 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .dzb .ctl-refs{font-size:12px}
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
+/* CTICU kit */
+.ctk-pt{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--heart,#e5484d);border-radius:12px;padding:10px 14px;display:grid;gap:4px;margin-bottom:12px}
+.ctk-pt h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
+.ctk-pt .brief{max-width:none;font-size:14px;margin:0}
+.ctk-tk{grid-column:1/-1;list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-rows:repeat(2,26px);gap:3px;height:55px;overflow:hidden}
+.ctk-tk:empty::before{content:"New events appear here";font-size:12px;color:#4d625a;padding:4px 8px}
+.ctk-tk li{display:block;font-size:13px;line-height:18px;color:var(--soft,#c3ced3);background:#0b1512;border-left:3px solid #3a5a50;border-radius:4px;padding:4px 8px;transition:opacity .6s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ctk-tk li.warn{border-color:var(--warn);color:#f3dd9a}.ctk-tk li.crit{border-color:var(--crit);color:#ffb3ad}.ctk-tk li.good{border-color:var(--good);color:#a6e8be}
+.ctk-tk li time{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+.ctk-tk li.fade{opacity:0}
+.ctk-db{display:grid;gap:10px;margin:6px 0 10px}
+.ctk-dbh{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ctk-dbl{font-size:13px;color:var(--muted)}
+.ctk-dbs{font-family:var(--f-mono);font-size:30px;color:#38c7b8;border:2px solid #38c7b8;border-radius:12px;padding:2px 12px}
+.ctk-sec{border-top:1px solid var(--line);padding-top:8px}
+.ctk-sec summary{font-family:var(--f-disp);letter-spacing:.06em;cursor:pointer}
+.ctk-tl,.ctk-wc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:8px}
+@media (max-width:640px){.ctk-tl,.ctk-wc{grid-template-columns:minmax(0,1fr)}}
+.ctk-tl h4,.ctk-wc h4{margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ctk-wc h4.g{color:var(--good)}.ctk-wc h4.w{color:var(--warn)}
+.ctk-tl ul,.ctk-sec ul,.ctk-wc ul{margin:0;padding-left:0;list-style:none;display:grid;gap:4px;font-size:13px}
+.ctk-wc ul{padding-left:16px;list-style:disc}.ctk-wc{border-top:1px solid var(--line);padding-top:8px}
+.ctk-tl b,.ctk-sec li b{font-family:var(--f-mono);font-weight:400;color:var(--muted);margin-right:6px}
+.ctk-tl li.ok b,.ctk-sec li.ok b{color:var(--good)}.ctk-tl li.miss b,.ctk-sec li.miss b{color:var(--warn)}
+.ctk-qn{font-family:var(--f-disp);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ctk-qs{margin:0;font-size:15px;line-height:1.5}
+.ctk-qo{display:grid;gap:6px}
+.ctk-qopt{white-space:normal;text-align:left;padding:9px 12px}
+.ctk-qopt.ok{border-color:var(--good)!important;color:var(--good)!important}.ctk-qopt.no{border-color:var(--crit)!important;color:var(--crit)!important}.ctk-qopt:disabled{opacity:1!important;cursor:default}
+.ctk-qx{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:13.5px;display:grid;gap:8px}
+.ctk-qx b.g{color:var(--good)}.ctk-qx b.w{color:var(--crit)}
 /* library */
 .libbar{display:grid;gap:10px;margin-top:10px}
 .libbar input{width:100%;max-width:640px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:inherit}
@@ -11583,8 +11614,293 @@ LEARN.add('pacing', {
 
 </script>
 <script>
+/* ===== CTICU kit: patient banner, event ticker, speed control, End case, debrief and quiz for the CTICU simulators ===== */
+window.CTKIT = (cfg) => {
+  const { sim, ROOT, $ } = cfg;
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
+  const S = () => { try { return cfg.st(); } catch (e) { return null; } };
+  /* ---- trackers, reset whenever the sim builds a new case state ---- */
+  let cur = null, T = null, t0 = performance.now();
+  const reset = s => { cur = s; t0 = performance.now(); T = { acts: [], goalT: {}, stepT: {}, dz: [], hint: false, ended: false, decorated: false, paused: false }; };
+  const clockTxt = () => { const c = $('clock'); if (c && c.textContent.trim()) return c.textContent.trim(); const s = Math.floor((performance.now() - t0) / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+  /* ---- banner: move title and brief to the top ---- */
+  const title = $('scTitle'), brief = $('scBrief');
+  if (title && brief) {
+    const bar = mk('section', 'ctk-pt'); bar.setAttribute('aria-label', 'Patient'); bar.append(title, brief);
+    const anchor = ROOT.querySelector('.bay') || ROOT.querySelector('.lower'); if (anchor) anchor.before(bar);
+  }
+  /* ---- ticker: mirror new log lines under the monitor ---- */
+  const log = $('log'), screen = $('screen');
+  if (log) {
+    const tk = mk('ul', 'ctk-tk'); tk.setAttribute('aria-live', 'polite');
+    const mf = ROOT.querySelector('.monfoot'); if (mf) mf.before(tk); else (screen || ROOT.querySelector('.ctk-pt') || log).after(tk);
+    new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType !== 1 || n.tagName !== 'LI' || n.classList.contains('empty') || n.parentNode !== log || n !== log.firstElementChild) return;
+      const li = mk('li', n.className); li.innerHTML = n.innerHTML; tk.prepend(li);
+      while (tk.children.length > 2) tk.lastChild.remove();
+      setTimeout(() => { li.classList.add('fade'); setTimeout(() => li.remove(), 700); }, 9000);
+    }))).observe(log, { childList: true });
+  }
+  /* ---- speed ---- */
+  if (cfg.speed) {
+    const ctl = ROOT.querySelector('header .ctl'); const small = ROOT.querySelector('.clock small'); const base = small ? small.textContent : '';
+    const lab = mk('label', 'holdtxt', 'Speed'); const sel = mk('select', 'sel'); sel.title = 'Slows the clinical clock; the monitor keeps its real rhythm';
+    [['0.25', '¼×'], ['0.5', '½×'], ['1', '1×'], ['2', '2×']].forEach(([v, t]) => { const o = mk('option', '', t); o.value = v; sel.append(o); });
+    const apply = v => { cfg.speed.v = v; sel.value = String(v); if (small) small.textContent = v === 1 ? base : `${base} · ${sel.options[sel.selectedIndex].text}`; };
+    let v0 = 1; try { v0 = +(localStorage.getItem('icuSpeed') || 1) || 1; } catch (e) {} apply(v0);
+    sel.onchange = () => { const v = +sel.value; try { localStorage.setItem('icuSpeed', String(v)); } catch (e) {} apply(v); };
+    const clock = ROOT.querySelector('header .clock'); if (ctl) { if (clock && clock.parentNode === ctl) clock.before(lab, sel); else ctl.append(lab, sel); }
+  }
+  /* ---- tracking ---- */
+  const SKIP = new Set(['restart', 'pauseSim', 'hintBtn', 'scSel']);
+  ROOT.addEventListener('click', e => {
+    const b = e.target.closest && e.target.closest('button'); if (!b || !T || b.closest('.ov,.ctk-pt,header,.cpath,.ref,details,.ctl-more,.lrn')) return;
+    const id = (b.id || '').replace(/^[a-z]{2}-/, ''); if (SKIP.has(id) || b.classList.contains('ctk-end')) return;
+    const t = (b.getAttribute('aria-label') || b.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60); if (!t) return;
+    const last = T.acts[T.acts.length - 1]; if (last && last.a === t && last.t === clockTxt()) return;
+    T.acts.push({ t: clockTxt(), a: t }); if (T.acts.length > 60) T.acts.shift();
+  }, true);
+  const hb = $('hintBtn'); if (hb) hb.addEventListener('click', () => { const h = $('hint'); if (T && h && !h.hidden) T.hint = true; });
+  window.KDZ = window.KDZ || {}; KDZ[sim] = d => { if (T) T.dz.push(d); };
+  if (window.CT && CT.flag && !CT.flag._k) { const f = CT.flag; CT.flag = function (k, d) { const v = (location.hash || '').slice(1).split(/[?&]/)[0]; if (KDZ[v]) KDZ[v](Object.assign({ k }, d || {})); return f.apply(this, arguments); }; CT.flag._k = 1; }
+  setInterval(() => {
+    const s = S(); if (!s) return; if (s !== cur) reset(s); if (ROOT.hidden) return;
+    const g = $('goals'); if (g) [...g.children].forEach((li, i) => { if (li.classList.contains('ok') && T.goalT[i] === undefined) T.goalT[i] = clockTxt(); });
+    const p = window.CTG && CTG.peek(sim); if (p && p.steps) { T.steps = p.steps; p.steps.forEach((x, i) => { if (x.done && T.stepT[i] === undefined) T.stepT[i] = clockTxt(); }); }
+  }, 500);
+  /* ---- score and debrief ---- */
+  function score() {
+    const g = $('goals'), goals = g ? [...g.children] : [], gDone = goals.filter(li => li.classList.contains('ok') || li.querySelector('.ok')).length;
+    const steps = (T.steps || []).filter(x => !/^Hold/.test(x.t)), sDone = steps.filter(x => x.done).length;
+    const dz = [...new Set(T.dz.map(d => d.t))];
+    const parts = { goals: Math.round(50 * (goals.length ? gDone / goals.length : 1)), steps: Math.round(30 * (steps.length ? sDone / steps.length : 1)), safety: Math.max(0, 20 - 10 * dz.length), hint: T.hint ? -5 : 0 };
+    return { total: Math.max(0, Math.min(100, parts.goals + parts.steps + parts.safety + parts.hint)), parts, goals, gDone, steps, sDone, dz };
+  }
+  function store(key, rec, id) { try { const all = JSON.parse(localStorage.getItem(key) || '{}'); const k = sim + ':' + id; (all[k] = all[k] || []).push(rec); all[k] = all[k].slice(-10); localStorage.setItem(key, JSON.stringify(all)); return all[k]; } catch (e) { return [rec]; } }
+  function debriefBlock(win) {
+    const s = S(), sc = s && s.sc; const R = score(); const box = mk('div', 'ctk-db');
+    const hist = store('icuScores', { s: R.total, t: Date.now() }, sc ? sc.id : '?');
+    const head = mk('div', 'ctk-dbh'); head.append(mk('div', 'ctk-dbl', `Score ${R.total}/100 · targets ${R.parts.goals}/50 · key steps ${R.parts.steps}/30 · safety ${R.parts.safety}/20${R.parts.hint ? ' · hint −5' : ''}${hist.length > 1 ? ` · best ${Math.max(...hist.map(r => r.s))}` : ''}`), mk('div', 'ctk-dbs', String(R.total))); box.append(head);
+    const tl = mk('details', 'ctk-sec'); tl.open = true; tl.append(mk('summary', '', 'Timeline: the expert path and what you did'));
+    const grid = mk('div', 'ctk-tl'); const cA = mk('div'); cA.append(mk('h4', '', 'Key steps')); const uA = mk('ul');
+    (T.steps || []).forEach((g, i) => { if (/^Hold/.test(g.t)) return; const t = T.stepT[i]; const li = mk('li', t !== undefined ? 'ok' : 'miss'); li.append(mk('b', '', t !== undefined ? t : 'missed'), document.createTextNode(' ' + g.t)); uA.append(li); });
+    if (!uA.children.length) uA.append(mk('li', '', 'No guided path for this case.')); cA.append(uA);
+    const cB = mk('div'); cB.append(mk('h4', '', 'Your actions')); const uB = mk('ul'); T.acts.slice(0, 40).forEach(a => { const li = mk('li'); li.append(mk('b', '', a.t), document.createTextNode(' ' + a.a)); uB.append(li); });
+    if (!uB.children.length) uB.append(mk('li', '', 'No actions recorded.')); cB.append(uB); grid.append(cA, cB); tl.append(grid); box.append(tl);
+    if (R.goals.length) { const gs = mk('details', 'ctk-sec'); gs.append(mk('summary', '', `Targets (${R.gDone}/${R.goals.length})`)); const ul = mk('ul'); R.goals.forEach((li0, i) => { const ok = li0.classList.contains('ok'); const li = mk('li', ok ? 'ok' : 'miss'); li.append(mk('b', '', ok ? 'met ' + (T.goalT[i] || '') : 'not met'), document.createTextNode(' ' + li0.textContent.trim())); ul.append(li); }); gs.append(ul); box.append(gs); }
+    const ww = [], ch = [];
+    if (win) ww.push('You met every target and held them.'); if (!R.dz.length) ww.push('No dangerous actions.'); if (R.steps.length && R.sDone === R.steps.length) ww.push('Every key step on the expert path got done.');
+    (T.steps || []).forEach((g, i) => { if (/^Hold/.test(g.t) || T.stepT[i] !== undefined) return; ch.push(g.why ? `${g.t}: ${g.why}` : g.t); });
+    T.dz.forEach(d => { if (!ch.some(x => x.startsWith(d.t))) ch.push(`${d.t}. Next time: ${d.i || ''}`); }); if (T.hint) ch.push('Try it once without the hint.');
+    const wc = mk('div', 'ctk-wc'); const a1 = mk('div'); a1.append(mk('h4', 'g', 'What went well')); const u1 = mk('ul'); (ww.length ? ww : ['Keep going; see what to change.']).forEach(t => u1.append(mk('li', '', t))); a1.append(u1);
+    const a2 = mk('div'); a2.append(mk('h4', 'w', 'What to change')); const u2 = mk('ul'); (ch.length ? ch.slice(0, 8) : ['Nothing major. Try it in Practice mode or at 2× speed.']).forEach(t => u2.append(mk('li', '', t))); a2.append(u2); wc.append(a1, a2); box.append(wc);
+    return box;
+  }
+  function questions() {
+    const s = S(), id = s && s.sc && s.sc.id; const all = (window.KQB && KQB[sim]) || []; if (!all.length) return [];
+    const mine = all.filter(q => q.c && q.c.includes(id)), rest = all.filter(q => !mine.includes(q)).sort(() => Math.random() - 0.5);
+    return mine.sort(() => Math.random() - 0.5).concat(rest).slice(0, 5);
+  }
+  function quiz(qs, back) {
+    const c = $('ovc'); let i = 0, right = 0;
+    const show = () => {
+      c.innerHTML = '';
+      if (i >= qs.length) {
+        const s = S(); const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }, s && s.sc ? s.sc.id : '?');
+        const h = mk('h3', '', `Quiz: ${right}/${qs.length}`); if (right / qs.length < 0.8) h.style.color = 'var(--warn)'; c.append(h, mk('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'CCRN and PANCE style questions on this topic.'));
+        const row = mk('div', 'row'); const b = (t, fn) => { const x = mk('button', 'btn', t); x.onclick = fn; row.append(x); };
+        b('Retake', () => quiz(questions(), back)); b('Back to debrief', back); b('Close', close); c.append(row); return;
+      }
+      const q = qs[i]; c.append(mk('div', 'ctk-qn', `Question ${i + 1} of ${qs.length}`), mk('p', 'ctk-qs', q.q));
+      const opts = q.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5); const box = mk('div', 'ctk-qo'), ex = mk('div', 'ctk-qx'); ex.hidden = true;
+      opts.forEach(o => { const b = mk('button', 'btn ctk-qopt', o.t); b.onclick = () => {
+        if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+        [...box.children].forEach((x, n) => { x.disabled = true; if (opts[n].k === q.a) x.classList.add('ok'); }); if (!ok) b.classList.add('no');
+        ex.hidden = false; ex.append(mk('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e)); if (q.r && window.LEARN) ex.append(LEARN.refsList(q.r));
+        const nx = mk('button', 'btn on', i + 1 < qs.length ? 'Next question' : 'See score'); nx.onclick = () => { i++; show(); }; const r = mk('div', 'row'); r.append(nx); ex.append(r);
+      }; box.append(b); });
+      c.append(box, ex); c.scrollTop = 0;
+    };
+    show();
+  }
+  function close() { $('ov').hidden = true; if (T && T.paused) { T.paused = false; const p = $('pauseSim'); if (p) p.click(); } }
+  /* decorate the sim's own end screen */
+  const ov = $('ov'), ovc = $('ovc');
+  function decorate() {
+    if (!T || T.decorated || cfg.drill) { if (cfg.drill && T && !T.decorated) addQuiz(); return; }
+    T.decorated = true; const s = S(); const win = !!(s && s.over && s.over.win !== false);
+    const snap = [...ovc.childNodes]; const db = debriefBlock(win); const h = ovc.querySelector('h3');
+    (h ? h : ovc.firstChild) ? (h || ovc.firstChild).after(db) : ovc.prepend(db);
+    addQuiz(snap);
+  }
+  function addQuiz() {
+    if (T) T.decorated = true; const qs = questions(); if (!qs.length) return;
+    const rows = ovc.querySelectorAll(':scope > .row'); const row = rows[rows.length - 1]; if (!row || row.querySelector('.ctk-qb')) return;
+    const snap = [...ovc.childNodes]; const b = mk('button', 'btn on ctk-qb', `Take the ${qs.length}-question quiz`);
+    b.onclick = () => quiz(qs, () => { ovc.innerHTML = ''; snap.forEach(n => ovc.append(n)); }); row.prepend(b);
+  }
+  if (ov && ovc) new MutationObserver(() => { if (!ov.hidden) setTimeout(decorate, 0); }).observe(ov, { attributes: true, attributeFilter: ['hidden'] });
+  /* ---- End case ---- */
+  if (hb && !cfg.drill) {
+    const eb = mk('button', 'btn ctk-end', 'End case & debrief'); eb.type = 'button'; eb.title = 'Stop here and see the debrief'; hb.after(eb);
+    eb.onclick = () => {
+      const s = S(); if (!s || s.over || !T) return;
+      const p = $('pauseSim'), tag = $('pausedTag'); if (p && tag && tag.hidden) { p.click(); T.paused = true; }
+      T.decorated = true; ovc.innerHTML = '';
+      const hh = mk('h3', '', 'Case ended'); hh.style.color = 'var(--warn)'; ovc.append(hh, debriefBlock(false));
+      const sc = s.sc; if (sc && sc.teach) { const d = mk('details', 'ctk-sec'); d.append(mk('summary', '', 'Teaching points and references')); const ul = mk('ul'); sc.teach.forEach(x => ul.append(mk('li', '', x))); d.append(ul); ovc.append(d); if (window.LEARN) LEARN.into(ul, sim, sc.id, 1); }
+      const row = mk('div', 'row'); const b = (t, fn, on) => { const x = mk('button', 'btn' + (on ? ' on' : ''), t); x.onclick = fn; row.append(x); };
+      const qs = questions(); const snap = () => [...ovc.childNodes];
+      if (qs.length) b(`Take the ${qs.length}-question quiz`, () => { const sn = snap(); quiz(qs, () => { ovc.innerHTML = ''; sn.forEach(n => ovc.append(n)); }); }, true);
+      b('Replay', () => { close(); cfg.load(cfg.idx()); }); b('Keep going', close);
+      ovc.append(row); ov.hidden = false;
+    };
+  }
+};
+
+/* ===== CTICU question banks (CCRN/PANCE style). a = index of the correct option; options are shuffled on display. c = case ids the question fits best. ===== */
+window.KQB = {
+  pacing: [
+    { c: ['brady'], q: 'Two hours after CABG the patient is in sinus bradycardia at 42 with MAP 58. Atrial and ventricular wires are in. AV conduction is normal. Best mode:', o: ['AAI at about 80–90', 'VVI at 80', 'VOO at 80', 'DDD with a long AV delay at 50'], a: 0, e: 'With intact AV conduction, atrial pacing keeps the atrial kick and normal ventricular activation.', r: ['reade', 'litflpace'] },
+    { c: ['chb', 'afslow'], q: 'After AVR the rhythm is complete heart block with a wide escape at 34. The best pacing mode is:', o: ['DDD (or VVI if no atrial wires work)', 'AAI', 'AOO', 'No pacing; give atropine'], a: 0, e: 'AAI cannot help when the AV node does not conduct. DDD keeps AV synchrony; VVI is the fallback.', r: ['reade', 'brady18'] },
+    { c: ['loc', 'check'], q: 'Pacing spikes appear without a following QRS. This is:', o: ['Failure to capture', 'Undersensing', 'Oversensing', 'Normal fusion beats'], a: 0, e: 'Raise output (mA), check connections and remeasure the threshold.', r: ['reade'] },
+    { c: ['check', 'loc'], q: 'The ventricular capture threshold is 4 mA. The output should be set to about:', o: ['8–12 mA (2–3× threshold)', '4 mA', '5 mA', '25 mA always'], a: 0, e: 'A safety margin of 2–3× threshold covers rising thresholds as epicardial wires age.', r: ['reade'] },
+    { c: ['under'], q: 'Spikes fall at random points, including on T waves, despite the patient\'s own QRS complexes. The problem is:', o: ['Undersensing: make the sensitivity number smaller (more sensitive)', 'Oversensing: raise the sensitivity number', 'Failure to capture: raise output', 'Battery failure'], a: 0, e: 'Undersensing causes competitive pacing and risks R-on-T; lower the mV value so the pacer sees intrinsic beats.', r: ['reade'] },
+    { c: ['over', 'cautery'], q: 'A pacer-dependent patient has pauses whenever shivering starts. The most likely cause is:', o: ['Oversensing of muscle artifact inhibiting output', 'Undersensing', 'Loss of capture', 'Exit block'], a: 0, e: 'Oversensing inhibits pacing; make the pacer less sensitive or use an asynchronous mode briefly for cautery.', r: ['reade'] },
+    { c: ['flutter'], q: 'On day 2 after CABG, a regular narrow tachycardia at 150 with sawtooth waves on the atrial wire EGM. Which bedside therapy can terminate it?', o: ['Rapid atrial pacing above the flutter rate', 'VVI pacing at 150', 'Adenosine as definitive therapy', 'Rapid atrial pacing for AF'], a: 0, e: 'Overdrive atrial pacing (typically 10–20% above the flutter rate) can terminate typical flutter; it does not work for AF.', r: ['reade'] },
+    { c: ['pmt'], q: 'A DDD-paced patient suddenly paces the ventricle at the upper rate. A PVC preceded it. Most likely:', o: ['Pacemaker-mediated tachycardia from retrograde P waves', 'Atrial flutter', 'Runaway pacemaker', 'Sinus tachycardia'], a: 0, e: 'Retrograde atrial activation is sensed and tracked. Lengthening PVARP or switching to a non-tracking mode ends it.', r: ['reade'] },
+    { c: ['open', 'broken'], q: 'Why is asynchronous ventricular pacing (VOO) avoided when the patient has an intrinsic rhythm?', o: ['A spike landing on the T wave can trigger VF', 'It drains the battery', 'It causes hyperkalemia', 'It cannot capture'], a: 0, e: 'R-on-T pacing is the main danger of asynchronous modes; reserve them for cautery or oversensing emergencies.', r: ['reade', 'sts17'] }
+  ],
+  cals: [
+    { c: ['vf', 'vfref'], q: 'VF one hour after CABG, witnessed, defibrillator at the bedside. First action per STS/CALS:', o: ['Up to three stacked shocks before external compressions', 'Start CPR for 2 minutes, then shock', 'Epinephrine 1 mg IV', 'Emergency resternotomy first'], a: 0, e: 'Three quick shocks within the first minute come before compressions in the cardiac surgical patient.', r: ['sts17', 'litflcals'] },
+    { c: ['asys'], q: 'Asystole with epicardial wires in place. First action:', o: ['Pace DDD/VVI at high output before starting compressions (within a minute)', 'Atropine', 'Epinephrine 1 mg', 'Defibrillate'], a: 0, e: 'Connect and pace at maximum output; start CPR if no capture within about a minute.', r: ['sts17'] },
+    { c: ['vf', 'tamp', 'vfref'], q: 'Without ROSC after the initial measures, resternotomy should occur within about:', o: ['5 minutes', '30 minutes', '1 hour', 'Only after 3 cycles of epinephrine'], a: 0, e: 'Early resternotomy relieves tamponade, allows internal massage and treats bleeding.', r: ['sts17', 'erc25'] },
+    { c: ['vf'], q: 'Why is full-dose (1 mg) epinephrine discouraged in post-cardiac surgery arrest?', o: ['Rebound hypertension after ROSC can disrupt grafts and suture lines', 'It does not work in VF', 'It causes asystole', 'It is never used in ACLS'], a: 0, e: 'STS consensus: avoid routine 1 mg doses; small boluses (50–100 mcg) only on senior direction.', r: ['sts17'] },
+    { c: ['tamp'], q: 'The art line flattens while the pacer still captures on the ECG. This represents:', o: ['PEA: think tamponade, bleeding or tension pneumothorax', 'Successful pacing', 'Monitor artifact only', 'VF'], a: 0, e: 'Electrical capture without output is PEA. Look for a reversible mechanical cause.', r: ['sts17'] },
+    { c: ['tamp', 'asys', 'vf'], q: 'In PEA after cardiac surgery, the pacer should be:', o: ['Paused briefly to check for an underlying VF', 'Left on at full output always', 'Removed', 'Set to AOO'], a: 0, e: 'Pacing spikes can hide VF; pause pacing to check the rhythm.', r: ['sts17'] },
+    { c: ['iabp'], q: 'During CPR with an IABP in place, the trigger should be:', o: ['Pressure trigger (or internal mode if no pressure)', 'ECG trigger', 'Off with the balloon flat', 'Set to 1:3'], a: 0, e: 'Compressions generate a pressure signal; ECG triggering fails in VF.', r: ['sts17'] },
+    { c: ['tpx'], q: 'High airway pressures, falling SpO2 and loss of arterial pressure in a ventilated post-op patient suggests:', o: ['Tension pneumothorax: decompress', 'Bronchospasm only', 'Tamponade', 'Hypovolemia'], a: 0, e: 'Check the ventilator and chest; decompress clinically suspected tension.', r: ['sts17'] },
+    { c: ['pvt'], q: 'After VF in a patient with K 3.3 and runs of NSVT, which electrolyte correction is most important?', o: ['Potassium and magnesium', 'Calcium', 'Sodium', 'Phosphate'], a: 0, e: 'Hypokalemia and hypomagnesemia promote ventricular arrhythmias.', r: ['aha25'] }
+  ],
+  poaf: [
+    { c: ['stable'], q: 'Post-op AF at 140, MAP 80s, EF 55%. First-line rate control:', o: ['Beta-blocker (e.g., metoprolol)', 'Digoxin', 'Immediate cardioversion', 'Amiodarone bolus mandatory'], a: 0, e: 'Beta-blockers are first-line for rate control after cardiac surgery when hemodynamics allow.', r: ['af23', 'esc24af'] },
+    { c: ['stable', 'anticoag'], q: 'Gillinov (CTSN) compared rate vs rhythm control for POAF. Result:', o: ['Similar days in hospital and complications', 'Rhythm control lowered mortality', 'Rate control caused more strokes', 'Cardioversion was required in most'], a: 0, e: 'Both strategies are reasonable; most patients convert within weeks.', r: ['gillinov16'] },
+    { c: ['lowef'], q: 'Post-op AF at 150 with EF 25%. Which rate control agent should be avoided?', o: ['Diltiazem', 'Amiodarone', 'Digoxin', 'Careful low-dose beta-blocker'], a: 0, e: 'Non-dihydropyridine calcium channel blockers are negative inotropes and avoided in reduced EF.', r: ['af23'] },
+    { c: ['unstable'], q: 'New AF at 170 with MAP 50 and confusion. Best action:', o: ['Synchronized cardioversion', 'Metoprolol IV', 'Diltiazem bolus', 'Wait for amiodarone loading'], a: 0, e: 'Hemodynamically unstable AF needs synchronized cardioversion.', r: ['af23', 'aha25'] },
+    { c: ['unstable', 'flutter'], q: 'Why must SYNC be on when cardioverting AF?', o: ['To avoid shocking on the T wave and inducing VF', 'To reduce the energy needed by half', 'To protect the pacing wires', 'It is optional'], a: 0, e: 'Synchronization delivers the shock on the R wave.', r: ['aha25'] },
+    { c: ['stable', 'lowef'], q: 'K 3.3 and Mg 1.5 in post-op AF. Replacement goal per TIGHT-K evidence:', o: ['Correct hypokalemia; supplementing only below 3.6 was non-inferior to targeting 4.5', 'K must be ≥ 5.0', 'Do not replace potassium', 'Give potassium only if K < 3.0'], a: 0, e: 'Avoid hypokalemia; routine high-normal targets did not reduce AF. Replace low magnesium.', r: ['tightk'] },
+    { c: ['anticoag'], q: 'AF persisting more than 48 hours after surgery with CHA2DS2-VASc 3 and no bleeding. Next:', o: ['Start anticoagulation when bleeding risk allows', 'No anticoagulation for post-op AF', 'Aspirin alone', 'Wait 6 months'], a: 0, e: 'Guidelines support anticoagulation for persistent POAF, balanced against surgical bleeding risk.', r: ['af23'] },
+    { c: ['flutter'], q: 'Regular narrow tachycardia at exactly 150 after surgery should raise suspicion for:', o: ['Atrial flutter with 2:1 block', 'Sinus tachycardia', 'AVNRT only', 'VT'], a: 0, e: 'An atrial wire EGM or adenosine can reveal flutter waves.', r: ['af23'] },
+    { q: 'Which surgical technique reduced POAF in PALACS?', o: ['Posterior left pericardiotomy', 'Off-pump surgery', 'Bilateral ITA grafting', 'Endoscopic vein harvest'], a: 0, e: 'POAF 17% vs 32%.', r: ['palacs21'] }
+  ],
+  hemo: [
+    { c: ['bleed'], q: 'Post-CABG: low CVP, low PAWP, high PPV, low CI. Diagnosis:', o: ['Hypovolemia', 'LV failure', 'Tamponade', 'Vasoplegia'], a: 0, e: 'Both sides underfilled with a preserved pump: replace volume (and find the bleeding).', r: ['bojar'] },
+    { c: ['vasoplegia'], q: 'After a long pump run: MAP 55, CI 3.8, SVR 600, normal filling pressures. Most likely:', o: ['Vasoplegia', 'Cardiogenic shock', 'Tamponade', 'Hypovolemia'], a: 0, e: 'High output with low SVR. Treat with vasopressors (norepinephrine, vasopressin); methylene blue is a rescue option.', r: ['bojar'] },
+    { c: ['lv'], q: 'CI 1.6, PAWP 24, SVR 1800, cool and oliguric. Best next step:', o: ['Inotrope (and afterload reduction if MAP allows)', 'Fluid bolus', 'Phenylephrine', 'Diuretic alone'], a: 0, e: 'Low output with high filling pressures and high SVR: support contractility.', r: ['bojar', 'doremi21'] },
+    { c: ['rv'], q: 'Rising CVP (18), low PAWP (8), low CI after MVR. Pattern:', o: ['RV failure', 'LV failure', 'Hypovolemia', 'Vasoplegia'], a: 0, e: 'Treat with inotropes, pulmonary vasodilators, avoid excess volume and correct hypoxia and acidosis.', r: ['bojar', 'escph22'] },
+    { c: ['tamp', 'tamplv'], q: 'Chest tubes stop draining, CVP and PAWP rise toward equal values, CI falls. Diagnosis:', o: ['Tamponade', 'RV infarct', 'Hypovolemia', 'Sepsis'], a: 0, e: 'Equalization of diastolic pressures with falling output: call for re-exploration.', r: ['bojar', 'esc15peri'] },
+    { c: ['sam'], q: 'After mitral repair, hypotension worsens with inotropes and a new systolic murmur. Most likely:', o: ['Systolic anterior motion (LVOT obstruction)', 'Prosthetic valve failure', 'Tamponade', 'Vasoplegia'], a: 0, e: 'Stop inotropes, give volume, use a vasoconstrictor and slow the heart rate.', r: ['bojar'] },
+    { c: ['masked'], q: 'MAP is fine but urine output and SvO2 are falling. What is happening?', o: ['Low output masked by high SVR', 'Normal recovery', 'Hypervolemia', 'Vasoplegia'], a: 0, e: 'Pressure is not flow: check CI and SvO2.', r: ['bojar'] },
+    { c: ['swan', 'cxspw'], q: 'The PA catheter tracing looks like a wedge without the balloon inflated. Action:', o: ['Pull the catheter back until a PA waveform returns', 'Inflate the balloon to confirm', 'Flush vigorously', 'Ignore it'], a: 0, e: 'A spontaneous wedge risks pulmonary artery infarction or rupture.', r: ['bojar'] },
+    { c: ['cxrupt'], q: 'Hemoptysis after a wedge reading. First step:', o: ['Position bleeding side down, secure the airway, call for help', 'Inflate the balloon again and pull back', 'Give heparin', 'Flush the catheter'], a: 0, e: 'PA rupture is a surgical emergency; protect the good lung.', r: ['bojar'] },
+    { q: 'Pulse pressure variation predicts fluid responsiveness when the patient is:', o: ['Passive on volume-controlled ventilation in sinus rhythm', 'Breathing spontaneously in AF', 'On low tidal volume with an open chest', 'On any ventilator mode'], a: 0, e: 'PPV > 13% predicted response in passive, ventilated, sinus-rhythm patients.', r: ['michard00'] }
+  ],
+  bleed: [
+    { c: ['coag'], q: 'Diffuse oozing on arrival after bypass. Before giving products you should:', o: ['Send coags and a viscoelastic test, then treat what is abnormal', 'Give FFP, platelets and cryo empirically', 'Re-explore immediately', 'Give more heparin'], a: 0, e: 'Goal-directed transfusion with TEG/ROTEM reduces unnecessary products.', r: ['pbm21', 'eacts24'] },
+    { c: ['coag'], q: 'ACT is prolonged after protamine and the heparinase TEG corrects it. Treatment:', o: ['Additional protamine', 'Platelets', 'Cryoprecipitate', 'Vitamin K'], a: 0, e: 'Residual heparin (heparin rebound) is treated with small doses of protamine.', r: ['pbm21'] },
+    { c: ['lysis'], q: 'TEG shows clot lysis (LY30 high) after a redo. Treatment:', o: ['Antifibrinolytic (tranexamic acid)', 'Protamine', 'More platelets', 'Desmopressin'], a: 0, e: 'Hyperfibrinolysis responds to TXA.', r: ['pbm21'] },
+    { c: ['surg'], q: 'Chest tube output > 400 mL/h with normal coags. Most likely:', o: ['Surgical bleeding: call for re-exploration', 'Coagulopathy', 'Fibrinolysis', 'Residual heparin'], a: 0, e: 'High steady output with normal tests suggests a surgical source.', r: ['dyke14', 'pbm21'] },
+    { c: ['tamp'], q: 'Chest tube output suddenly stops, CVP rises and MAP falls. Most likely:', o: ['Clotted tubes with tamponade', 'Bleeding has stopped', 'Hypovolemia improved', 'Vasoplegia'], a: 0, e: 'A sudden drop in output with hemodynamic collapse is tamponade until proven otherwise.', r: ['bojar'] },
+    { q: 'Restrictive transfusion threshold after cardiac surgery (TRICS III):', o: ['Hgb 7.5 g/dL', 'Hgb 10 g/dL', 'Hgb 9 g/dL', 'Hgb 6 g/dL'], a: 0, e: 'Restrictive transfusion was non-inferior for death and major morbidity.', r: ['trics17'] },
+    { q: 'Low fibrinogen (MA low on functional fibrinogen test) is treated with:', o: ['Cryoprecipitate or fibrinogen concentrate', 'Platelets', 'Protamine', 'TXA'], a: 0, e: 'Target fibrinogen per viscoelastic testing or > 150–200 mg/dL when bleeding.', r: ['eacts24'] },
+    { q: 'Temperature 35.0 °C in a bleeding patient. Why does it matter?', o: ['Hypothermia impairs clotting enzymes and platelets', 'It lowers transfusion needs', 'It has no effect on bleeding', 'It improves fibrinogen'], a: 0, e: 'Warm the patient as part of bleeding management.', r: ['pbm21'] }
+  ],
+  artline: [
+    { c: ['ring'], q: 'The square wave test shows 4 oscillations before returning to baseline. The line is:', o: ['Underdamped: systolic overestimated', 'Overdamped: systolic underestimated', 'Optimally damped', 'Clotted'], a: 0, e: 'Optimal shows 1–2 oscillations. Underdamping exaggerates systolic pressure; MAP is relatively preserved.', r: ['gardner81'] },
+    { c: ['bubble', 'clot'], q: 'A flat square wave with no oscillations and a blunted trace means:', o: ['Overdamping (bubble, clot, kink, soft tubing)', 'Underdamping', 'Normal', 'Hypotension'], a: 0, e: 'Look for air, clots, kinks or loose connections.', r: ['gardner81'] },
+    { c: ['level'], q: 'The transducer has fallen 10 cm below the phlebostatic axis. The reading will be:', o: ['About 7–8 mmHg falsely high', 'About 7–8 mmHg falsely low', 'Unchanged', 'Doubled'], a: 0, e: 'Each 10 cm is about 7.4 mmHg; a low transducer reads high.', r: ['gardner81'] },
+    { c: ['zero'], q: 'Zeroing the transducer means:', o: ['Opening it to air so atmospheric pressure reads 0', 'Flushing the line', 'Leveling it at the phlebostatic axis', 'Calibrating against the cuff'], a: 0, e: 'Zero to air, level at the phlebostatic axis (4th ICS, mid-axillary).', r: ['gardner81'] },
+    { c: ['bag'], q: 'Blood backs up the arterial tubing. The likely cause is:', o: ['Pressure bag below about 300 mmHg', 'Underdamping', 'Hypertension', 'Transducer too high'], a: 0, e: 'Inflate the bag to 300 mmHg to keep the flush running.', r: ['gardner81'] },
+    { c: ['zero'], q: 'Which arterial pressure is least affected by damping problems?', o: ['Mean arterial pressure', 'Systolic', 'Diastolic', 'Pulse pressure'], a: 0, e: 'Treat by MAP when the waveform quality is uncertain.', r: ['gardner81'] }
+  ],
+  iabp: [
+    { c: ['ei'], q: 'The balloon inflates before the dicrotic notch. This error:', o: ['Raises afterload and can cause premature aortic valve closure', 'Is optimal', 'Lowers afterload further', 'Has no effect'], a: 0, e: 'Early inflation: move inflation later to the notch.', r: ['trost06'] },
+    { c: ['li'], q: 'Inflation well after the dicrotic notch causes:', o: ['Reduced diastolic augmentation and coronary perfusion', 'Increased afterload', 'Aortic regurgitation', 'Hemolysis'], a: 0, e: 'Late inflation wastes augmentation.', r: ['trost06'] },
+    { c: ['ed'], q: 'Early deflation shows as:', o: ['A U-shaped dip after augmentation with assisted systole no lower than unassisted', 'Augmentation starting before the notch', 'A wide augmented wave encroaching on systole', 'No change'], a: 0, e: 'Afterload reduction is lost; deflate later.', r: ['trost06'] },
+    { c: ['ld'], q: 'Late deflation is the most dangerous timing error because it:', o: ['Increases afterload as the LV ejects against an inflated balloon', 'Reduces augmentation slightly', 'Lowers MAP', 'Causes limb ischemia'], a: 0, e: 'Assisted end-diastolic pressure equals or exceeds unassisted.', r: ['trost06'] },
+    { c: ['rupt'], q: 'Brown flecks appear in the helium line. Action:', o: ['Stop pumping, clamp, and prepare to remove the balloon', 'Continue pumping', 'Flush the line', 'Increase helium'], a: 0, e: 'Blood in the gas line means rupture; gas embolism and balloon entrapment risk.', r: ['trost06'] },
+    { c: ['limb'], q: 'A cold, mottled foot on the balloon side. Next:', o: ['Assess pulses and Doppler, notify the team; plan removal or relocation', 'Raise the leg', 'Increase anticoagulation only', 'Ignore if MAP is good'], a: 0, e: 'Limb ischemia is a known IABP complication.', r: ['trost06'] },
+    { c: ['lowpos'], q: 'Urine output falls after the patient sits up. Concern:', o: ['Balloon migration down to block the renal arteries', 'Sepsis', 'Hypovolemia from sitting', 'Normal'], a: 0, e: 'Check the tip position on x-ray (2–3 cm below the aortic knob).', r: ['trost06'] },
+    { q: 'IABP-SHOCK II found that IABP in MI cardiogenic shock:', o: ['Did not reduce 30-day mortality', 'Halved mortality', 'Increased stroke', 'Improved 1-year survival only'], a: 0, e: '39.7% vs 41.3%.', r: ['iabp12'] }
+  ],
+  mcs: [
+    { c: ['suction'], q: 'Impella suction alarms with low CVP. First step:', o: ['Reduce P-level and give volume', 'Increase P-level', 'Start diuresis', 'Pull the device back 5 cm'], a: 0, e: 'Suction usually means underfilling or malposition. Check position on echo.', r: ['scai19'] },
+    { c: ['rv'], q: 'Impella suction with rising CVP and a small LV. Most likely:', o: ['RV failure starving the left side', 'Hypovolemia', 'Device thrombosis', 'Aortic regurgitation'], a: 0, e: 'Support the RV (inotropes, pulmonary vasodilators, RV support).', r: ['scai19'] },
+    { c: ['dist'], q: 'On VA-ECMO the art line is flat and there is pink frothy sputum. The problem:', o: ['LV distension from increased afterload; vent the LV', 'Oxygenator failure', 'Hypovolemia', 'Recirculation'], a: 0, e: 'Inotropes, lower ECMO flow if tolerated, or venting (Impella, septostomy).', r: ['elso21'] },
+    { c: ['harl'], q: 'Femoral VA-ECMO: right hand SpO2 82%, legs pink. This is:', o: ['Differential hypoxemia (North-South syndrome)', 'Recirculation', 'Oxygenator failure', 'Limb ischemia'], a: 0, e: 'The native heart ejects poorly oxygenated blood to the upper body. Improve ventilation or reconfigure cannulas (V-AV).', r: ['elso21'] },
+    { c: ['chat'], q: 'ECMO lines chatter and flow drops. Most likely:', o: ['Inadequate venous drainage (hypovolemia, tamponade, kinked cannula)', 'Oxygenator clot', 'Too much sweep gas', 'Hemolysis'], a: 0, e: 'Reduce RPM, give volume, check cannula position and for tamponade.', r: ['elso21'] },
+    { c: ['recirc'], q: 'VV-ECMO with high flow but low SpO2; pre-oxygenator saturation is high. Cause:', o: ['Recirculation from cannulas too close together', 'Oxygenator failure', 'Hypovolemia', 'High cardiac output alone'], a: 0, e: 'Oxygenated return blood is drained again; separate the cannulas.', r: ['elsorecirc15', 'elsovv21'] },
+    { c: ['hemol'], q: 'Tea-colored urine on ECMO day 3 with rising LDH and plasma free hemoglobin. Most likely:', o: ['Hemolysis from circuit thrombus or high negative pressure', 'Rhabdomyolysis', 'Hematuria from catheter trauma', 'Bilirubinuria'], a: 0, e: 'Check pump head and oxygenator, venous pressures.', r: ['elso21'] },
+    { q: 'DanGer Shock (2024) showed that Impella CP in STEMI cardiogenic shock:', o: ['Lowered 180-day mortality with more complications', 'Had no effect', 'Increased mortality', 'Only reduced length of stay'], a: 0, e: '45.8% vs 58.5% mortality; more bleeding, limb ischemia and RRT.', r: ['danger24'] },
+    { q: 'ECLS-SHOCK (2023) found that routine VA-ECMO in infarct-related shock:', o: ['Did not lower 30-day mortality and increased bleeding', 'Halved mortality', 'Reduced stroke', 'Improved renal recovery'], a: 0, e: 'Use VA-ECMO selectively.', r: ['eclsshock23'] }
+  ],
+  vent: [
+    { c: ['fast'], q: 'Fast-track extubation after uncomplicated cardiac surgery aims for extubation within:', o: ['About 6 hours', '24 hours', '48 hours', 'After the first night'], a: 0, e: 'ERAS cardiac guidance supports early extubation when warm, awake, stable and not bleeding.', r: ['grant23'] },
+    { c: ['ready'], q: 'Which RSBI predicts successful weaning?', o: ['< 105', '> 105', '< 200', '> 50'], a: 0, e: 'f/Vt (breaths/min/L) under 105.', r: ['yang91'] },
+    { c: ['hypercap'], q: 'PaCO2 58 on Vt 450 and RR 10 with normal lungs. Fix:', o: ['Increase the respiratory rate', 'Increase PEEP', 'Increase FiO2', 'Bicarbonate'], a: 0, e: 'Minute ventilation sets CO2.', r: ['berend14'] },
+    { c: ['hypox'], q: 'Low SpO2 after bypass with atelectasis on x-ray. Best adjustment:', o: ['Increase PEEP (recruit)', 'Increase rate', 'Lower Vt to 4 mL/kg', 'Give diuretics first'], a: 0, e: 'PEEP and recruitment address atelectasis; FiO2 is a bridge.', r: ['grant23'] },
+    { c: ['metab'], q: 'pH 7.30, PaCO2 25, HCO3 12, anion gap 22. Primary process:', o: ['High anion gap metabolic acidosis with respiratory compensation', 'Respiratory alkalosis', 'Metabolic alkalosis', 'Mixed respiratory acidosis'], a: 0, e: "Winter's formula: expected PaCO2 = 1.5 × 12 + 8 ± 2 = 24–28.", r: ['berend14'] },
+    { c: ['ready'], q: 'Which is a criterion for SBT readiness?', o: ['PEEP ≤ 8 and FiO2 ≤ 0.5 with stable hemodynamics', 'Off all sedation for 24 h', 'Normal chest x-ray', 'Hgb > 10'], a: 0, e: 'Readiness: oxygenation, stability, able to initiate breaths.', r: ['ats17'] }
+  ],
+  lytes: [
+    { c: ['hyperk'], q: 'K 6.8 with peaked T waves and widening QRS. First:', o: ['IV calcium', 'Insulin and dextrose', 'Kayexalate', 'Furosemide'], a: 0, e: 'Stabilize the membrane, then shift, then remove.', r: ['bosch09'] },
+    { c: ['hyperk'], q: 'Typical insulin dose to shift potassium:', o: ['10 units regular insulin IV with dextrose', '1 unit IV', '0.1 unit/kg/h', '50 units SC'], a: 0, e: 'Watch for hypoglycemia; give dextrose unless glucose is high.', r: ['bosch09'] },
+    { c: ['hypok'], q: 'PVCs with K 3.2 after CABG. Appropriate replacement:', o: ['IV KCl via central line, about 10–20 mEq/h, with recheck', 'KCl IV push', 'Oral potassium only', 'No replacement needed'], a: 0, e: 'Never push potassium; correct magnesium too.', r: ['tightk'] },
+    { c: ['insulin'], q: 'Glucose target after cardiac surgery:', o: ['< 180 mg/dL', '< 110 mg/dL', '< 250 mg/dL', 'No target'], a: 0, e: 'STS recommends insulin infusion to keep glucose below 180.', r: ['sts09glu'] },
+    { c: ['hypoca'], q: 'Hypotension after massive transfusion with iCa 0.85. Cause and treatment:', o: ['Citrate chelation; calcium chloride or gluconate', 'Hyperkalemia; insulin', 'Hypomagnesemia; Mg', 'Alkalosis; acetazolamide'], a: 0, e: 'Low ionized calcium depresses contractility and vascular tone.', r: ['eacts24'] },
+    { c: ['math'], q: 'Norepinephrine 4 mg in 250 mL at 0.05 mcg/kg/min for 80 kg. Rate in mL/h:', o: ['15 mL/h', '1.5 mL/h', '30 mL/h', '7.5 mL/h'], a: 0, e: '0.05 × 80 × 60 = 240 mcg/h; concentration 16 mcg/mL → 15 mL/h.', r: ['bojar'] }
+  ],
+  aki: [
+    { c: ['oligo'], q: 'KDIGO stage 2 AKI by urine output is:', o: ['< 0.5 mL/kg/h for ≥ 12 hours', '< 0.5 mL/kg/h for 6–12 hours', '< 0.3 mL/kg/h for 24 hours', 'Anuria 12 hours'], a: 0, e: 'Stage 1: 6–12 h; stage 2: ≥ 12 h; stage 3: < 0.3 for ≥ 24 h or anuria ≥ 12 h.', r: ['kdigo12', 'kdigo26'] },
+    { c: ['fst'], q: 'Furosemide stress test (1 mg/kg naive) with < 200 mL urine in 2 hours predicts:', o: ['Progression to stage 3 AKI', 'Recovery', 'Hypovolemia', 'Nothing useful'], a: 0, e: 'Chawla 2013.', r: ['chawla13'] },
+    { c: ['start'], q: 'STARRT-AKI found accelerated RRT initiation:', o: ['Did not improve survival and increased RRT dependence', 'Lowered mortality', 'Reduced ICU stay', 'Improved renal recovery'], a: 0, e: 'Start for indications.', r: ['starrt20'] },
+    { c: ['start'], q: 'Which is an urgent indication for RRT?', o: ['Refractory hyperkalemia', 'Creatinine 2.5', 'Urine output 0.4 mL/kg/h for 8 h', 'BUN 40'], a: 0, e: 'AEIOU: acidosis, electrolytes, intoxication, overload, uremia.', r: ['kdigo12'] },
+    { c: ['clot'], q: 'The CRRT filter keeps clotting. Common fix:', o: ['Regional citrate anticoagulation and check access/flows', 'Lower blood flow', 'Stop anticoagulation', 'Increase replacement fluid pre-filter only'], a: 0, e: 'Citrate is preferred when not contraindicated (KDIGO).', r: ['kdigo12'] },
+    { c: ['citrate'], q: 'Rising calcium infusion needs and a total-to-ionized Ca ratio > 2.5 on citrate means:', o: ['Citrate accumulation', 'Hypercalcemia', 'Filter clotting', 'Normal'], a: 0, e: 'Reduce citrate or switch anticoagulation; common in liver failure.', r: ['kdigo12'] },
+    { q: 'Recommended delivered CRRT effluent dose:', o: ['20–25 mL/kg/h', '40 mL/kg/h', '10 mL/kg/h', '60 mL/kg/h'], a: 0, e: 'RENAL and ATN: higher intensity did not help.', r: ['renal09', 'atn08'] }
+  ],
+  orsurg: [
+    { c: ['cabg', 'avr'], q: 'Before going on bypass, heparin is dosed to an ACT of about:', o: ['> 400–480 seconds', '150 seconds', '250 seconds', '1000 seconds'], a: 0, e: 'Typical 300–400 units/kg to reach the target ACT.', r: ['acthep18'] },
+    { c: ['dissect'], q: 'Why is systolic pressure lowered during aortic cannulation?', o: ['To reduce the risk of aortic dissection', 'To improve cardioplegia', 'To speed heparin', 'To prevent AF'], a: 0, e: 'Commonly below about 100 mmHg.', r: ['cpb24'] },
+    { c: ['cabg', 'mitral'], q: 'Cardioplegia delivered antegrade requires:', o: ['A competent aortic valve', 'A patent coronary sinus', 'Off-pump surgery', 'Hypothermia below 20 °C'], a: 0, e: 'With aortic insufficiency, give retrograde or direct ostial cardioplegia.', r: ['cpb24'] },
+    { c: ['wean'], q: 'Separation checklist before coming off bypass includes:', o: ['Warm, rhythm and rate, ventilating, K, de-aired', 'Extubation', 'Protamine given', 'Chest closed'], a: 0, e: 'Wean in steps watching MAP, filling pressures and TEE.', r: ['cpb24'] },
+    { c: ['mitral'], q: 'After mitral repair in a small, vigorous LV, hypotension with LVOT gradient on TEE. Avoid:', o: ['Inotropes', 'Volume', 'Phenylephrine', 'Beta-blockade'], a: 0, e: 'SAM worsens with inotropes and underfilling.', r: ['bojar'] },
+    { c: ['prot'], q: 'Protamine can cause:', o: ['Hypotension, anaphylaxis and pulmonary hypertension', 'Bradycardia only', 'Hyperkalemia', 'Hemolysis'], a: 0, e: 'Give slowly; watch for catastrophic pulmonary vasoconstriction.', r: ['acthep18'] },
+    { c: ['opcab'], q: 'CORONARY found off-pump vs on-pump CABG at 5 years:', o: ['No difference in outcomes', 'Off-pump was superior', 'On-pump was superior', 'Off-pump had more strokes'], a: 0, e: 'ROOBY-FS in VA patients found worse outcomes off-pump.', r: ['coronary16', 'rooby17'] }
+  ],
+  rhythm: [
+    { c: ['block'], q: 'PR progressively lengthens until a P wave is not conducted. This is:', o: ['Mobitz I (Wenckebach)', 'Mobitz II', 'Third-degree block', 'First-degree block'], a: 0, e: 'Usually AV nodal and benign.', r: ['brady18'] },
+    { c: ['block'], q: 'Constant PR with sudden dropped beats and a wide QRS. Concern:', o: ['Mobitz II, infranodal; pacing likely needed', 'Wenckebach', 'Sinus arrhythmia', 'Normal variant'], a: 0, e: 'High risk of progression to complete block.', r: ['brady18'] },
+    { c: ['tachy'], q: 'The atrial wire EGM shows atrial activity faster than ventricular in a narrow tachycardia. This suggests:', o: ['Atrial flutter or atrial tachycardia with block', 'AVNRT', 'VT', 'Sinus tachycardia'], a: 0, e: 'More atrial than ventricular complexes means the atria drive the rhythm.', r: ['reade'] },
+    { c: ['tachy', 'arrest'], q: 'Wide, regular tachycardia at 180 with AV dissociation:', o: ['Ventricular tachycardia', 'SVT with aberrancy', 'Sinus tachycardia', 'Atrial flutter'], a: 0, e: 'AV dissociation proves VT.', r: ['aha25'] },
+    { c: ['paced'], q: 'Pacing spikes without capture followed by native beats show:', o: ['Failure to capture', 'Oversensing', 'Normal demand pacing', 'Fusion'], a: 0, e: 'Increase output.', r: ['reade'] },
+    { c: ['arrest'], q: 'Organized electrical activity with no pulse:', o: ['PEA', 'Asystole', 'VF', 'Sinus bradycardia'], a: 0, e: 'Search for reversible causes (Hs and Ts).', r: ['aha25'] }
+  ],
+  cxr: [
+    { c: ['lines', 'mixed'], q: 'Ideal ETT tip position on a portable film with the head neutral:', o: ['3–7 cm above the carina', 'At the carina', '1 cm above the carina', 'In the right mainstem'], a: 0, e: 'Neck flexion moves the tip down; extension moves it up.', r: ['goodman76'] },
+    { c: ['lines', 'mixed'], q: 'Ideal central venous catheter tip:', o: ['Lower SVC or cavoatrial junction', 'Right ventricle', 'Subclavian vein', 'IVC'], a: 0, e: 'Deeper tips risk arrhythmia and perforation.', r: ['baskin08'] },
+    { c: ['lines'], q: 'IABP tip position on chest x-ray:', o: ['2–3 cm below the aortic knob (about 2nd–3rd intercostal space)', 'At the carina', 'Above the aortic knob', 'At the diaphragm'], a: 0, e: 'Too high risks cerebral vessel occlusion; too low renal arteries.', r: ['trost06'] },
+    { c: ['find', 'mixed'], q: 'Deep sulcus sign on a supine film suggests:', o: ['Pneumothorax', 'Pleural effusion', 'Atelectasis', 'Pneumomediastinum'], a: 0, e: 'Air collects anteriorly and inferiorly in supine patients.', r: ['godoy12b'] },
+    { c: ['find'], q: 'A widening mediastinum after cardiac surgery with falling output raises concern for:', o: ['Mediastinal bleeding or tamponade', 'Pneumonia', 'Normal postoperative change only', 'Pulmonary edema'], a: 0, e: 'Compare with prior films and correlate with chest tube output.', r: ['godoy12b', 'bojar'] },
+    { c: ['lines'], q: 'An enteric tube must be confirmed with its tip:', o: ['Below the diaphragm in the stomach, following the midline past the carina', 'In the right bronchus', 'At the GE junction', 'Coiled in the esophagus'], a: 0, e: 'Check that it bisects the carina and goes below the diaphragm.', r: ['godoy12a'] }
+  ]
+};
+
+</script>
+<script>
 (() => {
 const ROOT = document.getElementById('v-pacing');
+const KSPD = { v: 1 };
 /* ===== Simulation engine (no DOM) ===== */
 const DT = 0.004;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -12637,11 +12953,14 @@ if (window.CTP) CTP.cases('pacing', SCEN.map((s, i) => ({ id: s.id, name: s.name
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('pacing', () => (S ? { S: S, id: SCEN[scIdx].id } : null));
 
+if (window.CTKIT) CTKIT({ sim: 'pacing', ROOT, $, st: () => S, idx: () => scIdx, load, speed: null });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-hemo');
+const KSPD = { v: 1 };
 /* ===== Hemodynamics engine (no DOM) ===== */
 const DT = 0.004;            // waveform step, real seconds
 const TICK = 0.05;           // physiology tick, real seconds
@@ -12804,7 +13123,7 @@ function params() {
 }
 
 function physTick(init) {
-  const pt = H.pt, dtc = init ? 0 : TICK * TS;
+  const pt = H.pt, dtc = init ? 0 : TICK * TS * KSPD.v;
   // drug levels
   for (const k of DRUG_KEYS) H.lvl[k] += (H.inf[k] - H.lvl[k]) * (1 - Math.exp(-dtc / DRUGS[k].tau));
   H.inoLvl += ((H.ino ? 1 : 0) - H.inoLvl) * (1 - Math.exp(-dtc / 40));
@@ -12956,7 +13275,7 @@ function step() {
   H.out.push({ t: H.t, e, a: art, p: pa, c: cvp });
   if (bv && bv !== H.lastBeepBeat) { H.lastBeepBeat = bv; if (!H.silent) HOOK.beep(); }
   H.tickAcc += DT;
-  if (H.tickAcc >= TICK) { H.tickAcc -= TICK; H.ct += TICK * TS; physTick(false); }
+  if (H.tickAcc >= TICK) { H.tickAcc -= TICK; H.ct += TICK * TS * KSPD.v; physTick(false); }
   H.t += DT;
   if (H.silent) H.out.length = 0;
 }
@@ -13913,11 +14232,14 @@ if (window.CTP) CTP.cases('hemo', SCEN.map((s, i) => ({ id: s.id, name: s.name, 
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('hemo', () => (H ? { S: H, id: SCEN[scIdx].id } : null));
 
+if (window.CTKIT) CTKIT({ sim: 'hemo', ROOT, $, st: () => H, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-iabp');
+const KSPD = { v: 1 };
 /* ===== IABP engine (no DOM) ===== */
 const DT = 0.004;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -14411,11 +14733,14 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('iabp', ISCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'iabp', ROOT, $, st: () => I, idx: () => scIdx, load, speed: null });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-artline');
+const KSPD = { v: 1 };
 /* ===== Arterial line engine (no DOM) ===== */
 const DT = 0.004, SUB = 8;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -14802,11 +15127,14 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('artline', ASCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'artline', ROOT, $, st: () => A, idx: () => scIdx, load, speed: null });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-cals');
+const KSPD = { v: 1 };
 /* ===== CALS arrest engine (no DOM) ===== */
 const DT = 0.004, TS = 2;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -15290,11 +15618,14 @@ if (window.CTP) CTP.cases('cals', CSCEN.map((s, i) => ({ id: s.id, name: s.name,
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('cals', () => (C ? { S: C, id: CSCEN[scIdx].id } : null));
 
+if (window.CTKIT) CTKIT({ sim: 'cals', ROOT, $, st: () => C, idx: () => scIdx, load, speed: null });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-bleed');
+const KSPD = { v: 1 };
 /* ===== Bleeding vs tamponade engine (no DOM) ===== */
 const DT = 0.004, TS = 60, TICK = 0.25;    // 1 real s = 1 clinical min
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -15354,7 +15685,7 @@ function tegVals() {
   return { R, Rh: 6 + Math.max(0, c.inr - 1.2) * 6 + Math.max(0, 36 - c.temp) * 0.8, alpha: 66 - Math.max(0, 220 - c.fib) / 6, MA: 30 + 0.1 * Math.min(c.plt, 300) + 0.04 * c.fib, FF: c.fib / 16, LY30: c.lys };
 }
 function physTick() {
-  const dm = TICK * TS / 60, c = B.c;     // clinical minutes this tick
+  const dm = TICK * TS * KSPD.v / 60, c = B.c;     // clinical minutes this tick
   B.m += dm;
   if (B.sc.tick) B.sc.tick(B, dm);
   // heparin rebound
@@ -15735,11 +16066,14 @@ if (window.CTP) CTP.cases('bleed', BSCEN.map((s, i) => ({ id: s.id, name: s.name
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('bleed', () => (B ? { S: B, id: BSCEN[scIdx].id } : null));
 
+if (window.CTKIT) CTKIT({ sim: 'bleed', ROOT, $, st: () => B, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-mcs');
+const KSPD = { v: 1 };
 /* ===== Impella / VA-ECMO engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.1, TS = 10;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -15809,7 +16143,7 @@ function newMcs(sc) {
 }
 
 function physTick(init) {
-  const p = X.pt, dtc = init ? 0 : TICK * TS;
+  const p = X.pt, dtc = init ? 0 : TICK * TS * KSPD.v;
   if (!init) X.ct += dtc;
   for (const k in X.inf) X.lvl[k] += (X.inf[k] - X.lvl[k]) * (1 - Math.exp(-dtc / 60));
   for (let i = X.queue.length - 1; i >= 0; i--) { const q = X.queue[i], d = Math.min(q.left, dtc / 300 * q.total); q.left -= d; p.vol += d; if (q.left <= 1e-4) { X.queue.splice(i, 1); xlog(q.name + ' finished'); } }
@@ -16391,11 +16725,14 @@ if (window.CTM) CTM.reg('mcs', () => {
 
 if (window.CTP) CTP.cases('mcs', XSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'mcs', ROOT, $, st: () => X, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-poaf');
+const KSPD = { v: 1 };
 /* ===== Post-op AF engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.25, TS = 60;     // 1 real s = 1 clinical min
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -16451,7 +16788,7 @@ function ventRate() {
   return clamp(p.vr0 * block, 45, 190);
 }
 function physTick() {
-  const dm = TICK * TS / 60, p = F.pt, L = F.lv; F.m += dm;
+  const dm = TICK * TS * KSPD.v / 60, p = F.pt, L = F.lv; F.m += dm;
   // drug kinetics (clinical minutes)
   L.bb = Math.max(0, L.bb * Math.pow(0.5, dm / 180));
   L.esm += ((F.esmRate / 200) - L.esm) * (1 - Math.exp(-dm / 4));
@@ -16846,11 +17183,14 @@ if (window.CTP) CTP.cases('poaf', PSCEN.map((s, i) => ({ id: s.id, name: s.name,
 /* ---- guided-case state for the coach ---- */
 if (window.CTG && CTG.state) CTG.state('poaf', () => (F ? { S: F, id: PSCEN[scIdx].id } : null));
 
+if (window.CTKIT) CTKIT({ sim: 'poaf', ROOT, $, st: () => F, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-vent');
+const KSPD = { v: 1 };
 /* ===== Ventilator & ABG engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.25, TS = 60;      // 1 real s = 1 clinical min
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -16894,7 +17234,7 @@ function spont() {
 }
 function spo2() { const P = V.pao2; return clamp(1 / (1 + 23400 / (P * P * P + 150 * P)), 0.3, 1); }
 function physTick(init) {
-  const p = V.pt, dm = init ? 0 : TICK * TS / 60; V.m += dm;
+  const p = V.pt, dm = init ? 0 : TICK * TS * KSPD.v / 60; V.m += dm;
   // sedation & temperature
   if (p.sedFloor && !V.propofol) p.sedFloor = Math.max(0.05, p.sedFloor - dm / 140);
   const sedT = V.propofol ? 0.85 : (p.sedFloor || 0.05);
@@ -17346,11 +17686,14 @@ if (window.CTM) CTM.reg('vent', () => {
 
 if (window.CTP) CTP.cases('vent', VSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'vent', ROOT, $, st: () => V, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-rhythm');
+const KSPD = { v: 1 };
 /* ===== Rhythm drills engine (no DOM) ===== */
 const DT = 0.004, HZ = 120;
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -17803,11 +18146,14 @@ requestAnimationFrame(frame);
 
 if (window.CTP) CTP.cases('rhythm', RSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'rhythm', ROOT, $, st: () => D, idx: () => scIdx, load, speed: null, drill: true });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-lytes');
+const KSPD = { v: 1 };
 /* ===== Electrolytes & drips engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.25, TS = 60;     // 1 real s = 1 clinical min
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -17866,7 +18212,7 @@ function ecgParams() {
 }
 function qtc() { return Math.round(420 * ecgParams().qt); }
 function physTick() {
-  const dm = TICK * TS / 60, dh = dm / 60, p = L.pt; L.m += dm;
+  const dm = TICK * TS * KSPD.v / 60, dh = dm / 60, p = L.pt; L.m += dm;
   // infusions: {kind, perH (mEq or g per h), left}
   for (let i = L.inf.length - 1; i >= 0; i--) {
     const f = L.inf[i], amt = Math.min(f.left, f.perH * dh); f.left -= amt;
@@ -18268,11 +18614,14 @@ if (window.CTM) CTM.reg('lytes', () => {
 
 if (window.CTP) CTP.cases('lytes', LSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'lytes', ROOT, $, st: () => L, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-aki');
+const KSPD = { v: 1 };
 /* ===== Post-op AKI & CRRT engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.25, TS = 120;     // 1 real s = 2 clinical min
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -18320,7 +18669,7 @@ function newAki(sc) {
 function snapLabs() { const p = A.pt; A.labs = { cr: p.cr, bun: p.bun, K: p.K, hco3: p.hco3, pH: p.pH, lac: p.lac, pf: p.pf, tCa: p.tCa, iCa: p.iCa, t: A.m }; }
 function perfusion() { return clamp((A.map - 50) / 22, 0, 1.25) * clamp(A.ci / 2.4, 0.3, 1.2) * clamp(1 - (A.cvp - 12) * 0.04, 0.55, 1); }
 function physTick() {
-  const dm = TICK * TS / 60, dh = dm / 60, p = A.pt; A.m += dm;
+  const dm = TICK * TS * KSPD.v / 60, dh = dm / 60, p = A.pt; A.m += dm;
   // hemodynamics from volume
   const v = A.vol;
   A.cvp = clamp(p.cvp0 + v * 0.0045, 1, 26);
@@ -18769,11 +19118,14 @@ if (window.CTM) CTM.reg('aki', () => {
 
 if (window.CTP) CTP.cases('aki', KSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!(s.free || s.study) })).filter(c => !c.skip));
 
+if (window.CTKIT) CTKIT({ sim: 'aki', ROOT, $, st: () => A, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-orsurg');
+const KSPD = { v: 1 };
 /* ===== CV OR engine (no DOM) ===== */
 const DT = 0.004, TICK = 0.25, RATE_RT = 0.25, RATE_FF = 3;   // clinical minutes per real second: 0.25 live (1 s = 15 s), 3 while a step runs
 const g = (x, m, s) => { const d = (x - m) / s; return Math.exp(-0.5 * d * d); };
@@ -19086,7 +19438,7 @@ function physTick(dtm) {
   O.st = clamp(O.air * 0.5 + (lad ? 0.12 : 0) + O.protRx * 0.1, 0, 0.45);
   // goals
   const goals = sc.goals; O.goalState = goals.map(gg => !!gg.f(O));
-  if (!O.over && !O.silent) { if (O.goalState.every(Boolean)) { O.hold += dtm / (O.busy ? RATE_FF : RATE_RT); if (O.hold >= (sc.hold || 5)) O.over = { m: O.m }; } else O.hold = 0; }
+  if (!O.over && !O.silent) { if (O.goalState.every(Boolean)) { O.hold += dtm / (O.busy ? RATE_FF : RATE_RT * KSPD.v); if (O.hold >= (sc.hold || 5)) O.over = { m: O.m }; } else O.hold = 0; }
 }
 
 /* ---- waveform step (real seconds) ---- */
@@ -19119,7 +19471,7 @@ function ostep() {
   let a = O.map + (O.flow > 0.05 ? 1.5 * Math.sin(2 * Math.PI * 1.1 * t) : 0);
   if (O.ej) { let b = null; for (const bb of O.beats) if (bb.u <= t) b = bb; if (b && t - b.u < b.RR * 1.2) a = b.dia + (b.sys - b.dia) * artShape(t - b.u, b.RR); }
   O.out.push({ t, e, a });
-  O.tickAcc += DT; if (O.tickAcc >= TICK) { O.tickAcc -= TICK; physTick(TICK * (O.busy ? RATE_FF : RATE_RT)); }
+  O.tickAcc += DT; if (O.tickAcc >= TICK) { O.tickAcc -= TICK; physTick(TICK * (O.busy ? RATE_FF : RATE_RT * KSPD.v)); }
   O.wt += DT;
 }
 
@@ -19587,11 +19939,14 @@ if (window.CTG) CTG.reg('orsurg', () => {
   return { steps, next, el };
 });
 
+if (window.CTKIT) CTKIT({ sim: 'orsurg', ROOT, $, st: () => O, idx: () => scIdx, load, speed: KSPD });
+
 })();
 </script>
 <script>
 (() => {
 const ROOT = document.getElementById('v-cxr');
+const KSPD = { v: 1 };
 /* ===== CXR & Lines: schematic portable AP film renderer (no DOM state) ===== */
 const DT = 0.05;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -20004,6 +20359,8 @@ load(0);
 requestAnimationFrame(frame);
 if (window.CTG && CTG.state) CTG.state('cxr', () => (D ? { S: D, id: CSCEN[scIdx].id } : null));
 if (window.CTP) CTP.cases('cxr', CSCEN.map((s, i) => ({ id: s.id, name: s.name, i, skip: !!s.study })).filter(c => !c.skip));
+
+if (window.CTKIT) CTKIT({ sim: 'cxr', ROOT, $, st: () => D, idx: () => scIdx, load, speed: null, drill: true });
 
 })();
 </script>
