@@ -293,6 +293,9 @@ body:not(.teach) .coach-hl{outline:none!important;box-shadow:none!important;anim
 .ctl-more summary{cursor:pointer;color:var(--muted);font-size:12px}
 .ctl-more .ctl-refs{margin-top:6px}
 /* teach-guide-practice flow */
+.ct-in{width:100%;box-sizing:border-box;background:#0f1a22;border:1px solid #2a4252;border-radius:8px;color:var(--fg);font:inherit;font-size:14px;padding:8px 10px;resize:vertical}
+.ct-typed{font-size:13px;color:#cfe3ff;background:#1a2733;border-radius:6px;padding:6px 8px;margin-bottom:6px}
+.ct-pred{border-top:1px dashed #2a4252;margin-top:8px;padding-top:8px}
 .clsn .ct-deep h4{font-size:14px;margin:.9em 0 .3em;color:#cfe3ff}
 .clsn .ct-deep p,.clsn .ct-deep li{line-height:1.6}
 .clsn .ct-alt{border-left:3px solid #f0a23a;padding:2px 0 2px 10px;margin:8px 0}
@@ -322,6 +325,39 @@ body.learn .ct-gate{display:none}
 .cch.asking .cch-b{filter:blur(6px);pointer-events:none;user-select:none}
 .cch-ask{background:#13202a;border:1px solid #8fc1ff;border-radius:12px;padding:10px 12px;margin:0 0 10px}
 .cp-steps i.dn{background:#3ec98e!important;color:#0b0f12!important}
+/* ICU Essentials, admissions, objectives */
+.view details:has(> [id$="-teach"]){display:none}
+.cch .cch-why,.cch .cch-more{display:none!important}
+.essgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px;margin-top:10px}
+.essm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:6px;align-content:start}
+.essm .eh{display:flex;gap:10px;align-items:baseline}
+.essm .en{font-family:var(--f-mono);color:#0b0f12;background:#8fc1ff;border-radius:999px;min-width:26px;height:26px;display:inline-grid;place-items:center;font-size:13px}
+.essm.done .en{background:#3ec98e}
+.essm b{font-family:var(--f-disp);font-size:16px}
+.essm .ed{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.essm p{margin:0;color:var(--soft);font-size:13px;line-height:1.45}
+.essm .ebar{height:5px;border-radius:3px;background:#1f2a31;overflow:hidden}.essm .ebar i{display:block;height:100%;background:#3ec98e}
+.essm details summary{cursor:pointer;color:#8fc1ff;font-size:13px}
+.essm ol{margin:6px 0 0;padding-left:20px;display:grid;gap:4px;font-size:13px}
+.essm ol a{color:var(--fg);text-decoration:none;cursor:pointer}.essm ol a:hover{text-decoration:underline}
+.essm ol .st{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:6px}
+.essm .eobj{margin:4px 0 0;padding-left:18px;font-size:12.5px;color:var(--soft)}
+.essm .ego{justify-self:start;font:inherit;font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid #8fc1ff;background:transparent;color:var(--fg);cursor:pointer}
+.admit{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:linear-gradient(90deg,#1a1410,#131a1e);border:1px solid #5a4020;border-radius:14px;padding:12px 14px}
+.admit b{font-family:var(--f-disp);font-size:16px;display:block}.admit span{font-size:13px;color:var(--soft)}
+.admbtns{display:flex;flex-wrap:wrap;gap:6px}.admbtns button{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid #f0a23a;background:transparent;color:var(--fg);cursor:pointer}
+body.adm .brand,body.adm header.bar .ctl label,body.adm header.bar .ctl select[id$="-scSel"],body.adm .cp-case,body.adm .cp-steps,body.adm [id$="-scTitle"],body.adm .ct-gate h3,body.adm .ctk-pt h3,body.adm .ptbar h3{visibility:hidden;height:0;overflow:hidden;margin:0!important;padding:0!important}
+body.adm #nvLbl{font-size:0}body.adm #nvLbl::after{content:'Admission';font-size:14px}
+body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .view [id$="-goalMini"],body.adm .view [id$="-holdWrap"]{display:none!important}
+.admtag{display:none}body.adm .admtag{display:flex;align-items:center;gap:10px;background:#2a1d0e;border:1px solid #f0a23a;border-radius:10px;padding:8px 12px;margin:8px 0;font-size:13.5px}
+.admtag button{margin-left:auto;font:inherit;font-size:12.5px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.objl{list-style:none;margin:4px 0;padding:0;display:grid;gap:4px;font-size:13.5px}.objl b{font-family:var(--f-mono);color:var(--muted);margin-right:4px}.objl li.ok b{color:#3ec98e}
+.welc{position:fixed;inset:0;background:rgba(5,8,10,.78);display:grid;place-items:center;z-index:120;padding:16px}
+.welc>div{max-width:560px;background:var(--panel);border:1px solid #2a4252;border-radius:16px;padding:18px 20px;display:grid;gap:10px}
+.welc h3{margin:0;font-family:var(--f-disp);font-size:22px}.welc p{margin:0;color:var(--soft);line-height:1.55;font-size:14.5px}
+.welc ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14px;line-height:1.5}
+.welc .row{display:flex;gap:8px;flex-wrap:wrap}.welc button{font:inherit;padding:8px 14px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}.welc button.pri{border-color:#8fc1ff;background:#13202a}
+.cwrap.asking-act ~ * .card:has(button):not([aria-label="Case"]):not([aria-label="Event log"]):not(.ref):not(.monitor){filter:blur(5px);pointer-events:none;user-select:none}
 /* CTICU kit */
 .ctk-pt{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--heart,#e5484d);border-radius:12px;padding:10px 14px;display:grid;gap:4px;margin-bottom:12px}
 .ctk-pt h3{font-family:var(--f-disp);font-size:18px;font-weight:600;margin:0}
@@ -5120,7 +5156,7 @@ body.learn .ct-gate{display:none}
         <div class="eyebrow">Cardiothoracic · Medical · Neuro · Surgical ICU</div>
         <h1>ICU <span>Sim</span> Lab</h1>
         <p class="lede">Real-time bedside simulators for four intensive care units. Pick a unit to walk onto it: each has its own cases, menus and look, plus shared ICU tools.</p>
-        <div class="chips"><span class="chip">4 ICUs · 17 simulators · 115+ cases</span><span class="chip">Learn · Guided · Practice</span><span class="chip">Real-time waveforms</span><span class="chip">Current evidence</span></div>
+        <div class="chips"><span class="chip">4 ICUs · 29 simulators · 180+ cases</span><span class="chip">Teach · Guide · Practice</span><span class="chip">Real-time waveforms</span><span class="chip">Current evidence</span></div>
       </div>
       <div class="heroart" aria-hidden="true"><svg class="heroheart" id="heroHeart" viewBox="0 0 200 200">
           <path d="M76 62 V22" stroke="#6fb6ff" stroke-width="9" stroke-linecap="round" fill="none" opacity=".8"/>
@@ -5131,6 +5167,9 @@ body.learn .ct-gate{display:none}
           <path d="M98 96 C 80 104, 64 118, 58 136" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
           <path d="M120 96 C 136 108, 146 122, 150 132" stroke="#f0a23a" stroke-width="1.6" fill="none" opacity=".7"/>
         </svg><canvas id="heroEcg"></canvas></div>
+    </section>
+    <section class="sect ess" id="essSec"><h2>Start here: ICU Essentials</h2><p class="libintro">Ten modules in order, built from the cases in this lab. Each case runs Teach → Guide → Practice and has three learning objectives you check off in the debrief. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p><div class="essgrid" id="essGrid"></div>
+      <div class="admit"><div><b>Admissions</b><span>A random case, no simulator label, practice rules: work it out like a real admission.</span></div><div class="admbtns"><button data-adm="all">Any ICU</button><button data-adm="micu">Medical</button><button data-adm="neuro">Neuro</button><button data-adm="sicu">Surgical</button><button data-adm="cticu">Cardiothoracic</button></div></div>
     </section>
     <section class="sect"><h2>Choose your ICU</h2><div class="ugrid"><a class="ucard" href="#u-cticu" style="--uc:#e5484d;--uc2:#ff7a6b" data-unit="cticu"><div class="uimg"><svg class="uart"  viewBox="0 0 200 200">
           <path d="M76 62 V22" stroke="#6fb6ff" stroke-width="9" stroke-linecap="round" fill="none" opacity=".8"/>
@@ -8026,7 +8065,7 @@ window.CTG = (() => {
     }
     const id = curId(v); const qs = caseQs(v, id);
     const cards = [];
-    cards.push(['The patient', b => { b.append(mk('p', 'cl-p', brief ? brief.textContent : '')); b.append(mk('p', 'ct-think', 'Before you go on: what do you think is going on, and what worries you most?')); }]);
+    cards.push(['The patient', b => { if (window.OBJP) { b.append(mk('div', 'cl-k', 'By the end of this case you can')); b.append(OBJP.list(v, id, (ST[v] && ST[v]() || {}).S && ST[v]().S.sc)); } b.append(mk('div', 'cl-k', 'Presentation')); b.append(mk('p', 'cl-p', brief ? brief.textContent : '')); b.append(mk('p', 'ct-think', 'Before you go on: what do you think is going on, and what worries you most?')); }]);
     if (goals.length) cards.push(['What you are aiming for', b => { b.append(mk('p', 'cl-p', 'The case is complete when every target is met and held. Keep these in view on the monitor and labs:')); const ul = mk('ul', 'cl-ul'); goals.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }]);
     if (ideas.length || deep.length) cards.push(['Key ideas for this case', b => {
       if (ideas.length) { b.append(mk('div', 'cl-k', 'The short version')); const ul = mk('ul', 'cl-ul'); ideas.forEach(g => ul.append(mk('li', '', g))); b.append(ul); }
@@ -8040,7 +8079,7 @@ window.CTG = (() => {
     if (qs.length) cards.push(['Ready check', b => {
       const x = qs[Math.floor(Math.random() * qs.length)]; b.append(mk('p', 'cl-p', x.q)); const ex = mk('div', 'ct-qx'); ex.hidden = true;
       const opts = x.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5);
-      const bs = opts.map(o => { const bt = mk('button', 'ct-opt', o.t); bt.onclick = () => { if (!ex.hidden) return; bs.forEach((y, n) => { y.disabled = true; if (opts[n].k === x.a) y.classList.add('ok'); }); if (o.k !== x.a) bt.classList.add('no'); ex.hidden = false; ex.textContent = (o.k === x.a ? 'Correct. ' : 'Not quite. ') + x.e; }; return bt; });
+      const bs = opts.map(o => { const bt = mk('button', 'ct-opt', o.t); bt.onclick = () => { if (!ex.hidden) return; bs.forEach((y, n) => { y.disabled = true; if (opts[n].k === x.a) y.classList.add('ok'); }); if (o.k !== x.a) bt.classList.add('no'); ex.hidden = false; ex.textContent = (o.k === x.a ? 'Correct. ' : 'Not quite. ') + x.e; if (o.k === x.a && window.OBJP) OBJP.set(v, id, 'e'); }; return bt; });
       bs.forEach(y => b.append(y)); b.append(ex);
     }]);
     const dots = mk('div', 'cl-chips'), body = mk('div', 'ct-card'), foot = mk('div', 'cl-foot'); box.append(dots, body, foot);
@@ -8056,19 +8095,32 @@ window.CTG = (() => {
     show(0);
   }
   /* ---------- Guide: ask, then show ---------- */
-  function vitals(sec) { const o = {}; sec.querySelectorAll('.num').forEach(n => { if (!n.offsetParent) return; const l = n.querySelector('.lb span'), x = n.querySelector('.v'), s2 = n.querySelector('.s'); if (!l || !x) return; o[l.textContent.trim()] = x.textContent.trim() + (s2 && s2.textContent.trim() ? ' ' + s2.textContent.trim() : ''); }); return o; }
+  function vitals(sec) { const o = {}; sec.querySelectorAll('.num').forEach(n => { if (!n.offsetParent) return; const l = n.querySelector('.lb span'), x = n.querySelector('.v'), s2 = n.querySelector('.s'); if (!l || !x) return; o[l.textContent.trim()] = x.textContent.trim() + (s2 && s2.textContent.trim() ? ' ' + s2.textContent.trim() : ''); }); sec.querySelectorAll('.tile').forEach(t => { if (!t.offsetParent) return; const l = t.querySelector('.k'), x = t.querySelector('.v'); if (!l || !x) return; const k = l.textContent.trim(), val = x.textContent.trim(); if (!k || o[k] !== undefined || !/\d/.test(val)) return; o[k] = val; }); return o; }
+  function numOf(x) { if (!x) return NaN; const m = x.match(/\((\d+(?:\.\d+)?)\)/); if (m) return +m[1]; const n = x.match(/-?\d+(?:\.\d+)?/); return n ? +n[0] : NaN; }
+  function predKey(sec) {
+    const vt = vitals(sec), keys = Object.keys(vt).filter(k => !isNaN(numOf(vt[k]))); if (!keys.length) return null;
+    const goals = [...sec.querySelectorAll('[id$="-goals"] li')].filter(li => !li.classList.contains('ok')).map(li => li.textContent).join(' ');
+    const pref = [['MAP', /^MAP$|ART|ABP/i], ['ICP', /ICP/i], ['SpO2', /SpO|SAT/i], ['HR', /^HR/i], ['K', /^K$/], ['Na', /^Na$/], ['Glucose', /Glucose/i], ['Lactate', /Lactate/i]];
+    for (const [g, re] of pref) if (goals.includes(g) || (g === 'MAP' && /MAP|BP/.test(goals))) { const k = keys.find(k => re.test(k)); if (k) return k; }
+    return keys.find(k => /^MAP$/i.test(k)) || keys.find(k => /ART|ABP/i.test(k)) || keys[0];
+  }
   function askBox(sec, v, st, steps, next) {
     const s0 = steps[next]; const later = steps.slice(next + 1).filter(x => !x.done && !/^(hold|wait|watch|let)/i.test(x.t) && x.t !== s0.t).slice(0, 2).map(x => ({ t: x.t, kind: 'later' }));
     const DZ = (window.DZL && DZL[v]) || {}, rel = Object.keys((window.LEARN && LEARN.SIMS[v] && LEARN.SIMS[v].d) || {}).filter(k => DZ[k]); const dz = rel.map(k => DZ[k]).filter(d => d && d.t).sort(() => Math.random() - 0.5).slice(0, 4 - 1 - later.length).map(d => ({ t: d.t, kind: 'dz', w: d.w }));
     const opts = [{ t: s0.t, kind: 'ok' }, ...later, ...dz].sort(() => Math.random() - 0.5);
     if (opts.length < 2) { st.asked.add(s0.t); return; }
-    st.ask = { t: s0.t, why: s0.why, opts, picked: null, paused: pauseSim(sec, true) };
+    st.ask = { t: s0.t, why: s0.why, opts, picked: null, typed: null, stage: 'type', pred: null, paused: pauseSim(sec, true) };
   }
   function renderAsk(c, sec, v, st) {
     let bx = c.querySelector('.cch-ask'); if (!st.ask) { if (bx) bx.remove(); return; }
     if (!bx) { bx = mk('div', 'cch-ask'); c.querySelector('.cch-b').before(bx); }
-    if (bx.dataset.k === st.ask.t + '|' + (st.ask.picked ? st.ask.picked.t : '')) return;
-    bx.dataset.k = st.ask.t + '|' + (st.ask.picked ? st.ask.picked.t : ''); bx.innerHTML = '';
+    const sig = st.ask.t + '|' + st.ask.stage + '|' + (st.ask.picked ? st.ask.picked.t : '') + '|' + (st.ask.pred || '');
+    if (bx.dataset.k === sig) return; bx.dataset.k = sig; bx.innerHTML = '';
+    if (st.ask.stage === 'type') {
+      bx.append(mk('div', 'cch-k', 'Your move: what would you do next? (sim paused)'), mk('p', 'ct-think', 'Say it or type it before you see any choices. The action buttons are hidden until you commit.'));
+      const inp = mk('textarea', 'ct-in'); inp.rows = 2; inp.placeholder = 'e.g. start norepinephrine and give 1 L LR'; bx.append(inp);
+      const r = mk('div', 'row'); const go = mk('button', 'cl-btn pri', 'Show the choices ›'); go.onclick = () => { st.ask.typed = inp.value.trim(); st.ask.stage = 'pick'; renderAsk(c, sec, v, st); }; r.append(go); bx.append(r); setTimeout(() => inp.focus({ preventScroll: true }), 30); return;
+    }
     bx.append(mk('div', 'cch-k', st.ask.picked ? 'Your move' : 'Your move: what would you do next? (sim paused)'));
     st.ask.opts.forEach(o => { const b = mk('button', 'ct-opt', o.t); if (st.ask.picked) { b.disabled = true; if (o.kind === 'ok') b.classList.add('ok'); else if (o === st.ask.picked) b.classList.add('no'); } b.onclick = () => { if (st.ask.picked) return; st.ask.picked = o; renderAsk(c, sec, v, st); }; bx.append(b); });
     if (st.ask.picked) {
@@ -8076,15 +8128,24 @@ window.CTG = (() => {
       if (o.kind === 'ok') fb.append(mk('b', 'g', 'Yes. '), document.createTextNode(st.ask.why || 'That is the next move.'));
       else if (o.kind === 'later') fb.append(mk('b', 'w', 'Good idea, but not yet. '), document.createTextNode(`First: ${st.ask.t}. ${st.ask.why || ''}`));
       else fb.append(mk('b', 'w', 'Risky here. '), document.createTextNode((o.w || '') + ` The better move: ${st.ask.t}.`));
-      const go = mk('button', 'cl-btn pri', 'Do it ›'); go.onclick = () => { st.asked.add(st.ask.t); st.snap = { t: st.ask.t, vals: vitals(sec) }; const pz = st.ask.paused; st.ask = null; if (pz) pauseSim(sec, false); refresh(true); };
-      fb.append(mk('div', 'row'), go); bx.append(fb);
+      if (st.ask.typed) fb.prepend(mk('div', 'ct-typed', 'You said: ' + st.ask.typed));
+      bx.append(fb);
+      const vk = /POCUS|send|labs?\b|culture|check|measure|read|look|assess|hold|ABG|exam|x-?ray|\bCT\b|echo|call|consult|screen|monitor|count|identify|recogni|name the|confirm|level|zero|flush/i.test(st.ask.t) ? null : predKey(sec);
+      if (vk && !st.ask.pred) {
+        const pr = mk('div', 'ct-pred'); pr.append(mk('div', 'cch-k', `Predict: after "${st.ask.t}", what will ${vk} do over the next few minutes?`));
+        [['up', 'Go up'], ['down', 'Go down'], ['same', 'Stay about the same']].forEach(([k, t]) => { const b = mk('button', 'ct-opt', t); b.onclick = () => { st.ask.pred = k; renderAsk(c, sec, v, st); }; pr.append(b); });
+        const sk = mk('button', 'cl-btn', 'Skip prediction'); sk.onclick = () => { st.ask.pred = 'skip'; renderAsk(c, sec, v, st); }; pr.append(sk); bx.append(pr); return;
+      }
+      const go = mk('button', 'cl-btn pri', 'Do it ›'); go.onclick = () => { st.asked.add(st.ask.t); st.snap = { t: st.ask.t, vals: vitals(sec), pk: vk, pred: st.ask.pred }; const pz = st.ask.paused; st.ask = null; if (pz) pauseSim(sec, false); refresh(true); };
+      if (st.ask.pred && st.ask.pred !== 'skip') bx.append(mk('p', 'ct-think', `Your prediction: ${vk} ${({ up: 'goes up', down: 'goes down', same: 'stays about the same' })[st.ask.pred]}. We will check it after the step.`));
+      const r2 = mk('div', 'row'); r2.append(go); bx.append(r2);
     }
   }
   function gate(v) {
     const sec = document.getElementById('v-' + v); if (!sec) return; const st = S[v] || (S[v] = {});
     if (!q(sec, 'pauseSim')) return;
     if (st.noGate) { st.noGate = false; return; }
-    pauseSim(sec, true); st.gate = true; st.ask = null;
+    pauseSim(sec, true); st.gate = true; st.ask = null; const old = sec.querySelector('.ct-gate'); if (old) old.remove();
   }
   function gateBox(sec, v, st, wrap) {
     let g = wrap.querySelector('.ct-gate');
@@ -8098,8 +8159,10 @@ window.CTG = (() => {
     const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
     g.append(mk('div', 'cch-k', CT.mode === 'practice' ? 'Practice case · clock stopped until you start' : 'Case presentation · clock stopped until you start'), mk('h3', '', name), mk('p', 'cl-p', brief ? brief.textContent : ''));
     const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
-    if (goals.length) { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
-    const b = mk('button', 'cl-btn pri ct-start', 'Start case ▶'); b.onclick = () => { st.gate = false; g.remove(); wrap.classList.remove('gated'); pauseSim(sec, false); refresh(true); };
+    if (goals.length && !document.body.classList.contains('adm')) { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
+    let pin = null; if (CT.mode === 'practice') { g.append(mk('div', 'cch-k', 'Your plan before you start')); pin = mk('textarea', 'ct-in'); pin.rows = 2; pin.placeholder = 'What is going on, and your first three moves'; g.append(pin, mk('p', 'ct-think', 'Committing to a plan first is how you find out what you really know. It is compared with the expert path in the debrief.')); }
+    st.plan = '';
+    const b = mk('button', 'cl-btn pri ct-start', 'Start case ▶'); b.onclick = () => { st.plan = pin ? pin.value.trim() : ''; st.gate = false; g.remove(); wrap.classList.remove('gated'); pauseSim(sec, false); refresh(true); };
     g.append(b); wrap.querySelector('.cpath').after(g);
   }
   function modeChanged(m, prev) {
@@ -8217,11 +8280,13 @@ window.CTG = (() => {
     else if (goals.length) f.append('All targets met: hold steady until the case completes.');
     else f.append('Free play: change one thing at a time and watch the monitor respond.');
     // ask, then show
-    if (!st.gate && prov && next >= 0 && steps[next] && !st.ask && !st.asked.has(steps[next].t) && steps[next].el && !/^(hold|wait|watch|let)/i.test(steps[next].t)) askBox(sec, v, st, steps, next);
+    if (!st.gate && !st.snap && prov && next >= 0 && steps[next] && !st.ask && !st.asked.has(steps[next].t) && steps[next].el && !/^(hold|wait|watch|let)/i.test(steps[next].t)) askBox(sec, v, st, steps, next);
     if (st.ask && (next < 0 || !steps[next] || steps[next].t !== st.ask.t)) { if (st.ask.paused) pauseSim(sec, false); st.ask = null; }
     if (st.ask && !st.ask.picked && pauseSim(sec, true)) st.ask.paused = true;
-    renderAsk(c, sec, v, st); c.classList.toggle('asking', !!(st.ask && !st.ask.picked));
-    if (st.snap && steps.some(x => x.t === st.snap.t && x.done)) { if (!st.snap.at) st.snap.at = Date.now(); else if (Date.now() - st.snap.at > 6000) { const a = st.snap.vals, b = vitals(sec); const ch = Object.keys(b).filter(k => a[k] !== undefined && a[k] !== b[k]).map(k => `${k} ${a[k]} → ${b[k]}`); st.did = [{ msg: 'What changed after: ' + st.snap.t, note: ch.length ? ch.join(' · ') : 'Little change on the monitor yet: some effects take minutes. Keep watching the trend.' }, ...(st.did || [])].slice(0, 2); st.snap = null; } }
+    renderAsk(c, sec, v, st); c.classList.toggle('asking', !!(st.ask && !st.ask.picked)); wrap.classList.toggle('asking-act', !!st.ask);
+    if (st.snap && steps.some(x => x.t === st.snap.t && x.done)) { if (!st.snap.at) st.snap.at = Date.now(); else if (Date.now() - st.snap.at > (st.snap.pred && st.snap.pred !== 'skip' ? 20000 : 6000)) { const a = st.snap.vals, b = vitals(sec); const ch = Object.keys(b).filter(k => a[k] !== undefined && a[k] !== b[k]).map(k => `${k} ${a[k]} → ${b[k]}`); let pn = '';
+          if (st.snap.pk && st.snap.pred && st.snap.pred !== 'skip') { const x0 = numOf(a[st.snap.pk]), x1 = numOf(b[st.snap.pk]); if (!isNaN(x0) && !isNaN(x1)) { const d = x1 - x0, rel = Math.abs(d) / Math.max(1, Math.abs(x0)); const act = rel < 0.03 ? 'same' : d > 0 ? 'up' : 'down'; pn = ` Prediction: you said ${st.snap.pk} would ${({ up: 'go up', down: 'go down', same: 'stay about the same' })[st.snap.pred]}; it ${({ up: 'went up', down: 'went down', same: 'stayed about the same' })[act]} (${x0} → ${x1}). ${act === st.snap.pred ? '✓' : '✗ Think about why.'}`; } }
+          st.did = [{ msg: 'What changed after: ' + st.snap.t, note: (ch.length ? ch.join(' · ') : 'Little change on the monitor yet: some effects take minutes. Keep watching the trend.') + pn }, ...(st.did || [])].slice(0, 2); st.snap = null; } }
     setHL(prov && prov.el && !minimized && !st.ask ? prov.el : null);
   }
   function flowStatus(sec, v, st, wrap) {
@@ -8259,7 +8324,7 @@ window.CTG = (() => {
   }
   function state(sim, fn) { ST[sim] = fn; if (!P[sim]) P[sim] = () => guideProv(sim); }
   setInterval(() => refresh(false), 450);
-  return { reg: (k, f) => { P[k] = f; }, state, refresh, modeChanged, gate, peek: v => P[v] ? P[v]() : null };
+  return { reg: (k, f) => { P[k] = f; }, state, refresh, modeChanged, gate, planOf: v => (S[v] && S[v].plan) || '', peek: v => P[v] ? P[v]() : null };
 })();
 </script>
 <script>
@@ -8443,6 +8508,68 @@ window.CTP = (() => {
   document.querySelectorAll('[id$="-log"]').forEach(l => logMO.observe(l, { childList: true }));
   window.addEventListener('load', run);
   window.CTLF = { flagText };
+})();
+</script>
+<script>
+/* ===== ICU Essentials path, first-time welcome, admissions ===== */
+(() => {
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
+  const UNITS = { micu: ['mshock', 'mresp', 'mtox', 'mendo', 'mgi'], neuro: ['nicp', 'nstroke', 'nsah', 'nsz', 'nnm'], sicu: ['strauma', 'sabd', 'sburn', 'scomp'], cticu: ['pacing', 'cals', 'poaf', 'hemo', 'bleed', 'mcs', 'iabp', 'artline'] };
+  const UNAME = { micu: 'Medical ICU', neuro: 'Neuro ICU', sicu: 'Surgical ICU', cticu: 'Cardiothoracic ICU' };
+  function idx(sim, id) { const L = (window.CTP && CTP.list && CTP.list(sim)) || []; const c = L.find(x => x.id === id); return c ? c.i : 0; }
+  function nameOf(sim, id) { const L = (window.CTP && CTP.list && CTP.list(sim)) || []; const c = L.find(x => x.id === id); return c ? c.name : id; }
+  function openCase(sim, id, mode) { document.body.classList.remove('adm'); if (mode) CT.setMode(mode, true); location.hash = sim; setTimeout(() => CT.open(sim, idx(sim, id)), 60); }
+  function score(sim, id) { const o = (window.OBJP && OBJP.get(sim, id)) || {}; return (o.r ? 1 : 0) + (o.m ? 1 : 0) + (o.e ? 1 : 0); }
+  function render() {
+    const g = document.getElementById('essGrid'); if (!g || !window.CURRIC) return; g.innerHTML = '';
+    CURRIC.modules.forEach((m, k) => {
+      const tot = m.c.length * 3, got = m.c.reduce((n, [s, c]) => n + score(s, c), 0);
+      const card = mk('article', 'essm' + (got === tot ? ' done' : ''));
+      const h = mk('div', 'eh'); h.append(mk('span', 'en', String(k + 1)), mk('b', '', m.t)); card.append(h, mk('div', 'ed', m.d), mk('p', '', m.why));
+      const bar = mk('div', 'ebar'); const i = mk('i'); i.style.width = Math.round(100 * got / tot) + '%'; bar.append(i); card.append(bar, mk('div', 'ed', `${got} of ${tot} objectives`));
+      const d = mk('details'); d.append(mk('summary', '', 'Objectives and cases'));
+      const uo = mk('ul', 'eobj'); m.obj.forEach(t => uo.append(mk('li', '', t))); d.append(uo);
+      const ol = mk('ol'); m.c.forEach(([s, c]) => { const li = mk('li'); const a = mk('a', '', nameOf(s, c)); a.onclick = () => openCase(s, c, 'learn'); li.append(a, mk('span', 'st', '✓'.repeat(score(s, c)) + '○'.repeat(3 - score(s, c)))); ol.append(li); }); d.append(ol);
+      card.append(d);
+      const next = m.c.find(([s, c]) => score(s, c) < 3) || m.c[0];
+      const go = mk('button', 'ego', got ? (got === tot ? 'Review' : 'Continue ›') : 'Start ›'); go.onclick = () => openCase(next[0], next[1], 'learn'); card.append(go);
+      g.append(card);
+    });
+  }
+  /* first time here */
+  function welcome() {
+    let seen = null; try { seen = localStorage.getItem('ctWelcome'); } catch (e) {}
+    if (seen || (location.hash && location.hash !== '#menu')) return;
+    const w = mk('div', 'welc'); const b = mk('div');
+    b.append(mk('h3', '', 'Welcome to the ICU Sim Lab'), mk('p', '', 'Real-time ICU patients you manage from a monitor and a set of controls. Every case has three steps:'));
+    const ol = mk('ol'); [['Teach', 'a short brief on the patient, the targets, the key ideas and the plan.'], ['Guide', 'run it with a coach who pauses at each decision, asks what you would do, then shows you.'], ['Practice', 'do it alone with new numbers; 80 or more marks the case mastered.']].forEach(([t, x]) => { const li = mk('li'); li.append(mk('b', '', t + ': '), document.createTextNode(x)); ol.append(li); }); b.append(ol);
+    b.append(mk('p', '', 'If you are new, start with ICU Essentials module 1. The clock stays stopped until you press Start case.'));
+    const r = mk('div', 'row'); const s1 = mk('button', 'pri', 'Start module 1 ›'); const s2 = mk('button', '', 'Look around first');
+    const close = () => { try { localStorage.setItem('ctWelcome', '1'); } catch (e) {} w.remove(); };
+    s1.onclick = () => { close(); const m = CURRIC.modules[0].c[0]; openCase(m[0], m[1], 'learn'); }; s2.onclick = () => { close(); const e = document.getElementById('essSec'); if (e) e.scrollIntoView({ behavior: 'smooth' }); };
+    r.append(s1, s2); b.append(r); w.append(b); document.body.append(w);
+  }
+  /* admissions */
+  let ADM = null;
+  function admit(u) {
+    const units = u === 'all' ? ['micu', 'neuro', 'sicu', 'cticu'] : [u]; const pool = [];
+    units.forEach(un => UNITS[un].forEach(sim => ((window.CTP && CTP.list(sim)) || []).forEach(c => pool.push([un, sim, c]))));
+    if (!pool.length) return; const [un, sim, c] = pool[Math.floor(Math.random() * pool.length)];
+    ADM = { un, sim, id: c.id }; CT.setMode('practice', true); if (window.CTV && CTV[sim]) CTV[sim].set(true); document.body.classList.add('adm'); location.hash = sim;
+    setTimeout(() => { document.body.classList.add('adm'); CT.open(sim, c.i); tag(sim, un); }, 60);
+  }
+  function tag(sim, un) {
+    const sec = document.getElementById('v-' + sim); if (!sec) return; let t = sec.querySelector('.admtag');
+    if (!t) { t = mk('div', 'admtag'); const w = sec.querySelector('.cwrap'); (w || sec.firstElementChild).before(t); }
+    t.innerHTML = ''; t.append(mk('b', '', 'New admission'), mk('span', '', `${UNAME[un]} · no diagnosis given. Work it up like a real admission.`));
+    const r = mk('button', '', 'Reveal the case'); r.onclick = () => end(); t.append(r);
+  }
+  function end() { document.body.classList.remove('adm'); ADM = null; }
+  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-adm]'); if (b) admit(b.dataset.adm); });
+  window.addEventListener('hashchange', () => { if (ADM && location.hash.slice(1) !== ADM.sim) end(); if (location.hash === '#menu' || !location.hash) render(); });
+  setInterval(() => { if (!ADM) return; const sec = document.getElementById('v-' + ADM.sim); const ov = sec && sec.querySelector('[id$="-ov"]'); if (ov && !ov.hidden) end(); }, 700);
+  window.addEventListener('load', () => setTimeout(() => { render(); welcome(); }, 300));
+  window.ESS = { render, admit, openCase };
 })();
 </script>
 <script>
@@ -12309,6 +12436,9 @@ window.CTKIT = (cfg) => {
     const s = S(), sc = s && s.sc; const R = score(); const box = mk('div', 'ctk-db');
     const hist = store('icuScores', { s: R.total, t: Date.now() }, sc ? sc.id : '?');
     const head = mk('div', 'ctk-dbh'); head.append(mk('div', 'ctk-dbl', `Score ${R.total}/100 · targets ${R.parts.goals}/50 · key steps ${R.parts.steps}/30 · safety ${R.parts.safety}/20${R.parts.hint ? ' · hint −5' : ''}${hist.length > 1 ? ` · best ${Math.max(...hist.map(r => r.s))}` : ''}`), mk('div', 'ctk-dbs', String(R.total))); box.append(head);
+    if (window.OBJP && sc) { const st0 = T.steps || []; const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); if (i0 >= 0 && T.stepT[i0] !== undefined) OBJP.set(sim, sc.id, 'r'); if (win) OBJP.set(sim, sc.id, 'm');
+      const ob = mk('details', 'ctk-sec'); ob.open = true; ob.append(mk('summary', '', 'Learning objectives'), OBJP.list(sim, sc.id, sc)); if (!OBJP.get(sim, sc.id).e) ob.append(mk('p', 'brief', 'The third objective is checked when you pass the quiz (4 of 5).')); box.append(ob);
+      const pl = window.CTG && CTG.planOf && CTG.planOf(sim); if (pl) { const pd = mk('details', 'ctk-sec'); pd.open = true; pd.append(mk('summary', '', 'Your plan at the start vs the expert path'), mk('p', 'brief', 'You wrote: ' + pl), mk('p', 'brief', 'Expert path: ' + (st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → ') || 'see the hint'))); box.append(pd); } }
     const tl = mk('details', 'ctk-sec'); tl.open = true; tl.append(mk('summary', '', 'Timeline: the expert path and what you did'));
     const grid = mk('div', 'ctk-tl'); const cA = mk('div'); cA.append(mk('h4', '', 'Key steps')); const uA = mk('ul');
     (T.steps || []).forEach((g, i) => { if (/^Hold/.test(g.t)) return; const t = T.stepT[i]; const li = mk('li', t !== undefined ? 'ok' : 'miss'); li.append(mk('b', '', t !== undefined ? t : 'missed'), document.createTextNode(' ' + g.t)); uA.append(li); });
@@ -12334,7 +12464,7 @@ window.CTKIT = (cfg) => {
     const show = () => {
       c.innerHTML = '';
       if (i >= qs.length) {
-        const s = S(); const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }, s && s.sc ? s.sc.id : '?');
+        const s = S(); const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }, s && s.sc ? s.sc.id : '?'); if (right >= 4 && window.OBJP && s && s.sc) OBJP.set(sim, s.sc.id, 'e');
         const h = mk('h3', '', `Quiz: ${right}/${qs.length}`); if (right / qs.length < 0.8) h.style.color = 'var(--warn)'; c.append(h, mk('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'CCRN and PANCE style questions on this topic.'));
         const row = mk('div', 'row'); const b = (t, fn) => { const x = mk('button', 'btn', t); x.onclick = fn; row.append(x); };
         b('Retake', () => quiz(questions(), back)); b('Back to debrief', back); b('Close', close); c.append(row); return;
@@ -12523,6 +12653,89 @@ window.KQB = {
     { c: ['find'], q: 'A widening mediastinum after cardiac surgery with falling output raises concern for:', o: ['Mediastinal bleeding or tamponade', 'Pneumonia', 'Normal postoperative change only', 'Pulmonary edema'], a: 0, e: 'Compare with prior films and correlate with chest tube output.', r: ['godoy12b', 'bojar'] },
     { c: ['lines'], q: 'An enteric tube must be confirmed with its tip:', o: ['Below the diaphragm in the stomach, following the midline past the carina', 'In the right bronchus', 'At the GE junction', 'Coiled in the esophagus'], a: 0, e: 'Check that it bisects the carina and goes below the diaphragm.', r: ['godoy12a'] }
   ]
+};
+
+/* ===== ICU Essentials: a 10-module path through existing cases, with learning objectives.
+   Domains follow the broad areas of the AACN CCRN (Adult) exam outline and the SCCM FCCS course topics; this is our own mapping, not an official one.
+   Each case objective set: [recognize, manage, explain]. Recognize is checked when the first expert step is done, manage when every target is met, explain when the case quiz is passed (4/5) or the ready check is answered correctly. ===== */
+window.CURRIC = {
+  modules: [
+    { id: 'm1', t: 'Recognize shock', d: 'Cardiovascular · Multisystem', why: 'Every ICU day starts here: is this patient perfusing, and if not, which of the four kinds of shock is it?', obj: ['Name the four kinds of shock and their bedside signs', 'Use POCUS and the exam to tell them apart', 'Start the first treatment for each within the first hour'], c: [['mshock', 'sepsis'], ['mshock', 'cardio'], ['mshock', 'tamp'], ['mshock', 'pe'], ['mshock', 'ana']] },
+    { id: 'm2', t: 'Vasopressors and refractory shock', d: 'Cardiovascular', why: 'Choosing and titrating drips is daily ICU work, and most errors are in the second and third agent.', obj: ['Pick a vasopressor or inotrope by the failing term', 'Escalate correctly when the first agent is not enough', 'Do drip math without errors'], c: [['mshock', 'refractory'], ['hemo', 'vasoplegia'], ['hemo', 'lv'], ['lytes', 'math']] },
+    { id: 'm3', t: 'Oxygen and noninvasive support', d: 'Respiratory', why: 'Most respiratory failure is first managed without a tube; knowing when that is failing prevents crash intubations.', obj: ['Match the device to the type of failure', 'Track response and know when to intubate', 'Set oxygen targets by disease'], c: [['mresp', 'rox'], ['mresp', 'copd'], ['vent', 'hypox']] },
+    { id: 'm4', t: 'Ventilator and ABG essentials', d: 'Respiratory', why: 'Reading the ventilator and the blood gas is the core language of the ICU.', obj: ['Read peak, plateau, driving pressure and auto-PEEP', 'Set lung-protective ventilation', 'Interpret an ABG with compensation'], c: [['mresp', 'ards'], ['mresp', 'asthma'], ['vent', 'hypercap'], ['vent', 'metab']] },
+    { id: 'm5', t: 'Liberation and daily care', d: 'Multisystem · Professional caring', why: 'Patients are harmed by what is forgotten: daily checklists, sedation and early extubation change outcomes.', obj: ['Run FAST HUGS BID on every patient', 'Pair awakening and breathing trials', 'Prevent and manage delirium'], c: [['rounds', 'r_sepsis'], ['vent', 'ready'], ['scomp', 'delir'], ['rounds', 'r_lap']] },
+    { id: 'm6', t: 'Neuro emergencies', d: 'Neurology', why: 'Brain injury is time-critical and secondary injury (hypotension, hypoxia, high ICP) is preventable.', obj: ['Protect cerebral perfusion pressure', 'Recognize herniation and act', 'Manage stroke BP, ICH reversal and status epilepticus'], c: [['nicp', 'tbi'], ['nicp', 'hern'], ['nstroke', 'bp'], ['nstroke', 'ich'], ['nsz', 'se']] },
+    { id: 'm7', t: 'Electrolytes, glucose and kidneys', d: 'Endocrine · Renal', why: 'Potassium, sodium, glucose and urine output are checked every day and can kill quickly.', obj: ['Treat hyperkalemia in the right order', 'Run DKA and sodium correction safely', 'Stage AKI and know when to start dialysis'], c: [['lytes', 'hyperk'], ['mendo', 'dka'], ['mendo', 'hypona'], ['aki', 'oligo'], ['aki', 'start']] },
+    { id: 'm8', t: 'Poisoning and withdrawal', d: 'Multisystem · Behavioral', why: 'Overdose and withdrawal are common ICU admissions, and the ECG often decides the treatment.', obj: ['Treat by the ECG and toxidrome', 'Use the key antidotes correctly', 'Manage alcohol withdrawal and serotonin toxicity'], c: [['mtox', 'tca'], ['mtox', 'ccb'], ['mtox', 'etoh'], ['mtox', 'sero']] },
+    { id: 'm9', t: 'Trauma and the surgical patient', d: 'Multisystem · Gastrointestinal · Integumentary', why: 'Bleeding, obstruction and the post-op abdomen dominate surgical ICU care.', obj: ['Resuscitate hemorrhage with blood products', 'Recognize tension pneumothorax and compartment syndrome', 'Get source control and run burn resuscitation'], c: [['strauma', 'trauma'], ['strauma', 'ptx'], ['sabd', 'leak'], ['sabd', 'acs'], ['sburn', 'burn']] },
+    { id: 'm10', t: 'After heart surgery', d: 'Cardiovascular', why: 'Cardiac surgery patients have their own rules: pacing wires, tamponade, post-op AF and the CALS arrest protocol.', obj: ['Pace and troubleshoot epicardial wires', 'Recognize tamponade and bleeding', 'Run post-op AF and the CALS arrest protocol'], c: [['pacing', 'brady'], ['poaf', 'unstable'], ['bleed', 'tamp'], ['cals', 'vf'], ['artline', 'zero']] }
+  ],
+  obj: {
+    'mshock:sepsis': ['Recognize septic shock and its severity from vitals and lactate', 'Deliver the hour-1 bundle: cultures, antibiotics, fluids, norepinephrine', 'Explain why balanced crystalloid and early norepinephrine are preferred'],
+    'mshock:cardio': ['Recognize cold and wet cardiogenic shock', 'Support with norepinephrine then an inotrope, without fluid loading', 'Explain why revascularization and culprit-only PCI matter'],
+    'mshock:tamp': ['Recognize tamponade: hypotension, JVD, pulsus paradoxus, effusion', 'Bridge with small fluid and a pressor, then drain', 'Explain why intubation before drainage is dangerous'],
+    'mshock:pe': ['Recognize massive PE from RV strain on POCUS', 'Give norepinephrine and thrombolysis, avoid big fluid boluses', 'Explain RV–LV interdependence'],
+    'mshock:ana': ['Recognize anaphylaxis with shock', 'Give IM epinephrine first, then an infusion if refractory', 'Explain why antihistamines and steroids are only adjuncts'],
+    'mshock:refractory': ['Recognize vasoplegia on norepinephrine with a full tank', 'Add vasopressin and hydrocortisone at the right thresholds', 'Explain when an inotrope is and is not indicated'],
+    'hemo:vasoplegia': ['Recognize vasoplegia on the PA catheter (low SVR, normal CI)', 'Restore tone with vasopressors rather than fluid', 'Explain how SVR and CI separate shock types'],
+    'hemo:lv': ['Recognize LV failure: low CI, high PAWP, high SVR', 'Support with an inotrope and reduce afterload', 'Explain why fluid worsens this pattern'],
+    'lytes:math': ['Set up a weight-based drip from the concentration', 'Program the pumps correctly', 'Explain the units conversion every time'],
+    'mresp:rox': ['Recognize de novo hypoxemic failure', 'Start HFNC and track the ROX index', 'Explain why delayed intubation is harmful'],
+    'mresp:copd': ['Recognize acute hypercapnic COPD exacerbation', 'Start NIV and titrate O2 to 88–92%', 'Explain why high-flow oxygen raises CO2 here'],
+    'vent:hypox': ['Recognize atelectasis as the cause of low sats after bypass', 'Recruit with PEEP rather than only raising FiO2', 'Explain shunt and why PEEP helps'],
+    'mresp:ards': ['Recognize ARDS and its severity by P/F', 'Set Vt 6 mL/kg PBW, keep Pplat ≤ 30, prone when indicated', 'Explain driving pressure and permissive hypercapnia'],
+    'mresp:asthma': ['Recognize auto-PEEP and dynamic hyperinflation', 'Slow the rate and lengthen exhalation', 'Explain why raising the rate makes it worse'],
+    'vent:hypercap': ['Recognize hypoventilation on the ABG', 'Fix minute ventilation', 'Explain the link between Vt × rate and CO2'],
+    'vent:metab': ['Recognize a metabolic acidosis with respiratory compensation', "Avoid 'correcting' the compensating CO2", "Explain Winter's formula"],
+    'rounds:r_sepsis': ['Recognize what is overdue on day 4', 'Run FAST HUGS BID: feeds, SAT/SBT, VTE, ulcer, glucose, lines, antibiotics', 'Explain the evidence behind each item'],
+    'vent:ready': ['Recognize readiness for extubation', 'Run an SBT and extubate', 'Explain RSBI and SBT criteria'],
+    'scomp:delir': ['Recognize hyperactive delirium on CAM-ICU', 'Remove deliriogenic drugs and lighten sedation', 'Explain why antipsychotics do not shorten delirium'],
+    'rounds:r_lap': ['Recognize post-op care that should be stopped', 'Advance diet, stop prophylactic antibiotics, multimodal analgesia', 'Explain ERAS principles'],
+    'nicp:tbi': ['Recognize raised ICP and low CPP', 'Apply tier 0 basics before escalating', 'Explain CPP = MAP − ICP'],
+    'nicp:hern': ['Recognize herniation: blown pupil, Cushing triad', 'Give osmotherapy, brief hyperventilation, reverse anticoagulation', 'Explain why hyperventilation is only a bridge'],
+    'nstroke:bp': ['Recognize a lysis candidate with high BP', 'Lower BP below 185/110 before lysis', 'Explain the BP limits before and after lysis'],
+    'nstroke:ich': ['Recognize ICH on a factor Xa inhibitor', 'Lower SBP to about 140 and reverse anticoagulation', 'Explain why platelets are not given for antiplatelet ICH'],
+    'nsz:se': ['Recognize status epilepticus at 5 minutes', 'Give a full-dose benzodiazepine then a second-line drug', 'Explain why underdosing benzodiazepines fails'],
+    'lytes:hyperk': ['Recognize ECG changes of hyperkalemia', 'Stabilize, shift, then remove potassium', 'Explain why calcium does not lower potassium'],
+    'mendo:dka': ['Recognize DKA and its severity', 'Run fluids, K ≥ 3.5 before insulin, dextrose when glucose falls', 'Explain why insulin continues until ketones clear'],
+    'mendo:hypona': ['Recognize symptomatic hyponatremia and overcorrection risk', 'Give hypertonic saline and limit correction to 8 in 24 h', 'Explain how aquaresis causes overcorrection'],
+    'aki:oligo': ['Recognize oliguria and stage AKI', 'Rule out the catheter, perfusion and nephrotoxins first', 'Explain KDIGO urine and creatinine criteria'],
+    'aki:start': ['Recognize the indications for RRT', 'Start dialysis for indications, not on a timer', 'Explain the STARRT-AKI result'],
+    'mtox:tca': ['Recognize sodium channel blockade on the ECG', 'Give sodium bicarbonate and keep ventilation high', 'Explain why acidosis widens the QRS'],
+    'mtox:ccb': ['Recognize calcium channel blocker toxicity', 'Give calcium, vasopressors and high-dose insulin', 'Explain why glucose rises and how HIET works'],
+    'mtox:etoh': ['Recognize alcohol withdrawal and its timeline', 'Treat with benzodiazepines, escalate to phenobarbital, give thiamine', 'Explain why dexmedetomidine is only an adjunct'],
+    'mtox:sero': ['Recognize serotonin toxicity (clonus, hyperthermia)', 'Stop serotonergic drugs, sedate, cool, give cyproheptadine', 'Explain how it differs from NMS'],
+    'strauma:trauma': ['Recognize hemorrhagic shock', 'Transfuse balanced products, give TXA, get hemorrhage control', 'Explain why crystalloid worsens coagulopathy'],
+    'strauma:ptx': ['Recognize tension pneumothorax clinically', 'Decompress first, then place a chest tube', 'Explain why positive pressure worsens it'],
+    'sabd:leak': ['Recognize septic shock from an anastomotic leak', 'Resuscitate and get source control', 'Explain why antibiotics alone fail'],
+    'sabd:acs': ['Recognize abdominal compartment syndrome', 'Measure bladder pressure and decompress', 'Explain why the CVP is misleading here'],
+    'sburn:burn': ['Estimate the burn resuscitation starting rate', 'Titrate LR hourly to urine output', 'Explain fluid creep and its harms'],
+    'pacing:brady': ['Recognize post-op sinus bradycardia with low output', 'Pace AAI with a safe output margin', 'Explain why AAI is preferred when AV conduction is intact'],
+    'poaf:unstable': ['Recognize unstable post-op AF', 'Perform synchronized cardioversion', 'Explain why SYNC must be on'],
+    'bleed:tamp': ['Recognize clotted chest tubes with tamponade', 'Call for re-exploration and support the circulation', 'Explain why a sudden drop in drain output is dangerous'],
+    'cals:vf': ['Recognize VF after cardiac surgery', 'Give three stacked shocks, then CPR and prepare resternotomy', 'Explain why full-dose epinephrine is avoided'],
+    'artline:zero': ['Recognize a line that does not match the patient', 'Level and zero the transducer correctly', 'Explain how height error changes the reading']
+  },
+  get(sim, id, sc) {
+    const k = sim + ':' + id; if (this.obj[k]) return this.obj[k];
+    const tag = sc && sc.tag ? sc.tag : 'the problem';
+    return [`Recognize ${tag.toLowerCase()} from the presentation`, 'Meet and hold every target for this case', 'Explain the key decision (case questions)'];
+  },
+  moduleOf(sim, id) { return this.modules.find(m => m.c.some(([s, c]) => s === sim && c === id)) || null; }
+};
+/* objective progress: localStorage ctObj { 'sim:case': { r, m, e } } */
+window.OBJP = {
+  all() { try { return JSON.parse(localStorage.getItem('ctObj') || '{}'); } catch (e) { return {}; } },
+  get(sim, id) { return this.all()[sim + ':' + id] || {}; },
+  set(sim, id, k) { const a = this.all(); const r = a[sim + ':' + id] || (a[sim + ':' + id] = {}); r[k] = 1; try { localStorage.setItem('ctObj', JSON.stringify(a)); } catch (e) {} },
+  /* render the objectives list with checks into a container */
+  list(sim, id, sc, fresh) {
+    const o = CURRIC.get(sim, id, sc), p = Object.assign({}, this.get(sim, id), fresh || {}), keys = ['r', 'm', 'e'];
+    const ul = document.createElement('ul'); ul.className = 'objl';
+    o.forEach((t, i) => { const li = document.createElement('li'); const ok = !!p[keys[i]]; li.className = ok ? 'ok' : ''; const b = document.createElement('b'); b.textContent = ok ? '✓' : '○'; li.append(b, document.createTextNode(' ' + t)); ul.append(li); });
+    return ul;
+  }
 };
 
 </script>
@@ -23098,6 +23311,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -23142,7 +23359,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -25277,6 +25494,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -25321,7 +25542,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -27453,6 +27674,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -27497,7 +27722,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -29636,6 +29861,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -29680,7 +29909,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -31812,6 +32041,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -31856,7 +32089,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -33968,6 +34201,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -34012,7 +34249,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -36124,6 +36361,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -36168,7 +36409,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -38266,6 +38507,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -38310,7 +38555,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -40415,6 +40660,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -40459,7 +40708,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -42550,6 +42799,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -42594,7 +42847,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -44617,6 +44870,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -44661,7 +44918,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -46723,6 +46980,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -46767,7 +47028,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -48821,6 +49082,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -48865,7 +49130,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -50919,6 +51184,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -50963,7 +51232,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
@@ -53016,6 +53285,10 @@ function showOver() {
   const head = el('div', 'dbh'); head.append(el('h3', win ? '' : 'nowin', win ? 'Patient stabilized' : 'Case ended'), el('div', 'dbs', String(S.total)));
   c.append(head);
   const best = Math.max(...hist.map(r => r.s)); c.append(el('p', 'brief', `Score ${S.total}/100 · goals ${S.parts.goals}/50 · key steps ${S.parts.steps}/30 · safety ${S.parts.safety}/20${S.parts.hint ? ' · hint −5' : ''}. ${hist.length > 1 ? `Best ${best}; last attempts ${hist.slice(-4).map(r => r.s).join(', ')}.` : 'First attempt.'} Elapsed ${fmM(m)}. Final MAP ${Math.round(h.map)}, HR ${Math.round(h.hr)}, SpO₂ ${Math.round(h.sat * 100)}%, lactate ${X.lac.toFixed(1)}.`));
+  // learning objectives
+  { const st0 = guideSteps(); const i0 = st0.findIndex(g => !/^Hold/.test(g.t)); const fr = {}; if (i0 >= 0 && (X.stepT || {})[i0] !== undefined) fr.r = 1; if (win) fr.m = 1;
+    if (window.OBJP) { Object.keys(fr).forEach(k => OBJP.set(UNIT.id, X.sc.id, k)); const ob = el('details', 'dbsec'); ob.open = true; ob.append(el('summary', '', 'Learning objectives')); ob.append(OBJP.list(UNIT.id, X.sc.id, X.sc)); if (!OBJP.get(UNIT.id, X.sc.id).e) ob.append(el('p', 'brief', 'The third objective is checked when you pass the case quiz (4 of 5).')); c.append(ob); }
+    const pl = window.CTG && CTG.planOf && CTG.planOf(UNIT.id); if (pl) { const pd = el('details', 'dbsec'); pd.open = true; pd.append(el('summary', '', 'Your plan at the start vs the expert path')); pd.append(el('p', 'brief', 'You wrote: ' + pl), el('p', 'brief', 'Expert path: ' + st0.filter(g => !/^Hold/.test(g.t)).map(g => g.t).join(' → '))); c.append(pd); } }
   // timeline: expert path vs you
   const tl = el('details', 'dbsec'); tl.open = true; tl.append(el('summary', '', 'Timeline: the expert path and what you did'));
   const grid = el('div', 'dbtl');
@@ -53060,7 +53333,7 @@ function quiz(qs) {
   const show = () => {
     c.innerHTML = '';
     if (i >= order.length) {
-      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() });
+      const hist = store('icuQuiz', { s: right, n: qs.length, t: Date.now() }); if (right >= 4 && window.OBJP) OBJP.set(UNIT.id, X.sc.id, 'e');
       c.append(el('h3', right / qs.length >= 0.8 ? '' : 'nowin', `Quiz: ${right}/${qs.length}`), el('p', 'brief', hist.length > 1 ? `Previous: ${hist.slice(-4, -1).map(r => r.s + '/' + r.n).join(', ')}.` : 'Questions are written in CCRN and PANCE style around this case.'));
       const row = el('div', 'row'); const mk = (t, fn) => { const b = el('button', 'btn', t); b.onclick = fn; row.append(b); };
       mk('Retake', () => quiz(qs)); mk('Back to debrief', () => showOver()); mk('Replay case', () => { $('ov').hidden = true; load(scIdx); }); if (scIdx < XSCEN.length - 2) mk('Next case', () => { $('ov').hidden = true; load(scIdx + 1); }); mk('Close', () => { $('ov').hidden = true; });
