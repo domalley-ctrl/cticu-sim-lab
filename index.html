@@ -350,7 +350,10 @@ body.expert .xh,body.expert .xhc,body.expert .view [id$="-hintBtn"],body.expert 
 .xpo .xhist li i{font-style:normal;margin-right:6px}
 /* practice: targets hidden (they give away the plan) */
 body:not(.teach) .view [id$="-goals"],body:not(.teach) .view [id$="-goalMini"],body:not(.teach) .view [id$="-caseCard"] > h2{display:none!important}
-body:not(.teach) .view [id$="-holdTxt"]::before{content:"Targets are hidden in Practice. ";color:var(--muted)}
+body:not(.teach) .view [id$="-holdTxt"]::before{content:"Specific targets are hidden in Practice. ";color:var(--muted)}
+.vgoal{display:grid;gap:4px;margin:4px 0 8px}.vgoal .cch-k{font-family:var(--f-disp);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8fc1ff}
+.vgoal ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px}.vgoal i{font-style:normal;font-family:var(--f-mono);color:var(--muted);margin-right:2px}.vgoal li.ok i{color:#3ec98e}
+body.adm .vgoal-live{display:none}
 /* ICU Essentials, admissions, objectives */
 .view details:has(> [id$="-teach"]){display:none}
 .cch .cch-why,.cch .cch-more{display:none!important}
@@ -8196,6 +8199,23 @@ window.CTG = (() => {
       const r2 = mk('div', 'row'); r2.append(go); bx.append(r2);
     }
   }
+  /* vague targets for Practice: group the hidden targets into broad aims */
+  const VG = [[/bleed|hemorrh|txa|hgb|transfus|chest tube|fibrinogen|platelet|teg|coag|inr|protamine|reexplor|re-explor/i, 'Control bleeding and clotting'], [/antibiotic|culture|source|sepsis|infect/i, 'Treat the underlying cause of infection'], [/icp|cpp|pupil|seizure|eeg|nihss|herniat|evd/i, 'Protect the brain'], [/rate|rhythm|sinus|\baf\b|flutter|pac(e|ing)|capture|qrs|cardiover|rosc|vf\b/i, 'Get the rhythm and rate under control'], [/\bk\b|potassium|\bmg\b|magnes|calcium|\bica\b|\bna\b|sodium|glucose|insulin|ketone|anion|osm|bicarb|hco/i, 'Correct the metabolic and electrolyte problems'], [/spo2|oxygen|p\/f|fio2|peep|\bvt\b|plateau|auto-peep|paco|pco|\bph\b|ventilat|extubat|sbt|airway|intubat/i, 'Optimize oxygenation and ventilation'], [/fluid|crystalloid|volume|\blr\b|bolus|albumin/i, 'Get the volume right'], [/map|\bbp\b|blood pressure|sbp|perfusion|lactate|cap refill|urine|\bci\b|cardiac index|output|svo|norepi|pressor/i, 'Restore perfusion'], [/\bhob\b|head of bed|position|prone|normotherm|temperature|warm|cool|fever/i, 'Basic bedside measures'], [/\bdrain|\btubes?\b|\bline\b|transducer|\bzero|\blevel|balloon|timing|console|circuit/i, 'Get the equipment working safely'], [/pain|sedat|rass|delirium|cam-icu|comfort/i, 'Comfort, sedation and delirium']];
+  function vague(sec) {
+    const lis = [...sec.querySelectorAll('[id$="-goals"] li')]; const m = new Map();
+    lis.forEach(li => { const t = li.textContent; const hit = VG.find(([re]) => re.test(t)); const k = hit ? hit[1] : 'Stabilize the patient'; const r = m.get(k) || { n: 0, ok: 0 }; r.n++; if (li.classList.contains('ok')) r.ok++; m.set(k, r); });
+    return { n: lis.length, aims: [...m.entries()] };
+  }
+  function vagueBox(sec, live) {
+    const v = vague(sec); if (!v.n) return null; const d = mk('div', 'vgoal'); d.append(mk('div', 'cch-k', `You are working toward (${v.n} specific targets hidden)`)); const ul = mk('ul');
+    v.aims.forEach(([k, r]) => { const li = mk('li', live && r.ok === r.n ? 'ok' : ''); li.append(mk('i', '', live && r.ok === r.n ? '✓' : '○'), document.createTextNode(' ' + k)); ul.append(li); }); d.append(ul); return d;
+  }
+  function vagueLive(sec) {
+    const g = sec.querySelector('[id$="-goals"]'); if (!g) return; let b = sec.querySelector('.vgoal-live');
+    if (CT.mode !== 'practice') { if (b) b.remove(); return; }
+    const nb = vagueBox(sec, true); if (!nb) return; nb.classList.add('vgoal-live');
+    if (!b) { g.before(nb); return; } if (b.innerHTML !== nb.innerHTML) b.replaceWith(nb);
+  }
   function gate(v) {
     const sec = document.getElementById('v-' + v); if (!sec) return; const st = S[v] || (S[v] = {});
     if (!q(sec, 'pauseSim')) return;
@@ -8214,6 +8234,7 @@ window.CTG = (() => {
     const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
     g.append(mk('div', 'cch-k', CT.mode === 'practice' ? 'Practice case · clock stopped until you start' : 'Case presentation · clock stopped until you start'), mk('h3', '', name), mk('p', 'cl-p', brief ? brief.textContent : ''));
     const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
+    if (goals.length && CT.mode === 'practice' && !document.body.classList.contains('adm')) { const vb = vagueBox(sec, false); if (vb) g.append(vb); }
     if (goals.length && !document.body.classList.contains('adm') && CT.mode !== 'practice') { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
     let pin = null; if (CT.mode === 'practice') { g.append(mk('div', 'cch-k', 'Your plan before you start')); pin = mk('textarea', 'ct-in'); pin.rows = 2; pin.placeholder = 'What is going on, and your first three moves'; g.append(pin, mk('p', 'ct-think', 'Committing to a plan first is how you find out what you really know. It is compared with the expert path in the debrief.')); }
     st.plan = '';
@@ -8297,7 +8318,7 @@ window.CTG = (() => {
       setTimeout(() => { buildCards(sec, v, wrap); if (CT.mode === 'learn') pauseSim(sec, true); }, 80);
     }
     if (!st.asked) st.asked = new Set();
-    flowStatus(sec, v, st, wrap); gateBox(sec, v, st, wrap);
+    flowStatus(sec, v, st, wrap); gateBox(sec, v, st, wrap); vagueLive(sec);
     actNotes(sec, v, st);
     if (CT.mode === 'practice') { setHL(null); return; }
     const c = wrap.querySelector('.cch');
