@@ -342,8 +342,9 @@ body.expert .xh,body.expert .xhc,body.expert .view [id$="-hintBtn"],body.expert 
 .xpo input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid #b78cff;background:#0f1418;color:var(--fg);font:inherit;font-size:15px}
 .xpo .xres{display:grid;gap:4px}.xpo .xres button{text-align:left;font:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:#0f1418;color:var(--fg);cursor:pointer}
 .xpo .xres button.on,.xpo .xres button:hover{border-color:#b78cff}
+.xpo .xflag{border-radius:8px;padding:8px 10px;font-size:13.5px;line-height:1.45}.xpo .xflag.un{background:#2a1d0e;border:1px solid #f0a23a}.xpo .xflag.q{background:#1d1a2a;border:1px solid #b78cff}.xpo .xflag b{color:#ffd58a}.xpo .xflag.q b{color:#d6c2ff}
 .xpo .xhist{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px;max-height:140px;overflow:auto}
-.xpo .xhist li b{font-family:var(--f-mono);font-weight:400;color:var(--muted);margin-right:6px}.xpo .xhist li.ok i{color:#3ec98e}.xpo .xhist li.no i{color:#f0a23a}
+.xpo .xhist li b{font-family:var(--f-mono);font-weight:400;color:var(--muted);margin-right:6px}.xpo .xhist li.ok i{color:#3ec98e}.xpo .xhist li.no i{color:#f0a23a}.xpo .xhist li.no i{color:#f0a23a}
 .xpo .xhist li i{font-style:normal;margin-right:6px}
 /* ICU Essentials, admissions, objectives */
 .view details:has(> [id$="-teach"]){display:none}
@@ -8666,16 +8667,28 @@ window.CTP = (() => {
     X.hist = hist;
   }
   function find(sec, t) { const bs = [...sec.querySelectorAll('button')].filter(b => !b.closest('.xpo')); return bs.find(b => label(b) === t) || bs.find(b => { const l = label(b); return l && (l.startsWith(t) || t.startsWith(l)); }) || null; }
+  function planEls(sec) {
+    const G = window.LEARN && LEARN.GUIDE && LEARN.GUIDE[X.sim] && LEARN.GUIDE[X.sim][X.id]; if (!G) return null; const out = new Set();
+    G.forEach(x => { let el = x.el; try { if (typeof el === 'function') el = el(null); } catch (e) { el = null; } if (!el || typeof el !== 'string') return;
+      try { if (el.startsWith('id:')) { const e = sec.querySelector('[id$="-' + el.slice(3) + '"]'); if (e) out.add(e); } else if (el.startsWith('txt:')) { const t2 = el.slice(4); sec.querySelectorAll('button').forEach(b => { if (norm(b.textContent).startsWith(t2)) out.add(b); }); } else sec.querySelectorAll(el).forEach(e => out.add(e)); } catch (e) {} });
+    return out;
+  }
+  function flag(sec, kind, t, why) {
+    const p = sec.querySelector('.xpo'); if (!p) return; let f = p.querySelector('.xflag'); if (!f) { f = mk('div', 'xflag'); p.querySelector('.xres').before(f); }
+    f.className = 'xflag ' + kind; f.innerHTML = ''; f.append(mk('b', '', kind === 'un' ? 'Not necessary: ' : 'Questionable: '), document.createTextNode(`${t}. ${why}`));
+    clearTimeout(f._t); f._t = setTimeout(() => f.remove(), 12000);
+  }
   function order(t, sec, hist, inp, res) {
-    const b = find(sec, t); let ok = false, note = '';
-    if (!b) note = 'not available for this patient';
+    const b = find(sec, t); let ok = false, note = '', un = false;
+    if (!b) { note = 'not indicated for this patient'; un = true; flag(sec, 'un', t, 'It has no role or effect in this patient, so it adds cost, delay or risk without benefit. Think about what problem it would solve.'); }
     else if (b.disabled) note = 'not possible right now';
     else { ok = true; const o = { bubbles: true, pointerId: 1 };
       if (b.dataset && (b.dataset.k || b.dataset.tm || b.dataset.mv)) { b.dispatchEvent(new PointerEvent('pointerdown', o)); b.dispatchEvent(new PointerEvent('pointerup', o)); }
       else if (/hold/i.test(t)) { b.dispatchEvent(new PointerEvent('pointerdown', o)); setTimeout(() => b.dispatchEvent(new PointerEvent('pointerup', o)), 7000); note = 'holding for 7 s'; }
-      else b.click(); }
-    X.orders.push({ t, ok, at: clock(sec), note });
-    const li = mk('li', ok ? 'ok' : 'no'); li.append(mk('b', '', clock(sec)), mk('i', '', ok ? '✓' : '✗'), document.createTextNode(t + (note ? ' (' + note + ')' : ''))); hist.prepend(li);
+      else b.click();
+      const pe = planEls(sec); if (pe && !pe.has(b)) { un = true; note = 'not part of the expert plan'; flag(sec, 'q', t, 'It is not on the expert path for this case. It may be unnecessary here, or a reasonable alternative; check the debrief to see what the case called for.'); } }
+    X.orders.push({ t, ok, at: clock(sec), note, un });
+    const li = mk('li', ok && !un ? 'ok' : 'no'); li.append(mk('b', '', clock(sec)), mk('i', '', ok && !un ? '✓' : un && ok ? '?' : '✗'), document.createTextNode(t + (note ? ' (' + note + ')' : ''))); hist.prepend(li);
     inp.value = ''; res.innerHTML = ''; inp.focus();
   }
   setInterval(() => {
@@ -8685,7 +8698,7 @@ window.CTP = (() => {
     sec.querySelectorAll('.card').forEach(c => { if (c.closest(EXC)) return; const ctl = [...c.querySelectorAll('button,input,select')]; if (!ctl.length) return; c.classList.toggle('xhc', ctl.every(b => b.classList.contains('xh'))); });
     if (!sec.querySelector('.xpo')) panel();
     const ov = sec.querySelector('[id$="-ov"]'), ovc = sec.querySelector('[id$="-ovc"]');
-    if (ov && !ov.hidden && ovc && !ovc.querySelector('.xpdb')) { const d = mk('details', 'xpdb dbsec ctk-sec'); d.open = true; d.append(mk('summary', '', `Your orders (${X.orders.length})`)); const ul = mk('ul'); X.orders.forEach(o => { const li = mk('li', o.ok ? 'ok' : 'miss'); li.append(mk('b', '', o.at || ''), document.createTextNode(`${o.ok ? '✓' : '✗'} ${o.t}${o.note ? ' (' + o.note + ')' : ''}`)); ul.append(li); }); if (!X.orders.length) ul.append(mk('li', '', 'No orders placed.')); d.append(ul); let an = ovc.querySelector('h3'); while (an && an.parentElement !== ovc) an = an.parentElement; if (an && an.nextElementSibling && an.nextElementSibling.matches('p.brief')) an = an.nextElementSibling; if (an) an.after(d); else ovc.prepend(d); }
+    if (ov && !ov.hidden && ovc && !ovc.querySelector('.xpdb')) { const d = mk('details', 'xpdb dbsec ctk-sec'); d.open = true; const nUn = X.orders.filter(o => o.un).length; d.append(mk('summary', '', `Your orders (${X.orders.length})${nUn ? ` · ${nUn} not necessary` : ''}`)); const ul = mk('ul'); X.orders.forEach(o => { const li = mk('li', o.ok && !o.un ? 'ok' : 'miss'); li.append(mk('b', '', o.at || ''), document.createTextNode(`${o.ok && !o.un ? '✓' : o.ok ? '?' : '✗'} ${o.t}${o.note ? ' (' + o.note + ')' : ''}`)); ul.append(li); }); if (nUn) d.append(mk('p', 'brief', 'Unnecessary orders cost time, money and sometimes harm (line infections, transfusion reactions, drug side effects). In real practice each one needs a reason you could say out loud.')); if (!X.orders.length) ul.append(mk('li', '', 'No orders placed.')); d.append(ul); let an = ovc.querySelector('h3'); while (an && an.parentElement !== ovc) an = an.parentElement; if (an && an.nextElementSibling && an.nextElementSibling.matches('p.brief')) an = an.nextElementSibling; if (an) an.after(d); else ovc.prepend(d); }
   }, 600);
   document.addEventListener('input', e => { if (e.target && e.target.id === 'xpQ') renderList(); });
   document.addEventListener('click', e => { if (e.target && e.target.id === 'xpRand') { const pool = []; UNITS.forEach(([, , sims]) => sims.forEach(sim => cases(sim).forEach(c => pool.push([sim, c])))); if (pool.length) { const [sim, c] = pool[Math.floor(Math.random() * pool.length)]; start(sim, c); } } });
