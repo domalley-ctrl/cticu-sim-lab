@@ -325,6 +325,26 @@ body.learn .ct-gate{display:none}
 .cch.asking .cch-b{filter:blur(6px);pointer-events:none;user-select:none}
 .cch-ask{background:#13202a;border:1px solid #8fc1ff;border-radius:12px;padding:10px 12px;margin:0 0 10px}
 .cp-steps i.dn{background:#3ec98e!important;color:#0b0f12!important}
+/* expert mode */
+.xpbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.xpbar input{flex:1 1 280px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:inherit}
+.xplist{display:grid;gap:14px}
+.xpu h3{margin:0 0 6px;font-family:var(--f-disp);font-size:15px;letter-spacing:.06em;color:var(--uc,#8fc1ff)}
+.xps{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--uc,#8fc1ff);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+.xps b{font-family:var(--f-disp);font-size:14px}
+.xps ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.xps li a{display:inline-block;font-size:12.5px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;cursor:pointer}
+.xps li a:hover{border-color:#8fc1ff}
+body.expert .xh,body.expert .xhc,body.expert .view [id$="-hintBtn"],body.expert .view [id$="-hint"],body.expert .cprac,body.expert .cp-steps{display:none!important}
+.xpo{display:none}body.expert .xpo{display:grid}
+.xpo{background:linear-gradient(180deg,#1a1520,#111a1e);border:1px solid #b78cff;border-radius:14px;padding:12px 14px;gap:8px;margin:10px 0}
+.xpo .xh1{display:flex;align-items:center;gap:10px}.xpo .xh1 b{font-family:var(--f-disp);font-size:16px}.xpo .xh1 span{font-size:12px;color:var(--muted)}.xpo .xh1 button{margin-left:auto;font:inherit;font-size:12.5px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.xpo input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid #b78cff;background:#0f1418;color:var(--fg);font:inherit;font-size:15px}
+.xpo .xres{display:grid;gap:4px}.xpo .xres button{text-align:left;font:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:#0f1418;color:var(--fg);cursor:pointer}
+.xpo .xres button.on,.xpo .xres button:hover{border-color:#b78cff}
+.xpo .xhist{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px;max-height:140px;overflow:auto}
+.xpo .xhist li b{font-family:var(--f-mono);font-weight:400;color:var(--muted);margin-right:6px}.xpo .xhist li.ok i{color:#3ec98e}.xpo .xhist li.no i{color:#f0a23a}
+.xpo .xhist li i{font-style:normal;margin-right:6px}
 /* ICU Essentials, admissions, objectives */
 .view details:has(> [id$="-teach"]){display:none}
 .cch .cch-why,.cch .cch-more{display:none!important}
@@ -5143,7 +5163,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
     ICU <span>Sim</span> Lab
   </a>
   <button class="nvbtn" id="nvBtn" aria-expanded="false" aria-controls="nvPop"><span id="nvLbl">Simulators</span> <i aria-hidden="true">▾</i></button>
-  <nav class="nvlinks" aria-label="Site"><a href="#essentials" data-v="essentials">Essentials</a><a href="#progress" data-v="progress">Progress</a><a href="#library" data-v="library">Library</a></nav>
+  <nav class="nvlinks" aria-label="Site"><a href="#essentials" data-v="essentials">Essentials</a><a href="#expert" data-v="expert">Expert</a><a href="#progress" data-v="progress">Progress</a><a href="#library" data-v="library">Library</a></nav>
   <div class="barR">
     <button class="mdlbtn" id="mdlBtn" hidden aria-expanded="false" aria-controls="mdl" title="See what the physiology model is doing right now">Model</button>
     <button class="gear" id="gearBtn" aria-expanded="false" aria-controls="gearPop" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.7 1.7 1l.4 2.5h4l.4-2.5c.6-.3 1.2-.6 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button>
@@ -5267,6 +5287,18 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
       <p class="libintro">Ten modules in order, built from the cases in this lab. Each case runs Teach → Guide → Practice and has three learning objectives you check off in the debrief. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p>
       <div class="essgrid" id="essGrid"></div>
       <div class="admit"><div><b>Admissions</b><span>A random case, no simulator label, practice rules: work it out like a real admission.</span></div><div class="admbtns"><button data-adm="all">Any ICU</button><button data-adm="micu">Medical</button><button data-adm="neuro">Neuro</button><button data-adm="sicu">Surgical</button><button data-adm="cticu">Cardiothoracic</button></div></div>
+    </section>
+  </div>
+</main>
+
+<main id="v-expert" class="view" hidden>
+  <div class="menu">
+    <section class="sect">
+      <div class="eyebrow">Expert mode</div>
+      <h1 style="font-family:var(--f-disp);font-size:clamp(30px,5vw,44px);margin:.2em 0 .3em">Expert</h1>
+      <p class="libintro">Any case, no coaching and no action buttons. Every order is typed into an order search drawn from every simulator in the lab, so you have to know what you want before you can find it. Orders that do not apply to this patient are recorded and shown in the debrief. Drips, the ventilator and device controls stay on screen once you are at the bedside.</p>
+      <div class="xpbar"><input id="xpQ" type="search" placeholder="Filter cases (e.g. shock, burn, pacing)" aria-label="Filter cases"><button id="xpRand" class="ego">Random case ›</button></div>
+      <div id="xpList" class="xplist"></div>
     </section>
   </div>
 </main>
@@ -7794,7 +7826,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
 
 <script>
 window.CT = (() => {
-  const VIEWS = { menu: 'Home', progress: 'Progress', library: 'Library', essentials: 'ICU Essentials', pacing: 'Pacing', cals: 'CALS', poaf: 'Post-op AF', rhythm: 'Rhythm drills', lytes: 'Electrolytes & drips', aki: 'AKI & CRRT', vent: 'Vent & ABGs', hemo: 'Hemodynamics', bleed: 'Bleeding', artline: 'Art line', iabp: 'IABP', mcs: 'Impella/ECMO', orsurg: 'CV OR', cxr: 'CXR & lines', mshock: 'Shock & Sepsis', mresp: 'Respiratory Failure', mtox: 'Toxicology', mendo: 'Endocrine & Metabolic', mgi: 'GI & Liver', nicp: 'ICP & EVD', nstroke: 'Stroke & ICH', nsah: 'Aneurysmal SAH', nsz: 'Status epilepticus', nnm: 'Neuromuscular failure', strauma: 'Trauma Bay', sabd: 'Post-op Abdomen', sburn: 'Burn ICU', scomp: 'Trauma Complications', rounds: 'Daily Rounds' };
+  const VIEWS = window.VIEWS_T = { menu: 'Home', progress: 'Progress', library: 'Library', essentials: 'ICU Essentials', expert: 'Expert', pacing: 'Pacing', cals: 'CALS', poaf: 'Post-op AF', rhythm: 'Rhythm drills', lytes: 'Electrolytes & drips', aki: 'AKI & CRRT', vent: 'Vent & ABGs', hemo: 'Hemodynamics', bleed: 'Bleeding', artline: 'Art line', iabp: 'IABP', mcs: 'Impella/ECMO', orsurg: 'CV OR', cxr: 'CXR & lines', mshock: 'Shock & Sepsis', mresp: 'Respiratory Failure', mtox: 'Toxicology', mendo: 'Endocrine & Metabolic', mgi: 'GI & Liver', nicp: 'ICP & EVD', nstroke: 'Stroke & ICH', nsah: 'Aneurysmal SAH', nsz: 'Status epilepticus', nnm: 'Neuromuscular failure', strauma: 'Trauma Bay', sabd: 'Post-op Abdomen', sburn: 'Burn ICU', scomp: 'Trauma Complications', rounds: 'Daily Rounds' };
   const st = { alertOpen: false, pauseOnAlert: true, queue: [], view: 'menu', unit: null, lastUnit: null };
   try { st.lastUnit = localStorage.getItem('ctUnit'); } catch (e) {}
   let pref = null; try { pref = localStorage.getItem('ctPause'); } catch (e) {}
@@ -7854,7 +7886,7 @@ window.CT = (() => {
     st.view = v; closePops();
     document.querySelectorAll('.view').forEach(el => { el.hidden = el.id !== 'v-' + v; });
     document.querySelectorAll('#nvPop a, .nvlinks a').forEach(a => a.classList.toggle('act', a.dataset.v === v));
-    const isSim = !['menu', 'progress', 'library', 'essentials'].includes(v);
+    const isSim = !['menu', 'progress', 'library', 'essentials', 'expert'].includes(v);
     const UN = { cticu: 'CTICU', micu: 'MICU', neuro: 'Neuro ICU', sicu: 'SICU' };
     $('nvLbl').textContent = isSim ? VIEWS[v] : up ? UN[up] + ' menu' : tu ? UN[tu] + ' menu' : 'Choose ICU'; $('nvBtn').classList.toggle('act', isSim);
     document.body.dataset.view = v;
@@ -7986,7 +8018,7 @@ window.CTM = (() => {
 window.CTGATE = v => { if (window.CTG && CTG.gate) CTG.gate(v); };
 window.CTG = (() => {
   const P = {}, S = {}; let minimized = false, hl = null; const lastSig = {}, LS = {};
-  const NON = ['menu', 'progress', 'library', 'essentials'];
+  const NON = ['menu', 'progress', 'library', 'essentials', 'expert'];
   const q = (sec, k) => sec.querySelector('[id$="-' + k + '"]');
   const cap = x => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
   const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
@@ -8588,6 +8620,78 @@ window.CTP = (() => {
   setInterval(() => { if (!ADM) return; const sec = document.getElementById('v-' + ADM.sim); const ov = sec && sec.querySelector('[id$="-ov"]'); if (ov && !ov.hidden) end(); }, 700);
   window.addEventListener('load', () => setTimeout(() => { render(); }, 300));
   window.ESS = { render, admit, openCase };
+})();
+</script>
+<script>
+/* ===== Expert mode: any case, orders searched from a lab-wide list instead of buttons ===== */
+(() => {
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
+  const UNITS = [['Medical ICU', '#3fa9f5', ['mshock', 'mresp', 'mtox', 'mendo', 'mgi']], ['Neuro ICU', '#9b7bff', ['nicp', 'nstroke', 'nsah', 'nsz', 'nnm']], ['Surgical ICU', '#f59e0b', ['strauma', 'sabd', 'sburn', 'scomp']], ['Cardiothoracic ICU', '#e5484d', ['pacing', 'cals', 'poaf', 'hemo', 'bleed', 'mcs', 'iabp', 'artline', 'orsurg']], ['Shared ICU tools', '#38c7b8', ['rounds', 'vent', 'lytes', 'aki']]];
+  const TITLE = s => (window.VIEWS_T && VIEWS_T[s]) || (document.querySelector('#nvPop a[data-v="' + s + '"] b') || {}).textContent || s;
+  const EXC = '.cwrap,.ov,header,.ct-gate,.ref,.monitor,#nvPop,.xpo,.admtag,[aria-label="Event log"],[aria-label="Your workup"],.ctk-pt,.ptbar,.trend,[aria-label="Temporary pacemaker"],[aria-label="Ventilator settings"],[aria-label="Ventilator"],[aria-label="Infusions"],[aria-label="Drips"],[aria-label="Pumps"],[aria-label="Airway"],[aria-label="Epicardial pacing"],[aria-label="IABP console"],[aria-label="Impella controller"],[aria-label="ECMO console"],[aria-label="CRRT console"],[aria-label="EVD"],[aria-label="PA catheter insertion"],[aria-label="Bypass"],[aria-label="Bedside setup"],[aria-label="Arterial line setup diagram"],[aria-label="ABG interpreter"],[aria-label="Your call"],[aria-label="Drill set"]';
+  const GEN = /^(on|off|on \/ off|stop|start|switch|lock|pause|resume|restart|emergency|none|commit|show hint|hide hint|end case.*|replay|close|next case|keep going|check my math|record a data set)$/i;
+  const norm = t => (t || '').replace(/\s+/g, ' ').replace(/[›→]/g, '').trim();
+  function label(b) { if (b.id && /-(hintBtn|endBtn|restart|pauseSim|quizBtn|soundBtn|scSel)$/.test(b.id)) return null; if (b.closest(EXC)) return null; const t = norm(b.textContent || b.getAttribute('aria-label') || ''); if ((t.match(/[a-z]/gi) || []).length < 4 || GEN.test(t)) return null; return t; }
+  const CAT = new Set();
+  function scanAll() { document.querySelectorAll('section.view button').forEach(b => { const t = label(b); if (t) CAT.add(t); }); if (window.XACTL) XACTL.forEach(t => CAT.add(norm(t))); }
+  let X = null; // { sim, orders: [] }
+  function cases(sim) { return ((window.CTP && CTP.list && CTP.list(sim)) || []); }
+  function renderList() {
+    const box = document.getElementById('xpList'); if (!box) return; const q = (document.getElementById('xpQ').value || '').toLowerCase(); box.innerHTML = '';
+    UNITS.forEach(([u, col, sims]) => {
+      const uw = mk('div', 'xpu'); uw.style.setProperty('--uc', col); uw.append(mk('h3', '', u)); let n = 0;
+      sims.forEach(sim => { const L = cases(sim).filter(c => !q || (c.name + ' ' + TITLE(sim)).toLowerCase().includes(q)); if (!L.length) return; n++;
+        const sw = mk('div', 'xps'); sw.append(mk('b', '', TITLE(sim))); const ul = mk('ul'); L.forEach(c => { const li = mk('li'); const a = mk('a', '', c.name); a.onclick = () => start(sim, c); li.append(a); ul.append(li); }); sw.append(ul); uw.append(sw); });
+      if (n) box.append(uw);
+    });
+  }
+  function start(sim, c) {
+    scanAll(); X = { sim, id: c.id, orders: [], shown: false };
+    document.body.classList.add('expert'); CT.setMode('practice', true); if (window.CTV && CTV[sim]) CTV[sim].set(true);
+    location.hash = sim; setTimeout(() => { CT.open(sim, c.i); panel(); }, 80);
+  }
+  function stop() { document.body.classList.remove('expert'); document.querySelectorAll('.xh,.xhc').forEach(e => e.classList.remove('xh', 'xhc')); X = null; }
+  function clock(sec) { const c = sec.querySelector('[id$="-clock"]'); return c && c.textContent.trim() ? c.textContent.trim() : ''; }
+  function panel() {
+    const sec = document.getElementById('v-' + X.sim); if (!sec) return; let p = sec.querySelector('.xpo');
+    if (!p) { p = mk('section', 'xpo'); p.setAttribute('aria-label', 'Orders'); const w = sec.querySelector('.cwrap'); (w ? w : sec.firstElementChild).after(p); }
+    p.innerHTML = '';
+    const h = mk('div', 'xh1'); h.append(mk('b', '', 'Orders'), mk('span', '', 'Expert mode · type to search every order in the lab')); const ex = mk('button', '', 'Exit expert'); ex.onclick = () => { stop(); location.hash = 'expert'; }; h.append(ex); p.append(h);
+    const inp = mk('input'); inp.type = 'search'; inp.placeholder = 'Type an order: drug, test, procedure, consult…'; inp.setAttribute('aria-label', 'Search orders'); p.append(inp);
+    const res = mk('div', 'xres'); p.append(res); const hist = mk('ul', 'xhist'); p.append(hist);
+    let sel = 0, items = [];
+    const draw = () => { res.innerHTML = ''; items.forEach((t, i) => { const b = mk('button', i === sel ? 'on' : '', t); b.onclick = () => order(t, sec, hist, inp, res); res.append(b); }); };
+    inp.oninput = () => { const q = inp.value.toLowerCase().trim(); sel = 0; if (q.length < 2) { items = []; draw(); return; } const words = q.split(/\s+/); items = [...CAT].filter(t => { const l = t.toLowerCase(); return words.every(w => l.includes(w)); }).sort((a, b) => a.toLowerCase().indexOf(words[0]) - b.toLowerCase().indexOf(words[0]) || a.length - b.length).slice(0, 8); draw(); };
+    inp.onkeydown = e => { if (e.key === 'ArrowDown') { sel = Math.min(items.length - 1, sel + 1); draw(); e.preventDefault(); } else if (e.key === 'ArrowUp') { sel = Math.max(0, sel - 1); draw(); e.preventDefault(); } else if (e.key === 'Enter' && items[sel]) order(items[sel], sec, hist, inp, res); };
+    X.hist = hist;
+  }
+  function find(sec, t) { const bs = [...sec.querySelectorAll('button')].filter(b => !b.closest('.xpo')); return bs.find(b => label(b) === t) || bs.find(b => { const l = label(b); return l && (l.startsWith(t) || t.startsWith(l)); }) || null; }
+  function order(t, sec, hist, inp, res) {
+    const b = find(sec, t); let ok = false, note = '';
+    if (!b) note = 'not available for this patient';
+    else if (b.disabled) note = 'not possible right now';
+    else { ok = true; const o = { bubbles: true, pointerId: 1 };
+      if (b.dataset && (b.dataset.k || b.dataset.tm || b.dataset.mv)) { b.dispatchEvent(new PointerEvent('pointerdown', o)); b.dispatchEvent(new PointerEvent('pointerup', o)); }
+      else if (/hold/i.test(t)) { b.dispatchEvent(new PointerEvent('pointerdown', o)); setTimeout(() => b.dispatchEvent(new PointerEvent('pointerup', o)), 7000); note = 'holding for 7 s'; }
+      else b.click(); }
+    X.orders.push({ t, ok, at: clock(sec), note });
+    const li = mk('li', ok ? 'ok' : 'no'); li.append(mk('b', '', clock(sec)), mk('i', '', ok ? '✓' : '✗'), document.createTextNode(t + (note ? ' (' + note + ')' : ''))); hist.prepend(li);
+    inp.value = ''; res.innerHTML = ''; inp.focus();
+  }
+  setInterval(() => {
+    if (!X) return; if (location.hash.slice(1) !== X.sim) { stop(); return; }
+    const sec = document.getElementById('v-' + X.sim); if (!sec) return;
+    sec.querySelectorAll('button').forEach(b => { const t = label(b); if (t) { CAT.add(t); b.classList.add('xh'); } });
+    sec.querySelectorAll('.card').forEach(c => { if (c.closest(EXC)) return; const ctl = [...c.querySelectorAll('button,input,select')]; if (!ctl.length) return; c.classList.toggle('xhc', ctl.every(b => b.classList.contains('xh'))); });
+    if (!sec.querySelector('.xpo')) panel();
+    const ov = sec.querySelector('[id$="-ov"]'), ovc = sec.querySelector('[id$="-ovc"]');
+    if (ov && !ov.hidden && ovc && !ovc.querySelector('.xpdb')) { const d = mk('details', 'xpdb dbsec ctk-sec'); d.open = true; d.append(mk('summary', '', `Your orders (${X.orders.length})`)); const ul = mk('ul'); X.orders.forEach(o => { const li = mk('li', o.ok ? 'ok' : 'miss'); li.append(mk('b', '', o.at || ''), document.createTextNode(`${o.ok ? '✓' : '✗'} ${o.t}${o.note ? ' (' + o.note + ')' : ''}`)); ul.append(li); }); if (!X.orders.length) ul.append(mk('li', '', 'No orders placed.')); d.append(ul); let an = ovc.querySelector('h3'); while (an && an.parentElement !== ovc) an = an.parentElement; if (an && an.nextElementSibling && an.nextElementSibling.matches('p.brief')) an = an.nextElementSibling; if (an) an.after(d); else ovc.prepend(d); }
+  }, 600);
+  document.addEventListener('input', e => { if (e.target && e.target.id === 'xpQ') renderList(); });
+  document.addEventListener('click', e => { if (e.target && e.target.id === 'xpRand') { const pool = []; UNITS.forEach(([, , sims]) => sims.forEach(sim => cases(sim).forEach(c => pool.push([sim, c])))); if (pool.length) { const [sim, c] = pool[Math.floor(Math.random() * pool.length)]; start(sim, c); } } });
+  window.addEventListener('hashchange', () => { if (location.hash === '#expert') renderList(); });
+  window.addEventListener('load', () => setTimeout(() => { scanAll(); renderList(); }, 400));
+  window.XPERT = { start, stop, order: t => { if (X) order(t, document.getElementById('v-' + X.sim), X.hist, { value: '', focus() {} }, { innerHTML: '' }); } };
 })();
 </script>
 <script>
@@ -22248,7 +22352,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -23468,6 +23572,8 @@ window.DZL = window.DZL || {}; window.DZL['mshock'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mshock'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['mshock'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mshock'); })(load);
@@ -24444,7 +24550,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -25651,6 +25757,8 @@ window.DZL = window.DZL || {}; window.DZL['mresp'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mresp'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['mresp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mresp'); })(load);
@@ -26627,7 +26735,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -27831,6 +27939,8 @@ window.DZL = window.DZL || {}; window.DZL['mtox'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mtox'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['mtox'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mtox'); })(load);
@@ -28807,7 +28917,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -30018,6 +30128,8 @@ window.DZL = window.DZL || {}; window.DZL['mendo'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mendo'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['mendo'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mendo'); })(load);
@@ -30994,7 +31106,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -32198,6 +32310,8 @@ window.DZL = window.DZL || {}; window.DZL['mgi'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['mgi'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['mgi'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('mgi'); })(load);
@@ -33174,7 +33288,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -34358,6 +34472,8 @@ window.DZL = window.DZL || {}; window.DZL['nicp'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nicp'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['nicp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nicp'); })(load);
@@ -35334,7 +35450,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -36518,6 +36634,8 @@ window.DZL = window.DZL || {}; window.DZL['nstroke'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nstroke'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['nstroke'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nstroke'); })(load);
@@ -37494,7 +37612,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -38664,6 +38782,8 @@ window.DZL = window.DZL || {}; window.DZL['nsah'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nsah'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['nsah'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsah'); })(load);
@@ -39640,7 +39760,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -40817,6 +40937,8 @@ window.DZL = window.DZL || {}; window.DZL['nsz'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nsz'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['nsz'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nsz'); })(load);
@@ -41793,7 +41915,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -42956,6 +43078,8 @@ window.DZL = window.DZL || {}; window.DZL['nnm'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['nnm'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['nnm'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('nnm'); })(load);
@@ -43932,7 +44056,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -45027,6 +45151,8 @@ window.DZL = window.DZL || {}; window.DZL['rounds'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['rounds'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['rounds'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('rounds'); })(load);
@@ -46003,7 +46129,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -47137,6 +47263,8 @@ window.DZL = window.DZL || {}; window.DZL['strauma'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['strauma'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['strauma'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('strauma'); })(load);
@@ -48113,7 +48241,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -49239,6 +49367,8 @@ window.DZL = window.DZL || {}; window.DZL['sabd'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['sabd'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['sabd'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('sabd'); })(load);
@@ -50215,7 +50345,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -51341,6 +51471,8 @@ window.DZL = window.DZL || {}; window.DZL['sburn'] = XDANGER;
   window.CTV = window.CTV || {}; window.CTV['sburn'] = { set(on) { _on = on; } };
 }
 
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
+
 window.XCHG = window.XCHG || {}; window.XCHG['sburn'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
 load = (o => i => { o(i); if (window.CTGATE) CTGATE('sburn'); })(load);
@@ -52317,7 +52449,7 @@ function medSpec(P) {
     const lacL = X.labv ? X.labv.lac : X.lac, do2 = X.dbg.do2r || 1; const perf = do2 < 0.72 || lacL >= 4 ? 'poor' : lacL >= 2 ? 'borderline' : 'adequate'; const warm = perf !== 'poor' && h.CO > 3.5, wet = h.cvp > 12 || X.vasc / 5 > 1.2 || (X.cs && X.vasc / 5 > 0.95); const congT = wet ? `present (CVP ${Math.round(h.cvp)}${X.vasc / 5 > 1.2 ? ', B-lines' : ''})` : 'none';
     const cap = (X.dbg.do2r || 1) < 0.72 ? '> 4 s, mottled knees' : (X.dbg.do2r || 1) < 0.85 ? '3 s' : '< 2 s';
     const type = X.tamp > 0.3 && !X.flags.drained ? 'obstructive (pericardial)' : X.pe > 0.3 ? 'obstructive (RV)' : X.cs ? 'cardiogenic' : X.ana > 0.2 ? 'distributive (anaphylactic)' : X.sep.sev > 0.25 ? 'distributive (septic)' : 'resolving';
-    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
+    return `<h2>Perfusion board</h2>${X.cs ? el('Profile (Stevenson)', `${warm ? 'warm' : 'cold'} and ${wet ? 'wet' : 'dry'}`, !warm || wet) : el('Perfusion', perf, perf !== 'adequate') + el('Congestion', congT, wet)}${el('Cap refill', cap, cap.startsWith('>'))}${el('Lactate (last lab)', X.labv ? X.labv.lac.toFixed(1) : '--', X.labv && X.labv.lac >= 2)}${el('CVP', Math.round(h.cvp) + ' mmHg', h.cvp > 14)}${window.CT && CT.mode === 'practice' ? '' : el('Working diagnosis', type)}${el('Fluid given', ((X.given.crysL || 0)).toFixed(1) + ' L')}`;
   }
   if (P === 'vent') {
     const V = X.vent;
@@ -53441,6 +53573,8 @@ window.DZL = window.DZL || {}; window.DZL['scomp'] = XDANGER;
   load = i => { vary(i); _load(i); };
   window.CTV = window.CTV || {}; window.CTV['scomp'] = { set(on) { _on = on; } };
 }
+
+window.XACTL = window.XACTL || new Set(); Object.values(ACT).forEach(a => a && a.l && window.XACTL.add(a.l));
 
 window.XCHG = window.XCHG || {}; window.XCHG['scomp'] = (typeof XCHOICES !== 'undefined' && XCHOICES[UNIT.id]) || {};
 
