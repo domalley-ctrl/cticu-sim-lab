@@ -348,6 +348,9 @@ body.expert .xh,body.expert .xhc,body.expert .view [id$="-hintBtn"],body.expert 
 .xpo .xhist{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px;max-height:140px;overflow:auto}
 .xpo .xhist li b{font-family:var(--f-mono);font-weight:400;color:var(--muted);margin-right:6px}.xpo .xhist li.ok i{color:#3ec98e}.xpo .xhist li.no i{color:#f0a23a}.xpo .xhist li.no i{color:#f0a23a}
 .xpo .xhist li i{font-style:normal;margin-right:6px}
+/* practice: targets hidden (they give away the plan) */
+body:not(.teach) .view [id$="-goals"],body:not(.teach) .view [id$="-goalMini"],body:not(.teach) .view [id$="-caseCard"] > h2{display:none!important}
+body:not(.teach) .view [id$="-holdTxt"]::before{content:"Targets are hidden in Practice. ";color:var(--muted)}
 /* ICU Essentials, admissions, objectives */
 .view details:has(> [id$="-teach"]){display:none}
 .cch .cch-why,.cch .cch-more{display:none!important}
@@ -8211,7 +8214,7 @@ window.CTG = (() => {
     const name = title ? (title.childNodes[0] ? title.childNodes[0].textContent : title.textContent) : '';
     g.append(mk('div', 'cch-k', CT.mode === 'practice' ? 'Practice case · clock stopped until you start' : 'Case presentation · clock stopped until you start'), mk('h3', '', name), mk('p', 'cl-p', brief ? brief.textContent : ''));
     const goals = [...sec.querySelectorAll('[id$="-goals"] li')].map(li => li.textContent.trim()).filter(Boolean);
-    if (goals.length && !document.body.classList.contains('adm')) { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
+    if (goals.length && !document.body.classList.contains('adm') && CT.mode !== 'practice') { g.append(mk('div', 'cch-k', 'Targets')); const ul = mk('ul', 'cl-ul'); goals.forEach(t => ul.append(mk('li', '', t))); g.append(ul); }
     let pin = null; if (CT.mode === 'practice') { g.append(mk('div', 'cch-k', 'Your plan before you start')); pin = mk('textarea', 'ct-in'); pin.rows = 2; pin.placeholder = 'What is going on, and your first three moves'; g.append(pin, mk('p', 'ct-think', 'Committing to a plan first is how you find out what you really know. It is compared with the expert path in the debrief.')); }
     st.plan = '';
     const b = mk('button', 'cl-btn pri ct-start', 'Start case ▶'); b.onclick = () => { st.plan = pin ? pin.value.trim() : ''; st.gate = false; g.remove(); wrap.classList.remove('gated'); pauseSim(sec, false); refresh(true); };
