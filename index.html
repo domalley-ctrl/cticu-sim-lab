@@ -9526,7 +9526,7 @@ window.LEARN = (() => {
   const up = (name, t, why, done, show) => ({ t, why, done, el: `[aria-label="${name} up"]`, show });
   const dn = (name, t, why, done, show) => ({ t, why, done, el: `[aria-label="${name} down"]`, show });
   const el = (m) => m - 0;
-  const fluids = (L, why) => ({ t: `Crystalloid to about ${L} L`, why, done: x => (x.given.crysL || 0) >= L, el: '[data-act="lr"]' });
+  const fluids = (L, why) => ({ t: `Crystalloid to about ${L} L`, why, done: x => (x.given.crysL || 0) >= L || ((x.given.crysL || 0) + (x.given.albL || 0) >= L && (x.given.crysL || 0) >= 0.6 * L), el: '[data-act="lr"]' });
   const labs = A('labs', 'Send labs (ABG, lactate, BMP, CBC, coags)', 'Baseline lactate and gases; results in about 8 minutes.', x => !!x.flags.labs);
   G.mshock = {
     sepsis: [labs,
@@ -21833,7 +21833,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -22645,7 +22645,7 @@ const XSCEN = [
     pt: { vasc: 4.4, temp: 38.9, hr0: 92, lung: 0.95 }, sep: { sev: 0.45, source: 'urine' }, lac0: 4.2,
     acts: COMMON_M, drips: ['ne', 'vaso', 'epi', 'phe', 'dob'], hold: 12,
     brief: '72 kg woman, 2 days of dysuria, now febrile 38.9 °C and confused. BP 74/43 (MAP 53), HR 130, RR 26, SpO2 94% on room air. Lactate 4.2. Peripheral IVs ×2; a central line can be placed.',
-    goals: [{ t: 'Cultures before antibiotics', f: x => x.sep.cultures && x.sep.abx && x.given.cx <= x.given.abx }, { t: 'Antibiotics within 1 hour', f: x => !!x.sep.abx && x.sep.abx.at - x.m0 <= 60 }, { t: 'At least 1.5 L crystalloid', f: x => (x.given.crysL || 0) >= 1.5 }, { t: 'MAP ≥ 65', f: x => x.hd.map >= 65 }, { t: 'Lactate falling (< 3)', f: x => x.lac < 3 }],
+    goals: [{ t: 'Cultures before antibiotics', f: x => x.sep.cultures && x.sep.abx && x.given.cx <= x.given.abx }, { t: 'Antibiotics within 1 hour', f: x => !!x.sep.abx && x.sep.abx.at - x.m0 <= 60 }, { t: 'At least 1.5 L fluid, mostly crystalloid', f: x => (x.given.crysL || 0) + (x.given.albL || 0) >= 1.5 && (x.given.crysL || 0) >= 0.9 }, { t: 'MAP ≥ 65', f: x => x.hd.map >= 65 }, { t: 'Lactate falling (< 3)', f: x => x.lac < 3 }],
     hint: 'Hour-1 bundle: lactate, blood cultures, broad-spectrum antibiotics, crystalloid for hypotension or lactate ≥ 4 (30 mL/kg is the usual starting point), and norepinephrine for MAP < 65 during or after fluids. Reassess with POCUS and clinical signs.',
     teach: ['Surviving Sepsis Campaign 2021: antibiotics within 1 hour for possible septic shock; cultures first if they do not delay treatment.', 'For sepsis-induced hypoperfusion, about 30 mL/kg of balanced crystalloid within the first 3 hours is suggested, guided by reassessment.', 'Norepinephrine is first-line; target MAP 65. It can be started peripherally rather than delaying for a central line.', 'Repeat lactate if it was elevated; capillary refill time is a useful bedside guide.'] },
   { id: 'refractory', name: 'Still hypotensive on norepinephrine', tag: 'Septic shock',
@@ -22709,6 +22709,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -24031,7 +24034,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -24894,6 +24897,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -26216,7 +26222,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -27076,6 +27082,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -28398,7 +28407,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -29265,6 +29274,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -30587,7 +30599,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -31447,6 +31459,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -32769,7 +32784,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -33637,6 +33652,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -34931,7 +34949,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -35799,6 +35817,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -37093,7 +37114,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -37947,6 +37968,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -39241,7 +39265,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -40102,6 +40126,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -41396,7 +41423,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -42243,6 +42270,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -43537,7 +43567,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -44436,6 +44466,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -45610,7 +45643,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -46472,6 +46505,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -47722,7 +47758,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -48576,6 +48612,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -49826,7 +49865,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -50680,6 +50719,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
@@ -51930,7 +51972,7 @@ const ACT = {
   labs: { l: 'ABG, lactate, BMP, CBC, coags', f: () => { if (X.labPend) return; X.labPend = X.m + 8; X.flags.labs = true; xlog('Labs sent (results in about 8 min)'); } },
   pocus: { l: 'Bedside ultrasound (POCUS)', f: () => { X.flags.pocus = true; xlog('POCUS: ' + pocus(), 'info'); } },
   lr: { l: 'Balanced crystalloid 500 mL', f: () => { q('Lactated Ringer 500 mL', 'crys', 0.5, 15); X.given.crysL = (X.given.crysL || 0) + 0.5; xlog('LR 500 mL bolus'); if (X.pe > 0.3 && X.given.crysL > 0.5) xdanger('fluidRV'); if (X.iap && X.iap.val > 20) xdanger('fluidACS'); if (X.bleed.rate > 0 && !X.bleed.ctl && X.given.crysL > 1) xdanger('crystalloidTrauma'); } },
-  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); xlog('Albumin 5% 250 mL'); } },
+  alb: { l: 'Albumin 5% 250 mL', f: () => { q('Albumin 5% 250 mL', 'alb', 0.08, 15); X.given.albL = (X.given.albL || 0) + 0.25; xlog('Albumin 5% 250 mL'); } },
   prbc: { l: 'PRBC 1 unit', f: () => { if (X.sc.varix && X.hd.hgb > 9) xdanger('overTransVarix'); q('PRBC 1 unit', 'rbc', 0.32, 12); X.given.rbcN = (X.given.rbcN || 0) + 1; xlog('PRBC 1 unit'); if (X.bleed.rate > 80 && X.given.rbcN >= 4 && !X.given.mtp && !X.given.ffp) xdanger('rbcOnly'); } },
   mtp: { l: 'Massive transfusion: 6 RBC, 6 plasma, 1 apheresis platelets', f: () => { X.given.mtp = (X.given.mtp || 0) + 1; q('MTP red cells (6)', 'rbc', 1.9, 45); q('MTP plasma (6)', 'ffp', 1.5, 45); q('MTP platelets', 'plt', 0.3, 45); xlog('Massive transfusion cooler running through a rapid infuser (1:1:1)', 'info'); } },
   ffp: { l: 'Plasma 2 units', f: () => { X.given.ffp = 1; X.given.ffpN = (X.given.ffpN || 0) + 1; q('Plasma 2 units', 'ffp', 0.5, 15); xlog('Plasma 2 units'); } },
@@ -52783,6 +52825,9 @@ const XCHOICES = {
   },
   mshock: {
     sepsis: [
+      { k: 'albEarly', when: x => x.given.alb !== undefined && (x.given.crysL || 0) < 2, t: 'Albumin early in resuscitation', k1: 'Why crystalloid comes first', k2: 'When albumin fits', r: ['ssc21'],
+        w: 'Albumin does refill the intravascular space, and more of it stays in the vessels per mL than crystalloid, so it counts toward volume here. But SSC 2021 recommends balanced crystalloid as the first-line fluid and suggests albumin only after a patient has needed large volumes of crystalloid (weak recommendation). Albumin costs far more, and in ALBIOS adding it did not lower mortality. Early in resuscitation, crystalloid does the same job.',
+        i: 'After several liters of crystalloid when more volume is still needed, or with marked hypoalbuminemia and ongoing fluid needs. In cirrhosis (SBP, large-volume paracentesis, HRS) albumin has its own specific indications.' },
       { k: 'pheFirst', when: x => x.inf.phe > 0 && !(x.inf.ne > 0), t: 'Phenylephrine as the first vasopressor', r: ['ssc21'],
         w: 'Norepinephrine is first line in septic shock (SSC 2021). It adds some beta-1 support to the heart while raising SVR. Pure alpha agonism raises afterload without inotropy and can lower cardiac output and HR.',
         i: 'Reasonable when tachyarrhythmia limits norepinephrine, when a brief bridge is needed peripherally, or as a later add-on when other agents fail.' },
