@@ -355,6 +355,27 @@ body:not(.teach) .view [id$="-holdTxt"]::before{content:"Specific targets are hi
 .vgoal ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px}.vgoal i{font-style:normal;font-family:var(--f-mono);color:var(--muted);margin-right:2px}.vgoal li.ok i{color:#3ec98e}
 body.adm .vgoal-live{display:none}
 /* ICU Essentials, admissions, objectives */
+.emod{display:grid;gap:12px;max-width:900px}
+.eback{justify-self:start;font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.emh{display:flex;align-items:center;gap:12px}.emh h2{margin:0;font-family:var(--f-disp);font-size:clamp(24px,4vw,34px);letter-spacing:0;text-transform:none;color:var(--fg)}
+.emh .en,.essm .en{font-family:var(--f-mono);color:#0b0f12;background:#8fc1ff;border-radius:999px;min-width:26px;height:26px;display:inline-grid;place-items:center;font-size:13px;padding:0 4px}
+.emod .ed{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.esec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:8px}
+.esec h3{margin:0;font-family:var(--f-disp);font-size:16px;color:#8fc1ff;letter-spacing:.04em}
+.esec p{margin:0;line-height:1.6;color:var(--fg)}.esec .esub{color:var(--soft);font-size:13.5px}
+.ek{font-family:var(--f-disp);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.eobj{margin:0;padding-left:18px;display:grid;gap:3px;font-size:14px}
+.ecase{margin:0;padding-left:22px;display:grid;gap:8px}
+.ecase li{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:8px}
+.ecase li.ok b{color:#3ec98e}.ecn{display:grid;gap:2px}.ecn span{font-size:12.5px;color:var(--muted)}.ecb{display:flex;gap:6px}
+.eck{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.eckp{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px;align-content:start}.eckp>span{font-size:12.5px;color:var(--muted)}.eckp p{font-size:13.5px;color:var(--soft)}
+.epass{color:#3ec98e!important;font-weight:600}
+.eqbox{display:grid;gap:4px}.eq-n{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.eq-q{margin:2px 0 4px!important}.eq-x{background:#0f1a22;border-radius:8px;padding:9px 11px;font-size:13.5px;line-height:1.5;margin-top:4px}.eq-x b.g{color:#3ec98e}.eq-x b.w{color:#f0a23a}.eq-x .cl-btn{margin-top:6px}.eq-score{font-weight:600}
+.esrev{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:#13202a;border:1px solid #8fc1ff;border-radius:12px;padding:10px 14px;margin:10px 0}.esrev b{font-family:var(--f-disp)}.esrev span{font-size:13px;color:var(--soft)}.esrev .eqbox{flex-basis:100%}
+.essm{cursor:default}
+.emod .cl-btn,.esrev .cl-btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;justify-self:start}.emod .cl-btn.pri,.esrev .cl-btn.pri{border-color:#8fc1ff;background:#13202a}
+
 .view details:has(> [id$="-teach"]){display:none}
 .cch .cch-why,.cch .cch-more{display:none!important}
 .howit h2{margin-bottom:8px}
@@ -5293,7 +5314,7 @@ body.adm .cp-steps,body.adm .cp-case,body.adm .view [id$="-goals"],body.adm .vie
     <section class="sect">
       <div class="eyebrow">Start here</div>
       <h1 style="font-family:var(--f-disp);font-size:clamp(30px,5vw,44px);margin:.2em 0 .3em">ICU Essentials</h1>
-      <p class="libintro">Ten modules in order, built from the cases in this lab. Each case runs Teach → Guide → Practice and has three learning objectives you check off in the debrief. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p>
+      <p class="libintro">Ten modules in order, built from the cases in this lab. Each module is one page: an introduction, its cases (Teach → Guide → Practice, with three objectives each), a checkpoint and spaced review of what you missed. Domains follow the broad areas of the CCRN exam outline and the FCCS course (our mapping).</p>
       <div class="essgrid" id="essGrid"></div>
       <div class="admit"><div><b>Admissions</b><span>A random case, no simulator label, practice rules: work it out like a real admission.</span></div><div class="admbtns"><button data-adm="all">Any ICU</button><button data-adm="micu">Medical</button><button data-adm="neuro">Neuro</button><button data-adm="sicu">Surgical</button><button data-adm="cticu">Cardiothoracic</button></div></div>
     </section>
@@ -8137,7 +8158,7 @@ window.CTG = (() => {
     if (qs.length) cards.push(['Ready check', b => {
       const x = qs[Math.floor(Math.random() * qs.length)]; b.append(mk('p', 'cl-p', x.q)); const ex = mk('div', 'ct-qx'); ex.hidden = true;
       const opts = x.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5);
-      const bs = opts.map(o => { const bt = mk('button', 'ct-opt', o.t); bt.onclick = () => { if (!ex.hidden) return; bs.forEach((y, n) => { y.disabled = true; if (opts[n].k === x.a) y.classList.add('ok'); }); if (o.k !== x.a) bt.classList.add('no'); ex.hidden = false; ex.textContent = (o.k === x.a ? 'Correct. ' : 'Not quite. ') + x.e; if (o.k === x.a && window.OBJP) OBJP.set(v, id, 'e'); }; return bt; });
+      const bs = opts.map(o => { const bt = mk('button', 'ct-opt', o.t); bt.onclick = () => { if (!ex.hidden) return; bs.forEach((y, n) => { y.disabled = true; if (opts[n].k === x.a) y.classList.add('ok'); }); if (o.k !== x.a) bt.classList.add('no'); ex.hidden = false; ex.textContent = (o.k === x.a ? 'Correct. ' : 'Not quite. ') + x.e; if (o.k === x.a && window.OBJP) OBJP.set(v, id, 'e'); if (window.SR) SR.mark(v, x, o.k === x.a); }; return bt; });
       bs.forEach(y => b.append(y)); b.append(ex);
     }]);
     const dots = mk('div', 'cl-chips'), body = mk('div', 'ct-card'), foot = mk('div', 'cl-foot'); box.append(dots, body, foot);
@@ -8587,65 +8608,118 @@ window.CTP = (() => {
 })();
 </script>
 <script>
-/* ===== ICU Essentials path, first-time welcome, admissions ===== */
+/* ===== ICU Essentials: module pages (intro, cases, checkpoint, spaced review), admissions ===== */
 (() => {
   const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
   const UNITS = { micu: ['mshock', 'mresp', 'mtox', 'mendo', 'mgi'], neuro: ['nicp', 'nstroke', 'nsah', 'nsz', 'nnm'], sicu: ['strauma', 'sabd', 'sburn', 'scomp'], cticu: ['pacing', 'cals', 'poaf', 'hemo', 'bleed', 'mcs', 'iabp', 'artline'] };
-  const UNAME = { micu: 'Medical ICU', neuro: 'Neuro ICU', sicu: 'Surgical ICU', cticu: 'Cardiothoracic ICU' };
-  function idx(sim, id) { const L = (window.CTP && CTP.list && CTP.list(sim)) || []; const c = L.find(x => x.id === id); return c ? c.i : 0; }
-  function nameOf(sim, id) { const L = (window.CTP && CTP.list && CTP.list(sim)) || []; const c = L.find(x => x.id === id); return c ? c.name : id; }
-  function openCase(sim, id, mode) { document.body.classList.remove('adm'); if (mode) CT.setMode(mode, true); location.hash = sim; setTimeout(() => CT.open(sim, idx(sim, id)), 60); }
-  function score(sim, id) { const o = (window.OBJP && OBJP.get(sim, id)) || {}; return (o.r ? 1 : 0) + (o.m ? 1 : 0) + (o.e ? 1 : 0); }
-  function render() {
-    const g = document.getElementById('essGrid'); if (!g || !window.CURRIC) return; g.innerHTML = '';
-    const allT = CURRIC.modules.reduce((n, m) => n + m.c.length * 3, 0), allG = CURRIC.modules.reduce((n, m) => n + m.c.reduce((x, [s2, c2]) => x + score(s2, c2), 0), 0); const em = document.getElementById('essMeta'); if (em) em.textContent = allG ? `10 modules · ${Math.round(100 * allG / allT)}% of objectives` : '10 modules · 44 cases';
+  const UNAME = { micu: 'Medical ICU', neuro: 'Neuro ICU', sicu: 'Surgical ICU', cticu: 'Cardiothoracic ICU', mod: 'Checkpoint' };
+  const LS = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || '') || d; } catch (e) { return d; } };
+  const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const list = sim => (window.CTP && CTP.list && CTP.list(sim)) || [];
+  const idx = (sim, id) => { const c = list(sim).find(x => x.id === id); return c ? c.i : 0; };
+  const nameOf = (sim, id) => { const c = list(sim).find(x => x.id === id); return c ? c.name : id; };
+  function openCase(sim, id, mode) { end(); if (mode) CT.setMode(mode, true); location.hash = sim; setTimeout(() => CT.open(sim, idx(sim, id)), 60); }
+  const score = (sim, id) => { const o = (window.OBJP && OBJP.get(sim, id)) || {}; return (o.r ? 1 : 0) + (o.m ? 1 : 0) + (o.e ? 1 : 0); };
+  const flow = (sim, id) => LS('ctFlow', {})[sim + ':' + id] || {};
+  const sims = m => [...new Set(m.c.map(([s]) => s))];
+  const ck = id => LS('ctCk', {})[id] || {};
+  const ckSet = (id, k, v) => { const a = LS('ctCk', {}); const r = a[id] || (a[id] = {}); r[k] = Math.max(r[k] || 0, v); SV('ctCk', a); };
+  const passed = m => { const r = ck(m.id); return (r.q || 0) >= 8 && (r.c || 0) >= 80; };
+  let MOD = null;
+  /* --- an inline quiz used by the checkpoint and the review --- */
+  function qrun(box, items, done) {
+    let i = 0, right = 0; box.innerHTML = '';
+    const show = () => {
+      box.innerHTML = '';
+      if (i >= items.length) { box.append(mk('p', 'eq-score', `Score ${right} of ${items.length}.`)); if (done) done(right, items.length, box); return; }
+      const { sim, q } = items[i]; box.append(mk('div', 'eq-n', `Question ${i + 1} of ${items.length}`), mk('p', 'eq-q', q.q));
+      const opts = q.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5); const ex = mk('div', 'eq-x'); ex.hidden = true;
+      const bs = opts.map(o => { const b = mk('button', 'ct-opt', o.t); b.onclick = () => { if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(sim, q, ok); bs.forEach((x, n) => { x.disabled = true; if (opts[n].k === q.a) x.classList.add('ok'); }); if (!ok) b.classList.add('no'); ex.hidden = false; ex.append(mk('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e)); const nx = mk('button', 'cl-btn pri', i + 1 < items.length ? 'Next ›' : 'Finish'); nx.onclick = () => { i++; show(); }; ex.append(mk('div', 'row'), nx); }; return b; });
+      bs.forEach(b => box.append(b)); box.append(ex);
+    };
+    show();
+  }
+  function pool(m) {
+    const caseQ = [], simQ = [];
+    m.c.forEach(([s, c]) => { const X = window.XQBG && XQBG[s] && XQBG[s][c]; if (X) X.forEach(q => caseQ.push({ sim: s, q })); ((window.KQB && KQB[s]) || []).filter(q => q.c && q.c.includes(c)).forEach(q => caseQ.push({ sim: s, q })); });
+    sims(m).forEach(s => { const X = window.XQBG && XQBG[s]; if (X) Object.values(X).flat().forEach(q => simQ.push({ sim: s, q })); ((window.KQB && KQB[s]) || []).forEach(q => simQ.push({ sim: s, q })); });
+    const seen = new Set(), out = []; [...caseQ.sort(() => Math.random() - 0.5), ...simQ.sort(() => Math.random() - 0.5)].forEach(x => { if (!seen.has(x.q.q) && out.length < 10) { seen.add(x.q.q); out.push(x); } });
+    return out.sort(() => Math.random() - 0.5);
+  }
+  /* --- list of modules --- */
+  function renderList(g) {
+    const due = window.SR ? SR.due().length : 0;
+    if (due) { const b = mk('div', 'esrev'); b.append(mk('b', '', `${due} review question${due > 1 ? 's' : ''} due`), mk('span', '', 'Questions you missed come back after 1, 3, 7 and 14 days.')); const go = mk('button', 'ego', 'Review now ›'); const qb = mk('div', 'eqbox'); go.onclick = () => { go.remove(); qrun(qb, SR.due().slice(0, 15), () => {}); }; b.append(go, qb); g.before(b); }
     CURRIC.modules.forEach((m, k) => {
-      const tot = m.c.length * 3, got = m.c.reduce((n, [s, c]) => n + score(s, c), 0);
-      const card = mk('article', 'essm' + (got === tot ? ' done' : ''));
-      const h = mk('div', 'eh'); h.append(mk('span', 'en', String(k + 1)), mk('b', '', m.t)); card.append(h, mk('div', 'ed', m.d), mk('p', '', m.why));
-      const bar = mk('div', 'ebar'); const i = mk('i'); i.style.width = Math.round(100 * got / tot) + '%'; bar.append(i); card.append(bar, mk('div', 'ed', `${got} of ${tot} objectives`));
-      const d = mk('details'); d.append(mk('summary', '', 'Objectives and cases'));
-      const uo = mk('ul', 'eobj'); m.obj.forEach(t => uo.append(mk('li', '', t))); d.append(uo);
-      const ol = mk('ol'); m.c.forEach(([s, c]) => { const li = mk('li'); const a = mk('a', '', nameOf(s, c)); a.onclick = () => openCase(s, c, 'learn'); li.append(a, mk('span', 'st', '✓'.repeat(score(s, c)) + '○'.repeat(3 - score(s, c)))); ol.append(li); }); d.append(ol);
-      card.append(d);
-      const next = m.c.find(([s, c]) => score(s, c) < 3) || m.c[0];
-      const go = mk('button', 'ego', got ? (got === tot ? 'Review' : 'Continue ›') : 'Start ›'); go.onclick = () => openCase(next[0], next[1], 'learn'); card.append(go);
-      g.append(card);
+      const tot = m.c.length * 3, got = m.c.reduce((n, [s, c]) => n + score(s, c), 0), ok = passed(m);
+      const card = mk('article', 'essm' + (ok ? ' done' : '')); card.tabIndex = 0;
+      const h = mk('div', 'eh'); h.append(mk('span', 'en', ok ? '✓' : String(k + 1)), mk('b', '', m.t)); card.append(h, mk('div', 'ed', m.d), mk('p', '', m.why));
+      const bar = mk('div', 'ebar'); const i = mk('i'); i.style.width = Math.round(100 * got / tot) + '%'; bar.append(i); card.append(bar);
+      const st = mk('div', 'ed'); const dueM = window.SR ? SR.due(sims(m)).length : 0; st.textContent = `${got}/${tot} objectives · ${ok ? 'checkpoint passed' : 'checkpoint not yet passed'}${dueM ? ` · ${dueM} to review` : ''}`; card.append(st);
+      const go = mk('button', 'ego', got ? 'Open module ›' : 'Start module ›'); const open = () => { MOD = m.id; render(); window.scrollTo(0, 0); }; go.onclick = open; card.onkeydown = e => { if (e.key === 'Enter') open(); };
+      card.append(go); g.append(card);
     });
   }
-  /* first time here */
-  function welcome() {
-    let seen = null; try { seen = localStorage.getItem('ctWelcome'); } catch (e) {}
-    if (seen || (location.hash && location.hash !== '#menu')) return;
-    const w = mk('div', 'welc'); const b = mk('div');
-    b.append(mk('h3', '', 'Welcome to the ICU Sim Lab'), mk('p', '', 'Real-time ICU patients you manage from a monitor and a set of controls. Every case has three steps:'));
-    const ol = mk('ol'); [['Teach', 'a short brief on the patient, the targets, the key ideas and the plan.'], ['Guide', 'run it with a coach who pauses at each decision, asks what you would do, then shows you.'], ['Practice', 'do it alone with new numbers; 80 or more marks the case mastered.']].forEach(([t, x]) => { const li = mk('li'); li.append(mk('b', '', t + ': '), document.createTextNode(x)); ol.append(li); }); b.append(ol);
-    b.append(mk('p', '', 'If you are new, start with ICU Essentials module 1. The clock stays stopped until you press Start case.'));
-    const r = mk('div', 'row'); const s1 = mk('button', 'pri', 'Start module 1 ›'); const s2 = mk('button', '', 'Look around first');
-    const close = () => { try { localStorage.setItem('ctWelcome', '1'); } catch (e) {} w.remove(); };
-    s1.onclick = () => { close(); const m = CURRIC.modules[0].c[0]; openCase(m[0], m[1], 'learn'); }; s2.onclick = () => { close(); const e = document.getElementById('essSec'); if (e) e.scrollIntoView({ behavior: 'smooth' }); };
-    r.append(s1, s2); b.append(r); w.append(b); document.body.append(w);
+  /* --- one module page --- */
+  function renderModule(g, m) {
+    const k = CURRIC.modules.indexOf(m), wrap = mk('div', 'emod');
+    const back = mk('button', 'eback', '‹ All modules'); back.onclick = () => { MOD = null; render(); }; wrap.append(back);
+    const tot = m.c.length * 3, got = m.c.reduce((n, [s, c]) => n + score(s, c), 0);
+    const hd = mk('div', 'emh'); hd.append(mk('span', 'en', String(k + 1)), mk('h2', '', m.t)); wrap.append(hd, mk('div', 'ed', `${m.d} · ${got}/${tot} objectives`));
+    // 1. intro
+    const s1 = mk('section', 'esec'); s1.append(mk('h3', '', '1 · Introduction')); (CURRIC.intro[m.id] || [m.why]).forEach(t => s1.append(mk('p', '', t)));
+    s1.append(mk('div', 'ek', 'By the end of this module you can')); const uo = mk('ul', 'eobj'); m.obj.forEach(t => uo.append(mk('li', '', t))); s1.append(uo); wrap.append(s1);
+    // 2. cases
+    const s2 = mk('section', 'esec'); s2.append(mk('h3', '', '2 · Cases'), mk('p', 'esub', 'Work through them in order. Each opens in Teach, then runs Guide and Practice. Objectives fill in from your debriefs.'));
+    const ol = mk('ol', 'ecase'); m.c.forEach(([s, c]) => { const f = flow(s, c), n = score(s, c); const li = mk('li', n === 3 ? 'ok' : '');
+      const nm = mk('div', 'ecn'); nm.append(mk('b', '', nameOf(s, c)), mk('span', '', `${'✓'.repeat(n)}${'○'.repeat(3 - n)} objectives · ${f.t ? 'Teach ✓' : 'Teach'} · ${f.g ? 'Guide ✓' : 'Guide'} · ${f.p ? `Practice best ${f.p}` : 'Practice'}`));
+      const bt = mk('div', 'ecb'); const t1 = mk('button', 'cl-btn', 'Teach'), t2 = mk('button', 'cl-btn', 'Guide'), t3 = mk('button', 'cl-btn pri', 'Practice'); t1.onclick = () => openCase(s, c, 'learn'); t2.onclick = () => openCase(s, c, 'teach'); t3.onclick = () => openCase(s, c, 'practice'); bt.append(t1, t2, t3);
+      li.append(nm, bt); ol.append(li); }); s2.append(ol); wrap.append(s2);
+    // 3. checkpoint
+    const r = ck(m.id), s3 = mk('section', 'esec'); s3.append(mk('h3', '', '3 · Checkpoint'), mk('p', 'esub', 'Pass both parts to complete the module: an unlabeled case from this module\'s units (80 or more) and a 10-question mixed quiz (8 or more).'));
+    const row = mk('div', 'eck');
+    const c1 = mk('div', 'eckp'); c1.append(mk('b', '', 'Unlabeled case'), mk('span', '', r.c ? `Best ${r.c}${r.c >= 80 ? ' ✓' : ''}` : 'Not attempted'), mk('p', '', 'A random case from these simulators, no name, no targets, practice rules. You may get one you have seen, with new numbers.')); const cb = mk('button', 'cl-btn pri', 'Start checkpoint case ›'); cb.onclick = () => admitMod(m); c1.append(cb);
+    const c2 = mk('div', 'eckp'); c2.append(mk('b', '', '10-question quiz'), mk('span', '', r.q ? `Best ${r.q}/10${r.q >= 8 ? ' ✓' : ''}` : 'Not attempted')); const qb = mk('div', 'eqbox'); const qbtn = mk('button', 'cl-btn pri', 'Start quiz ›'); qbtn.onclick = () => { qbtn.remove(); const items = pool(m); if (!items.length) { qb.textContent = 'No questions available yet for this module.'; return; } qrun(qb, items, (n, of, box) => { ckSet(m.id, 'q', Math.round(10 * n / of)); const again = mk('button', 'cl-btn', 'Retake'); again.onclick = () => render(); box.append(again); }); }; c2.append(qbtn, qb);
+    row.append(c1, c2); s3.append(row); if (passed(m)) s3.append(mk('p', 'epass', 'Checkpoint passed. Module complete.')); wrap.append(s3);
+    // 4. review
+    const s4 = mk('section', 'esec'); s4.append(mk('h3', '', '4 · Spaced review'));
+    const dueM = window.SR ? SR.due(sims(m)) : [], deck = window.SR ? SR.count(sims(m)) : 0;
+    s4.append(mk('p', 'esub', deck ? `${deck} question${deck > 1 ? 's' : ''} from this module in your review deck; ${dueM.length} due now. Missed questions come back after 1, 3, 7 and 14 days until you get them right each time.` : 'Questions you miss in this module\'s quizzes are saved here and come back after 1, 3, 7 and 14 days.'));
+    if (dueM.length) { const rb = mk('div', 'eqbox'); const go = mk('button', 'cl-btn pri', `Review ${dueM.length} now ›`); go.onclick = () => { go.remove(); qrun(rb, dueM, () => {}); }; s4.append(go, rb); }
+    wrap.append(s4);
+    // next module
+    const nxt = CURRIC.modules[k + 1]; if (nxt) { const nb = mk('button', 'eback', `Next module: ${nxt.t} ›`); nb.onclick = () => { MOD = nxt.id; render(); window.scrollTo(0, 0); }; wrap.append(nb); }
+    g.append(wrap);
   }
-  /* admissions */
+  function render() {
+    const g = document.getElementById('essGrid'); if (!g || !window.CURRIC) return; g.innerHTML = ''; const sec = g.closest('section'); sec.querySelectorAll('.esrev').forEach(e => e.remove());
+    const intro = sec.querySelector('.libintro'), adm = sec.querySelector('.admit'), h1 = sec.querySelector('h1'), eb = sec.querySelector('.eyebrow');
+    const m = MOD && CURRIC.modules.find(x => x.id === MOD);
+    [intro, adm, h1, eb].forEach(e => { if (e) e.hidden = !!m; });
+    g.classList.toggle('essgrid', !m);
+    if (m) renderModule(g, m); else renderList(g);
+    const allT = CURRIC.modules.reduce((n, mm) => n + mm.c.length * 3, 0), allG = CURRIC.modules.reduce((n, mm) => n + mm.c.reduce((x, [s2, c2]) => x + score(s2, c2), 0), 0); const em = document.getElementById('essMeta'); if (em) em.textContent = allG ? `10 modules · ${Math.round(100 * allG / allT)}% of objectives` : '10 modules · 44 cases';
+  }
+  /* --- admissions and checkpoint cases --- */
   let ADM = null;
-  function admit(u) {
-    const units = u === 'all' ? ['micu', 'neuro', 'sicu', 'cticu'] : [u]; const pool = [];
-    units.forEach(un => UNITS[un].forEach(sim => ((window.CTP && CTP.list(sim)) || []).forEach(c => pool.push([un, sim, c]))));
-    if (!pool.length) return; const [un, sim, c] = pool[Math.floor(Math.random() * pool.length)];
-    ADM = { un, sim, id: c.id }; CT.setMode('practice', true); if (window.CTV && CTV[sim]) CTV[sim].set(true); document.body.classList.add('adm'); location.hash = sim;
-    setTimeout(() => { document.body.classList.add('adm'); CT.open(sim, c.i); tag(sim, un); }, 60);
+  function startAdm(un, sim, c, mod) {
+    ADM = { un, sim, id: c.id, mod }; CT.setMode('practice', true); if (window.CTV && CTV[sim]) CTV[sim].set(true); document.body.classList.add('adm'); location.hash = sim;
+    setTimeout(() => { document.body.classList.add('adm'); CT.open(sim, c.i); tag(sim, mod ? 'mod' : un, mod); }, 60);
   }
-  function tag(sim, un) {
+  function admit(u) { const units = u === 'all' ? ['micu', 'neuro', 'sicu', 'cticu'] : [u]; const p = []; units.forEach(un => UNITS[un].forEach(sim => list(sim).forEach(c => p.push([un, sim, c])))); if (!p.length) return; const [un, sim, c] = p[Math.floor(Math.random() * p.length)]; startAdm(un, sim, c, null); }
+  function admitMod(m) { const p = []; sims(m).forEach(sim => list(sim).forEach(c => p.push([sim, c]))); if (!p.length) return; const [sim, c] = p[Math.floor(Math.random() * p.length)]; startAdm('mod', sim, c, m.id); }
+  function tag(sim, un, mod) {
     const sec = document.getElementById('v-' + sim); if (!sec) return; let t = sec.querySelector('.admtag');
     if (!t) { t = mk('div', 'admtag'); const w = sec.querySelector('.cwrap'); (w || sec.firstElementChild).before(t); }
-    t.innerHTML = ''; t.append(mk('b', '', 'New admission'), mk('span', '', `${UNAME[un]} · no diagnosis given. Work it up like a real admission.`));
+    t.innerHTML = ''; const m = mod && CURRIC.modules.find(x => x.id === mod);
+    t.append(mk('b', '', m ? `Checkpoint · ${m.t}` : 'New admission'), mk('span', '', m ? 'Unlabeled case: no diagnosis, no targets. 80 or more passes this part.' : `${UNAME[un]} · no diagnosis given. Work it up like a real admission.`));
     const r = mk('button', '', 'Reveal the case'); r.onclick = () => end(); t.append(r);
   }
   function end() { document.body.classList.remove('adm'); ADM = null; }
   document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-adm]'); if (b) admit(b.dataset.adm); });
   window.addEventListener('hashchange', () => { if (ADM && location.hash.slice(1) !== ADM.sim) end(); if (['#menu', '#essentials', ''].includes(location.hash)) render(); });
-  setInterval(() => { if (!ADM) return; const sec = document.getElementById('v-' + ADM.sim); const ov = sec && sec.querySelector('[id$="-ov"]'); if (ov && !ov.hidden) end(); }, 700);
-  window.addEventListener('load', () => setTimeout(() => { render(); }, 300));
+  setInterval(() => { if (!ADM) return; const sec = document.getElementById('v-' + ADM.sim); const ov = sec && sec.querySelector('[id$="-ov"]'); if (ov && !ov.hidden) { if (ADM.mod) { const sc = ov.querySelector('.dbs, .ctk-dbs'); if (sc) ckSet(ADM.mod, 'c', +sc.textContent || 0); } end(); } }, 700);
+  window.addEventListener('load', () => setTimeout(render, 300));
   window.ESS = { render, admit, openCase };
 })();
 </script>
@@ -12440,16 +12514,16 @@ LEARN.add('pacing', {
     const h = mk('div'); h.append(mk('b', '', T[0]), mk('span', 'yr', String(T[1]))); d.append(h, mk('div', 'q', T[2]), mk('div', 'f', T[3]), mk('div', 'p', T[4]), mk('div', 'tp', LEARN.SRC[k] || ''));
     return d;
   }
-  function quizInto(box, qs) {
+  function quizInto(box, qs, sim) {
     box.innerHTML = ''; box.classList.add('lbq');
     const pool = qs.slice().sort(() => Math.random() - 0.5).slice(0, 10); let i = 0, right = 0;
     const show = () => {
       box.innerHTML = '';
-      if (i >= pool.length) { box.append(mk('p', '', `Score ${right}/${pool.length}.`)); const b = mk('button', 'nx', 'New set'); b.onclick = () => quizInto(box, qs); box.append(b); return; }
+      if (i >= pool.length) { box.append(mk('p', '', `Score ${right}/${pool.length}.`)); const b = mk('button', 'nx', 'New set'); b.onclick = () => quizInto(box, qs, sim); box.append(b); return; }
       const q = pool[i]; box.append(mk('div', 'qn', `Question ${i + 1} of ${pool.length}`), mk('p', '', q.q));
       const opts = q.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5); const ex = mk('div', 'qex');
       const bs = opts.map(o => { const b = mk('button', 'qopt', o.t); b.onclick = () => {
-        if (ex.textContent) return; const ok = o.k === q.a; if (ok) right++;
+        if (ex.textContent) return; const ok = o.k === q.a; if (ok) right++; if (window.SR && sim) SR.mark(sim, q, ok);
         bs.forEach((x, n) => { x.disabled = true; if (opts[n].k === q.a) x.classList.add('ok'); }); if (!ok) b.classList.add('no');
         ex.textContent = (ok ? 'Correct. ' : 'Not quite. ') + q.e; if (q.r) ex.append(LEARN.refsList(q.r));
         const nx = mk('button', 'nx', i + 1 < pool.length ? 'Next' : 'Score'); nx.onclick = () => { i++; show(); }; ex.append(nx);
@@ -12489,7 +12563,7 @@ LEARN.add('pacing', {
     if (trs.length) { const d = mk('details'); d.append(mk('summary', '', `Landmark trials (${trs.length})`)); const g = mk('div', 'lbtr'); trs.forEach(k => g.append(trialCard(k))); d.append(g); card.append(d); }
     // quiz
     const QB = window.XQBG && XQBG[sim]; const qs = QB ? Object.values(QB).flat() : [];
-    if (qs.length) { const d = mk('details'); d.append(mk('summary', '', `Practice questions (${qs.length})`)); const box = mk('div'); d.append(box); d.addEventListener('toggle', () => { if (d.open && !box.childNodes.length) quizInto(box, qs); }); card.append(d); }
+    if (qs.length) { const d = mk('details'); d.append(mk('summary', '', `Practice questions (${qs.length})`)); const box = mk('div'); d.append(box); d.addEventListener('toggle', () => { if (d.open && !box.childNodes.length) quizInto(box, qs, sim); }); card.append(d); }
     // refs
     const ev = keys.filter(k => !k.startsWith('utd:')).sort((x, y) => LEARN.yr(y) - LEARN.yr(x)), u = keys.filter(k => k.startsWith('utd:'));
     if (ev.length || u.length) { const d = mk('details'); d.append(mk('summary', '', `References (${ev.length + u.length})`)); if (ev.length) d.append(LEARN.refsList(ev)); if (u.length) { d.append(mk('div', 'ctl-k', 'Optional review reading (UpToDate)')); d.append(LEARN.refsList(u)); } card.append(d); }
@@ -12634,7 +12708,7 @@ window.CTKIT = (cfg) => {
       const q = qs[i]; c.append(mk('div', 'ctk-qn', `Question ${i + 1} of ${qs.length}`), mk('p', 'ctk-qs', q.q));
       const opts = q.o.map((t, k) => ({ t, k })).sort(() => Math.random() - 0.5); const box = mk('div', 'ctk-qo'), ex = mk('div', 'ctk-qx'); ex.hidden = true;
       opts.forEach(o => { const b = mk('button', 'btn ctk-qopt', o.t); b.onclick = () => {
-        if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+        if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(sim, q, ok);
         [...box.children].forEach((x, n) => { x.disabled = true; if (opts[n].k === q.a) x.classList.add('ok'); }); if (!ok) b.classList.add('no');
         ex.hidden = false; ex.append(mk('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e)); if (q.r && window.LEARN) ex.append(LEARN.refsList(q.r));
         const nx = mk('button', 'btn on', i + 1 < qs.length ? 'Next question' : 'See score'); nx.onclick = () => { i++; show(); }; const r = mk('div', 'row'); r.append(nx); ex.append(r);
@@ -12898,6 +12972,35 @@ window.OBJP = {
     o.forEach((t, i) => { const li = document.createElement('li'); const ok = !!p[keys[i]]; li.className = ok ? 'ok' : ''; const b = document.createElement('b'); b.textContent = ok ? '✓' : '○'; li.append(b, document.createTextNode(' ' + t)); ul.append(li); });
     return ul;
   }
+};
+/* ===== Module intros: the one-page orientation shown at the top of each module ===== */
+Object.assign(CURRIC, { intro: {
+  m1: ['Shock means the tissues are not getting enough oxygen, and blood pressure is only its most visible sign. Every shock fits one of four patterns: the tank is empty (hypovolemic), the vessels are wide open (distributive), the pump has failed (cardiogenic), or something blocks flow (obstructive).', 'In this module you sort each patient into one of those four from the vital signs, the exam and a bedside ultrasound, and start the first treatment within the first hour. Watch the lactate, cap refill and urine output, not just the MAP.'],
+  m2: ['Once fluid stops helping, drips do the work. A vasoconstrictor fixes low tone, an inotrope fixes a weak pump, and choosing the wrong one makes things worse: phenylephrine on a failing heart, or epinephrine for tone alone.', 'Here you escalate from norepinephrine to vasopressin and steroids, read a PA catheter to tell vasoplegia from LV failure, and set up drips with correct dose math.'],
+  m3: ['Most respiratory failure is managed first without a tube. Low oxygen and high CO2 are different problems: oxygen follows FiO2 and PEEP, CO2 follows how much air moves in and out.', 'You match the device to the failure (high flow for de novo hypoxemia, BiPAP for hypercapnic COPD), track the response, and learn when waiting longer becomes dangerous.'],
+  m4: ['The ventilator and the blood gas are the language of the ICU. Peak and plateau pressure tell you whether the problem is in the airways or the lungs; the ABG tells you whether the patient is moving enough air and whether something else is going on.', 'This module covers lung-protective ventilation for ARDS, air trapping in asthma, and reading ABGs with expected compensation.'],
+  m5: ['ICU patients are harmed as often by what is forgotten as by what is done. A daily checklist, light sedation, paired awakening and breathing trials, and attention to delirium shorten ventilation and stays.', 'You run FAST HUGS BID on real rounds patients, decide who is ready to come off the ventilator, and manage a delirious patient without making it worse.'],
+  m6: ['The injured brain is unforgiving: a single episode of low blood pressure or low oxygen worsens outcome, and brain swelling turns into herniation quickly once its reserve is used up.', 'You protect cerebral perfusion pressure, recognize herniation, manage blood pressure in stroke and ICH, reverse anticoagulation, and stop status epilepticus on time.'],
+  m7: ['Potassium, sodium, glucose and urine output are checked every day, and each can kill quickly when it goes wrong or is corrected too fast.', 'You treat hyperkalemia in the right order, run DKA without dropping the potassium, correct sodium safely, and decide when a failing kidney needs dialysis.'],
+  m8: ['Overdose and withdrawal are common ICU admissions. The drug name matters less than its effect: the ECG and vital signs often decide the treatment before any level comes back.', 'You treat sodium channel and calcium channel blocker toxicity, alcohol withdrawal and serotonin toxicity, and learn when an antidote helps or hurts.'],
+  m9: ['Surgical ICU patients bleed, leak and swell. Blood products beat crystalloid for hemorrhage, source control beats antibiotics for a leak, and pressure inside a compartment can quietly kill an organ.', 'You resuscitate trauma, decompress a tension pneumothorax, get source control, recognize abdominal compartment syndrome and run burn resuscitation hour by hour.'],
+  m10: ['After cardiac surgery, the rules change: patients have pacing wires and chest tubes, tamponade can hide behind normal drains, and arrest has its own protocol.', 'You pace through epicardial wires, cardiovert unstable post-op AF, recognize tamponade, run the CALS arrest protocol and make sure the arterial line is telling the truth.']
+} });
+/* ===== Spaced review: missed questions come back after 1, 3, 7 and 14 days ===== */
+window.SR = {
+  key: 'ctSR', DAYS: [1, 3, 7, 14],
+  all() { try { return JSON.parse(localStorage.getItem(this.key) || '{}'); } catch (e) { return {}; } },
+  save(a) { try { localStorage.setItem(this.key, JSON.stringify(a)); } catch (e) {} },
+  id(sim, q) { let h = 0; const s = sim + '|' + q.q; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return sim + ':' + (h >>> 0).toString(36); },
+  mark(sim, q, ok) {
+    if (!q || !q.q) return; const a = this.all(), k = this.id(sim, q), r = a[k];
+    if (!ok) a[k] = { sim, q: q.q, box: 0, due: Date.now() + 864e5 };
+    else if (r) { r.box = Math.min(this.DAYS.length - 1, r.box + 1); r.due = Date.now() + this.DAYS[r.box] * 864e5; if (r.box === this.DAYS.length - 1 && r.cleared) delete a[k]; else if (r.box === this.DAYS.length - 1) r.cleared = 1; }
+    this.save(a);
+  },
+  find(sim, text) { const banks = []; const X = window.XQBG && XQBG[sim]; if (X) Object.values(X).forEach(l => banks.push(...l)); if (window.KQB && KQB[sim]) banks.push(...KQB[sim]); return banks.find(q => q.q === text) || null; },
+  due(sims, now) { now = now || Date.now(); const a = this.all(); return Object.values(a).filter(r => (!sims || sims.includes(r.sim)) && r.due <= now).map(r => ({ sim: r.sim, q: this.find(r.sim, r.q) })).filter(x => x.q); },
+  count(sims) { const a = this.all(); return Object.values(a).filter(r => !sims || sims.includes(r.sim)).length; }
 };
 
 </script>
@@ -23538,7 +23641,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -25729,7 +25832,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -27917,7 +28020,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -30112,7 +30215,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -32300,7 +32403,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -34468,7 +34571,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -36636,7 +36739,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -38790,7 +38893,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -40951,7 +41054,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -43098,7 +43201,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -45177,7 +45280,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -47295,7 +47398,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -49405,7 +49508,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -51515,7 +51618,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
@@ -53624,7 +53727,7 @@ function quiz(qs) {
     const opts = q.o.map((t, k) => ({ t, k })); for (let a = opts.length - 1; a > 0; a--) { const b = Math.floor(Math.random() * (a + 1)); [opts[a], opts[b]] = [opts[b], opts[a]]; }
     const box = el('div', 'qopts'), ex = el('div', 'qex'); ex.hidden = true;
     opts.forEach(o => { const b = el('button', 'btn qopt', o.t); b.onclick = () => {
-      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++;
+      if (!ex.hidden) return; const ok = o.k === q.a; if (ok) right++; if (window.SR) SR.mark(UNIT.id, q, ok);
       box.querySelectorAll('button').forEach(x => { x.disabled = true; }); b.classList.add(ok ? 'qok' : 'qno');
       const cor = [...box.children][opts.findIndex(z => z.k === q.a)]; cor.classList.add('qok');
       ex.hidden = false; ex.append(el('b', ok ? 'g' : 'w', ok ? 'Correct. ' : 'Not quite. '), document.createTextNode(q.e));
