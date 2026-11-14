@@ -9544,10 +9544,10 @@ window.LEARN = (() => {
       hold('Hold MAP ≥ 65 on less norepinephrine')],
     cardio: [
       A('pocus', 'POCUS', 'Severely reduced LV, B-lines, plethoric IVC: cold and wet.', x => !!x.flags.pocus),
-      up('Norepinephrine', 'Start norepinephrine', 'Preferred first vasopressor in cardiogenic shock (SOAP II).', x => x.inf.ne > 0),
+      up('Norepinephrine', 'Start norepinephrine', 'Preferred first vasopressor in cardiogenic shock (SOAP II). The cath lab is about 50 minutes away; a MAP near 60 with a lactate of 4.6 means the organs and the coronaries are underperfused the whole time you wait.', x => x.inf.ne > 0 || (!!x.flags.revasc && x.hd.map >= 65 && (x.flags.untreated || 0) < 20)),
       up('Norepinephrine', 'Titrate to MAP ≥ 65', 'Coronary and organ perfusion first.', x => x.hd.map >= 65, x => x.hd.map < 65),
       A('cath', 'Activate the cath lab', 'Emergent PCI of the culprit artery (SHOCK).', x => x.given.cath !== undefined),
-      up('Dobutamine', 'Add an inotrope', 'MAP is at goal but output is low: dobutamine (or milrinone).', x => x.inf.dob > 0 || x.inf.milr > 0, x => x.hd.map >= 63),
+      up('Dobutamine', 'Add an inotrope', 'MAP is at goal but output is low: dobutamine (or milrinone). Not needed if the lactate clears after reperfusion.', x => x.inf.dob > 0 || x.inf.milr > 0 || (!!x.flags.revasc && x.lac < 2.5), x => x.hd.map >= 63),
       A('lasix', 'Diurese the congestion', 'Once perfusing: furosemide for pulmonary edema.', x => x.given.lasix !== undefined, x => x.hd.map >= 65),
       { t: 'Reperfusion', why: 'Door to balloon about 50 minutes; the LV recovers over the next hour.', done: x => !!x.flags.revasc },
       hold('Hold MAP ≥ 65 while the lactate clears')],
@@ -12834,7 +12834,7 @@ window.CURRIC = {
   ],
   obj: {
     'mshock:sepsis': ['Recognize septic shock and its severity from vitals and lactate', 'Deliver the hour-1 bundle: cultures, antibiotics, fluids, norepinephrine', 'Explain why balanced crystalloid and early norepinephrine are preferred'],
-    'mshock:cardio': ['Recognize cold and wet cardiogenic shock', 'Support with norepinephrine then an inotrope, without fluid loading', 'Explain why revascularization and culprit-only PCI matter'],
+    'mshock:cardio': ['Recognize cold and wet cardiogenic shock', 'Support perfusion (norepinephrine, then an inotrope if needed) without fluid loading', 'Explain why revascularization and culprit-only PCI matter'],
     'mshock:tamp': ['Recognize tamponade: hypotension, JVD, pulsus paradoxus, effusion', 'Bridge with small fluid and a pressor, then drain', 'Explain why intubation before drainage is dangerous'],
     'mshock:pe': ['Recognize massive PE from RV strain on POCUS', 'Give norepinephrine and thrombolysis, avoid big fluid boluses', 'Explain RV–LV interdependence'],
     'mshock:ana': ['Recognize anaphylaxis with shock', 'Give IM epinephrine first, then an infusion if refractory', 'Explain why antihistamines and steroids are only adjuncts'],
@@ -22660,7 +22660,7 @@ const XSCEN = [
     pt: { vasc: 5.4, hr0: 104, lvC: 0.38, svr0: 18, lung: 0.95 }, cs: { lvT: 0.62 }, resp: { o2: 'nc' }, lac0: 4.6,
     acts: ['labs', 'pocus', 'lr', 'lasix', 'cath', 'mcsT', 'o2nrb', 'intubate'], drips: ['ne', 'dob', 'milr', 'epi', 'vaso'], hold: 10,
     brief: '64-year-old man, 5 hours of crushing chest pain. ECG: anterior ST elevation. Aspirin, ticagrelor and heparin given in the ED. Now cool, mottled legs, crackles to the mid-lung fields, SpO2 91% on 4 L, confused. Lactate 4.6. Time runs 2× faster.',
-    goals: [{ t: 'Norepinephrine for MAP', f: x => x.inf.ne > 0 }, { t: 'Cath lab activated', f: x => x.given.cath !== undefined }, { t: 'Inotrope added', f: x => x.inf.dob > 0 || x.inf.milr > 0 }, { t: 'MAP ≥ 65', f: x => x.hd.map >= 65 }, { t: 'Lactate < 2.5', f: x => x.lac < 2.5 }, { t: 'No more than 500 mL fluid', f: x => (x.given.crysL || 0) <= 0.5 }],
+    goals: [{ t: 'Pressure supported (norepinephrine if MAP < 65)', f: x => { const F = x.flags; if (F._lmt !== undefined && x.hd.map < 65 && !(x.inf.ne > 0)) F.untreated = (F.untreated || 0) + Math.max(0, x.m - F._lmt); F._lmt = x.m; return x.inf.ne > 0 || (!!F.revasc && x.hd.map >= 65 && (F.untreated || 0) < 20); } }, { t: 'Cath lab activated', f: x => x.given.cath !== undefined }, { t: 'Output supported (inotrope if perfusion stays poor)', f: x => x.inf.dob > 0 || x.inf.milr > 0 || (!!x.flags.revasc && x.lac < 2.5) }, { t: 'MAP ≥ 65', f: x => x.hd.map >= 65 }, { t: 'Lactate < 2.5', f: x => x.lac < 2.5 }, { t: 'No more than 500 mL fluid', f: x => (x.given.crysL || 0) <= 0.5 }],
     hint: 'POCUS: severely reduced LV with B-lines: cold and wet cardiogenic shock from an anterior STEMI. Norepinephrine to MAP 65, then an inotrope (dobutamine or milrinone) for output, diuretic for congestion once perfusing, and emergent PCI of the culprit. Activate the shock team; a microaxial flow pump is an option in selected STEMI shock.',
     teach: ['Cardiogenic shock: hypotension (or vasopressor need) with hypoperfusion from pump failure. SCAI stages A–E grade severity.', 'Norepinephrine is the preferred first vasopressor; in SOAP II dopamine caused more arrhythmias and higher mortality in the cardiogenic subgroup.', 'Add an inotrope once MAP is adequate if output stays low. DOREMI found no outcome difference between milrinone and dobutamine.', 'Emergent revascularization of the culprit artery (SHOCK); culprit-only PCI in multivessel disease (CULPRIT-SHOCK).', 'IABP did not lower mortality in AMI shock (IABP-SHOCK II). In selected STEMI shock a microaxial flow pump lowered 180-day mortality with more complications (DanGer Shock 2024).'] },
   { id: 'tamp', name: 'Lung cancer, dyspnea and a falling BP', tag: 'Obstructive shock',
@@ -22737,6 +22737,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -24925,6 +24928,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -27110,6 +27116,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -29302,6 +29311,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -31487,6 +31499,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -33680,6 +33695,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -35845,6 +35863,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -37996,6 +38017,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -40154,6 +40178,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -42298,6 +42325,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -44494,6 +44524,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -46533,6 +46566,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -48640,6 +48676,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -50747,6 +50786,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
@@ -52853,6 +52895,9 @@ const XCHOICES = {
         i: 'Tachyarrhythmia that limits other agents, or as a last add-on when cardiac output is known to be adequate.' }
     ],
     cardio: [
+      { k: 'waitPCI', when: x => x.given.cath !== undefined && !(x.inf.ne > 0) && (x.flags.untreated || 0) > 20, t: 'Waiting for PCI without a vasopressor', k1: 'Why support the pressure now', k2: 'When holding off is reasonable', r: ['soap10', 'shock99'],
+        w: 'Activating the cath lab early is right, but reperfusion is still 50 or more minutes away. During that time a MAP near 60 with a lactate of 4.6, mottling and confusion means ongoing organ and coronary hypoperfusion, and coronary flow depends on diastolic pressure. Norepinephrine to MAP 65 bridges the gap; once the culprit is open and the LV recovers it can usually be weaned quickly.',
+        i: 'If the MAP is at or above 65 with signs of adequate perfusion (warm, mentating, lactate clearing), close monitoring without a pressor is reasonable while the cath lab mobilizes.' },
       { k: 'epiCardio', when: x => x.inf.epi > 0 && !(x.inf.ne > 0), t: 'Epinephrine instead of norepinephrine', r: ['optima18', 'soap10'],
         w: 'In AMI cardiogenic shock, epinephrine raised MAP and cardiac index as well as norepinephrine but caused more refractory shock, tachycardia and lactic acidosis (OptimaCC, stopped early). Norepinephrine plus an inotrope is the usual pairing.',
         i: 'A bridge in refractory shock or peri-arrest while mechanical support is arranged.' },
