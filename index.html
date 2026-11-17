@@ -10593,6 +10593,84 @@ window.LEARN = (() => {
   };
 })();
 
+/* Guided steps: Vent & ABGs */
+(() => {
+  const G = LEARN.GUIDE = LEARN.GUIDE || {};
+  const all = v => v.goalState && v.goalState.length && v.goalState.every(Boolean);
+  const hold = t => ({ t, why: 'Targets need to stay met for the hold timer.', done: all, live: true });
+  const knob = (k, d) => `[data-v="${k}"][data-d="${d}"]`;
+  const abg = (t, why, after) => ({ t: t || 'Draw an ABG', why: why || 'Results in about 3 minutes.', done: v => !!v.abg && (!after || v.abg.m > after(v)) || (v.abgPend !== null && (!after || v.m > after(v))), el: 'id:abgBtn' });
+  const waitAbg = { t: 'Read the gas when it is back', why: 'pH, PaCO2, PaO2 and HCO3 appear in the ABG card.', done: v => v.abgPend === null && !!v.abg };
+  const sbt = (why) => ({ t: 'Start a spontaneous breathing trial (PS 5 / PEEP 5)', why, done: v => !!v.sbt || v.sbtPassAt !== null, el: 'id:sbtBtn' });
+  const waitSbt = { t: 'Watch the 30-minute trial', why: 'Passing: RR < 35, RSBI < 105, SpO2 ≥ 90%, no distress.', done: v => v.sbtPassAt !== null || !!v.flags.sbtFail };
+  const ext = { t: 'Extubate', why: 'Passed SBT plus every readiness criterion: awake, stable, not bleeding, warm, adequate gas on FiO2 ≤ 0.5.', done: v => v.extubated, el: 'id:extBtn' };
+  const watchExt = { t: 'Watch the first 20 minutes off the vent', why: 'Stridor, rising RR or falling SpO2 are early signs of failure.', done: v => v.extubated && v.m - v.extAt >= 20, live: true };
+  const bar = b => v => v.sc.barrier === b;
+  G.vent = {
+    fast: [
+      { t: 'Start forced-air warming', why: 'Arrived at 35.6 °C. Hypothermia delays waking, impairs clotting and causes shivering (more CO2 and O2 demand).', done: v => v.warming, el: 'id:warmBtn' },
+      { t: 'Wean FiO2 to 0.5', why: 'SpO2 is high on 0.6; extubation criteria include FiO2 ≤ 0.5.', done: v => v.vent.fio2 <= 0.5, el: knob('fio2', -0.1) },
+      abg('Draw an ABG', 'Confirms ventilation and oxygenation on the new FiO2.'),
+      { t: 'Wait for chest tube output under 100 mL/h', why: 'Do not wake and extubate a patient who may need to go back to the OR.', done: v => v.pt.bleed < 100 || !v.propofol },
+      { t: 'Turn propofol off', why: 'Bleeding is settling; start the wake-up.', done: v => !v.propofol, el: 'id:propBtn' },
+      { t: 'Wait until awake and following commands', why: 'RASS 0 to −1. Propofol wears off over about 20–30 minutes.', done: v => v.pt.sed <= 0.35 || v.sbtPassAt !== null },
+      sbt('Awake, warm, stable and not bleeding: test whether he can breathe on minimal support.'), waitSbt, ext, watchExt, hold('Stable after extubation')],
+    hypercap: [
+      abg('Draw an ABG', 'The capnogram is rising: confirm an acute respiratory acidosis.'), waitAbg,
+      { t: 'Raise the rate to 14–16', why: 'Minute ventilation of 3.8 L/min is too low. Rate first: it does not stretch the lung.', done: v => v.vent.rr >= 14, el: knob('rr', 2) },
+      { t: 'Raise Vt toward 6–7 mL/kg PBW (430–480 mL)', why: '380 mL is 5.4 mL/kg for a 70 kg PBW patient; small breaths waste more on dead space. Stay ≤ 8 mL/kg and plateau ≤ 30.', done: v => v.vent.vt >= 430, el: knob('vt', 50) },
+      { t: 'Wait about 5 minutes', why: 'PaCO2 takes a few minutes to settle after a vent change.', done: v => v.m - (v.flags.ventAt || 0) >= 5 },
+      abg('Recheck the ABG', 'Confirm pH 7.35–7.45 and PaCO2 35–45.', v => v.flags.ventAt || 0), waitAbg, hold('Hold a normal gas')],
+    hypox: [
+      { t: 'Raise PEEP to 10–12', why: 'Atelectasis is recruitable shunt; FiO2 alone barely moves it.', done: v => v.vent.peep >= 10, el: knob('peep', 1) },
+      { t: 'Recruitment maneuver', why: 'A sustained inflation reopens collapsed alveoli; PEEP keeps them open. Watch BP.', done: v => v.flags.recruit !== undefined, el: 'id:recBtn' },
+      { t: 'Wait for SpO2 to rise', why: 'Oxygenation improves over a few minutes.', done: v => v.spo2 >= 0.95 || v.vent.fio2 <= 0.5 },
+      { t: 'Wean FiO2 to 0.5', why: 'Keep SpO2 ≥ 92% on the lowest FiO2 that achieves it.', done: v => v.vent.fio2 <= 0.5, el: knob('fio2', -0.1) },
+      hold('Hold SpO2 ≥ 92% on FiO2 ≤ 0.5')],
+    ready: [
+      abg('Draw an ABG', 'Part of the readiness check: acceptable gas on FiO2 ≤ 0.5.'), waitAbg,
+      { t: 'Go through the checklist tiles', why: 'RASS, temperature, chest tube output, MAP and norepinephrine, P/F. Which one is off?', done: v => v.m >= 4 },
+      { t: 'Wait for him to wake up', why: 'RASS below −1: residual sedation. It wears off; then reassess.', show: bar('sed'), done: v => v.pt.sed <= 0.3 },
+      { t: 'Start forced-air warming', why: 'Temperature below 36 °C: warm before extubating.', show: bar('cold'), done: v => v.warming, el: 'id:warmBtn' },
+      { t: 'Wait until ≥ 36 °C', why: 'Shivering on emergence raises CO2 production and O2 demand.', show: bar('cold'), done: v => v.pt.temp >= 36 },
+      { t: 'Call it: not ready because of bleeding', why: 'Chest tubes about 190 mL/h: he may need to go back to the OR. Keep him intubated.', show: bar('bleed'), done: v => !!v.flags.correct, el: '[data-nr="bleeding"]' },
+      { t: 'Run an SBT and watch the RSBI', why: 'A weak diaphragm shows as rapid, shallow breathing on minimal support.', show: bar('phrenic'), done: v => !!v.sbt || !!v.flags.sbtFail, el: 'id:sbtBtn' },
+      { t: 'Call it: not ready because of weak effort', why: 'High RSBI from diaphragm weakness (often phrenic injury): wean slowly, confirm with ultrasound.', show: bar('phrenic'), done: v => !!v.flags.correct, el: '[data-nr="diaphragm"]' },
+      { t: 'Run an SBT until it passes', why: 'The barrier is fixed: now test spontaneous breathing on PS 5 / PEEP 5 for 30 minutes.', show: v => v.sc.barrier === 'sed' || v.sc.barrier === 'cold', done: v => v.sbtPassAt !== null, el: v => v.sbt ? null : 'id:sbtBtn' },
+      { ...ext, show: v => v.sc.barrier === 'sed' || v.sc.barrier === 'cold' },
+      hold('Correct decision')],
+    metab: [
+      abg('Draw an ABG', 'The resident wants to lower the rate. Check the gas first.'), waitAbg,
+      { t: 'Work it through in the ABG interpreter', why: 'pH low and HCO3 low: metabolic acidosis. Expected PaCO2 = 1.5 × HCO3 + 8 ± 2. Anion gap = Na − Cl − HCO3.', done: v => !!v.flags.abgRight, el: 'id:qCheck' },
+      hold('Keep the rate: the low CO2 is compensation')],
+    pc: [
+      { t: 'Look at exhaled Vt, not the peak pressure', why: 'On pressure control the pressure is fixed. Vt has fallen to about 5 mL/kg: something is resisting flow (or compliance has fallen).', done: v => v.m >= 1 },
+      { t: 'Suction the endotracheal tube', why: 'Rhonchi plus a falling Vt at the same pressure: secretions raise resistance, so less volume enters in the same inspiratory time.', done: v => v.pt.R <= v.pt.R0 + 1, el: '[data-x="suction"]' },
+      { t: 'Wait about 5 minutes', why: 'Vt is back to about 7 mL/kg; let the CO2 come down.', done: v => v.flags.suction !== undefined && v.m - v.flags.suction >= 5 },
+      abg('Recheck the ABG', 'Confirm PaCO2 35–45.', v => v.flags.suction || 0), waitAbg, hold('Hold Vt 6–8 mL/kg and a normal gas')],
+    dys: [
+      { t: 'Read the waveform', why: 'Two breaths stacked with no exhalation between them, and a scooped pressure trace during inspiration.', done: v => v.m >= 1 },
+      { t: 'Name it: double triggering / flow starvation', why: 'His effort outlasts the set breath and wants more flow than the vent gives.', done: v => !!v.flags.dysRight, el: '[data-dys="double"]' },
+      { t: 'Treat the pain: fentanyl', why: 'Fix the drive before changing settings. Deep sedation would only hide it.', done: v => v.flags.fent !== undefined, el: '[data-x="fent"]' },
+      hold('Hold synchrony with Vt ≤ 8 mL/kg')],
+    ineff: [
+      { t: 'Compare the rates', why: 'The vent counts about 13; you count about 26 efforts. Look for small flow dips during expiration with no breath.', done: v => v.m >= 1 },
+      { t: 'Name it: ineffective triggering', why: 'Efforts that do not trigger a breath, from auto-PEEP and over-assist.', done: v => !!v.flags.dysRight, el: '[data-dys="ineff"]' },
+      { t: 'Albuterol in-line', why: 'Less bronchospasm, less trapping.', done: v => v.flags.bronch !== undefined, el: '[data-x="bronch"]' },
+      { t: 'Lower pressure support to 10–12', why: 'Smaller breaths and shorter exhalations trap less air.', done: v => v.vent.ps <= 12, el: knob('ps', -1) },
+      { t: 'Raise PEEP to about 8', why: 'External PEEP near 80% of the auto-PEEP lowers the work needed to trigger.', done: v => v.vent.peep >= 8, el: knob('peep', 1) },
+      hold('Hold with fewer than 10% missed efforts')],
+    sbtfail: [
+      sbt('Awake, off pressors, passed the awakening trial: test spontaneous breathing.'),
+      { t: 'Watch the first minutes closely', why: 'Failure usually shows early: RR > 35, RSBI > 105, rising HR and BP, sweating, accessory muscles.', done: v => (!!v.sbt && v.sbt.badAt !== undefined) || v.flags.sbtStopped !== undefined },
+      { t: 'Stop the SBT', why: 'He is failing. Stop early and rest him on full support; pushing on fatigues the diaphragm.', done: v => v.flags.sbtStopped !== undefined, el: '[data-x="stopsbt"]' },
+      { t: 'Treat the cause: furosemide', why: 'Net +6 L with congestion: weaning-induced pulmonary edema. Spontaneous breathing raises venous return and LV afterload.', done: v => v.flags.lasix !== undefined, el: '[data-x="lasix"]' },
+      { t: 'Wait for the diuresis (about an hour)', why: 'Retry once the congestion is better.', done: v => v.pt.edema <= 0.05 },
+      { t: 'Repeat the SBT', why: 'Same test, treated patient.', done: v => (!!v.sbt && v.flags.lasix !== undefined && v.m > v.flags.lasix + 5) || v.sbtPassAt !== null, el: 'id:sbtBtn' },
+      { t: 'Watch the repeat trial', why: 'RR, RSBI, SpO2 and work of breathing over 30 minutes.', done: v => v.sbtPassAt !== null }, ext, watchExt, hold('Stable after extubation')]
+  };
+})();
+
 LEARN.add('hemo', {
   r: ['utd:postoperative-care-after-cardiac-surgery', 'utd:pulmonary-artery-catheterization-interpretation-of-hemodynamic-values-and-waveforms-in-adults', 'utd:use-of-vasopressors-and-inotropes', 'bojar'],
   d: {
@@ -19005,7 +19083,7 @@ function setVent(k, d) {
   if (k === 'pi' && d > 0 && v.mode === 'PC' && v.peep + v.pi > 30) vdanger('pplat');
   vlog(`Vent: ${v.mode} ${v.mode === 'VC' ? `Vt ${v.vt} × ${v.rr}` : v.mode === 'PC' ? `Pinsp ${v.pi} × ${v.rr}` : `PS ${v.ps}`}, PEEP ${v.peep}, FiO2 ${Math.round(v.fio2 * 100)}%`);
 }
-function recruit() { const p = V.pt; if (V.vent.peep < 8) { vlog('Recruitment maneuver done, but PEEP is too low to keep the lung open: it collapses again', 'warn'); return; } p.shunt *= 1 - 0.35 * p.recruit; vlog('Recruitment maneuver (sustained inflation): SpO2 improves', 'good'); }
+function recruit() { const p = V.pt; if (V.vent.peep < 8) { vlog('Recruitment maneuver done, but PEEP is too low to keep the lung open: it collapses again', 'warn'); return; } p.shunt *= 1 - 0.35 * p.recruit; V.flags.recruit = V.m; vlog('Recruitment maneuver (sustained inflation): SpO2 improves', 'good'); }
 function sedation(on) { V.propofol = on; vlog(on ? 'Propofol infusion on' : 'Propofol off: sedation wearing off', 'info'); }
 function warm() { if (!V.warming) { V.warming = true; vlog('Forced-air warming on', 'info'); } }
 function drawABG() { if (V.abgPend === null) { V.abgPend = V.m + 3; vlog('ABG drawn', 'info'); } }
@@ -19111,7 +19189,7 @@ const VSCEN = [
     ], hold: 4,
     teach: ['Double triggering: the patient\'s effort outlasts the set inspiratory time, so a second breath is triggered with no exhalation. The stacked volume can reach 12–15 mL/kg despite a "protective" setting.', 'Flow starvation: a concave (scooped) pressure trace during a volume breath because the patient wants more flow than set.', 'Causes: pain, anxiety, high respiratory drive (acidosis, fever, delirium), settings that do not match demand.', 'Fix the cause first (analgesia), then the settings (Vt, flow, inspiratory time or a variable-flow mode). Deep sedation or paralysis is a last resort.'] },
   { id: 'ineff', name: 'The vent counts 12, you count 26', tag: 'Dyssynchrony', dysQ: true, dysAns: 'ineff',
-    pt: { C: 30, R: 22, apBase: 8, sed: 0.15, vco2: 230, shunt: 0.1, drive: 0.9 }, propofol: false, vent: { mode: 'PS', ps: 18, peep: 5, fio2: 0.35, vt: 450, rr: 12 }, extra: ['bronch'],
+    pt: { C: 30, R: 22, apBase: 8, sed: 0.15, vco2: 300, vdf: 0.45, hco3: 30, shunt: 0.1, drive: 0.5 }, propofol: false, vent: { mode: 'PS', ps: 18, peep: 5, fio2: 0.35, vt: 450, rr: 12 }, extra: ['bronch'],
     brief: 'COPD, day 4 after intubation for a hypercapnic exacerbation, now on pressure support 18 / PEEP 5. The vent shows a rate of 12 with large breaths, but at the bedside his neck and abdominal muscles contract about 26 times a minute. He looks uncomfortable.',
     hint: 'Efforts that do not trigger a breath show as small dips in the flow trace during expiration. Too much support makes big breaths and long exhalations, building auto-PEEP that the next effort cannot overcome. Lower the pressure support (about 10–12) and add PEEP to about 80% of the auto-PEEP (about 8). A bronchodilator helps.',
     goals: [
@@ -19133,7 +19211,7 @@ const VSCEN = [
     teach: ['SBT failure criteria: RR > 35 for more than 5 min, SpO2 < 90%, HR > 140 or a 20% rise, SBP > 180 or < 90, agitation, diaphoresis, accessory muscle use. RSBI > 105 predicts failure.', 'Stop a failing trial early and rest on full support; pushing on causes diaphragm fatigue.', 'Find the cause before retrying: fluid overload (the most common fixable one), cardiac ischemia or valve dysfunction, weakness, secretions, sedation, electrolytes (phosphate, potassium, magnesium).', 'Weaning-induced pulmonary edema: the switch to spontaneous breathing raises venous return and LV afterload. Diuresis often lets the next trial pass.'] }
 ];
 const BARRIERS = {
-  sed: { pt: { sedFloor: 0.7 }, label: 'residual sedation', fix: 'wait for the patient to wake' },
+  sed: { pt: { sedFloor: 0.7, sed: 0.7 }, label: 'residual sedation', fix: 'wait for the patient to wake' },
   bleed: { pt: { bleed: 190 }, label: 'ongoing bleeding', declare: 'bleeding' },
   cold: { pt: { temp: 35.1 }, label: 'hypothermia', fix: 'warm' },
   phrenic: { pt: { phrenic: true }, label: 'diaphragm weakness', declare: 'diaphragm' }
@@ -19348,6 +19426,7 @@ function frame(ts) {
 let rz = null;
 new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => layout(), 80); }).observe(scr);
 load(0);
+if (window.CTG && CTG.state) CTG.state('vent', () => (V ? { S: V, id: VSCEN[scIdx].id } : null));
 if (document.fonts) document.fonts.ready.then(() => drawGrid());
 requestAnimationFrame(frame);
 
